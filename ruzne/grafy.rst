@@ -128,8 +128,8 @@ transparentnosť ako vrstiev, tak pozadia, viď. :num:`cr-graf-g2t`.
         
    Počet vrážd pre vyššie územné samosprávne celky Českej republiky.
 
-Štatistika dopravných prostriedkov
-==================================
+Regionálna štatistika dopravných prostriedkov
+=============================================
 
 Do mapového okna pridáme vrstvy ako železníce (:map:`zeleznice`), 
 diaľnice (:map:`silnice_1`), rýchlostné cesty (:map:`silnice_2`), cesty 1. a 2. 
