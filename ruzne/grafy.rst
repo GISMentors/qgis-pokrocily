@@ -20,6 +20,11 @@
    :width: 1.5em
 .. |q2t| image:: ../images/icon/q2t.png
    :width: 1.5em
+.. |mActionCalculateField| image:: ../images/icon/mActionCalculateField.png
+   :width: 1.5em
+
+
+
 
 
 
@@ -134,12 +139,15 @@ Skontrolujeme či všetky vrstvy majú rovnaký súradnicový systém, t.j.
 Potom z menu lišty vyberieme :menuselection:`Vektor --> Analytické nástroje -->
 Součet délek čar`. Otvorí sa dialógové okno, kde nastavíme vstupnú polygónovú
 a líniovú vektorovú vrstvu a názov výstupnej vrstvy (:num:`#soucet-silnice-okno`). 
-Urobíme to pre všetky dopravné komunikácie, viď. :num:`cr-silnice`. 
+Urobíme to pre všetky dopravné komunikácie, tak, že výstupnú plošnú vrstvu
+použijeme ako vstup pre ďalšiu, viď. :num:`cr-silnice`. Takto nám nakoniec 
+vznikne vektorová vrstva krajov s informáciami o dĺžke vybraných komunikácií,
+viď. atribútová tabuľka poslednej mapy :map:`sum_z` na :num:`#at-sum`. 
 
 .. _soucet-silnice-okno:
 
 .. figure:: images/soucet_silnice_okno.png
-   :scale: 70%
+   :scale: 55%
         
    Dialógové okno pre sčítanie dĺžky dopravných komunikácií v rámci krajov.
 
@@ -149,4 +157,26 @@ Urobíme to pre všetky dopravné komunikácie, viď. :num:`cr-silnice`.
    :class: middle
         
    Vybrané dopravné cesty Českej republiky a panel vrstiev po sčítaní ich dĺžok.
+
+.. _at-sum:
+
+.. figure:: images/at_sum.png
+   :scale: 55%
+        
+   Atribútová tabuľka s dĺžkou vybraných komunikácií.
+
+Potom pomocou kalkulačky polí |mActionCalculateField| :sup:`Otvoriť kalkulátor polí`
+zaokrúhlime hodnoty na celé čísla. Najprv zaklikneme 
+|box_yes| :sup:`Aktualizovať existujúce pole` a následne do okna *Výraz*
+zadáme ``round("sum_s1"/1000)``, viď. :num:`kalk-poli`. Postupujeme obdobne
+pri stĺpcoch :dbcolumn:`sum_s2`, :dbcolumn:`sum_s3`, :dbcolumn:`sum_s4`, 
+:dbcolumn:`sum_s5` a :dbcolumn:`sum_z`. Na záver zmeny uložíme. 
+
+.. _kalk-poli:
+
+.. figure:: images/kalk_poli.png
+   :scale: 60%
+        
+   Zaokrúhlenie dĺžok v atribútovej tabuľke pomocou kalkulačky polí.
+
 
