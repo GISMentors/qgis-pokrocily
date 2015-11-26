@@ -29,13 +29,29 @@ Mapa celkovej kriminality krajov ČR
 ===================================
     
 Do mapového okna pridáme vektorovú vrstvu vyšších územných samosprávnych celkov
-(:map:`vusc_krim`). Pravým kliknutím na mapu v paneli vrstiev zvolíme 
+(:map:`vusc_krim`). Nastavíme štýl, napr. na :num:`#cr-styl` je typ vrstvy 
+symbolu nastavený na ``Shapeburst fill``, ide o ``Prevrácené polygóny`` s farbami
+prechodu ``modrá`` a ``biela`` s nastaveným tieňovaním do vzdialenosti
+5 mm. Popisky predstavujú názvy jednotlivých samosprávnych celkov 
+(:dbcolumn:`nazev`), ich veľkosť je nastavná na ``10``, povolená je svetlomodrá 
+obalová zóna s veľkosťou ``3 mm`` a umiestnenie je okolo centroidu.
+
+.. _cr-styl:
+
+.. figure:: images/cr_styl.png
+   :class: middle
+        
+   Vyššie územné samosprávne celky Českej republiky.
+
+
+
+Pravým kliknutím na mapu v paneli vrstiev zvolíme 
 :item:`Otevrít atributovou tabulku` a prezrieme stĺpce a hodnoty v atribútovej 
 tabuľke. Nájdeme tam údaje o kriminalite v Českej republike (zdroj:
-`Dátová stránka <http://www.mapakriminality.cz/#tabulky>`_). Stĺpec 
-:dbcolumn:`krim_2015c` obsahuje údaje o počte celkovej kriminality 
+`Dátová stránka <http://www.mapakriminality.cz/#tabulky>`_). Konkrétnejšie, 
+stĺpec :dbcolumn:`krim_2015c` obsahuje údaje o počte celkovej kriminality 
 v jednotlivých samosprávnych celkoch Českej republiky od januára 2014 do 
-januára 2015. Atribút s názvom :dbcolumn:`krim_2015v` predstavuje počet vrážd 
+januára 2015 a stĺpec s názvom :dbcolumn:`krim_2015v` predstavuje počet vrážd 
 pre to isté obdobie. Tieto údaje pridáme do mapy vo forme diagramov.
 
 V dialógovom okne *Vlastnosti vrstvy* (pravé tlačidlo myši na mapu a voľba 
