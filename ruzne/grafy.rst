@@ -16,6 +16,11 @@
    :width: 1.5em
 .. |expression| image:: ../images/icon/mIconExpression.png
    :width: 1.5em
+.. |catsymbol| image:: ../images/icon/rendererCategorizedSymbol.png
+   :width: 1.5em
+.. |q2t| image:: ../images/icon/q2t.png
+   :width: 1.5em
+
 
 
 Znázornenie diagramov
@@ -43,8 +48,6 @@ obalová zóna s veľkosťou ``3 mm`` a umiestnenie je okolo centroidu.
         
    Vyššie územné samosprávne celky Českej republiky.
 
-
-
 Pravým kliknutím na mapu v paneli vrstiev zvolíme 
 :item:`Otevrít atributovou tabulku` a prezrieme stĺpce a hodnoty v atribútovej 
 tabuľke. Nájdeme tam údaje o kriminalite v Českej republike (zdroj:
@@ -64,8 +67,10 @@ layer`. Potom vyberieme typ diagramu, pričom môže ísť o
 |histogram| :sup:`Histogram`. V rámci tohto okna je možné nastaviť jeho vzhľad, 
 formát, viditeľnosť, tlačidlami |plus| a |minus| sa dá pridávať, resp. uberať 
 zobrazované atribúty, tlačidlom |expression| možno definovať atribút založený 
-na výraze. Na :num:`#d-pie` sú znázornené informácie o celkovej 
-kriminalite pre jednotlivé vyššie územné samosprávne celky Českej republiky.  
+na výraze. Na :num:`#d-pie` sú kombináciou koláčového grafu a textového diagramu
+znázornené informácie o celkovej kriminalite pre jednotlivé vyššie územné 
+samosprávne celky Českej republiky. Je to jeden z najjednoduchších spôsobov
+takejto reprezentácie dát (zobrazujeme len jeden atribút).
 
 .. _d-pie:
 
@@ -73,5 +78,42 @@ kriminalite pre jednotlivé vyššie územné samosprávne celky Českej republi
    :class: middle
         
    Celková kriminalita vyšších územných samosprávnych celkov Českej republiky.
+
+Ďalším spôsobom je zobrazenie pomocou pluginu *QGIS2threejs*. Pôjde o informácie
+o počte vrážd pre jednotlivé samosprávne kraje (atribút :dbcolumn:`krim_2015v`)
+za rok 2015. 
+
+.. note:: Tento plugin sa dá spustiť, len ak je prítomná rastrová vrstva 
+	  digitálneho modelu terénu, preto netreba zabudnúť do mapového okna 
+	  pridať rastrovú vrstvu :map:`dmt`.
+
+Nastavíme štýlovanie vrstiev, t.j. |catsymbol| :sup:`Kategorizovaný symbol` pre hodnoty
+o počte vrážd za rok 2015. Pomocou :menuselection:`Web --> OpenLayers Plugin`
+pridáme do mapového okna napríklad aj vrstvu :map:`OpenStreetMap`. Výsledok môže
+vyzerať ako to znázorňuje :num:`cr-graf-osm`. 
+
+.. _cr-graf-osm:
+
+.. figure:: images/cr_graf_osm.png
+   :class: middle
+        
+   Počet vrážd pre vyššie územné samosprávne celky Českej republiky.
+
+V dialógovom okne zásuvného modulu |q2t| :sup:`Qgis2threejs` na zobrazovanie dát 
+v prostredí web-u nastavíme v záložke ``World`` rozsah, mierku, farbu pozadia, 
+typ zobrazovaných súradníc, ... v záložke ``DEM`` predovšetkým vstupný 
+digitálny model terénu, prípadne rozlíšenie či nastavenie transparentnosti a 
+nakoniec v záložke ``Polygon`` použijeme vrstvu :map:`vusc_krim` a jej atribút 
+:dbcolumn:`krim_2015v` prenásobený hodnotou napr. ``3000``. 
+Potvrdíme stlačením :item:`Run` a počkáme na automatické otvorenie výsledku 
+vo webovom prehliadači. Tu môžeme zapínať, resp. vypínať vrstvy, meniť 
+transparentnosť ako vrstiev, tak pozadia, viď. :num:`cr-graf-g2t`.
+
+.. _cr-graf-g2t:
+
+.. figure:: images/cr_graf_g2t.png
+   :class: middle
+        
+   Počet vrážd pre vyššie územné samosprávne celky Českej republiky.
 
 
