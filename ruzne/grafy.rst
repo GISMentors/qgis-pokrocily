@@ -179,4 +179,37 @@ pri stĺpcoch :dbcolumn:`sum_s2`, :dbcolumn:`sum_s3`, :dbcolumn:`sum_s4`,
         
    Zaokrúhlenie dĺžok v atribútovej tabuľke pomocou kalkulačky polí.
 
+.. note:: Mapu :map:`sum_z` premenujeme na :map:`vusc_silnice`.
+
+Potom postupujeme obdobne ako pri mape celkovej kriminality záložkou 
+|diagram| :sup:`Diagramy`. Nastavíme priehľadnú výplň a umiestnenie 
+``Inside polgon``. Výsledok prekryjeme s vrstvou :map:`vusc` 
+(:num:`#silnice-graf-all`)
+
+.. _silnice-graf:
+
+.. figure:: images/silnice_graf.png
+   :class: middle
+        
+   Vytvorenie diagramov predstavujúcich podiel komunikácií v krajoch ČR.
+
+.. _silnice-graf-all:
+
+.. figure:: images/silnice_graf_all.png
+   :class: middle
+        
+   Grafické znázornenie počtu diaľnic, rýchlostných ciest, 
+   ciest 1., 2. a 3. formou diagramov.
+
+Ďalej môžeme vrstvu :map:`vusc-silnice` duplikovať a namiesto koláčového grafu 
+znázorniť textové diagramy. V prípade, že všetky vrstvy prekryjeme, výsledok
+môže byť ako na :num:`#silnice-graf-text`.
+
+.. _silnice-graf-text:
+
+.. figure:: images/silnice_graf_text.png
+   :class: small
+        
+   Grafické znázornenie informácií formou diagramov spolu s textom.
+
 
