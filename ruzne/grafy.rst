@@ -30,9 +30,6 @@ Medzi ďalšie možnosti patrí tvorba diagramov a grafov. QGIS nám umožňuje 
 základe dát vytvárať či už koláčové, textové alebo stĺpcové diagramy a následne 
 ich zobrazovať v mape.
 
-Mapa celkovej kriminality krajov ČR
-===================================
-    
 Do mapového okna pridáme vektorovú vrstvu vyšších územných samosprávnych celkov
 (:map:`vusc_krim`). Nastavíme štýl, napr. na :num:`#cr-styl` je typ vrstvy 
 symbolu nastavený na ``Shapeburst fill``, ide o ``Prevrácené polygóny`` s farbami
@@ -47,6 +44,12 @@ obalová zóna s veľkosťou ``3 mm`` a umiestnenie je okolo centroidu.
    :class: middle
         
    Vyššie územné samosprávne celky Českej republiky.
+
+Mapy kriminality krajov ČR
+==========================
+
+Záložka |diagram| :sup:`Diagramy`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Pravým kliknutím na mapu v paneli vrstiev zvolíme 
 :item:`Otevrít atributovou tabulku` a prezrieme stĺpce a hodnoty v atribútovej 
@@ -78,6 +81,10 @@ takejto reprezentácie dát (zobrazujeme len jeden atribút).
    :class: middle
         
    Celková kriminalita vyšších územných samosprávnych celkov Českej republiky.
+
+
+Zásuvný modul Qgis2threejs
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Ďalším spôsobom je zobrazenie pomocou pluginu *QGIS2threejs*. Pôjde o informácie
 o počte vrážd pre jednotlivé samosprávne kraje (atribút :dbcolumn:`krim_2015v`)
@@ -116,4 +123,30 @@ transparentnosť ako vrstiev, tak pozadia, viď. :num:`cr-graf-g2t`.
         
    Počet vrážd pre vyššie územné samosprávne celky Českej republiky.
 
+Štatistika dopravných prostriedkov
+==================================
+
+Do mapového okna pridáme vrstvy ako železníce (:map:`zeleznice`), 
+diaľnice (:map:`silnice_1`), rýchlostné cesty (:map:`silnice_2`), cesty 1. a 2. 
+triedy (:map:`silnice_3`, map:`silnice_4` a :map:`silnice_5`). 
+Skontrolujeme či všetky vrstvy majú rovnaký súradnicový systém, t.j. 
+:menuselection:`Vlastnosti --> Obecné --> Souradnicový referenčný systém`). 
+Potom z menu lišty vyberieme :menuselection:`Vektor --> Analytické nástroje -->
+Součet délek čar`. Otvorí sa dialógové okno, kde nastavíme vstupnú polygónovú
+a líniovú vektorovú vrstvu a názov výstupnej vrstvy (:num:`#soucet-silnice-okno`). 
+Urobíme to pre všetky dopravné komunikácie, viď. :num:`cr-silnice`. 
+
+.. _soucet-silnice-okno:
+
+.. figure:: images/soucet_silnice_okno.png
+   :scale: 70%
+        
+   Dialógové okno pre sčítanie dĺžky dopravných komunikácií v rámci krajov.
+
+.. _cr-silnice:
+
+.. figure:: images/cr_silnice.png
+   :class: middle
+        
+   Vybrané dopravné cesty Českej republiky a panel vrstiev po sčítaní ich dĺžok.
 
