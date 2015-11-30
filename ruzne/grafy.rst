@@ -23,11 +23,6 @@
 .. |mActionCalculateField| image:: ../images/icon/mActionCalculateField.png
    :width: 1.5em
 
-
-
-
-
-
 Znázornenie diagramov
 ---------------------
 
@@ -73,7 +68,7 @@ V prvom kroku zaklikneme |box_no| :sup:`Show diagrams for this
 layer`. Potom vyberieme typ diagramu, pričom môže ísť o 
 |pie-chart| :sup:`Koláčový graf`, |text| :sup:`Textový diagram` alebo 
 |histogram| :sup:`Histogram`. V rámci tohto okna je možné nastaviť jeho vzhľad, 
-formát, viditeľnosť, tlačidlami |plus| a |minus| sa dá pridávať, resp. uberať 
+formát, viditeľnosť, tlačidlami |plus| a |minus| sa dajú pridávať, resp. uberať 
 zobrazované atribúty, tlačidlom |expression| možno definovať atribút založený 
 na výraze. Na :num:`#d-pie` sú kombináciou koláčového grafu a textového diagramu
 znázornené informácie o celkovej kriminalite pre jednotlivé vyššie územné 
@@ -114,12 +109,12 @@ vyzerať ako to znázorňuje :num:`cr-graf-osm`.
 V dialógovom okne zásuvného modulu |q2t| :sup:`Qgis2threejs` na zobrazovanie dát 
 v prostredí web-u nastavíme v záložke ``World`` rozsah, mierku, farbu pozadia, 
 typ zobrazovaných súradníc, ... v záložke ``DEM`` predovšetkým vstupný 
-digitálny model terénu, prípadne rozlíšenie či nastavenie transparentnosti a 
-nakoniec v záložke ``Polygon`` použijeme vrstvu :map:`vusc_krim` a jej atribút 
+digitálny model terénu, prípadne rozlíšenie či nastavenie transparentnosti.
+Nakoniec v záložke ``Polygon`` použijeme vrstvu :map:`vusc_krim` a jej atribút 
 :dbcolumn:`krim_2015v` prenásobený hodnotou napr. ``3000``. 
 Potvrdíme stlačením :item:`Run` a počkáme na automatické otvorenie výsledku 
 vo webovom prehliadači. Tu môžeme zapínať, resp. vypínať vrstvy, meniť 
-transparentnosť ako vrstiev, tak pozadia, viď. :num:`cr-graf-g2t`.
+transparentnosť vrstiev či pozadia, viď. :num:`cr-graf-g2t`.
 
 .. _cr-graf-g2t:
 
@@ -131,7 +126,7 @@ transparentnosť ako vrstiev, tak pozadia, viď. :num:`cr-graf-g2t`.
 Regionálna štatistika dopravných prostriedkov
 =============================================
 
-Do mapového okna pridáme vrstvy ako železníce (:map:`zeleznice`), 
+Do mapového okna pridáme vrstvy ako železnice (:map:`zeleznice`), 
 diaľnice (:map:`silnice_1`), rýchlostné cesty (:map:`silnice_2`), cesty 1. a 2. 
 triedy (:map:`silnice_3`, map:`silnice_4` a :map:`silnice_5`). 
 Skontrolujeme či všetky vrstvy majú rovnaký súradnicový systém, t.j. 
@@ -139,7 +134,7 @@ Skontrolujeme či všetky vrstvy majú rovnaký súradnicový systém, t.j.
 Potom z menu lišty vyberieme :menuselection:`Vektor --> Analytické nástroje -->
 Součet délek čar`. Otvorí sa dialógové okno, kde nastavíme vstupnú polygónovú
 a líniovú vektorovú vrstvu a názov výstupnej vrstvy (:num:`#soucet-silnice-okno`). 
-Urobíme to pre všetky dopravné komunikácie, tak, že výstupnú plošnú vrstvu
+Urobíme to pre všetky dopravné komunikácie tak, že výstupnú plošnú vrstvu
 použijeme ako vstup pre ďalšiu, viď. :num:`cr-silnice`. Takto nám nakoniec 
 vznikne vektorová vrstva krajov s informáciami o dĺžke vybraných komunikácií,
 viď. atribútová tabuľka poslednej mapy :map:`sum_z` na :num:`#at-sum`. 
@@ -166,9 +161,9 @@ viď. atribútová tabuľka poslednej mapy :map:`sum_z` na :num:`#at-sum`.
    Atribútová tabuľka s dĺžkou vybraných komunikácií.
 
 Potom pomocou kalkulačky polí |mActionCalculateField| :sup:`Otvoriť kalkulátor polí`
-zaokrúhlime hodnoty na celé čísla. Najprv zaklikneme 
+zaokrúhlime hodnoty na celé kilometre. Najprv zaklikneme 
 |box_yes| :sup:`Aktualizovať existujúce pole` a následne do okna *Výraz*
-zadáme ``round("sum_s1"/1000)``, viď. :num:`kalk-poli`. Postupujeme obdobne
+zadáme ``round("sum_s1"/1000)``, viď. :num:`kalk-poli`. Obdobne postupujeme aj
 pri stĺpcoch :dbcolumn:`sum_s2`, :dbcolumn:`sum_s3`, :dbcolumn:`sum_s4`, 
 :dbcolumn:`sum_s5` a :dbcolumn:`sum_z`. Na záver zmeny uložíme. 
 
@@ -181,9 +176,9 @@ pri stĺpcoch :dbcolumn:`sum_s2`, :dbcolumn:`sum_s3`, :dbcolumn:`sum_s4`,
 
 .. note:: Mapu :map:`sum_z` premenujeme na :map:`vusc_silnice`.
 
-Potom postupujeme obdobne ako pri mape celkovej kriminality záložkou 
+Potom postupujeme podobne ako pri mape celkovej kriminality záložkou 
 |diagram| :sup:`Diagramy`. Nastavíme priehľadnú výplň a umiestnenie 
-``Inside polgon``. Výsledok prekryjeme s vrstvou :map:`vusc` 
+``Inside polygon``. Výsledok prekryjeme s vrstvou :map:`vusc` 
 (:num:`#silnice-graf-all`)
 
 .. _silnice-graf:
