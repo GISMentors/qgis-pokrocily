@@ -205,11 +205,11 @@ pri ďalších kódoch. Výsledok je na :num:`#hydrsk-ok`.
 	  
 	  .. code-block:: bash
 
-		          CASE WHEN "hydrsk"  =  'C(D)' THEN replace("hydrsk",'D(D)','CD') ELSE "hydrsk" END
+		          CASE WHEN "hydrsk"  =  'C(D)' THEN replace("hydrsk",'C(D)','CD') ELSE "hydrsk" END
 
 .. _hydrsk-ok:
 
-.. figure:: images/hydrsk.png
+.. figure:: images/hydrsk_ok.png
    :class: middle
         
    Zjednotené hydrologické skupiny elementárnych plôch v záujmovom území.
