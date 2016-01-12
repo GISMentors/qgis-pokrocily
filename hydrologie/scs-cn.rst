@@ -4,6 +4,14 @@
    :width: 1.5em
 .. |join| image:: ../images/icon/join.png
    :width: 1.5em
+.. |edit| image:: ../images/icon/mIconEditable.png
+   :width: 1.5em
+.. |kalk| image:: ../images/icon/mActionCalculateField.png
+   :width: 1.5em
+
+
+
+
 
 1. Metóda SCS CN
 ================
@@ -117,17 +125,46 @@ spustíme dialógové okno s nastaveniami pre spájanie (:num:`#join`).
 .. _join:
 
 .. figure:: images/at_join.png
-   :class: small
+   :scale: 70%
         
    Pripojenie tabuľky k vektorovej vrstve na základe spoločného atribútu.
 
-Takýmto spôsobom pripojíme tabuľky s informáciami o hydrologických skupinách.
-Potom zapneme editovací mód a vytvoríme nový stĺpec tak, aby platilo
+Takýmto spôsobom pripojíme tabuľky s informáciami o hydrologických skupinách 
+(:num:`#tab-pripojene`).
+
+.. _tab-pripojene:
+
+.. figure:: images/tab_pripojene.png
+   :scale: 70%
+        
+   Zobrazenie pripojených vrstiev vo vlastnostiach vrstvy *hpj_kpp*.
+
+Potom otvoríme atribútovú tabuľku :map:`hpj_kpp`, zapneme editovací mód ikonkou 
+|edit| a v kalkulačke polí |kalk| vytvoríme nový stĺpec. Použijeme pripojené
+atribúty o hydrologickej skupine (:dbcolumn:`hpj_HydrSk` z vrstvy hlavných 
+pôdnych jednotiek a :dbcolumn:`kpp_Hydrologic_skupina` z vrstvy komplexného 
+prieskupu pôd). Primárne použijeme hydrologickú skupinu pre hlavné pôdne jednotky.
+Kde informácia nie je (hodnota :dbcolumn:`NULL`), tam použijeme 
+:dbcolumn:`kpp_Hydrologic_skupina` (:num:`at-hydrsk-kalk`) a výsledok znázorníme
+(:num:`hydrsk`).
 
 .. code-block:: bash
 	
-   case when  "hpj_hydrsk_HydrSk"  is NULL then "kpp_hydrsk_Hydrologic_skupina"  else  "hpj_hydrsk_HydrSk"  end
+   CASE WHEN "hpj_HydrSk" IS NULL THEN "kpp_Hydrologic_skupina" ELSE "hpj_hydrsk_HydrSk" END
 
+.. _at-hydrsk-kalk:
+
+.. figure:: images/at_hydrsk_kalk.png
+   :scale: 70%
+        
+   Vytvorenie atribútu s informáciami o hydrologickej skupine pre elementárne plochy.
+
+.. _hydrsk:
+
+.. figure:: images/hydrsk.png
+   :class: middle
+        
+   Hydrologické skupiny elementárnych plôch v záujmovom území.
 
 
 
