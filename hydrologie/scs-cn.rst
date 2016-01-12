@@ -117,10 +117,17 @@ a komplexného prieskumu pôd. Využijeme nástroj geoprocessingu |union|
 Vznikne vektorový výstup :map:`hpj_kpp`). 
 
 Tabuľku :dbtable:`hpj_hydrsk` môžeme pripojiť k atribútom novej vektorovej mapy 
-:map:`hpj_kpp` pomocou spoločného stĺpca :dbcolumn:`HPJ`. Pravým tlačidlom myši 
-v paneli vrstiev pre :map:`hpj_kpp` zvolíme :item:`Vlastnosti` a v dialógovom 
-okne prejdeme do záložky |join| :sup:`Připojení`. Kliknutím na ikonku |plus|
-spustíme dialógové okno s nastaveniami pre spájanie (:num:`#join`). 
+:map:`hpj_kpp` pomocou spoločného stĺpca :dbcolumn:`HPJ` (:num:`#at-pred-join`). 
+Pravým tlačidlom myši v paneli vrstiev pre :map:`hpj_kpp` zvolíme :item:`Vlastnosti` 
+a v dialógovom okne prejdeme do záložky |join| :sup:`Připojení`. Kliknutím na 
+ikonku |plus| spustíme dialógové okno s nastaveniami pre spájanie (:num:`#join`). 
+
+.. _at-pred-join:
+
+.. figure:: images/at_pred_join.png
+   :class: middle
+        
+   Spoločný atribút *HPJ* a hydrologické skupiny hlavných pôdnych jednotiek.
 
 .. _join:
 
@@ -135,7 +142,7 @@ Takýmto spôsobom pripojíme tabuľky s informáciami o hydrologických skupin�
 .. _tab-pripojene:
 
 .. figure:: images/tab_pripojene.png
-   :scale: 70%
+   :scale: 60%
         
    Zobrazenie pripojených vrstiev vo vlastnostiach vrstvy *hpj_kpp*.
 
