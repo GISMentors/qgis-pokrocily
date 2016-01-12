@@ -8,6 +8,11 @@
    :width: 1.5em
 .. |kalk| image:: ../images/icon/mActionCalculateField.png
    :width: 1.5em
+.. |select-attr| image:: ../images/icon/mIconExpressionSelect.png
+   :width: 1.5em
+
+
+
 
 
 
@@ -152,8 +157,8 @@ atribúty o hydrologickej skupine (:dbcolumn:`hpj_HydrSk` z vrstvy hlavných
 pôdnych jednotiek a :dbcolumn:`kpp_Hydrologic_skupina` z vrstvy komplexného 
 prieskupu pôd). Primárne použijeme hydrologickú skupinu pre hlavné pôdne jednotky.
 Kde informácia nie je (hodnota :dbcolumn:`NULL`), tam použijeme 
-:dbcolumn:`kpp_Hydrologic_skupina` (:num:`at-hydrsk-kalk`) a výsledok znázorníme
-(:num:`hydrsk`).
+:dbcolumn:`kpp_Hydrologic_skupina` (:num:`#at-hydrsk-kalk`) a výsledok znázorníme
+(:num:`#hydrsk`).
 
 .. code-block:: bash
 	
@@ -172,6 +177,42 @@ Kde informácia nie je (hodnota :dbcolumn:`NULL`), tam použijeme
    :class: middle
         
    Hydrologické skupiny elementárnych plôch v záujmovom území.
+
+Pri pohľade na legendu na :num:`#hydrsk` si možno všimnúť, že kódy hydrologických
+skupín ako ``(A)B``, ``A(B)``, ``AB`` a podobne by bolo dobré zjednotiť. 
+Použijeme editovací mód a atribútové dotazy. V hlavnej lište alebo v lište 
+atribútovej tabuľky klikneme na voľbu |select-attr| :sup:`Select by expression`, 
+kde vyberieme elementárne plochy
+s hydrologickou skupinou  ``(A)B`` a ``A(B)``, potom zapneme editovací režim,
+spustíme |kalk| :sup:`Kalkulačka polí` a aktualizujeme existujúce pole 
+:dbcolumn:`hydrsk` vybraných prvkov (:num:`#kalk-ab`). Obdobne postupujeme 
+pri ďalších kódoch. Výsledok je na :num:`#hydrsk-ok`.
+
+.. _kalk-ab:
+
+.. figure:: images/kalk_AB.png
+   :class: middle
+        
+   Zjednotenie hodnôt atribútov pomocou kalkulátora polí.
+
+.. note:: Na zjednotenie hodnôt možno použiť aj kondicionál *CASE*:
+
+	  .. code-block:: bash
+
+		          CASE WHEN "hydrsk"  =  'B(C)' THEN replace("hydrsk",'B(C)','BC') ELSE "hydrsk" END
+
+	  a 
+	  
+	  .. code-block:: bash
+
+		          CASE WHEN "hydrsk"  =  'C(D)' THEN replace("hydrsk",'D(D)','CD') ELSE "hydrsk" END
+
+.. _hydrsk-ok:
+
+.. figure:: images/hydrsk.png
+   :class: middle
+        
+   Zjednotené hydrologické skupiny elementárnych plôch v záujmovom území.
 
 
 
