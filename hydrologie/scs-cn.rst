@@ -214,5 +214,16 @@ pri ďalších kódoch. Výsledok je na :num:`#hydrsk-ok`.
         
    Zjednotené hydrologické skupiny elementárnych plôch v záujmovom území.
 
+Do tejto fázy je možné používať QGIS relatívne bez problémov. Ďalej však budeme
+pridávať informácie o využití územia pre každú elementárnu plochu pomocou operácie 
+prieniku. Pri väčších dátach (v našom prípade má vrstva :map:`hpj_kpp` spolu
+cez 10 000 prvkov) môžu byť nástroje geoprocessingu časovo náročné.
+
+V tejto chvíli nám buď pomôže svätý alebo už NIKTO !!! ....... fail fuck !!!
+
+
+
+
+
 
 
