@@ -162,7 +162,7 @@ Kde informácia nie je (hodnota :dbcolumn:`NULL`), tam použijeme
 
 .. code-block:: bash
 	
-   CASE WHEN "hpj_HydrSk" IS NULL THEN "kpp_Hydrologic_skupina" ELSE "hpj_hydrsk_HydrSk" END
+   CASE WHEN "hpj_HydrSk" IS NULL THEN "kpp_Hydrologic_skupina" ELSE "hpj_HydrSk" END
 
 .. _at-hydrsk-kalk:
 
