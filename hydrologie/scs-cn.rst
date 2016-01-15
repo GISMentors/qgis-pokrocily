@@ -116,7 +116,9 @@ Krok 1
 
 V prvom kroku založíme projekt a importujeme vstupné vrstvy (:map:`hpj.shp`, 
 :map:`kpp.shp`, :map:`hpj_hydrsk.csv`, :map:`kpp_hydrsk.csv`, :map:`landuse.shp` 
-a :map:`povodi.shp`). Následne zjednotíme vrstvu hlavných pôdnych jednotiek 
+a :map:`povodi.shp`). 
+
+Následne zjednotíme vrstvu hlavných pôdnych jednotiek 
 a komplexného prieskumu pôd. Využijeme nástroj geoprocessingu |union| 
 :sup:`Sjednotit` (:menuselection:`Vector --> Nástroje geoprocessingu --> Sjednotit)`. 
 Vznikne vektorový výstup :map:`hpj_kpp`). 
@@ -217,6 +219,19 @@ pri ďalších kódoch. Výsledok je na :num:`#hydrsk-ok`.
 Do tejto fázy je možné používať QGIS relatívne bez problémov. Ďalej však budeme
 pridávať informácie o využití územia pre každú elementárnu plochu pomocou operácie 
 prieniku. Pri väčších dátach môžu byť nástroje geoprocessingu časovo náročné.
+
+Využijeme zásuvný modul GRASS GIS.
+
+1. Založenie MAPSET-u
+^^^^^^^^^^^^^^^^^^^^^
+
+.. _hydrsk-ok:
+
+.. figure:: images/menu_mapset.png
+   :class: small
+        
+   xx.
+
 
 
 
