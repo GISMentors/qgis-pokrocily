@@ -10,7 +10,8 @@
    :width: 1.5em
 .. |select-attr| image:: ../images/icon/mIconExpressionSelect.png
    :width: 1.5em
-
+.. |grass_shell| image:: ../images/icon/grass_shell.png
+   :width: 1.5em
 
 
 
@@ -251,7 +252,45 @@ QGIS. Názvy máp zachováme rovnaké.
         
    Možnosti importu vektorových vrstiev do mapset-u v prostredí QGIS.
 
+Ak chceme overiť, či sa dané vrstvy v mapsete nachádzajú použijeme *shell*.
+Kliknutím na |grass_shell| :sup:`shell` spustíme príkazový riadok. Modul, ktorý
+vypíše obsah konkrétneho mapsetu je :grasscmd:`g.list`. Pre výpis vektorov 
+v aktuálnom mapsete zadáme :code:`g.list type = vector mapset=.`. 
 
+.. note:: Dokumentáciu a povinné parametre každého modulu vieme zobraziť 
+	  zadaním *man* pre názov modulu, napríklad :code:`man g.list`. 
+
+Na prekrývanie, resp. nájdenie prieniku vektorových vrstiev slúži modul
+:grasscmd:`v.overlay.and` (:menuselection:`Vektor --> Prostorová analýza --> Překrytí`)
+(:num:`#v-overlay-and`). Výsledný prienik nazveme :map:`hpj_kpp_land`.
+
+.. _v-overlay-and:
+
+.. figure:: images/v_overlay_and.png
+   :class: small
+        
+   Modul na získanie prieniku dvoch vektorových vrstiev.
+
+
+Počet záznamov v atribútovej tabuľke sa prienikom výrazne zvýšil. V príkazovom
+riadku možeme vypísať napríklad:
+
+* zoznam tabuliek v aktuálnom mapsete, resp. ich názvy: :code:`db.tables`
+* zoznam atribútov konkrétnej tabuľky: :code:`db.columns table = NAZOVTABULKY` 
+* počet záznamov v tabuľke: :code:`db.select sql = 'select count(*) from NAZOVTABULKY'` 
+
+Prípadne pomocou modulu :grasscmd:`v.db.select` môžeme vypísať hodnoty atribútu,
+resp. modulom :grasscmd:`v.db.select.where` možno zadať aj podmienku.
+Modul :grasscmd:`v.out.ogr` umožňuje exportovať atribútovú tabuľku do rôznych 
+formátov a ďalej s nimi pracovať. Na :num:`#db-export` je export do bežného
+formátu `*csv`.
+
+.. _db-export:
+
+.. figure:: images/db_export.png
+   :class: middle
+        
+   Export atribútov do formátu *csv.
 
 
 
