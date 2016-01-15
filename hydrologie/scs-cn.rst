@@ -222,15 +222,34 @@ prieniku. Pri väčších dátach môžu byť nástroje geoprocessingu časovo n
 
 Využijeme zásuvný modul GRASS GIS.
 
-1. Založenie MAPSET-u
-^^^^^^^^^^^^^^^^^^^^^
+1. Vytvorenie MAPSET-u
+^^^^^^^^^^^^^^^^^^^^^^
 
-.. _hydrsk-ok:
+.. _hydrsk:
 
 .. figure:: images/menu_mapset.png
    :class: small
         
    xx.
+
+.. _hydrsk:
+
+.. figure:: images/new_mapset.png
+   :class: middle
+        
+   xx.
+
+Keďže chceme prekrývať vrstvy :map:`hpj_kpp` a :map:`landuse`, importujeme ich 
+do mapsetu. Na import slúži viacero modulov (:num:`#import`). Použijeme napríklad 
+modul :grasscmd:`v.in.ogr.qgis`, ktorý umožňuje načítať vrstvy (akoby) z prostredia 
+QGIS. Názvy máp zachováme rovnaké. 
+
+.. _import:
+
+.. figure:: images/v_in_ogr_qgis.png
+   :class: middle
+        
+   Možnosti importu vektorových vrstiev do mapset-u v prostredí QGIS.
 
 
 
