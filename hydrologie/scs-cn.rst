@@ -137,7 +137,7 @@ ikonku |plus| spustíme dialógové okno s nastaveniami pre spájanie (:num:`#jo
 .. _join:
 
 .. figure:: images/at_join.png
-   :scale: 70%
+   :scale: 65%
         
    Pripojenie tabuľky k vektorovej vrstve na základe spoločného atribútu.
 
@@ -147,7 +147,7 @@ Takýmto spôsobom pripojíme tabuľky s informáciami o hydrologických skupin�
 .. _tab-pripojene:
 
 .. figure:: images/tab_pripojene.png
-   :scale: 60%
+   :class: middle
         
    Zobrazenie pripojených vrstiev vo vlastnostiach vrstvy *hpj_kpp*.
 
@@ -162,7 +162,7 @@ Kde informácia nie je (hodnota :dbcolumn:`NULL`), tam použijeme
 
 .. code-block:: bash
 	
-   CASE WHEN "hpj_HydrSk" IS NULL THEN "kpp_Hydrologic_skupina" ELSE "hpj_HydrSk" END
+   CASE WHEN "hpj_HydrSk" IS NULL THEN "kpp_HydrSk" ELSE "hpj_HydrSk" END
 
 .. _at-hydrsk-kalk:
 
@@ -174,7 +174,7 @@ Kde informácia nie je (hodnota :dbcolumn:`NULL`), tam použijeme
 .. _hydrsk:
 
 .. figure:: images/hydrsk.png
-   :class: middle
+   :scale: 20%
         
    Hydrologické skupiny elementárnych plôch v záujmovom území.
 
@@ -210,16 +210,15 @@ pri ďalších kódoch. Výsledok je na :num:`#hydrsk-ok`.
 .. _hydrsk-ok:
 
 .. figure:: images/hydrsk_ok.png
-   :class: middle
+   :scale: 20%
         
    Zjednotené hydrologické skupiny elementárnych plôch v záujmovom území.
 
 Do tejto fázy je možné používať QGIS relatívne bez problémov. Ďalej však budeme
 pridávať informácie o využití územia pre každú elementárnu plochu pomocou operácie 
-prieniku. Pri väčších dátach (v našom prípade má vrstva :map:`hpj_kpp` spolu
-cez 10 000 prvkov) môžu byť nástroje geoprocessingu časovo náročné.
+prieniku. Pri väčších dátach môžu byť nástroje geoprocessingu časovo náročné.
 
-V tejto chvíli nám buď pomôže svätý alebo už NIKTO !!! ....... fail fuck !!!
+
 
 
 
