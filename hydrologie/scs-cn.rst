@@ -253,7 +253,9 @@ oblasti výberom v mapovom okne pomocou `Select the extent by dragging on canvas
         
    Vytvorenie lokácie a mapsetu, nastavenie výpočtovej oblasti a rozlíšenie.
 
-Keďže chceme prekrývať vrstvy :map:`hpj_kpp` a :map:`landuse`, importujeme ich 
+Záujmové územie potrebujeme rozdeliť na viac elementárnych plôch. Použijeme 
+zlúčenie vektorových vrstiev pomocou prieniku. 
+Keďže chceme prekrývať vrstvy :map:`hpj_kpp` a :map:`landuse` , importujeme ich 
 do mapsetu. Na import slúži viacero modulov (:num:`#import`). Použijeme napríklad 
 modul :grasscmd:`v.in.ogr.qgis`, ktorý umožňuje načítať vrstvy (akoby) z prostredia 
 QGIS. Názvy máp zachováme rovnaké. 
@@ -266,16 +268,17 @@ QGIS. Názvy máp zachováme rovnaké.
    Možnosti importu vektorových vrstiev do mapset-u v prostredí QGIS.
 
 Ak chceme overiť, či sa dané vrstvy v mapsete nachádzajú použijeme *shell*.
-Kliknutím na |grass_shell| :sup:`shell` spustíme príkazový riadok. Modul, ktorý
-vypíše obsah konkrétneho mapsetu je :grasscmd:`g.list`. Pre výpis vektorov 
-v aktuálnom mapsete zadáme :code:`g.list type = vector mapset=.`. 
+Kliknutím na |grass_shell| :sup:`grass shell` spustíme príkazový riadok. Modul, 
+ktorý vypíše obsah konkrétneho mapsetu je :grasscmd:`g.list`. Pre výpis vektorov 
+v aktuálnom mapsete zadáme :code:`g.list type = vector mapset=.`. Ak zadáme
+iba :code:`g.list`, otvorí sa dialógové okno modulu a parametre môžeme zadať 
+interaktívne.
 
 .. note:: Dokumentáciu a povinné parametre každého modulu vieme zobraziť 
 	  zadaním *man* pre názov modulu, napríklad :code:`man g.list`. 
 
 Na prekrývanie, resp. nájdenie prieniku vektorových vrstiev slúži modul
-:grasscmd:`v.overlay.and` (:menuselection:`Vektor --> Prostorová analýza --> Překrytí`)
-(:num:`#v-overlay-and`). Výsledný prienik nazveme :map:`hpj_kpp_land`.
+:grasscmd:`v.overlay.and`, viď. :menuselection:`Vektor --> Prostorová analýza --> Překrytí`(:num:`#v-overlay-and`). Výsledný prienik nazveme :map:`hpj_kpp_land`.
 
 .. _v-overlay-and:
 
@@ -284,14 +287,21 @@ Na prekrývanie, resp. nájdenie prieniku vektorových vrstiev slúži modul
         
    Modul na získanie prieniku dvoch vektorových vrstiev.
 
-
 Počet záznamov v atribútovej tabuľke sa prienikom výrazne zvýšil. V príkazovom
 riadku možeme vypísať napríklad:
 
 * zoznam tabuliek v aktuálnom mapsete, resp. ich názvy: :code:`db.tables`
 * zoznam atribútov konkrétnej tabuľky: :code:`db.columns table = NAZOVTABULKY` 
 * počet záznamov v tabuľke: :code:`db.select sql = 'select count(*) from NAZOVTABULKY'` 
+Príklad použitia `grass shell` je na :num:`#gshell-db-columns`.
 
+.. _gshell-db-columns:
+
+.. figure:: images/gshell_db_columns.png
+   :class: small
+        
+   Zobrazenie tabuliek a zoznam ich stĺpcov v príkazovom riadku.
+   
 Prípadne pomocou modulu :grasscmd:`v.db.select` môžeme vypísať hodnoty atribútu,
 resp. modulom :grasscmd:`v.db.select.where` možno zadať aj podmienku.
 Modul :grasscmd:`v.out.ogr` umožňuje exportovať atribútovú tabuľku do rôznych 
@@ -304,6 +314,33 @@ formátu `*csv`.
    :class: middle
         
    Export atribútov do formátu *csv.
+
+V ďalšom kroku musíme vytvoriť stĺpec, ktorý bude obsahovať údaje o využití územia 
+a o hydrologickej skupine pôdy danej elementárnej plochy v tvare 
+*VyužitieÚzemia_HydrologickáSkupina*, resp. LU_hydrsk.
+
+Vytvoríme nový stĺpec pomocou modulu :grasscmd:`v.db.add.column` a nazveme ho 
+:dbcolumn:`LU_hydrsk` (:num:`#v-db-add-column`). Potom ho editujeme použitím
+:grasscmd:`v.db.update_op`, čo je modul, ktorým  stĺpcu priradíme hodnoty ako 
+výsledok operácie v rámci jednej atribútovej tabuľky. Hodnotu zadáme v tvare
+``b_LandUse||'_'||a_hydrsk``. 
+
+.. _v-db-add-column:
+
+.. figure:: images/v_db_addcolumn.png
+   :class: middle
+        
+   Export atribútov do formátu *csv.
+
+.. note:: Výsledok možeme skontrolovať v príkazovom riadku zadaním
+	  ``db.select sql='select LU_hydrsk from hpj_kpp_landuse_1 where cat<5'``
+
+
+
+
+
+
+
 
 
 
