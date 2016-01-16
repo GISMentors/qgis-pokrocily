@@ -223,22 +223,35 @@ prieniku. Pri väčších dátach môžu byť nástroje geoprocessingu časovo n
 
 Využijeme zásuvný modul GRASS GIS.
 
-1. Vytvorenie MAPSET-u
-^^^^^^^^^^^^^^^^^^^^^^
+1. Vytvorenie LOKÁCIE a MAPSET-u
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Dáta GRASS-u sú uložené v 3-úrovňovej štruktúre (databáza, lokácia a mapset).
+Z hlavnej lišty menu vyberieme :menuselection:`Zásuvné moduly --> GRASS --> Nový mapset`. 
 
 .. _hydrsk:
 
 .. figure:: images/menu_mapset.png
    :class: small
-        
-   xx.
 
-.. _hydrsk:
+   Zásuvný modul GRASS.
 
-.. figure:: images/new_mapset.png
+V dialógovom okne sa objaví predvolená cesta k hlavnému adresáru GRASS súborov
+(zvyčajne adresár s názvom `grassdata`). V prípade, že tento adresár obsahuje
+lokácie, vyberieme tú, v ktorej chceme pracovať alebo vytvoríme novú. 
+Nastavíme súradnicový systém a výpočtový región. Okrem mapsetu `PERMANENT`,
+ktorý sa vytvorí automaticky, je potrebné zadať názov nového mapsetu, v ktorom 
+budú prebiehať výpočty. Mapset sa automaticky otvorí ako súčasný pracovný mapset. 
+V záložke *Region* dialógového okna GRASS nástrojov možno meniť rozsah výpočtovej
+oblasti výberom v mapovom okne pomocou `Select the extent by dragging on canvas`
+(:num:`#n-mapset`). Taktiež sa tu nastavuje rozlíšenie. 
+
+.. _n-mapset:
+
+.. figure:: images/n_mapset.png
    :class: middle
         
-   xx.
+   Vytvorenie lokácie a mapsetu, nastavenie výpočtovej oblasti a rozlíšenie.
 
 Keďže chceme prekrývať vrstvy :map:`hpj_kpp` a :map:`landuse`, importujeme ich 
 do mapsetu. Na import slúži viacero modulov (:num:`#import`). Použijeme napríklad 
