@@ -114,7 +114,6 @@ Postup spracovania v QGIS
 
 Krok 1
 ^^^^^^
-
 V prvom kroku založíme projekt a importujeme vstupné vrstvy (:map:`hpj.shp`, 
 :map:`kpp.shp`, :map:`hpj_hydrsk.csv`, :map:`kpp_hydrsk.csv`, :map:`landuse.shp` 
 a :map:`povodi.shp`). 
@@ -123,6 +122,8 @@ Následne zjednotíme vrstvu hlavných pôdnych jednotiek
 a komplexného prieskumu pôd. Využijeme nástroj geoprocessingu |union| 
 :sup:`Sjednotit` (:menuselection:`Vector --> Nástroje geoprocessingu --> Sjednotit)`. 
 Vznikne vektorový výstup :map:`hpj_kpp`). 
+
+.. _join-vo-vlastnostiach:
 
 Tabuľku :dbtable:`hpj_hydrsk` môžeme pripojiť k atribútom novej vektorovej mapy 
 :map:`hpj_kpp` pomocou spoločného stĺpca :dbcolumn:`HPJ` (:num:`#at-pred-join`). 
@@ -255,6 +256,9 @@ oblasti výberom v mapovom okne pomocou `Select the extent by dragging on canvas
 
 Záujmové územie potrebujeme rozdeliť na viac elementárnych plôch. Použijeme 
 zlúčenie vektorových vrstiev pomocou prieniku. 
+
+.. _import-qgrass:
+
 Keďže chceme prekrývať vrstvy :map:`hpj_kpp` a :map:`landuse` , importujeme ich 
 do mapsetu. Na import slúži viacero modulov (:num:`#import`). Použijeme napríklad 
 modul :grasscmd:`v.in.ogr.qgis`, ktorý umožňuje načítať vrstvy (akoby) z prostredia 
@@ -317,10 +321,10 @@ formátu `*csv`.
 
 V ďalšom kroku musíme vytvoriť stĺpec, ktorý bude obsahovať údaje o využití územia 
 a o hydrologickej skupine pôdy danej elementárnej plochy v tvare 
-*VyužitieÚzemia_HydrologickáSkupina*, resp. LU_hydrsk.
+*VyužitieÚzemia_HydrologickáSkupina*, resp. landuse_hydrsk.
 
 Vytvoríme nový stĺpec pomocou modulu :grasscmd:`v.db.add.column` a nazveme ho 
-:dbcolumn:`LU_hydrsk` (:num:`#v-db-add-column`). Potom ho editujeme použitím
+:dbcolumn:`landuse_hydrsk` (:num:`#v-db-add-column`). Potom ho editujeme použitím
 :grasscmd:`v.db.update_op`, čo je modul, ktorým  stĺpcu priradíme hodnoty ako 
 výsledok operácie v rámci jednej atribútovej tabuľky. Hodnotu zadáme v tvare
 ``b_LandUse||'_'||a_hydrsk``. 
@@ -333,12 +337,53 @@ výsledok operácie v rámci jednej atribútovej tabuľky. Hodnotu zadáme v tva
    Export atribútov do formátu *csv.
 
 .. note:: Výsledok možeme skontrolovať v príkazovom riadku zadaním
-	  ``db.select sql='select LU_hydrsk from hpj_kpp_landuse_1 where cat<5'``
+	  ````:
 
+	  .. code:: bash
+	
+	     db.select sql='select cat,b_LandUse,a_hydrsk,landuse_hydrsk from hpj_kpp_landuse_1 where cat=1
 
+	     cat|b_LandUse|a_hydrsk|landuse_hydrsk
+	     1|OP|B|OP_B
 
+Ďalej do mapsetu modulom :grasscmd:`db.in.ogr` importujeme tabuľku s číslami CN.
+Nazveme ju :map:`lu_hydrsk_cn`.
 
+Následne použijeme modul :grasscmd:`v.db.join`, ktorým pripojíme importovanú 
+tabuľku k vektorovej vrstve :map:`hpj_kpp_landuse` (kvôli priradeniu hodnôt CN 
+ku každej elementárnej ploche riešeného územia), viď. :num:`v-dbjoin`.
 
+.. important:: Jednotlivé atribúty v tabuľkách, ktoré spájame nemôžu obsahovať 
+	       rovnaký názov (pozor, nie je ani "case-sensitive").
+
+.. _v-dbjoin:
+
+.. figure:: images/v_db_join.png
+   :class: middle
+        
+   Pripojenie tabuľky k existujúcej tabuľke vektorov.
+
+.. note:: Tento spôsob spájania je alternatívou k spájaniu pomocou 
+	  záložky |join| :sup:`Připojení` vo vlastnostiach vektorovej vrstvy, 
+	  viď. :ref:`pripojenie tabuľky k vektoru <join-vo-vlastnostiach>`.
+
+Obsah výslednej tabuľky možno overiť v príkazovom riadku pomocou 
+``db.select sql='select * from hpj_kpp_landuse_1 where cat=1``.
+
+Hodnoty návrhových zrážok s rôznou dobou opakovania do vrstvy pridáme 
+modulom :grasscmd:`v.overlay.or`. Zjednoteniu predchádza import vrstvy 
+povodí s informáciami o zrážkach do mapsetu, pričom postup je obdobný ako pri 
+:ref:`importe vektorov v úvode<import-qgrass>`.
+
+Ukážka záznamu (niektoré stĺpce) atribútovej tabuľky novovytvorenej vektorovej 
+vrstvy :map:`hpj_kpp_lu_pov` pre 2-ročný úhrn zrážok v *mm* s dobou trvania *120 min*:
+
+.. code:: bash
+   
+   db.select sql='select cat,a_CN,b_H_002_120 from hpj_kpp_lu_pov_1 where cat=1'
+
+   cat|a_CN|b_H_002_120
+   1|80|21.6804582207
 
 
 
