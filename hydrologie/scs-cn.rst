@@ -15,7 +15,7 @@
 
 .. |v.db.select| image:: ../images/gplugin/v.db.select.1.png
    :width: 1.5em
-.. |v.db.update.op| image:: ../images/gplugin/v.db.update_op.2.png
+.. |v.db.update| image:: ../images/gplugin/v.db.update_op.2.png
    :width: 1.5em
 .. |v.db.addcolumn| image:: ../images/gplugin/v.db.addcolumn.1.png
    :width: 1.5em
@@ -25,14 +25,10 @@
    :width: 1.5em
 .. |v.overlay.and| image:: ../hydrologie/images/and.png
    :width: 1em
-
-
-
-
-
-
+.. |v.to.rast.attr| image:: ../images/gplugin/v.to.rast.attr.3.png
+   :width: 2em
 .. |v.to.db| image:: ../images/gplugin/v.to.db.2.png
-   :width: 3em
+   :width: 3.5em
 
 
 
@@ -351,7 +347,7 @@ a o hydrologickej skupine pôdy danej elementárnej plochy v tvare
 Vytvoríme nový stĺpec pomocou modulu |v.db.addcolumn| 
 :sup:`v.db.add.column` a nazveme ho :dbcolumn:`landuse_hydrsk` 
 (:num:`#v-db-add-column`). Potom ho editujeme použitím
-|v.db.update.op| :sup:`v.db.update_op`, čo je modul, ktorým  stĺpcu 
+|v.db.update| :sup:`v.db.update_op`, čo je modul, ktorým  stĺpcu 
 priradíme hodnoty ako výsledok operácie v rámci jednej atribútovej tabuľky. 
 Hodnotu zadáme v tvare ``b_LandUse||'_'||a_hydrsk``. 
 
@@ -438,7 +434,8 @@ zjednotení s vrstvou povodí dostaneme ako výstup modulu :grasscmd:`v.info`
 
    Začneme vytvorením nového stĺpca typu *integer* (modul 
    :grasscmd:`v.db.addcolumn`), pokračujeme jeho editáciou 
-   :grasscmd:`v.db.update_op` a následne spustíme modul :grasscmd:`v.to.rast.attr`,
+   :grasscmd:`v.db.update_op` a následne spustíme modul 
+   |v.to.rast.attr| :sup:`v.to.rast.attr`,
    viď. :num:`#v-to-rast-cn`. Príkazmi ``d.mon start = wx0``, ``d.rast map = cn``,
    ``d.barscale`` a ``d.legend raster=cn`` by sme mapu zobrazili s mierkou a 
    legendou. 
@@ -498,6 +495,65 @@ plochy každej elementárnej plochy využijeme modul |v.to.db| :sup:`v.to.db`
       v.db.update map=hpj_kpp_lu_pov column=A value="24.5 * (1000 / a_CN - 10)"
       v.db.update map=hpj_kpp_lu_pov column=Ia value="0.2 * A"
 
+Následne vypočítame výšku priameho odtoku v *mm* ako parameter :math:`H_o` 
+a objem ako parameter :math:`O_{p}`. 
+
+.. math::
+
+   H_O = \frac{(H_S − 0.2 \times A)^2}{H_S + 0.8 \times A}
+   
+   O_P = P_P \times \frac{H_O}{1000}
+
+.. note:: V ďalších krokoch budeme uvažovať priemerný úhrn návrhovej zrážky 
+	  :math:`H_{s}` = 32 mm. Pri úhrne s dobou opakovania 2 roky (atribút
+	  :dbcolumn:`H_002_120`) či dobou 5, 10, 20, 50 alebo 100 rokov by bol 
+	  postup obdobný.
+
+.. important:: Hodnota v čitateli musí byť kladná, resp. nesmieme umocňovať 
+	       záporné číslo. V prípade, že čitateľ je záporný, výška priameho 
+	       odtoku je rovná nule. Na vyriešenie tejto situácie si pomôžeme 
+	       novým stĺpcom v atribútovej tabuľke, ktorý nazveme 
+	       :dbcolumn:`HOklad`. 
+
+Postupujeme obdobne ako na :num:`#add-columns` a :num:`area-a` alebo pomocou
+príkazového riadku.
+
+.. code-block:: bash
+
+   v.db.addcolumn map=hpj_kpp_lu_pov columns="HOklad double, HO double, OP double" 
+   v.db.update map=hpj_kpp_lu_pov column=HOklad value="(32 - (0.2 * A))"
+
+Záporným hodnotám :dbcolumn:`HOklad` priradíme konštantu `0` modulom 
+|v.db.update| :sup:`v.db.update_query` (:num:`#v-db-update-query`). Atribúty
+:dbcolumn:`HO` a :dbcolumn:`OP` vyplníme modulom |v.db.update| :sup:`v.db.update_op`.
+
+.. code-block:: bash
+
+   v.db.update map=hpj_kpp_lu_pov column=HO value='(HOklad * HOklad)/(32 + 0.8 * A)'
+   v.db.update map=hpj_kpp_lu_pov column=OP value="vymera * (HO / 1000)" 
+
+.. _v-db-update-query:
+
+.. figure:: images/v_db_update_query.png
+   :class: small
+        
+   Priradenie novej konštantnej hodnoty v stĺpci v prípade pravdivého dotazu 
+   modulom *v.db.update_query*.
+
+.. tip:: 
+   
+   Priradenie konštantnej hodnoty `0` pre záporné :dbcolumn:`HOklad` možno
+   skontrolovať tak ako je to na :num:`ho-klad`.
+
+   .. _ho-klad:
+
+   .. figure:: images/ho_klad.png
+      :class: middle
+        
+      Kontrola editácie záporných hodnôt v príkazovom riadku.
+
+
+   
 
 
 
