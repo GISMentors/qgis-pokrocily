@@ -561,8 +561,8 @@ Zobrazenie v prostredí QGIS je na :num:`ho-op`.
 
 .. _ho-op:
 
-.. figure:: images/HO.png
-   :class: small
+.. figure:: images/ho_op.png
+   :class: large
         
    Zobrazenie výšky a objemu priameho odtoku pre elementárne plochy v prostredí 
    QGIS.
