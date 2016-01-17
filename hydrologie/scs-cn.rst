@@ -10,8 +10,29 @@
    :width: 1.5em
 .. |select-attr| image:: ../images/icon/mIconExpressionSelect.png
    :width: 1.5em
-.. |grass_shell| image:: ../images/icon/grass_shell.png
+.. |grass_shell| image:: ../images/gplugin/shell.1.png
    :width: 1.5em
+
+.. |v.db.select| image:: ../images/gplugin/v.db.select.1.png
+   :width: 1.5em
+.. |v.db.update.op| image:: ../images/gplugin/v.db.update_op.2.png
+   :width: 1.5em
+.. |v.db.addcolumn| image:: ../images/gplugin/v.db.addcolumn.1.png
+   :width: 1.5em
+.. |v.db.join| image:: ../images/gplugin/v.db.join.3.png
+   :width: 3em
+.. |v.overlay.or| image:: ../hydrologie/images/or.png
+   :width: 1.5em
+.. |v.overlay.and| image:: ../hydrologie/images/and.png
+   :width: 1em
+
+
+
+
+
+
+.. |v.to.db| image:: ../images/gplugin/v.to.db.2.png
+   :width: 3em
 
 
 
@@ -281,7 +302,9 @@ interaktívne.
 	  zadaním *man* pre názov modulu, napríklad :code:`man g.list`. 
 
 Na prekrývanie, resp. nájdenie prieniku vektorových vrstiev slúži modul
-:grasscmd:`v.overlay.and`, viď. :menuselection:`Vektor --> Prostorová analýza --> Překrytí`(:num:`#v-overlay-and`). Výsledný prienik nazveme :map:`hpj_kpp_land`.
+|v.overlay.and| :sup:`v.overlay.and`, viď. 
+:menuselection:`Vektor --> Prostorová analýza --> Překrytí`(:num:`#v-overlay-and`). 
+Výsledný prienik nazveme :map:`hpj_kpp_land`.
 
 .. _v-overlay-and:
 
@@ -305,8 +328,9 @@ Príklad použitia `grass shell` je na :num:`#gshell-db-columns`.
         
    Zobrazenie tabuliek a zoznam ich stĺpcov v príkazovom riadku.
    
-Prípadne pomocou modulu :grasscmd:`v.db.select` môžeme vypísať hodnoty atribútu,
-resp. modulom :grasscmd:`v.db.select.where` možno zadať aj podmienku.
+Prípadne pomocou modulu |v.db.select| :sup:`v.db.select` môžeme vypísať 
+hodnoty atribútu, resp. modulom |v.db.select| :sup:`v.db.select.where` 
+možno zadať aj podmienku.
 Modul :grasscmd:`v.out.ogr` umožňuje exportovať atribútovú tabuľku do rôznych 
 formátov a ďalej s nimi pracovať. Na :num:`#db-export` je export do bežného
 formátu `*csv`.
@@ -322,11 +346,14 @@ V ďalšom kroku musíme vytvoriť stĺpec, ktorý bude obsahovať údaje o vyu�
 a o hydrologickej skupine pôdy danej elementárnej plochy v tvare 
 *VyužitieÚzemia_HydrologickáSkupina*, resp. landuse_hydrsk.
 
-Vytvoríme nový stĺpec pomocou modulu :grasscmd:`v.db.add.column` a nazveme ho 
-:dbcolumn:`landuse_hydrsk` (:num:`#v-db-add-column`). Potom ho editujeme použitím
-:grasscmd:`v.db.update_op`, čo je modul, ktorým  stĺpcu priradíme hodnoty ako 
-výsledok operácie v rámci jednej atribútovej tabuľky. Hodnotu zadáme v tvare
-``b_LandUse||'_'||a_hydrsk``. 
+.. _novy-stlpec:
+
+Vytvoríme nový stĺpec pomocou modulu |v.db.addcolumn| 
+:sup:`v.db.add.column` a nazveme ho :dbcolumn:`landuse_hydrsk` 
+(:num:`#v-db-add-column`). Potom ho editujeme použitím
+|v.db.update.op| :sup:`v.db.update_op`, čo je modul, ktorým  stĺpcu 
+priradíme hodnoty ako výsledok operácie v rámci jednej atribútovej tabuľky. 
+Hodnotu zadáme v tvare ``b_LandUse||'_'||a_hydrsk``. 
 
 .. _v-db-add-column:
 
@@ -338,7 +365,7 @@ výsledok operácie v rámci jednej atribútovej tabuľky. Hodnotu zadáme v tva
 .. note:: Výsledok možeme skontrolovať v príkazovom riadku zadaním
 	  ````:
 
-	  .. code:: bash
+	  .. code-block:: bash
 	
 	     db.select sql='select cat,b_LandUse,a_hydrsk,landuse_hydrsk from hpj_kpp_landuse_1 where cat=1
 
@@ -348,9 +375,10 @@ výsledok operácie v rámci jednej atribútovej tabuľky. Hodnotu zadáme v tva
 Ďalej do mapsetu modulom :grasscmd:`db.in.ogr` importujeme tabuľku s číslami CN.
 Nazveme ju :map:`lu_hydrsk_cn`.
 
-Následne použijeme modul :grasscmd:`v.db.join`, ktorým pripojíme importovanú 
-tabuľku k vektorovej vrstve :map:`hpj_kpp_landuse` (kvôli priradeniu hodnôt CN 
-ku každej elementárnej ploche riešeného územia), viď. :num:`v-dbjoin`.
+Následne použijeme modul |v.db.join| :sup:`v.db.join`, ktorým pripojíme 
+importovanú tabuľku k vektorovej vrstve :map:`hpj_kpp_landuse` 
+(kvôli priradeniu hodnôt CN ku každej elementárnej ploche riešeného územia), 
+viď. :num:`#v-dbjoin`.
 
 .. important:: Jednotlivé atribúty v tabuľkách, ktoré spájame nemôžu obsahovať 
 	       rovnaký názov (pozor, nie je ani "case-sensitive").
@@ -370,14 +398,14 @@ Obsah výslednej tabuľky možno overiť v príkazovom riadku pomocou
 ``db.select sql='select * from hpj_kpp_landuse_1 where cat=1``.
 
 Hodnoty návrhových zrážok s rôznou dobou opakovania do vrstvy pridáme 
-modulom :grasscmd:`v.overlay.or`. Zjednoteniu predchádza import vrstvy 
-povodí s informáciami o zrážkach do mapsetu, pričom postup je obdobný ako pri 
-:ref:`importe vektorov v úvode<import-qgrass>`.
+modulom |v.overlay.or| :sup:`v.overlay.or`. Zjednoteniu predchádza import 
+vrstvy povodí s informáciami o zrážkach do mapsetu, pričom postup je obdobný ako 
+pri :ref:`importe vektorov v úvode<import-qgrass>`.
 
 Ukážka záznamu (niektoré stĺpce) atribútovej tabuľky novovytvorenej vektorovej 
 vrstvy :map:`hpj_kpp_lu_pov` pre 2-ročný úhrn zrážok v *mm* s dobou trvania *120 min*:
 
-.. code:: bash
+.. code-block:: bash
    
    db.select sql='select cat,a_CN,b_H_002_120 from hpj_kpp_lu_pov_1 where cat=1'
 
@@ -411,7 +439,7 @@ zjednotení s vrstvou povodí dostaneme ako výstup modulu :grasscmd:`v.info`
    Začneme vytvorením nového stĺpca typu *integer* (modul 
    :grasscmd:`v.db.addcolumn`), pokračujeme jeho editáciou 
    :grasscmd:`v.db.update_op` a následne spustíme modul :grasscmd:`v.to.rast.attr`,
-   viď. :num:`v-to-rast-cn`. Príkazmi ``d.mon start = wx0``, ``d.rast map = cn``,
+   viď. :num:`#v-to-rast-cn`. Príkazmi ``d.mon start = wx0``, ``d.rast map = cn``,
    ``d.barscale`` a ``d.legend raster=cn`` by sme mapu zobrazili s mierkou a 
    legendou. 
    
@@ -426,8 +454,49 @@ Krok 2 a 3
 ^^^^^^^^^^
 
 Pre každú elementárnu plochu vypočítame jej výmeru, parameter `A` (maximálna
-strata) a parameter :math:`I_a` (počiatočná strata, čo je 5 % z `A`)
+strata) a parameter :math:`I_a` (počiatočná strata), čo je 5 % z `A`.
 
+.. math::
+
+   A = 25.4 \times (\frac{1000}{CN} - 10)
+
+.. math::
+
+   I_a = 0.2 \times A
+
+Do atribútovej tabuľky `hpj_kpp_lu_pov` pridáme nové stĺpce typu *double*, 
+konkrétne :dbcolumn:`vymera`, :dbcolumn:`A`, :dbcolumn:`I_a`. Potom výpočítame 
+ich príslušné hodnoty. Postupujeme obdobne ako pri :ref:`tvorbe stĺpca <novy-stlpec>` 
+s údajmi o využití územia a o hydrologickej skupine (:dbcolumn:`landuse_hydrsk`),
+pričom na výpočet použijeme matematické operácie ako sčítanie, 
+odčítanie, násobenie a podobne (:num:`#add-columns` a :num:`#area-a`). Na určenie 
+plochy každej elementárnej plochy využijeme modul |v.to.db| :sup:`v.to.db` 
+(z kategórie :menuselection:`Vektor --> Zprávy a statistiky`).
+
+.. _add-columns:
+
+.. figure:: images/add_columns.png
+   :class: small
+        
+   Vytvorenie viacerých stĺpcov naraz použitím *v.db.addcolumn*.
+
+.. _area-a:
+
+.. figure:: images/area_A.png
+   :class: middle
+        
+   Výpočet výmery modulom *v.to.db* a parametra *A* modulom *v.db.update_op*.
+
+.. noteadvanced::
+
+   V príkazovom riadku by predchádzajúce kroky vyzerali takto:
+
+   .. code-block:: bash
+
+      v.db.addcolumn map=hpj_kpp_lu_pov columns="vymera double,A double,Ia double"
+      v.to.db map=hpj_kpp_lu_pov option=area columns=vymera
+      v.db.update map=hpj_kpp_lu_pov column=A value="24.5 * (1000 / a_CN - 10)"
+      v.db.update map=hpj_kpp_lu_pov column=Ia value="0.2 * A"
 
 
 
