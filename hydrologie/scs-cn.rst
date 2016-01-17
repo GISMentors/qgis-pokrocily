@@ -29,7 +29,8 @@
    :width: 2em
 .. |v.to.db| image:: ../images/gplugin/v.to.db.2.png
    :width: 3.5em
-
+.. |r.out.gdal.gtiff| image:: ../images/gplugin/r.out.gdal.gtiff.2.png
+   :width: 1.5em
 
 
 
@@ -529,7 +530,7 @@ Záporným hodnotám :dbcolumn:`HOklad` priradíme konštantu `0` modulom
 
 .. code-block:: bash
 
-   v.db.update map=hpj_kpp_lu_pov column=HO value='(HOklad * HOklad)/(32 + 0.8 * A)'
+   v.db.update map=hpj_kpp_lu_pov column=HO value='(HOklad * HOklad)/(32 + (0.8 * A))'
    v.db.update map=hpj_kpp_lu_pov column=OP value="vymera * (HO / 1000)" 
 
 .. _v-db-update-query:
@@ -552,7 +553,19 @@ Záporným hodnotám :dbcolumn:`HOklad` priradíme konštantu `0` modulom
         
       Kontrola editácie záporných hodnôt v príkazovom riadku.
 
+Modulom |v.to.rast.attr| :sup:`v.to.rast.attr` vytvoríme z vektorovej vrstvy 
+:map:`hpj_kpp_lu_pov` rastre :map:`HO` a :map:`OP`. Následne ich exportujeme
+modulom |r.out.gdal.gtiff| :sup:`r.out.gdal.gtiff`, kde ako vhodný formát 
+nastavíme `Float64`.
+Zobrazenie v prostredí QGIS je na :num:`ho-op`.
 
+.. _ho-op:
+
+.. figure:: images/HO.png
+   :class: small
+        
+   Zobrazenie výšky a objemu priameho odtoku pre elementárne plochy v prostredí 
+   QGIS.
    
 
 
