@@ -31,11 +31,8 @@
    :width: 3.5em
 .. |r.out.gdal.gtiff| image:: ../images/gplugin/r.out.gdal.gtiff.2.png
    :width: 1.5em
-
-
-
-
-
+.. |v.rast.stats| image:: ../images/gplugin/v.rast.stats.3.png
+   :width: 4.5em
 
 1. Metóda SCS CN
 ================
@@ -121,11 +118,6 @@ Navrhovaný postup:
    :class: middle
 
    Grafická schéma postupu
-
-.. note:: Ako vyplýva z :num:`#schema`, príprave rastrovej vrstvy s kódmi CN 
-	  predchádza odvodenie hydrologických skupín pôd *HydrSk* a jej 
-	  priestorové prekrytie s vrstvou využitia krajinnej pokrývky *land*, 
-	  čím sa získa jedinečná kombinácia *hpj_kpp_land*, resp. *HydrSk_land*.
 
 Postup spracovania v QGIS
 -------------------------
@@ -567,6 +559,30 @@ Zobrazenie v prostredí QGIS je na :num:`ho-op`.
    Zobrazenie výšky a objemu priameho odtoku pre elementárne plochy v prostredí 
    QGIS.
    
+V ďalšom kroku vypočítame priemerné hodnoty priameho odtoku pre každé povodie v 
+riešenom území. Modul |v.rast.stats| :sup:`v.rast.stats` počíta základné 
+štatistické informácie rastrovej mapy na základe vektorovej vrstvy a navyše
+tieto informácie ukladá do nových stĺpcov atribútovej tabuľky. Dialógové okno 
+je na :num:`v-rast-stats`. 
+
+.. _v-rast-stats:
+
+.. figure:: images/v_rast_stats.png
+   :class: small
+        
+   Dialógové okno modulu *v.rast.stats*.
+
+Vektor povodí potom prevedieme na rastrové vrstvy, pričom kľúčovým atribútom
+je :dbcolumn:`ho_average`, resp. :dbcolumn:`op_average`. Výsledok zobrazený 
+v prostredí QGIS je na :num:`ho-op-avg`.
+
+.. _ho-op-avg:
+
+.. figure:: images/ho_op_avg.png
+   :class: large
+        
+   Zobrazenie priemernej výšky a objemu priameho odtoku pre povodia v prostredí 
+   QGIS.
 
 
 
