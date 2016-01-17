@@ -415,8 +415,11 @@ zjednotení s vrstvou povodí dostaneme ako výstup modulu :grasscmd:`v.info`
 
 .. tip:: Z príkazového riadku možno zapnúť klasické prostredie GRASS-u
 	 príkazom `g.gui`. Tiež je možné zapnúť mapové okno GRASS-u (príkaz
-	 ``d.mon``), vykresliť v nej konkrétnu vrstvu (``d.rast``), pridať
-	 mierku (``d.barscale``) či legendu (``d.legend``).
+	 ``d.mon``), vykresliť v nej konkrétnu rastrovú (``d.rast``) alebo 
+	 vektorovú (``d.vect``) vrstvu, pridať mierku (``d.barscale``) či 
+	 legendu (``d.legend``). 
+
+	 .. note:: Príkazom ``d.rast.leg`` vykreslíme rastrovú vrstvu aj s legendou.
 
 .. noteadvanced:: 
    
@@ -429,9 +432,9 @@ zjednotení s vrstvou povodí dostaneme ako výstup modulu :grasscmd:`v.info`
    :grasscmd:`v.db.addcolumn`), pokračujeme jeho editáciou 
    :grasscmd:`v.db.update_op` a následne spustíme modul 
    |v.to.rast.attr| :sup:`v.to.rast.attr`,
-   viď. :num:`#v-to-rast-cn`. Príkazmi ``d.mon start = wx0``, ``d.rast map = cn``,
-   ``d.barscale`` a ``d.legend raster=cn`` by sme mapu zobrazili s mierkou a 
-   legendou. 
+   viď. :num:`#v-to-rast-cn`. Príkazmi ``d.mon wx0``, ``d.rast.leg cn``,
+   ``d.barscale`` a ``d.vect povodi type=boundary`` by sme mapu :map:`cn` 
+   zobrazili s mierkou a legendou a prekryli ju vektorovou vrstvou povodí. 
    
    .. _v-to-rast-cn:
 
