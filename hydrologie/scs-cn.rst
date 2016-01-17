@@ -224,8 +224,7 @@ prieniku. Pri väčších dátach môžu byť nástroje geoprocessingu časovo n
 
 Využijeme zásuvný modul GRASS GIS.
 
-1. Vytvorenie LOKÁCIE a MAPSET-u
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*Vytvorenie LOKÁCIE a MAPSET-u*
 
 Dáta GRASS-u sú uložené v 3-úrovňovej štruktúre (databáza, lokácia a mapset).
 Z hlavnej lišty menu vyberieme :menuselection:`Zásuvné moduly --> GRASS --> Nový mapset`. 
@@ -384,6 +383,52 @@ vrstvy :map:`hpj_kpp_lu_pov` pre 2-ročný úhrn zrážok v *mm* s dobou trvania
 
    cat|a_CN|b_H_002_120
    1|80|21.6804582207
+
+Ukážka ako sa zmenil počet plošných prvkov v mape :map:`hpj_kpp_landuse` po 
+zjednotení s vrstvou povodí dostaneme ako výstup modulu :grasscmd:`v.info` 
+(:menuselection:`Vektor --> Zprávy a statistiky`). Štandardné zobrazenie je na 
+:num:`#v-info`
+
+.. _v-info:
+
+.. figure:: images/v_info.png
+   :class: middle
+        
+   Výpis základných informácií o vektorovej mape pomocou modulu *v.info*.
+
+.. tip:: Z príkazového riadku možno zapnúť klasické prostredie GRASS-u
+	 príkazom `g.gui`. Tiež je možné zapnúť mapové okno GRASS-u (príkaz
+	 ``d.mon``), vykresliť v nej konkrétnu vrstvu (``d.rast``), pridať
+	 mierku (``d.barscale``) či legendu (``d.legend``).
+
+.. noteadvanced:: 
+   
+   Ďalej budeme pracovať najmä s hodnotami `CN`. Vektorovú vrstvu 
+   :map:`hpj_kpp_landuse` možno prekonvertovať na rastrovú vrstvu s číslami CN
+   a zobraziť v mapovom okne. Pri konverzii je potrebné, aby typ kľúčového 
+   atribútu bol číselný. 
+
+   Začneme vytvorením nového stĺpca typu *integer* (modul 
+   :grasscmd:`v.db.addcolumn`), pokračujeme jeho editáciou 
+   :grasscmd:`v.db.update_op` a následne spustíme modul :grasscmd:`v.to.rast.attr`,
+   viď. :num:`v-to-rast-cn`. Príkazmi ``d.mon start = wx0``, ``d.rast map = cn``,
+   ``d.barscale`` a ``d.legend raster=cn`` by sme mapu zobrazili s mierkou a 
+   legendou. 
+   
+   .. _v-to-rast-cn:
+
+   .. figure:: images/v_to_rast_cn.png
+      :class: middle
+        
+      Konverzia vektorovej mapy na rastrovú na základe atribútu.
+
+Krok 2 a 3
+^^^^^^^^^^
+
+Pre každú elementárnu plochu vypočítame jej výmeru, parameter `A` (maximálna
+strata) a parameter :math:`I_a` (počiatočná strata, čo je 5 % z `A`)
+
+
 
 
 
