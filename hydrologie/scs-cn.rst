@@ -83,22 +83,19 @@ Vstupné dáta
 
  * :map:`hpj` - vektorová vrstva hlavných pôdnych jednotiek (z kódov BPEJ),
  * :map:`kpp` - vektorová vrstva komplexného prieskumu pôd,
- * :dbtable:`hpj_hydrsk.csv`, :dbtable:`sum_kpp2hydrsk.csv` - pomocné číselníky 
+ * :dbtable:`hpj_hydrsk`, :dbtable:`kpp_hydrsk` - pomocné číselníky 
    s hydrologickými skupinami pôd,
+ * :dbtable:`lu_hydrsk_cn` - číselník s číslami CN pre kombináciu využitia 
+   územia a hydrologickej skupiny,
  * :map:`landuse` - vektorová vrstva využitia územia,
  * :map:`povodi` - vektorová vrstva povodí IV. rádu s návrhovými
    zrážkami :math:`H_s` (doba opakovania 2, 5, 10, 20, 50 a 100 rokov)
- 
- * :map:`toky` - líniová vrstva obsahujúca dráhu toku (DIBAVOD)
- * :map:`zabaged` - polohopisná časť ZABAGED (základná báza geografických dát 
-   Českej republiky) potrebná pre tvorbu masky líniových a plošných prvkov
-   prerušujúcich odtok.
 
-.. note:: Vrstvu povodí, líniovú vrstvu toku možno získať z voľne dostupnej 
+.. note:: Vrstvu povodí možno získať z voľne dostupnej 
 	  databázy DIBAVOD. Bonitované pôdne ekologické jednotky (dve číslice 
 	  päťmiestneho kódu udávajúce hlavnú pôdnu jednotku), informácie o využití 
-	  územia (Land Parcel Identification System), dáta komplexného 
-	  prieskumu pôd, dáta ZABAGED poskytuje väčšinou krajský úrad príslušného 
+	  územia (Land Parcel Identification System) a dáta komplexného 
+	  prieskumu pôd poskytuje väčšinou krajský úrad príslušného 
 	  územia. Návrhové zrážky možno získať z HMU.
 
 Navrhovaný postup:
@@ -121,6 +118,32 @@ Navrhovaný postup:
 
 Postup spracovania v QGIS
 -------------------------
+
+Znázornenie vstupných dát spolu s atribútovými tabuľkami je na :num:`#hpj-kpp`
+a :num:`lu-pov`. Tabuľky s informáciami o hydrologickej skupine pôdy a o 
+číslach CN pre kombináciu využitia územia a hydrologickej skupiny, resp. 
+číselníky sú na :num:`#ciselniky`.
+
+.. _hpj-kpp:
+
+.. figure:: images/hpjkpp.png
+   :class: large
+
+   Hlavné pôdne jednotky a podrobný prieskup pôd - vstupné vektorové vrstvy.
+
+.. _lu-pov:
+
+.. figure:: images/lupov.png
+   :class: large
+
+   Využitie územia a vrstva povodí IV. rádu - vstupné vektorové vrstvy.
+
+.. _ciselniky:
+
+.. figure:: images/ciselniky.png
+   :class: middle
+
+   Číselníky s informáciami o hydrologickej skupine a číslami CN - tabuľky.
 
 Krok 1
 ^^^^^^
