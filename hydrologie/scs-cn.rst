@@ -111,7 +111,7 @@ Navrhovaný postup:
 
 .. _schema:
 
-.. figure:: images/schema_a.PNG
+.. figure:: images/schema_scs-cn.png
    :class: middle
 
    Grafická schéma postupu
