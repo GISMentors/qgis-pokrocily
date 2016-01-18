@@ -102,10 +102,8 @@ Navrhovaný postup:
 ------------------
 
 1. vytvorenie vektorovej vrstvy elementárnych plôch s číslom odtokovej krivky :math:`CN` ()
-2. výpočet parametra :math:`A`, ktorý je funkciou :math:`CN`,
-3. výpočet parametra :math:`I_a`, ktorý je funkciou :math:`A`,
-4. výpočet parametra :math:`H_o`, ktorý je funkciou :math:`H_s` a :math:`A`,
-5. výpočet parametra :math:`O_p`, ktorý je funkciou :math:`P_p` a :math:`H_o`.
+2. výpočet parametra :math:`A`, ktorý je funkciou :math:`CN`, výpočet parametra :math:`I_a`, ktorý je funkciou :math:`A`,
+3. výpočet parametra :math:`H_o`, ktorý je funkciou :math:`H_s` a :math:`A`, výpočet parametra :math:`O_p`, ktorý je funkciou :math:`P_p` a :math:`H_o`.
 
 .. _schema:
 
@@ -209,7 +207,7 @@ Kde informácia nie je (hodnota :dbcolumn:`NULL`), tam použijeme
 .. _hydrsk:
 
 .. figure:: images/hydrsk.png
-   :scale: 20%
+   :class: small
         
    Hydrologické skupiny elementárnych plôch v záujmovom území.
 
@@ -226,7 +224,7 @@ pri ďalších kódoch. Výsledok je na :num:`#hydrsk-ok`.
 .. _kalk-ab:
 
 .. figure:: images/kalk_AB.png
-   :class: middle
+   :class: small
         
    Zjednotenie hodnôt atribútov pomocou kalkulátora polí.
 
@@ -464,8 +462,8 @@ zjednotení s vrstvou povodí dostaneme ako výstup modulu :grasscmd:`v.info`
         
       Konverzia vektorovej mapy na rastrovú na základe atribútu.
 
-Krok 2 a 3
-^^^^^^^^^^
+Krok 2
+^^^^^^
 
 Pre každú elementárnu plochu vypočítame jej výmeru, parameter `A` (maximálna
 strata) a parameter :math:`I_a` (počiatočná strata), čo je 5 % z `A`.
@@ -512,6 +510,9 @@ plochy každej elementárnej plochy využijeme modul |v.to.db| :sup:`v.to.db`
       v.db.update map=hpj_kpp_lu_pov column=A value="24.5 * (1000 / a_CN - 10)"
       v.db.update map=hpj_kpp_lu_pov column=Ia value="0.2 * A"
 
+Krok 3
+^^^^^^
+
 Následne vypočítame výšku priameho odtoku v *mm* ako parameter :math:`H_o` 
 a objem ako parameter :math:`O_{p}`. 
 
@@ -525,6 +526,17 @@ a objem ako parameter :math:`O_{p}`.
 	  :math:`H_{s}` = 32 mm. Pri úhrne s dobou opakovania 2 roky (atribút
 	  :dbcolumn:`H_002_120`) či dobou 5, 10, 20, 50 alebo 100 rokov by bol 
 	  postup obdobný.
+
+	  Znázornenie vektorovej vrstvy povodí s návrhovými zrážkami je na 
+	  :num:`navrhove-zrazky` (maximálna hodnota atribútu
+	  :dbcolumn:`H_002_120` predstavuje 23 mm).
+ 
+	  .. _navrhove-zrazky:
+
+	  .. figure:: images/navrhove_zrazky.png
+   	     :class: middle
+        
+   	     Zobrazenie povodí IV. rádu s návrhovými zrážkami.
 
 .. important:: Hodnota v čitateli musí byť kladná, resp. nesmieme umocňovať 
 	       záporné číslo. V prípade, že čitateľ je záporný, výška priameho 
