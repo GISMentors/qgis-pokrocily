@@ -58,7 +58,7 @@ odtoku. Číslo obvykle nadobúda hodnoty :item:`30`, t.j. veľké straty až
 pôdnych jednotiek (presnejší spôsob) alebo dát komplexného prieskumu pôd (tam, 
 kde informácie o hlavných pôdnych jednotkách k dispozícii nie sú).
 
-Základné symboly:
+Základné symboly
 ----------------
 
  * :math:`CN` - číslo odtokovej krivky
@@ -98,7 +98,7 @@ Vstupné dáta
 	  prieskumu pôd poskytuje väčšinou krajský úrad príslušného 
 	  územia. Návrhové zrážky možno získať z HMU.
 
-Navrhovaný postup:
+Navrhovaný postup
 ------------------
 
 1. zjednotenie hlavných pôdnych jednotiek a komplexného prieskumu pôd (:map:`hpj_kpp`) 
