@@ -101,9 +101,7 @@ Vstupné dáta
 Navrhovaný postup:
 ------------------
 
-1. príprava potrebných dát pre výpočet v prostredí GIS (rastrová vrstva s kódmi 
-   :math:`CN`, raster s hodnotami :math:`H_s` a raster s výmerou :math:`P_p` 
-   pre elementárne plochy v :math:`m^2`),
+1. vytvorenie vektorovej vrstvy elementárnych plôch s číslom odtokovej krivky :math:`CN` ()
 2. výpočet parametra :math:`A`, ktorý je funkciou :math:`CN`,
 3. výpočet parametra :math:`I_a`, ktorý je funkciou :math:`A`,
 4. výpočet parametra :math:`H_o`, ktorý je funkciou :math:`H_s` a :math:`A`,
@@ -315,8 +313,8 @@ interaktívne.
 
 Na prekrývanie, resp. nájdenie prieniku vektorových vrstiev slúži modul
 |v.overlay.and| :sup:`v.overlay.and`, viď. 
-:menuselection:`Vektor --> Prostorová analýza --> Překrytí`(:num:`#v-overlay-and`). 
-Výsledný prienik nazveme :map:`hpj_kpp_land`.
+:menuselection:`Vektor --> Prostorová analýza --> Překrytí` (:num:`#v-overlay-and`). 
+Výsledný prienik nazveme :map:`hpj_kpp_landuse`.
 
 .. _v-overlay-and:
 
