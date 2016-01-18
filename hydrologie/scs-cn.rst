@@ -145,7 +145,7 @@ a :num:`lu-pov`. Tabuľky s informáciami o hydrologickej skupine pôdy a o
 .. figure:: images/ciselniky.png
    :class: middle
 
-   Číselníky s informáciami o hydrologickej skupine a číslami CN - tabuľky.
+   Číselníky s informáciami o hydrologickej skupine a číslami CN.
 
 Krok 1
 ^^^^^^
