@@ -81,15 +81,17 @@ ako pomer odtoku a zrážky, ktorá je redukovaná o počiatočné straty.
 Vstupné dáta
 ------------
 
- * :map:`hpj` - vektorová vrstva hlavných pôdnych jednotiek (z kódov BPEJ),
- * :map:`kpp` - vektorová vrstva komplexného prieskumu pôd,
- * :dbtable:`hpj_hydrsk`, :dbtable:`kpp_hydrsk` - pomocné číselníky 
-   s hydrologickými skupinami pôd,
+ * :map:`hpj.shp` - vektorová vrstva hlavných pôdnych jednotiek (z kódov BPEJ),
+ * :map:`kpp.shp` - vektorová vrstva komplexného prieskumu pôd,
+ * :map:`landuse.shp` - vektorová vrstva využitia územia,
+ * :map:`povodi.shp` - vektorová vrstva povodí IV. rádu s návrhovými
+   zrážkami :math:`H_s` (doba opakovania 2, 5, 10, 20, 50 a 100 rokov)
+ * :dbtable:`hpj_hydrsk` - číselník s hydrologickými skupinami pôd pre hlavné 
+   pôdne jednotky,
+ * :dbtable:`kpp_hydrsk` - číselník s hydrologickými skupinami pôd pre vrstvu 
+   komplexného prieskumu pôd,
  * :dbtable:`lu_hydrsk_cn` - číselník s číslami CN pre kombináciu využitia 
    územia a hydrologickej skupiny,
- * :map:`landuse` - vektorová vrstva využitia územia,
- * :map:`povodi` - vektorová vrstva povodí IV. rádu s návrhovými
-   zrážkami :math:`H_s` (doba opakovania 2, 5, 10, 20, 50 a 100 rokov)
 
 .. note:: Vrstvu povodí možno získať z voľne dostupnej 
 	  databázy DIBAVOD. Bonitované pôdne ekologické jednotky (dve číslice 
@@ -101,9 +103,9 @@ Vstupné dáta
 Navrhovaný postup:
 ------------------
 
-1. vytvorenie vektorovej vrstvy elementárnych plôch s číslom odtokovej krivky :math:`CN` ()
-2. výpočet parametra :math:`A`, ktorý je funkciou :math:`CN`, výpočet parametra :math:`I_a`, ktorý je funkciou :math:`A`,
-3. výpočet parametra :math:`H_o`, ktorý je funkciou :math:`H_s` a :math:`A`, výpočet parametra :math:`O_p`, ktorý je funkciou :math:`P_p` a :math:`H_o`.
+1. vytvorenie vektorovej vrstvy elementárnych plôch s číslom odtokovej krivky :math:`CN` (:map:`hpj_kpp_landuse`)
+2. výpočet parametra :math:`A`, ktorý je funkciou :math:`CN`, výpočet parametra :math:`I_a`, ktorý je funkciou :math:`A`
+3. výpočet parametra :math:`H_o`, ktorý je funkciou :math:`H_s` a :math:`A`, výpočet parametra :math:`O_p`, ktorý je funkciou :math:`P_p` a :math:`H_o`
 
 .. _schema:
 
@@ -144,8 +146,8 @@ a :num:`lu-pov`. Tabuľky s informáciami o hydrologickej skupine pôdy a o
 Krok 1
 ^^^^^^
 V prvom kroku založíme projekt a importujeme vstupné vrstvy (:map:`hpj.shp`, 
-:map:`kpp.shp`, :map:`hpj_hydrsk.csv`, :map:`kpp_hydrsk.csv`, :map:`landuse.shp` 
-a :map:`povodi.shp`). 
+:map:`kpp.shp`, :map:`landuse.shp`, :map:`povodi.shp`, :dbtable:`hpj_hydrsk`,
+:dbtable:`kpp_hydrsk` a :dbtable:`lu_hydrsk_cn`). 
 
 Následne zjednotíme vrstvu hlavných pôdnych jednotiek 
 a komplexného prieskumu pôd. Využijeme nástroj geoprocessingu |union| 
@@ -186,11 +188,11 @@ Takýmto spôsobom pripojíme tabuľky s informáciami o hydrologických skupin�
 
 Potom otvoríme atribútovú tabuľku :map:`hpj_kpp`, zapneme editovací mód ikonkou 
 |edit| a v kalkulačke polí |kalk| vytvoríme nový stĺpec. Použijeme pripojené
-atribúty o hydrologickej skupine (:dbcolumn:`hpj_HydrSk` z vrstvy hlavných 
-pôdnych jednotiek a :dbcolumn:`kpp_Hydrologic_skupina` z vrstvy komplexného 
+atribúty o hydrologickej skupine (:dbcolumn:`hpj_HydrSk` z hlavných 
+pôdnych jednotiek a :dbcolumn:`kpp_HydrSk` z komplexného 
 prieskupu pôd). Primárne použijeme hydrologickú skupinu pre hlavné pôdne jednotky.
 Kde informácia nie je (hodnota :dbcolumn:`NULL`), tam použijeme 
-:dbcolumn:`kpp_Hydrologic_skupina` (:num:`#at-hydrsk-kalk`) a výsledok znázorníme
+:dbcolumn:`kpp_HydrSk` (:num:`#at-hydrsk-kalk`) a výsledok znázorníme
 (:num:`#hydrsk`).
 
 .. code-block:: bash
@@ -250,10 +252,9 @@ pri ďalších kódoch. Výsledok je na :num:`#hydrsk-ok`.
 Do tejto fázy je možné používať QGIS relatívne bez problémov. Ďalej však budeme
 pridávať informácie o využití územia pre každú elementárnu plochu pomocou operácie 
 prieniku. Pri väčších dátach môžu byť nástroje geoprocessingu časovo náročné.
-
 Využijeme zásuvný modul GRASS GIS.
 
-*Vytvorenie LOKÁCIE a MAPSET-u*
+**Vytvorenie LOKÁCIE a MAPSET-u** 
 
 Dáta GRASS-u sú uložené v 3-úrovňovej štruktúre (databáza, lokácia a mapset).
 Z hlavnej lišty menu vyberieme :menuselection:`Zásuvné moduly --> GRASS --> Nový mapset`. 
@@ -282,8 +283,8 @@ oblasti výberom v mapovom okne pomocou `Select the extent by dragging on canvas
         
    Vytvorenie lokácie a mapsetu, nastavenie výpočtovej oblasti a rozlíšenie.
 
-Záujmové územie potrebujeme rozdeliť na viac elementárnych plôch. Použijeme 
-zlúčenie vektorových vrstiev pomocou prieniku. 
+Záujmové územie potrebujeme rozdeliť na viac elementárnych plôch. Vytvoríme 
+prienik vektorových vrstiev. 
 
 .. _import-qgrass:
 
@@ -307,7 +308,7 @@ iba :code:`g.list`, otvorí sa dialógové okno modulu a parametre môžeme zada
 interaktívne.
 
 .. note:: Dokumentáciu a povinné parametre každého modulu vieme zobraziť 
-	  zadaním *man* pre názov modulu, napríklad :code:`man g.list`. 
+	  zadaním *man* pred názov modulu, napríklad :code:`man g.list`. 
 
 Na prekrývanie, resp. nájdenie prieniku vektorových vrstiev slúži modul
 |v.overlay.and| :sup:`v.overlay.and`, viď. 
@@ -327,7 +328,10 @@ riadku možeme vypísať napríklad:
 * zoznam tabuliek v aktuálnom mapsete, resp. ich názvy: :code:`db.tables`
 * zoznam atribútov konkrétnej tabuľky: :code:`db.columns table = NAZOVTABULKY` 
 * počet záznamov v tabuľke: :code:`db.select sql = 'select count(*) from NAZOVTABULKY'` 
-Príklad použitia `grass shell` je na :num:`#gshell-db-columns`.
+Príklad použitia `grass shell` je na :num:`#gshell-db-columns`. Pomocou modulu 
+|v.db.select| :sup:`v.db.select` môžeme vypísať 
+hodnoty atribútu, resp. modulom |v.db.select| :sup:`v.db.select.where` 
+možno zadať aj podmienku.
 
 .. _gshell-db-columns:
 
@@ -335,12 +339,9 @@ Príklad použitia `grass shell` je na :num:`#gshell-db-columns`.
    :class: small
         
    Zobrazenie tabuliek a zoznam ich stĺpcov v príkazovom riadku.
-   
-Prípadne pomocou modulu |v.db.select| :sup:`v.db.select` môžeme vypísať 
-hodnoty atribútu, resp. modulom |v.db.select| :sup:`v.db.select.where` 
-možno zadať aj podmienku.
+
 Modul :grasscmd:`v.out.ogr` umožňuje exportovať atribútovú tabuľku do rôznych 
-formátov a ďalej s nimi pracovať. Na :num:`#db-export` je export do bežného
+formátov a ďalej s ňou pracovať. Na :num:`#db-export` je export do bežného
 formátu `*csv`.
 
 .. _db-export:
@@ -357,7 +358,7 @@ a o hydrologickej skupine pôdy danej elementárnej plochy v tvare
 .. _novy-stlpec:
 
 Vytvoríme nový stĺpec pomocou modulu |v.db.addcolumn| 
-:sup:`v.db.add.column` a nazveme ho :dbcolumn:`landuse_hydrsk` 
+:sup:`v.db.add.column`, ktorý nazveme :dbcolumn:`landuse_hydrsk` 
 (:num:`#v-db-add-column`). Potom ho editujeme použitím
 |v.db.update| :sup:`v.db.update_op`, čo je modul, ktorým  stĺpcu 
 priradíme hodnoty ako výsledok operácie v rámci jednej atribútovej tabuľky. 
@@ -370,8 +371,7 @@ Hodnotu zadáme v tvare ``b_LandUse||'_'||a_hydrsk``.
         
    Export atribútov do formátu *csv.
 
-.. note:: Výsledok možeme skontrolovať v príkazovom riadku zadaním
-	  ````:
+.. note:: Výsledok možeme skontrolovať v príkazovom riadku zadaním:
 
 	  .. code-block:: bash
 	
