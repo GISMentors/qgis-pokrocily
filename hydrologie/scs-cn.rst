@@ -448,19 +448,18 @@ zjednotení s vrstvou povodí dostaneme ako výstup modulu :grasscmd:`v.info`
 	 príkazom `g.gui`. Tiež je možné zapnúť mapové okno GRASS-u (príkaz
 	 ``d.mon``), vykresliť v nej konkrétnu rastrovú (``d.rast``) alebo 
 	 vektorovú (``d.vect``) vrstvu, pridať mierku (``d.barscale``) či 
-	 legendu (``d.legend``). 
+	 legendu (``d.legend``). Príkazom ``d.rast.leg`` vykreslíme rastrovú 
+	 vrstvu aj s legendou.
 
-	 .. note:: Príkazom ``d.rast.leg`` vykreslíme rastrovú vrstvu aj s legendou.
+Ďalej budeme pracovať najmä s hodnotami `CN`. Pre ďalšie operácie je potrebné,
+aby typ tohto atribútu bol číselný (použijeme ``cast(a_CN as int)``). 
 
 .. noteadvanced:: 
    
-   Ďalej budeme pracovať najmä s hodnotami `CN`. Vektorovú vrstvu 
+   Vektorovú vrstvu 
    :map:`hpj_kpp_landuse` možno prekonvertovať na rastrovú vrstvu s číslami CN
-   a zobraziť v mapovom okne. Pri konverzii je potrebné, aby typ kľúčového 
-   atribútu bol číselný. 
-
-   Začneme vytvorením nového stĺpca typu *integer* (modul 
-   :grasscmd:`v.db.addcolumn`), pokračujeme jeho editáciou 
+   a zobraziť v mapovom okne. Začneme vytvorením nového stĺpca typu *integer* 
+   (modul :grasscmd:`v.db.addcolumn`), pokračujeme jeho editáciou 
    :grasscmd:`v.db.update_op` a následne spustíme modul 
    |v.to.rast.attr| :sup:`v.to.rast.attr`,
    viď. :num:`#v-to-rast-cn`. Príkazmi ``d.mon wx0``, ``d.rast.leg cn``,
@@ -543,12 +542,12 @@ a objem ako parameter :math:`O_{p}`.
 	  :num:`navrhove-zrazky` (maximálna hodnota atribútu
 	  :dbcolumn:`H_002_120` predstavuje 23 mm).
  
-	  .. _navrhove-zrazky:
+.. _navrhove-zrazky:
 
-	  .. figure:: images/navrhove_zrazky.png
-   	     :class: middle
+.. figure:: images/navrhove_zrazky.png
+   :class: middle
         
-   	     Zobrazenie povodí IV. rádu s návrhovými zrážkami.
+   Zobrazenie povodí IV. rádu s návrhovými zrážkami.
 
 .. important:: Hodnota v čitateli musí byť kladná, resp. nesmieme umocňovať 
 	       záporné číslo. V prípade, že čitateľ je záporný, výška priameho 
