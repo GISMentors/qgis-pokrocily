@@ -1,3 +1,11 @@
+.. |v.overlay.and| image:: ../hydrologie/images/and.png
+   :width: 1em
+.. |v.db.join| image:: ../images/gplugin/v.db.join.3.png
+   :width: 3em
+.. |v.db.update| image:: ../images/gplugin/v.db.update_op.2.png
+   :width: 1.5em
+
+
 2. Priemerná dlhodobá strata pôdy
 =================================
 
@@ -44,14 +52,14 @@ Vstupné dáta
 Navrhovaný postup
 -----------------
 
-1. vytvorenie rastrovej mapy sklonu a mapy akumulácií toku v každej bunke 
+1. zjednotenie hlavných pôdnych jednotiek a komplexného prieskumu pôd (:map:`hpj_kpp`)
+2. pripojenie kódov `K` k vrstve :map:`hpj_kpp`
+3. prienik vrstvy s kódmi `K` s vrstvou využitia územia (:map:`hpj_kpp_landuse`)
+4. pripojenie kódov `C` k vrstve :map:`hpj_kpp_landuse`
+5. výpočet parametra `KC`
+6. vytvorenie rastrovej mapy sklonu a mapy akumulácií toku v každej bunke 
    (:map:`slope` a :map:`accu`)
-2. výpočet parametra `LS`
-3. zjednotenie hlavných pôdnych jednotiek a komplexného prieskumu pôd (:map:`hpj_kpp`)
-4. pripojenie kódov `K` k vrstve :map:`hpj_kpp`
-5. prienik vrstvy s kódmi `K` s vrstvou využitia územia (:map:`hpj_kpp_landuse`)
-6. pripojenie kódov `C` k vrstve :map:`hpj_kpp_landuse`
-7. výpočet parametra `KC`
+7. výpočet parametra `LS`
 8. výpočet parametra `G`
 9. vytvorenie rastrových vrstiev :map:`g.rst`, :map:`g_m.rst` a :map:`ls_m.rst`
 10. výpočet priemerných hodnôt `G` pre povodie s maskou a bez masky a vytvorenie rastrových vrstiev :map:`g_avg.rst` a :map:`g_avg_m.rst`
@@ -86,39 +94,76 @@ a kódmi `C` sú na :num:`#ciselniky`.
 
 .. _ciselniky:
 
-.. figure:: images/x.png
+.. figure:: images/ciselniky_usle.png
    :class: middle
 
    Číselníky s kódmi *K* a *C*. 
 
 Krok 1
 ^^^^^^
-1. vytvorenie rastrovej mapy sklonu a mapy akumulácií toku v každej bunke 
-   (:map:`slope` a :map:`accu`)
+1. zjednotenie hlavných pôdnych jednotiek a komplexného prieskumu pôd (:map:`hpj_kpp`)
 
 Krok 2
 ^^^^^^
-2. výpočet parametra `LS`
+2. pripojenie kódov `K` k vrstve :map:`hpj_kpp`
+
+.. _ciselniky:
+
+.. figure:: images/usle_join.png
+   :class: small
+
+   Pripojenie číselníkov s faktorom *K* v prostredí QGIS. 
+
+``CASE WHEN "hpj_K" IS NULL THEN "kpp_K" ELSE "hpj_K" END``
+
+.. _ciselniky:
+
+.. figure:: images/usle_kalk_k.png
+   :class: small
+
+   Vytvorenie atribútu s hodnotami faktora *K*.
+
+.. _ciselniky:
+
+.. figure:: images/usle_k.png
+   :class: small
+
+   Faktor *K* elementárnych plôch v záujmovom území. 
 
 Krok 3
 ^^^^^^
-3. zjednotenie hlavných pôdnych jednotiek a komplexného prieskumu pôd (:map:`hpj_kpp`)
+3. prienik vrstvy s kódmi `K` s vrstvou využitia územia (:map:`hpj_kpp_landuse`)
+
+|v.overlay.and| :sup:`v.overlay.and`
 
 Krok 4
 ^^^^^^
-4. pripojenie kódov `K` k vrstve :map:`hpj_kpp`
+4. pripojenie kódov `C` k vrstve :map:`hpj_kpp_landuse`, :num:`#usle-db-join-c`
+
+|v.db.join| :sup:`v.db.join`
+
+.. _usle-db-join-c:
+
+.. figure:: images/usle_db_join_c.png
+   :class: small
+
+   Pripojenie hodnôt faktora `C` k elementárnym plochám. 
 
 Krok 5
 ^^^^^^
-5. prienik vrstvy s kódmi `K` s vrstvou využitia územia (:map:`hpj_kpp_landuse`)
+5. výpočet parametra `KC`
+
+Pre ďalšie výpočty je potrebné, aby typ atribútov s faktorom `K` a faktorom `C` 
+bol číselný. 
 
 Krok 6
 ^^^^^^
-6. pripojenie kódov `C` k vrstve :map:`hpj_kpp_landuse`
+6. vytvorenie rastrovej mapy sklonu a mapy akumulácií toku v každej bunke 
+   (:map:`slope` a :map:`accu`)
 
 Krok 7
 ^^^^^^
-7. výpočet parametra `KC`
+7. výpočet parametra `LS`
 
 Krok 8
 ^^^^^^
