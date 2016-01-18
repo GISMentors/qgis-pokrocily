@@ -4,6 +4,8 @@
    :width: 3em
 .. |v.db.update| image:: ../images/gplugin/v.db.update_op.2.png
    :width: 1.5em
+.. |v.db.addcolumn| image:: ../images/gplugin/v.db.addcolumn.1.png
+   :width: 1.5em
 
 
 2. Priemerná dlhodobá strata pôdy
@@ -154,7 +156,21 @@ Krok 5
 5. výpočet parametra `KC`
 
 Pre ďalšie výpočty je potrebné, aby typ atribútov s faktorom `K` a faktorom `C` 
-bol číselný. 
+bol číselný. Použijeme modul |v.db.addcolumn| :sup:`v.db.addcolumn`, 
+modul |v.db.update| :sup:`v.db.update_op`, funkciu ``cast()`` a typ *real*.
+Výsledok je na :num:`#kc`. 
+
+.. _kc:
+
+.. figure:: images/kc.png
+   :class: small
+
+   Faktor KC zahrňujúci vplyv erodovateľnosti pôdy a vplyv ochranného vplyvu vegetačného krytu. 
+
+
+.. todo::
+   
+   POKRACOVAT
 
 Krok 6
 ^^^^^^
