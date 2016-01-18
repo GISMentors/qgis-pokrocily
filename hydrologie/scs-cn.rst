@@ -61,15 +61,13 @@ kde informácie o hlavných pôdnych jednotkách k dispozícii nie sú).
 Základné symboly:
 ----------------
 
- * :math:`CN` ... číslo odtokovej krivky
- * :math:`A` ... maximálna potenciálna strata z povodia, resp. výška vody 
-   zadržaná v povodí; ostatné je odtok (:math:`mm`)
- * :math:`I_a` ... počiatočná strata z povodia, keď ešte nedochádza k odtoku
+ * :math:`CN` - číslo odtokovej krivky
+ * :math:`A` - max potenciálna strata z povodia, výška vody zadržaná v povodí; ostatné je odtok (:math:`mm`)
+ * :math:`I_a` - počiatočná strata z povodia, keď ešte nedochádza k odtoku
    (:math:`mm`)
- * :math:`H_s` ... návrhová výška zrážky, záťažový stav (:math:`mm`)
- * :math:`H_o` ... výška priameho odtoku (:math:`mm`)
- * :math:`P_p` ... výmera elementárnej plochy (:math:`m^2`)
- * :math:`O_p` ... objem priameho odtoku (:math:`m^3`)
+ * :math:`H_s` - návrhová výška zrážky, záťažový stav (:math:`mm`)
+ * :math:`H_o` - výška priameho odtoku (:math:`mm`)
+ * :math:`O_p` - objem priameho odtoku (:math:`m^3`)
 
 Platí, že pomer medzi skutočnou a maximálnou stratou z povodia je rovnaký
 ako pomer odtoku a zrážky, ktorá je redukovaná o počiatočné straty.
@@ -103,14 +101,20 @@ Vstupné dáta
 Navrhovaný postup:
 ------------------
 
-1. vytvorenie vektorovej vrstvy elementárnych plôch s číslom odtokovej krivky :math:`CN` (:map:`hpj_kpp_landuse`)
-2. výpočet parametra :math:`A`, ktorý je funkciou :math:`CN`, výpočet parametra :math:`I_a`, ktorý je funkciou :math:`A`
-3. výpočet parametra :math:`H_o`, ktorý je funkciou :math:`H_s` a :math:`A`, výpočet parametra :math:`O_p`, ktorý je funkciou :math:`P_p` a :math:`H_o`
+1. zjednotenie hlavných pôdnych jednotiek a komplexného prieskumu pôd (:map:`hpj_kpp`) 
+2. pripojenie informácií o hydrologickej skupine
+3. prienik vrstvy s hydrologickými skupinami s vrstvou využitia územia (:map:`hpj_kpp_landuse`)
+4. pripojenie čísel odtokovej krivky :math:`CN`
+5. zjednotenie :map:`hpj_kpp_landuse` s vrstvou povodí (:map:`hpj_kpp_lu_pov`)
+6. výpočet výmery elementárnych plôch, parametra :math:`A` a parametra :math:`I_a`
+7. výpočet parametra :math:`H_o` a parametra :math:`O_p` pre každú elementárnu plochu
+8. vytvorenie rastrových vrstiev :map:`ho.rst` a :map:`op.rst`
+9. výpočet priemerných hodnôt priameho odtoku pre povodie a vytvorenie rastrových vrstiev :map:`ho_avg.rst` a :map:`op_avg.rst`
 
 .. _schema:
 
 .. figure:: images/schema_scs-cn.png
-   :class: middle
+   :class: large
 
    Grafická schéma postupu
 
@@ -154,6 +158,8 @@ a komplexného prieskumu pôd. Využijeme nástroj geoprocessingu |union|
 :sup:`Sjednotit` (:menuselection:`Vector --> Nástroje geoprocessingu --> Sjednotit)`. 
 Vznikne vektorový výstup :map:`hpj_kpp`). 
 
+Krok 2
+^^^^^^
 .. _join-vo-vlastnostiach:
 
 Tabuľku :dbtable:`hpj_hydrsk` môžeme pripojiť k atribútom novej vektorovej mapy 
@@ -283,6 +289,8 @@ oblasti výberom v mapovom okne pomocou `Select the extent by dragging on canvas
         
    Vytvorenie lokácie a mapsetu, nastavenie výpočtovej oblasti a rozlíšenie.
 
+Krok 3
+^^^^^^
 Záujmové územie potrebujeme rozdeliť na viac elementárnych plôch. Vytvoríme 
 prienik vektorových vrstiev. 
 
@@ -351,6 +359,8 @@ formátu `*csv`.
         
    Export atribútov do formátu *csv.
 
+Krok 4
+^^^^^^
 V ďalšom kroku musíme vytvoriť stĺpec, ktorý bude obsahovať údaje o využití územia 
 a o hydrologickej skupine pôdy danej elementárnej plochy v tvare 
 *VyužitieÚzemia_HydrologickáSkupina*, resp. landuse_hydrsk.
@@ -405,6 +415,8 @@ viď. :num:`#v-dbjoin`.
 Obsah výslednej tabuľky možno overiť v príkazovom riadku pomocou 
 ``db.select sql='select * from hpj_kpp_landuse_1 where cat=1``.
 
+Krok 5
+^^^^^^
 Hodnoty návrhových zrážok s rôznou dobou opakovania do vrstvy pridáme 
 modulom |v.overlay.or| :sup:`v.overlay.or`. Zjednoteniu predchádza import 
 vrstvy povodí s informáciami o zrážkach do mapsetu, pričom postup je obdobný ako 
@@ -462,7 +474,7 @@ zjednotení s vrstvou povodí dostaneme ako výstup modulu :grasscmd:`v.info`
         
       Konverzia vektorovej mapy na rastrovú na základe atribútu.
 
-Krok 2
+Krok 6
 ^^^^^^
 
 Pre každú elementárnu plochu vypočítame jej výmeru, parameter `A` (maximálna
@@ -510,7 +522,7 @@ plochy každej elementárnej plochy využijeme modul |v.to.db| :sup:`v.to.db`
       v.db.update map=hpj_kpp_lu_pov column=A value="24.5 * (1000 / a_CN - 10)"
       v.db.update map=hpj_kpp_lu_pov column=Ia value="0.2 * A"
 
-Krok 3
+Krok 7
 ^^^^^^
 
 Následne vypočítame výšku priameho odtoku v *mm* ako parameter :math:`H_o` 
@@ -581,8 +593,10 @@ Záporným hodnotám :dbcolumn:`HOklad` priradíme konštantu `0` modulom
         
       Kontrola editácie záporných hodnôt v príkazovom riadku.
 
+Krok 8
+^^^^^^
 Modulom |v.to.rast.attr| :sup:`v.to.rast.attr` vytvoríme z vektorovej vrstvy 
-:map:`hpj_kpp_lu_pov` rastre :map:`HO` a :map:`OP`. Následne ich exportujeme
+:map:`hpj_kpp_lu_pov` rastre :map:`ho` a :map:`op`. Následne ich exportujeme
 modulom |r.out.gdal.gtiff| :sup:`r.out.gdal.gtiff`, kde ako vhodný formát 
 nastavíme `Float64`.
 Zobrazenie v prostredí QGIS je na :num:`ho-op`.
@@ -594,7 +608,9 @@ Zobrazenie v prostredí QGIS je na :num:`ho-op`.
         
    Zobrazenie výšky a objemu priameho odtoku pre elementárne plochy v prostredí 
    QGIS.
-   
+
+Krok 9
+^^^^^^ 
 V ďalšom kroku vypočítame priemerné hodnoty priameho odtoku pre každé povodie v 
 riešenom území. Modul |v.rast.stats| :sup:`v.rast.stats` počíta základné 
 štatistické informácie rastrovej mapy na základe vektorovej vrstvy a navyše
