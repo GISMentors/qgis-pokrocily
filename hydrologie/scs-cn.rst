@@ -108,8 +108,8 @@ Navrhovaný postup
 5. zjednotenie :map:`hpj_kpp_landuse` s vrstvou povodí (:map:`hpj_kpp_lu_pov`)
 6. výpočet výmery elementárnych plôch, parametra :math:`A` a parametra :math:`I_a`
 7. výpočet parametra :math:`H_o` a parametra :math:`O_p` pre každú elementárnu plochu
-8. vytvorenie rastrových vrstiev :map:`ho.rst` a :map:`op.rst`
-9. výpočet priemerných hodnôt priameho odtoku pre povodie a vytvorenie rastrových vrstiev :map:`ho_avg.rst` a :map:`op_avg.rst`
+8. vytvorenie rastrových vrstiev :map:`ho.gtiff` a :map:`op.gtiff`
+9. výpočet priemerných hodnôt priameho odtoku pre povodie a vytvorenie rastrových vrstiev :map:`ho_pov.gtiff` a :map:`op_pov.gtiff`
 
 .. _schema:
 

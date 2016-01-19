@@ -8,6 +8,8 @@
    :width: 1.5em
 .. |r.resamp.stats| image:: ../images/gplugin/r.resamp.stats.2.png
    :width: 1.5em
+.. |v.to.rast.attr| image:: ../images/gplugin/v.to.rast.attr.3.png
+   :width: 2em
 
 
 2. Priemerná dlhodobá strata pôdy
@@ -40,7 +42,7 @@ Základné symboly
 Vstupné dáta
 ------------
 
- * :map:`dmt.rst` - digitálny model terénu v rozlišení 10 x 10 m
+ * :map:`dmt.gtiff` - digitálny model terénu v rozlišení 10 x 10 m
  * :map:`hpj.shp` - vektorová vrstva hlavných pôdnych jednotiek (z kódov BPEJ),
  * :map:`kpp.shp` - vektorová vrstva komplexného prieskumu pôd,
  * :map:`landuse.shp` - vektorová vrstva využitia územia,
@@ -65,8 +67,8 @@ Navrhovaný postup
    (:map:`slope` a :map:`accu`)
 7. výpočet parametra `LS`
 8. výpočet parametra `G`
-9. vytvorenie rastrových vrstiev :map:`g.rst`, :map:`g_m.rst` a :map:`ls_m.rst`
-10. výpočet priemerných hodnôt `G` pre povodie s maskou a bez masky a vytvorenie rastrových vrstiev :map:`g_avg.rst` a :map:`g_avg_m.rst`
+9. vytvorenie rastrových vrstiev :map:`g.gtiff`, :map:`g_m.gtiff` a :map:`ls_m.gtiff`
+10. výpočet priemerných hodnôt `G` pre povodie s maskou a bez masky a vytvorenie rastrových vrstiev :map:`g_pov.gtiff` a :map:`g_pov_m.gtiff`
 
 Na :num:`#schema-usle` je prehľadne znázornený navrhovaný postup. 
 
@@ -207,10 +209,10 @@ Krok 8
 
 Krok 9
 ^^^^^^
-9. vytvorenie rastrových vrstiev :map:`g.rst`, :map:`g_m.rst` a :map:`ls_m.rst`
+9. vytvorenie rastrových vrstiev :map:`g.gtiff`, :map:`g_m.gtiff` a :map:`ls_m.gtiff`
 
 Krok 10
 ^^^^^^^
-10. výpočet priemerných hodnôt `G` pre povodie s maskou a bez masky a vytvorenie rastrových vrstiev :map:`g_avg.rst` a :map:`g_avg_m.rst`
+10. výpočet priemerných hodnôt `G` pre povodie s maskou a bez masky a vytvorenie rastrových vrstiev :map:`g_pov.gtiff` a :map:`g_pov_m.gtiff`
 
 
