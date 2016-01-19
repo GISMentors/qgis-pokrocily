@@ -12,7 +12,6 @@
    :width: 1.5em
 .. |grass_shell| image:: ../images/gplugin/shell.1.png
    :width: 1.5em
-
 .. |v.db.select| image:: ../images/gplugin/v.db.select.1.png
    :width: 1.5em
 .. |v.db.update| image:: ../images/gplugin/v.db.update_op.2.png
@@ -29,8 +28,6 @@
    :width: 2em
 .. |v.to.db| image:: ../images/gplugin/v.to.db.2.png
    :width: 3.5em
-.. |r.out.gdal.gtiff| image:: ../images/gplugin/r.out.gdal.gtiff.2.png
-   :width: 1.5em
 .. |v.rast.stats| image:: ../images/gplugin/v.rast.stats.3.png
    :width: 4.5em
 
@@ -629,10 +626,8 @@ Záporným hodnotám :dbcolumn:`HOklad` priradíme konštantu `0` modulom
 Krok 8
 ^^^^^^
 Modulom |v.to.rast.attr| :sup:`v.to.rast.attr` vytvoríme z vektorovej vrstvy 
-:map:`hpj_kpp_lu_pov` rastre :map:`ho` a :map:`op`. Následne ich exportujeme
-modulom |r.out.gdal.gtiff| :sup:`r.out.gdal.gtiff`, kde ako vhodný formát 
-nastavíme `Float64`.
-Zobrazenie v prostredí QGIS je na :num:`ho-op`.
+:map:`hpj_kpp_lu_pov` rastre :map:`ho` a :map:`op`. Zobrazenie v prostredí QGIS 
+je na :num:`ho-op`.
 
 .. _ho-op:
 

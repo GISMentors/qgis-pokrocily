@@ -14,7 +14,8 @@
    :width: 1.5em
 .. |r.slope| image:: ../images/gplugin/r.slope.1.png
    :width: 1.5em
-
+.. |grass_shell| image:: ../images/gplugin/shell.1.png
+   :width: 1.5em
 
 2. Priemerná dlhodobá strata pôdy
 =================================
@@ -240,12 +241,12 @@ Následne spustíme modul |r.slope| :sup:`r.slope` a vypočítame sklon v rieše
    Výpočet sklonových pomerov v záujmovom území. 
 
 
-Ďalej otvoríme príkazový riadok |shell| :sup:`shell`, spustíme modul 
+Ďalej otvoríme príkazový riadok |grass_shell| :sup:`shell`, spustíme modul 
 :grasscmd:`r.terraflow` a z :map:`dmt` vytvoríme vyhladený DMT 
 (:map:`dmt_fill`), rastrovú mapu smeru
 odtoku do susednej bunky s najväčším sklonom (:map:`direction`), mapu mikropovodí
 (:map:`swatershed`), rastrovú mapu znázorňujúcu akumuláciu toku v každej bunke
-(:option:`accumulation`) a mapu konvergenčného topografického indexu (:map:`tci`).
+(:map:`accumulation`) a mapu konvergenčného topografického indexu (:map:`tci`).
 Dialógové okno modulu je na :num:`#terraflow`, smer v stupňoch a akumulácia 
 odtoku v :math:`m^2` sú na :num:`#slope-accumulation`.
 
@@ -263,15 +264,18 @@ odtoku v :math:`m^2` sú na :num:`#slope-accumulation`.
 
    Sklonové pomery v stupňoch a akumulácia odtoku v :math:`m^2`. 
 
-
-
-
-
 .. _krok7:
 
 Krok 7
 ^^^^^^
-7. výpočet parametra `LS`
+Topografický faktor LS vypočítame ako
+
+.. math::
+   
+   LS = (accu \times \frac{10.0}{22.13})^{0.6} \times (\frac{sin(slope \times \frac{pi}{180})}{0.09})^{1.3}
+   
+Použijeme grafický kalkulátor rastrových máp |r.mapcalc| :sup:`r.mapcalc` 
+(:menuselection:`Rastr --> Prostorová analýza --> Mapová algebra`). 
 
 .. _krok8:
 
