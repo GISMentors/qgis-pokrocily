@@ -6,6 +6,8 @@
    :width: 1.5em
 .. |v.db.addcolumn| image:: ../images/gplugin/v.db.addcolumn.1.png
    :width: 1.5em
+.. |r.resamp.stats| image:: ../images/gplugin/r.resamp.stats.2.png
+   :width: 1.5em
 
 
 2. Priemerná dlhodobá strata pôdy
@@ -158,7 +160,28 @@ Krok 5
 Pre ďalšie výpočty je potrebné, aby typ atribútov s faktorom `K` a faktorom `C` 
 bol číselný. Použijeme modul |v.db.addcolumn| :sup:`v.db.addcolumn`, 
 modul |v.db.update| :sup:`v.db.update_op`, funkciu ``cast()`` a typ *real*.
+
+Hodnoty oboch faktorov vynásobíme pre každú plochu a nový atribút nazveme 
+:dbcolumn:`KC`. V záložke :item:`Region` nastavíme rozlíšenie 1 x 1 m a modulom
+|v.to.rast.attr| :sup:`v.to.rast.attr` vektor :map:`hpj_kpp_landuse` prevediem
+na rastrové dáta :map:`kc`. Následne použijeme modul |r.resamp.stats| 
+:sup:`r.resamp.stats` a raster prevzorkujeme pomocou agregácie tak, aby rozlíšenie 
+odpovedalo rozlíšeniu 10 x 10 (rozlíšenie :map:`dmt`). Použijeme redukciu 
+rozlíšenia na základe priemeru hodnôt vypočítaného z okolitých buniek 
+(:num:`#r-resamp-stats`).
 Výsledok je na :num:`#kc`. 
+
+.. note:: Týmto postupom nedôjde k strate informácie, ku ktorej by došlo pri 
+	  priamom prevode na raster s rozlíšením 10 x 10 m (hodnota bunky by 
+	  bola zvolená na základe polygónu, ktorý prechádza stredom bunky alebo 
+	  na základe polygónu, ktorý zaberá najväčšiu časť plochy bunky). 
+
+.. _r-resamp-stats:
+
+.. figure:: images/r_resamp_stats.png
+   :class: small
+
+   Dialógové okno modulu na prevzorkovanie rastra pomocou agregácie na základe priemeru okolitých buniek.
 
 .. _kc:
 
@@ -167,15 +190,12 @@ Výsledok je na :num:`#kc`.
 
    Faktor KC zahrňujúci vplyv erodovateľnosti pôdy a vplyv ochranného vplyvu vegetačného krytu. 
 
-
-.. todo::
-   
-   POKRACOVAT
-
 Krok 6
 ^^^^^^
 6. vytvorenie rastrovej mapy sklonu a mapy akumulácií toku v každej bunke 
    (:map:`slope` a :map:`accu`)
+
+
 
 Krok 7
 ^^^^^^
