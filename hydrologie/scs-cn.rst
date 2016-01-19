@@ -76,6 +76,8 @@ ako pomer odtoku a zrážky, ktorá je redukovaná o počiatočné straty.
 
    \frac{O_p}{A}=\frac{H_o}{H_s-I_a}
 
+.. _vstupne-data:
+
 Vstupné dáta
 ------------
 
@@ -100,16 +102,32 @@ Vstupné dáta
 
 Navrhovaný postup
 ------------------
+:ref:`1.<kr1>` 
+zjednotenie hlavných pôdnych jednotiek a komplexného prieskumu pôd (:map:`hpj_kpp`) 
 
-1. zjednotenie hlavných pôdnych jednotiek a komplexného prieskumu pôd (:map:`hpj_kpp`) 
-2. pripojenie informácií o hydrologickej skupine
+:ref:`2.<kr2>` 
+pripojenie informácií o hydrologickej skupine
+
+:ref:`3.<kr3>` 
 3. prienik vrstvy s hydrologickými skupinami s vrstvou využitia územia (:map:`hpj_kpp_landuse`)
-4. pripojenie čísel odtokovej krivky :math:`CN`
-5. zjednotenie :map:`hpj_kpp_landuse` s vrstvou povodí (:map:`hpj_kpp_lu_pov`)
-6. výpočet výmery elementárnych plôch, parametra :math:`A` a parametra :math:`I_a`
-7. výpočet parametra :math:`H_o` a parametra :math:`O_p` pre každú elementárnu plochu
-8. vytvorenie rastrových vrstiev :map:`ho.gtiff` a :map:`op.gtiff`
-9. výpočet priemerných hodnôt priameho odtoku pre povodie a vytvorenie rastrových vrstiev :map:`ho_pov.gtiff` a :map:`op_pov.gtiff`
+
+:ref:`4.<kr4>` 
+pripojenie čísel odtokovej krivky :math:`CN`
+
+:ref:`5.<kr5>` 
+zjednotenie :map:`hpj_kpp_landuse` s vrstvou povodí (:map:`hpj_kpp_lu_pov`)
+
+:ref:`6.<kr6>` 
+výpočet výmery elementárnych plôch, parametra :math:`A` a parametra :math:`I_a`
+
+:ref:`7.<kr7>` 
+výpočet parametra :math:`H_o` a parametra :math:`O_p` pre každú elementárnu plochu
+
+:ref:`8.<kr8>` 
+vytvorenie rastrových vrstiev :map:`ho.gtiff` a :map:`op.gtiff`
+
+:ref:`9.<kr9>` 
+výpočet priemerných hodnôt priameho odtoku pre povodie a vytvorenie rastrových vrstiev :map:`ho_pov.gtiff` a :map:`op_pov.gtiff`
 
 .. _schema:
 
@@ -147,6 +165,8 @@ a :num:`lu-pov`. Tabuľky s informáciami o hydrologickej skupine pôdy a o
 
    Číselníky s informáciami o hydrologickej skupine a číslami CN.
 
+.. _kr1:
+
 Krok 1
 ^^^^^^
 V prvom kroku založíme projekt a importujeme vstupné vrstvy (:map:`hpj.shp`, 
@@ -157,6 +177,8 @@ Následne zjednotíme vrstvu hlavných pôdnych jednotiek
 a komplexného prieskumu pôd. Využijeme nástroj geoprocessingu |union| 
 :sup:`Sjednotit` (:menuselection:`Vector --> Nástroje geoprocessingu --> Sjednotit)`. 
 Vznikne vektorový výstup :map:`hpj_kpp`). 
+
+.. _kr2:
 
 Krok 2
 ^^^^^^
@@ -289,6 +311,8 @@ oblasti výberom v mapovom okne pomocou `Select the extent by dragging on canvas
         
    Vytvorenie lokácie a mapsetu, nastavenie výpočtovej oblasti a rozlíšenie.
 
+.. _kr3:
+
 Krok 3
 ^^^^^^
 Záujmové územie potrebujeme rozdeliť na viac elementárnych plôch. Vytvoríme 
@@ -359,6 +383,8 @@ formátu `*csv`.
         
    Export atribútov do formátu *csv.
 
+.. _kr4:
+
 Krok 4
 ^^^^^^
 V ďalšom kroku musíme vytvoriť stĺpec, ktorý bude obsahovať údaje o využití územia 
@@ -414,6 +440,8 @@ viď. :num:`#v-dbjoin`.
 
 Obsah výslednej tabuľky možno overiť v príkazovom riadku pomocou 
 ``db.select sql='select * from hpj_kpp_landuse_1 where cat=1``.
+
+.. _kr5:
 
 Krok 5
 ^^^^^^
@@ -473,6 +501,8 @@ aby typ tohto atribútu bol číselný (použijeme ``cast(a_CN as int)``).
         
       Konverzia vektorovej mapy na rastrovú na základe atribútu.
 
+.. _kr6:
+
 Krok 6
 ^^^^^^
 
@@ -520,6 +550,8 @@ plochy každej elementárnej plochy využijeme modul |v.to.db| :sup:`v.to.db`
       v.to.db map=hpj_kpp_lu_pov option=area columns=vymera
       v.db.update map=hpj_kpp_lu_pov column=A value="24.5 * (1000 / a_CN - 10)"
       v.db.update map=hpj_kpp_lu_pov column=Ia value="0.2 * A"
+
+.. _kr7:
 
 Krok 7
 ^^^^^^
@@ -592,6 +624,8 @@ Záporným hodnotám :dbcolumn:`HOklad` priradíme konštantu `0` modulom
         
       Kontrola editácie záporných hodnôt v príkazovom riadku.
 
+.. _kr8:
+
 Krok 8
 ^^^^^^
 Modulom |v.to.rast.attr| :sup:`v.to.rast.attr` vytvoríme z vektorovej vrstvy 
@@ -607,6 +641,8 @@ Zobrazenie v prostredí QGIS je na :num:`ho-op`.
         
    Zobrazenie výšky a objemu priameho odtoku pre elementárne plochy v prostredí 
    QGIS.
+
+.. _kr9:
 
 Krok 9
 ^^^^^^ 

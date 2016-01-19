@@ -58,17 +58,36 @@ Vstupné dáta
 Navrhovaný postup
 -----------------
 
-1. zjednotenie hlavných pôdnych jednotiek a komplexného prieskumu pôd (:map:`hpj_kpp`)
-2. pripojenie kódov `K` k vrstve :map:`hpj_kpp`
-3. prienik vrstvy s kódmi `K` s vrstvou využitia územia (:map:`hpj_kpp_landuse`)
-4. pripojenie kódov `C` k vrstve :map:`hpj_kpp_landuse`
-5. výpočet parametra `KC`
-6. vytvorenie rastrovej mapy sklonu a mapy akumulácií toku v každej bunke 
-   (:map:`slope` a :map:`accu`)
-7. výpočet parametra `LS`
-8. výpočet parametra `G`
-9. vytvorenie rastrových vrstiev :map:`g.gtiff`, :map:`g_m.gtiff` a :map:`ls_m.gtiff`
-10. výpočet priemerných hodnôt `G` pre povodie s maskou a bez masky a vytvorenie rastrových vrstiev :map:`g_pov.gtiff` a :map:`g_pov_m.gtiff`
+:ref:`1.<krok1>` 
+zjednotenie hlavných pôdnych jednotiek a komplexného prieskumu pôd (:map:`hpj_kpp`)
+
+:ref:`2.<krok2>` 
+pripojenie kódov `K` k vrstve :map:`hpj_kpp`
+
+:ref:`3.<krok3>` 
+prienik vrstvy s kódmi `K` s vrstvou využitia územia (:map:`hpj_kpp_landuse`)
+
+:ref:`4.<krok4>` 
+pripojenie kódov `C` k vrstve :map:`hpj_kpp_landuse`
+
+:ref:`5.<krok5>` 
+výpočet parametra `KC`
+
+:ref:`6.<krok6>` 
+vytvorenie rastrovej mapy sklonu a mapy akumulácií toku v každej bunke 
+(:map:`slope` a :map:`accu`)
+
+:ref:`7.<krok7>` 
+výpočet parametra `LS`
+
+:ref:`8.<krok8>` 
+výpočet parametra `G`
+
+:ref:`9.<krok9>` 
+vytvorenie rastrových vrstiev :map:`g.gtiff`, :map:`g_m.gtiff` a :map:`ls_m.gtiff`
+
+:ref:`10.<krok10>` 
+výpočet priemerných hodnôt `G` pre povodie s maskou a bez masky a vytvorenie :map:`g_pov.gtiff` a :map:`g_pov_m.gtiff`
 
 Na :num:`#schema-usle` je prehľadne znázornený navrhovaný postup. 
 
@@ -82,13 +101,12 @@ Na :num:`#schema-usle` je prehľadne znázornený navrhovaný postup.
 Postup spracovania v QGIS
 -------------------------
 
-Znázornenie vstupných vektorových dát spolu s atribútovými tabuľkami je na ...
-
-.. todo:: odkaz na scs-cn (vstupné 4 mapy, obr. 2 a 3.)
-
-Digitálny model reliéfu a oblasť riešeného územia bez líniových a plošných 
-prvkov prerušujúcich odtok (maska) je na :num:`#dmr-maska`. Tabuľky s kódmi `K` 
-a kódmi `C` sú na :num:`#ciselniky`.
+Znázornenie vstupných vektorových dát spolu s atribútovými tabuľkami je totožné
+so :skoleni:`vstupnými vektorovými dátami pri metóde SCS CN 
+<qgis-pokrocily/hydrologie/scs-sc/vstupne-data>`. Digitálny model reliéfu a 
+oblasť riešeného územia bez líniových a plošných prvkov prerušujúcich odtok 
+(maska) je na :num:`#dmr-maska`. Tabuľky s kódmi `K` a kódmi `C` sú na 
+:num:`#ciselniky`.
 
 .. _dmr-maska:
 
@@ -105,9 +123,13 @@ a kódmi `C` sú na :num:`#ciselniky`.
 
    Číselníky s kódmi *K* a *C*. 
 
+.. _krok1:
+
 Krok 1
 ^^^^^^
 1. zjednotenie hlavných pôdnych jednotiek a komplexného prieskumu pôd (:map:`hpj_kpp`)
+
+.. _krok2:
 
 Krok 2
 ^^^^^^
@@ -136,11 +158,15 @@ Krok 2
 
    Faktor *K* elementárnych plôch v záujmovom území. 
 
+.. _krok3:
+
 Krok 3
 ^^^^^^
 3. prienik vrstvy s kódmi `K` s vrstvou využitia územia (:map:`hpj_kpp_landuse`)
 
 |v.overlay.and| :sup:`v.overlay.and`
+
+.. _krok4:
 
 Krok 4
 ^^^^^^
@@ -154,6 +180,8 @@ Krok 4
    :class: small
 
    Pripojenie hodnôt faktora `C` k elementárnym plochám. 
+
+.. _krok5:
 
 Krok 5
 ^^^^^^
@@ -183,14 +211,18 @@ Výsledok je na :num:`#kc`.
 .. figure:: images/r_resamp_stats.png
    :class: small
 
-   Dialógové okno modulu na prevzorkovanie rastra pomocou agregácie na základe priemeru okolitých buniek.
+   Dialógové okno modulu na prevzorkovanie rastra pomocou agregácie na základe 
+   priemeru okolitých buniek.
 
 .. _kc:
 
 .. figure:: images/kc.png
    :class: small
 
-   Faktor KC zahrňujúci vplyv erodovateľnosti pôdy a vplyv ochranného vplyvu vegetačného krytu. 
+   Faktor KC zahrňujúci vplyv erodovateľnosti pôdy a vplyv ochranného vplyvu 
+   vegetačného krytu. 
+
+.. _krok6:
 
 Krok 6
 ^^^^^^
@@ -199,17 +231,25 @@ Krok 6
 
 
 
+.. _krok7:
+
 Krok 7
 ^^^^^^
 7. výpočet parametra `LS`
+
+.. _krok8:
 
 Krok 8
 ^^^^^^
 8. výpočet parametra `G`
 
+.. _krok9:
+
 Krok 9
 ^^^^^^
 9. vytvorenie rastrových vrstiev :map:`g.gtiff`, :map:`g_m.gtiff` a :map:`ls_m.gtiff`
+
+.. _krok10:
 
 Krok 10
 ^^^^^^^
