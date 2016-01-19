@@ -16,6 +16,23 @@
    :width: 1.5em
 .. |grass_shell| image:: ../images/gplugin/shell.1.png
    :width: 1.5em
+.. |r.mapcalc| image:: ../images/gplugin/r.mapcalc.1.png
+   :width: 1.5em
+.. |mc1| image:: ../hydrologie/images/mc1.png
+   :width: 1.5em
+.. |mc2| image:: ../hydrologie/images/mc2.png
+   :width: 1.5em
+.. |mc3| image:: ../hydrologie/images/mc3.png
+   :width: 1.5em
+.. |mc4| image:: ../hydrologie/images/mc4.png
+   :width: 1.5em
+.. |mc5| image:: ../hydrologie/images/mc5.png
+   :width: 1.5em
+.. |mc6| image:: ../hydrologie/images/mc6.png
+   :width: 1.5em
+
+
+
 
 2. Priemerná dlhodobá strata pôdy
 =================================
@@ -268,7 +285,7 @@ odtoku v :math:`m^2` sú na :num:`#slope-accumulation`.
 
 Krok 7
 ^^^^^^
-Topografický faktor LS vypočítame ako
+Topografický faktor `LS` vypočítame ako
 
 .. math::
    
@@ -276,6 +293,28 @@ Topografický faktor LS vypočítame ako
    
 Použijeme grafický kalkulátor rastrových máp |r.mapcalc| :sup:`r.mapcalc` 
 (:menuselection:`Rastr --> Prostorová analýza --> Mapová algebra`). 
+Pri používaní tohto modulu je potrebné, aby vrstvy boli pridané v paneli vrstiev
+v aktuálnom projekte QGIS.
+
+.. note:: V paneli prehliadača nájdeme príslušný mapset a pravým kliknutím
+	  myši na konkrétnu mapu zvolíme ``Přidat vrstvu``.
+
+V dialógovom okne modulu |r.mapcalc| :sup:`r.mapcalc` zostavíme algoritmus.
+Ikonou |mc1| pridáme rastrovú mapu, ikonou |mc2| konštantu, ikonou |mc3|
+vložíme operátor alebo funkciu, ikona |mc4| spája jednotlivé elementy, pomocou 
+|mc5| elementy vyberáme a ikonou |mc6| ich možno vymazať. 
+Výraz na výpočet `LS` a výsledok sú na :num:`#calc-ls`. 
+
+.. _calc-ls:
+
+.. figure:: images/calc_ls.png
+   :class: middle
+
+   Grafický kalkulátor a topografický faktor LS zahrňujúci vplyv dĺžky a sklonu 
+   svahu. 
+
+.. tip:: Výpočet v príkazovom riadku napíšeme ako 
+	 :code:`r.mapcalc expr="ls = pow(accumulation * (10.0 / 22.13), 0.6) * pow(sin(slope * (3.14159/180)) / 0.09, 1.3)"`
 
 .. _krok8:
 
