@@ -121,10 +121,10 @@ výpočet výmery elementárnych plôch, parametra :math:`A` a parametra :math:`
 výpočet parametra :math:`H_o` a parametra :math:`O_p` pre každú elementárnu plochu
 
 :ref:`8.<kr8>` 
-vytvorenie rastrových vrstiev :map:`ho.gtiff` a :map:`op.gtiff`
+vytvorenie rastrových vrstiev :map:`ho` a :map:`op`
 
 :ref:`9.<kr9>` 
-výpočet priemerných hodnôt priameho odtoku pre povodie a vytvorenie rastrových vrstiev :map:`ho_pov.gtiff` a :map:`op_pov.gtiff`
+výpočet priemerných hodnôt priameho odtoku pre povodie a vytvorenie rastrových vrstiev :map:`ho_pov` a :map:`op_pov`
 
 .. _schema:
 

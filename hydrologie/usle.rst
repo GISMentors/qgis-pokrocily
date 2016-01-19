@@ -64,7 +64,7 @@ Základné symboly
 Vstupné dáta
 ------------
 
- * :map:`dmt.gtiff` - digitálny model terénu v rozlišení 10 x 10 m
+ * :map:`dmt` - digitálny model terénu v rozlišení 10 x 10 m
  * :map:`hpj.shp` - vektorová vrstva hlavných pôdnych jednotiek (z kódov BPEJ),
  * :map:`kpp.shp` - vektorová vrstva komplexného prieskumu pôd,
  * :map:`landuse.shp` - vektorová vrstva využitia územia,
@@ -103,13 +103,13 @@ vytvorenie rastrovej mapy sklonu a mapy akumulácií toku v každej bunke
 výpočet parametra `LS`
 
 :ref:`8.<krok8>` 
-výpočet parametra `G`
+vytvorenie rastra s hodnotami predstavujúcimi priemernú dlhodobú stratu pôdy `G`
 
 :ref:`9.<krok9>` 
-vytvorenie rastrových vrstiev :map:`g.gtiff`, :map:`g_m.gtiff` a :map:`ls_m.gtiff`
+vytvorenie rastrových vrstiev :map:`ls_m` a :map:`g_m`.
 
 :ref:`10.<krok10>` 
-výpočet priemerných hodnôt `G` pre povodie s maskou a bez masky a vytvorenie :map:`g_pov.gtiff` a :map:`g_pov_m.gtiff`
+výpočet priemerných hodnôt `G` pre povodie s maskou a bez masky a vytvorenie :map:`g_pov` a :map:`g_pov_m`
 
 Na :num:`#schema-usle` je prehľadne znázornený navrhovaný postup. 
 
@@ -320,18 +320,44 @@ Výraz na výpočet `LS` a výsledok sú na :num:`#calc-ls`.
 
 Krok 8
 ^^^^^^
-8. výpočet parametra `G`
+Na výpočet parametra `G` okrem `KC` a `LS` ešte potrebujeme faktor `R` a `P`, 
+ktorých hodnoty nebudeme odvádzať ako tie predchádzajúce. Použijeme priemernú 
+hodnotu ``R`` a ``P`` faktora pre Českú republiku, t.j ``R = 40`` a ``P = 1``.
+Následne modulom |r.mapcalc| :sup:`r.mapcalc` vypočítame stratu pôdy, viď. 
+:ref:`vzťah na výpočet G <vzorec-G>`. Vrstva s hodnotami predstavujúcimi 
+priemernú dlhodobú stratu pôdy v jednotkách :math:`t.ha^{-1} . rok^{-1}` je 
+na :num:`#g-map`.
+
+.. _g-map:
+
+.. figure:: images/g_map.png
+   :class: small
+
+   Priemerná dlhodobá strata pôdy pre riešené územie. 
 
 .. _krok9:
 
 Krok 9
 ^^^^^^
-9. vytvorenie rastrových vrstiev :map:`g.gtiff`, :map:`g_m.gtiff` a :map:`ls_m.gtiff`
+.. todo:: vytvorenie rastrových vrstiev :map:`ls_m` a :map:`g_m`.
 
 .. _krok10:
 
 Krok 10
 ^^^^^^^
-10. výpočet priemerných hodnôt `G` pre povodie s maskou a bez masky a vytvorenie rastrových vrstiev :map:`g_pov.gtiff` a :map:`g_pov_m.gtiff`
+Na určenie priemernej hodnoty a sumy straty pre každé čiastkové
+povodie využijeme modul |v.rast.stats| :sup:`v.rast.stats`. Kľúčovou vrstvou je
+vektorová mapa povodí :map:`povodi`, kde nastavíme prefix
+:item:`g_` pre novovytvorený stĺpec. V prostredí QGIS hodnoty vizualizujeme 
+(:num:`g-pov`).
+
+.. _g-pov:
+
+.. figure:: images/g_pov_map.png
+   :class: small
+
+   Povodia s priemernými hodnotami straty pôdy v jednotkách :math:`t.ha^{-1}.rok^{-1}`. 
+
+.. todo:: 10. výpočet priemerných hodnôt `G` pre povodie s maskou a vytvorenie :map:`g_pov_m`
 
 
