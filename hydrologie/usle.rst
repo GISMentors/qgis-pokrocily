@@ -10,6 +10,10 @@
    :width: 1.5em
 .. |v.to.rast.attr| image:: ../images/gplugin/v.to.rast.attr.3.png
    :width: 2em
+.. |r.mask.rast| image:: ../images/gplugin/r.mask.rast.2.png
+   :width: 1.5em
+.. |r.slope| image:: ../images/gplugin/r.slope.1.png
+   :width: 1.5em
 
 
 2. Priemerná dlhodobá strata pôdy
@@ -75,7 +79,7 @@ výpočet parametra `KC`
 
 :ref:`6.<krok6>` 
 vytvorenie rastrovej mapy sklonu a mapy akumulácií toku v každej bunke 
-(:map:`slope` a :map:`accu`)
+(:map:`slope` a :map:`accumulation`)
 
 :ref:`7.<krok7>` 
 výpočet parametra `LS`
@@ -127,14 +131,12 @@ oblasť riešeného územia bez líniových a plošných prvkov prerušujúcich 
 
 Krok 1
 ^^^^^^
-1. zjednotenie hlavných pôdnych jednotiek a komplexného prieskumu pôd (:map:`hpj_kpp`)
+zjednotenie hlavných pôdnych jednotiek a komplexného prieskumu pôd (:map:`hpj_kpp`)
 
 .. _krok2:
 
 Krok 2
 ^^^^^^
-2. pripojenie kódov `K` k vrstve :map:`hpj_kpp`
-
 .. _ciselniky:
 
 .. figure:: images/usle_join.png
@@ -162,8 +164,6 @@ Krok 2
 
 Krok 3
 ^^^^^^
-3. prienik vrstvy s kódmi `K` s vrstvou využitia územia (:map:`hpj_kpp_landuse`)
-
 |v.overlay.and| :sup:`v.overlay.and`
 
 .. _krok4:
@@ -185,8 +185,6 @@ Krok 4
 
 Krok 5
 ^^^^^^
-5. výpočet parametra `KC`
-
 Pre ďalšie výpočty je potrebné, aby typ atribútov s faktorom `K` a faktorom `C` 
 bol číselný. Použijeme modul |v.db.addcolumn| :sup:`v.db.addcolumn`, 
 modul |v.db.update| :sup:`v.db.update_op`, funkciu ``cast()`` a typ *real*.
@@ -226,8 +224,46 @@ Výsledok je na :num:`#kc`.
 
 Krok 6
 ^^^^^^
-6. vytvorenie rastrovej mapy sklonu a mapy akumulácií toku v každej bunke 
-   (:map:`slope` a :map:`accu`)
+Z digitálneho modelu terénu (DMT) vytvoríme rastrovú mapu znázorňujúcu
+sklonové pomery v stupňoch (:map:`slope`). Pred výpočtom nastavíme masku 
+(oblasť výpočtu) podľa vrstvy :map:`dmr` modulom |r.mask.rast| :sup:`r.mask`
+(:menuselection:`Rastr --> Prostorová analýza --> Maska`). Všetky rastrové
+operácie budú obmedzené na masku oblasti (:map:`MASK`). 
+Následne spustíme modul |r.slope| :sup:`r.slope` a vypočítame sklon v riešenom
+území (:num:`#slope`).
+
+.. _slope:
+
+.. figure:: images/slope.png
+   :class: middle
+
+   Výpočet sklonových pomerov v záujmovom území. 
+
+
+Ďalej otvoríme príkazový riadok |shell| :sup:`shell`, spustíme modul 
+:grasscmd:`r.terraflow` a z :map:`dmt` vytvoríme vyhladený DMT 
+(:map:`dmt_fill`), rastrovú mapu smeru
+odtoku do susednej bunky s najväčším sklonom (:map:`direction`), mapu mikropovodí
+(:map:`swatershed`), rastrovú mapu znázorňujúcu akumuláciu toku v každej bunke
+(:option:`accumulation`) a mapu konvergenčného topografického indexu (:map:`tci`).
+Dialógové okno modulu je na :num:`#terraflow`, smer v stupňoch a akumulácia 
+odtoku v :math:`m^2` sú na :num:`#slope-accumulation`.
+
+.. _terraflow:
+
+.. figure:: images/terraflow.png
+   :class: small
+
+   Dialógové okno modulu *r.terraflow*. 
+
+.. _slope-accumulation:
+
+.. figure:: images/slope_accumulation.png
+   :class: middle
+
+   Sklonové pomery v stupňoch a akumulácia odtoku v :math:`m^2`. 
+
+
 
 
 
