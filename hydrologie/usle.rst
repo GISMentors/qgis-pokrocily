@@ -30,6 +30,8 @@
    :width: 1.5em
 .. |mc6| image:: ../hydrologie/images/mc6.png
    :width: 1.5em
+.. |v.rast.stats| image:: ../images/gplugin/v.rast.stats.3.png
+   :width: 4.5em
 
 
 
@@ -39,9 +41,9 @@
 
 Teoretické východiská
 ---------------------
-
-Pri výpočtoch priemernej dlhodobej straty pôdy sa proces vodnej erózie
-popisuje pomocou matematického modelu USLE, tzv. univerzálnej rovnice
+Priemerné ročné straty pôdy spôsobené odtokom z pozemku určitého sklonu a 
+určitého spôsobu využívania možno predikovať pomocou matematického modelu 
+:wikipedia:`USLE <Univerzální rovnice ztráty půdy>`, tzv. univerzálnej rovnice 
 straty pôdy:
 
 .. _vzorec-G:
@@ -64,54 +66,53 @@ Základné symboly
 Vstupné dáta
 ------------
 
- * :map:`dmt` - digitálny model terénu v rozlišení 10 x 10 m
- * :map:`hpj.shp` - vektorová vrstva hlavných pôdnych jednotiek (z kódov BPEJ),
- * :map:`kpp.shp` - vektorová vrstva komplexného prieskumu pôd,
- * :map:`landuse.shp` - vektorová vrstva využitia územia,
+ * :map:`hpj.shp` - vektorová vrstva hlavných pôdnych jednotiek z kódov BPEJ
+ * :map:`kpp.shp` - vektorová vrstva komplexného prieskumu pôd
+ * :map:`landuse.shp` - vektorová vrstva využitia územia
  * :map:`povodi.shp` - vektorová vrstva povodí IV. rádu s návrhovými
    zrážkami :math:`H_s` (doba opakovania 2, 5, 10, 20, 50 a 100 rokov)
-
- * :dbtable:`hpj_k` - číselník s kódom `K` pre hlavné pôdne jednotky,
- * :dbtable:`kpp_k` - číselník s kódom `K` pre pre vrstvu komplexného prieskumu pôd,
- * :dbtable:`lu_c` - číselník s kódom `C` pre vrstvu využitia územia
- * :map:`maska.pack` - oblasť riešeného územia bez líniových a plošných prvkov 
-   prerušujúcich odtok
+ * :dbtable:`hpj_k` - číselník s kódom `K` pre hlavné pôdne jednotky, :num:`#ciselniky` vľavo
+ * :dbtable:`kpp_k` - číselník s kódom `K` pre pre vrstvu komplexného prieskumu pôd, :num:`#ciselniky` vpravo
+ * :dbtable:`lu_c` - číselník s kódom `C` pre vrstvu využitia územia, :num:`#ciselniky` vpravo
+ * :map:`dmt` - digitálny model terénu v rozlišení 10 x 10 m, :num:`#dmt-maska` vľavo
+ * :map:`maska.pack` - oblasť územia bez líniových a plošných prvkov prerušujúcich odtok, :num:`#dmt-maska` vpravo
              
 Navrhovaný postup
 -----------------
 
 :ref:`1.<krok1>` 
-zjednotenie hlavných pôdnych jednotiek a komplexného prieskumu pôd (:map:`hpj_kpp`)
+zjednotenie hlavných pôdnych jednotiek a komplexného prieskumu pôd
 
 :ref:`2.<krok2>` 
-pripojenie kódov `K` k vrstve :map:`hpj_kpp`
+pripojenie hodnôt faktora `K` k elementárnym plochám
 
 :ref:`3.<krok3>` 
-prienik vrstvy s kódmi `K` s vrstvou využitia územia (:map:`hpj_kpp_landuse`)
+prienik vrstvy s faktorom `K` s vrstvou využitia územia 
 
 :ref:`4.<krok4>` 
-pripojenie kódov `C` k vrstve :map:`hpj_kpp_landuse`
+pripojenie hodnôt faktora `C`
 
 :ref:`5.<krok5>` 
-výpočet parametra `KC`
+výpočet parametra `KC` 
 
 :ref:`6.<krok6>` 
 vytvorenie rastrovej mapy sklonu a mapy akumulácií toku v každej bunke 
-(:map:`slope` a :map:`accumulation`)
 
 :ref:`7.<krok7>` 
 výpočet parametra `LS`
 
 :ref:`8.<krok8>` 
-vytvorenie rastra s hodnotami predstavujúcimi priemernú dlhodobú stratu pôdy `G`
+výpočet `G` a vytvorenie rastra s hodnotami predstavujúcimi priemernú dlhodobú 
+stratu pôdy
 
 :ref:`9.<krok9>` 
-vytvorenie rastrových vrstiev :map:`ls_m` a :map:`g_m`.
+výpočet priemerných hodnôt `G` pre povodie 
 
 :ref:`10.<krok10>` 
-výpočet priemerných hodnôt `G` pre povodie s maskou a bez masky a vytvorenie :map:`g_pov` a :map:`g_pov_m`
+vytvorenie rastrových vrstiev `LS` a `G` s maskou
 
-Na :num:`#schema-usle` je prehľadne znázornený navrhovaný postup. 
+:ref:`11.<krok11>` 
+výpočet priemerných hodnôt `G` pre povodie s maskou 
 
 .. _schema-usle:
 
@@ -120,19 +121,16 @@ Na :num:`#schema-usle` je prehľadne znázornený navrhovaný postup.
 
    Grafická schéma postupu 
 
-Postup spracovania v QGIS
--------------------------
-
 Znázornenie vstupných vektorových dát spolu s atribútovými tabuľkami je totožné
 so :skoleni:`vstupnými vektorovými dátami pri metóde SCS CN 
 <qgis-pokrocily/hydrologie/scs-sc/vstupne-data>`. Digitálny model reliéfu a 
 oblasť riešeného územia bez líniových a plošných prvkov prerušujúcich odtok 
-(maska) je na :num:`#dmr-maska`. Tabuľky s kódmi `K` a kódmi `C` sú na 
+(maska) sú na :num:`#dmt-maska`. Tabuľky s faktormi `K` a `C` sú na 
 :num:`#ciselniky`.
 
-.. _dmr-maska:
+.. _dmt-maska:
 
-.. figure:: images/x.png
+.. figure:: images/dmt_maska.png
    :class: middle
 
    Vrstva digitálneho modelu reliéfu a oblasť riešeného územia bez prvkov 
@@ -145,11 +143,16 @@ oblasť riešeného územia bez líniových a plošných prvkov prerušujúcich 
 
    Číselníky s kódmi *K* a *C*. 
 
+Postup spracovania v QGIS
+-------------------------
+
 .. _krok1:
 
 Krok 1
 ^^^^^^
-zjednotenie hlavných pôdnych jednotiek a komplexného prieskumu pôd (:map:`hpj_kpp`)
+Postup ako zjednotiť vrstvu hlavných pôdnych jednotiek a komplexného prieskumu 
+pôd je totožný s :skoleni:`prvým krokom <qgis-pokrocily/hydrologie/scs-sc/vkr1>` 
+pri metóde SCS CN. 
 
 .. _krok2:
 
@@ -157,40 +160,46 @@ Krok 2
 ^^^^^^
 .. _ciselniky:
 
+Pripojenie tabuliek :dbtable:`hpj_k` a :dbtable:`kpp_k` je tiež podobné ako 
+:skoleni:`druhý krok <qgis-pokrocily/hydrologie/scs-sc/vkr2>` pri metóde SCS CN
+iba s tým rozdielom, že spoločným atribútom nie je hydrologická skupina 
+:dbtable:`HPJ`, ale faktor :dbtable:`K`. Dialógové okno s nastaveniami pre 
+toto spájanie je na :num:`#usle-join`. Vyplnenie informácií o faktore `K`
+z vrstvy komplexného prieskumu pôd pomocou kalkulačky polí 
+a znázornenie výsledku sú na :num:`usle-kalk-k`.
+
+.. _usle-join: 
+
 .. figure:: images/usle_join.png
    :class: small
 
    Pripojenie číselníkov s faktorom *K* v prostredí QGIS. 
 
-``CASE WHEN "hpj_K" IS NULL THEN "kpp_K" ELSE "hpj_K" END``
-
-.. _ciselniky:
+.. _usle-kalk-k:
 
 .. figure:: images/usle_kalk_k.png
-   :class: small
+   :class: middle
 
-   Vytvorenie atribútu s hodnotami faktora *K*.
-
-.. _ciselniky:
-
-.. figure:: images/usle_k.png
-   :class: small
-
-   Faktor *K* elementárnych plôch v záujmovom území. 
+   Vytvorenie atribútu s hodnotami faktora *K* pre elementárne plochy v záujmovom území.
 
 .. _krok3:
 
 Krok 3
 ^^^^^^
-|v.overlay.and| :sup:`v.overlay.and`
+
+Aj tento krok sa veľmi podobá na 
+:skoleni:`tretiu časť postupu <qgis-pokrocily/hydrologie/scs-sc/vkr2>` pri metóde
+SCS CN. Na vytvorenie prieniku vrstvy :map:`hpj_kpp` s vrstvou využitia krajiny
+:map:`landuse` v riešenej oblasti využijeme modul |v.overlay.and| 
+:sup:`v.overlay.and`. Výsledok nazveme :map:`hpj_kpp_landuse`. 
 
 .. _krok4:
 
 Krok 4
 ^^^^^^
-4. pripojenie kódov `C` k vrstve :map:`hpj_kpp_landuse`, :num:`#usle-db-join-c`
-
-|v.db.join| :sup:`v.db.join`
+Pokračujeme pripojením hodnôt faktora `C` k elementárnym plochám vrstvy 
+:map:`hpj_kpp_landuse`, viď. :num:`#usle-db-join-c` so znázornením dialógového 
+okna modulu |v.db.join| :sup:`v.db.join`. 
 
 .. _usle-db-join-c:
 
@@ -205,7 +214,7 @@ Krok 5
 ^^^^^^
 Pre ďalšie výpočty je potrebné, aby typ atribútov s faktorom `K` a faktorom `C` 
 bol číselný. Použijeme modul |v.db.addcolumn| :sup:`v.db.addcolumn`, 
-modul |v.db.update| :sup:`v.db.update_op`, funkciu ``cast()`` a typ *real*.
+modul |v.db.update| :sup:`v.db.update_op`, funkciu ``cast()`` a typ ``real``.
 
 Hodnoty oboch faktorov vynásobíme pre každú plochu a nový atribút nazveme 
 :dbcolumn:`KC`. V záložke :item:`Region` nastavíme rozlíšenie 1 x 1 m a modulom
@@ -242,13 +251,17 @@ Výsledok je na :num:`#kc`.
 
 Krok 6
 ^^^^^^
-Z digitálneho modelu terénu (DMT) vytvoríme rastrovú mapu znázorňujúcu
-sklonové pomery v stupňoch (:map:`slope`). Pred výpočtom nastavíme masku 
-(oblasť výpočtu) podľa vrstvy :map:`dmr` modulom |r.mask.rast| :sup:`r.mask`
-(:menuselection:`Rastr --> Prostorová analýza --> Maska`). Všetky rastrové
-operácie budú obmedzené na masku oblasti (:map:`MASK`). 
+Z digitálneho modelu terénu vytvoríme rastrovú mapu znázorňujúcu
+sklonové pomery v stupňoch a nazveme ju :map:`slope`. 
+
+.. _maska:
+
+Pred výpočtom nastavíme masku 
+(oblasť výpočtu) podľa vrstvy :map:`dmt` modulom |r.mask.rast| :sup:`r.mask`, viď.
+:menuselection:`Rastr --> Prostorová analýza --> Maska`. Všetky rastrové
+operácie budú obmedzené na masku oblasti (v mapsete ako :map:`MASK`). 
 Následne spustíme modul |r.slope| :sup:`r.slope` a vypočítame sklon v riešenom
-území (:num:`#slope`).
+území (:num:`#slope` a :num:`#slope-accumulation` vľavo).
 
 .. _slope:
 
@@ -259,13 +272,13 @@ Následne spustíme modul |r.slope| :sup:`r.slope` a vypočítame sklon v rieše
 
 
 Ďalej otvoríme príkazový riadok |grass_shell| :sup:`shell`, spustíme modul 
-:grasscmd:`r.terraflow` a z :map:`dmt` vytvoríme vyhladený DMT 
+:grasscmd:`r.terraflow`, ktorý z digitálneho modelu terénu produkuje vyhladený DMT 
 (:map:`dmt_fill`), rastrovú mapu smeru
 odtoku do susednej bunky s najväčším sklonom (:map:`direction`), mapu mikropovodí
 (:map:`swatershed`), rastrovú mapu znázorňujúcu akumuláciu toku v každej bunke
 (:map:`accumulation`) a mapu konvergenčného topografického indexu (:map:`tci`).
-Dialógové okno modulu je na :num:`#terraflow`, smer v stupňoch a akumulácia 
-odtoku v :math:`m^2` sú na :num:`#slope-accumulation`.
+Dialógové okno modulu je na :num:`#terraflow`. Zobrazenie ďalej potrebnej akumulácie 
+odtoku v :math:`m^2` je na :num:`#slope-accumulation` vpravo.
 
 .. _terraflow:
 
@@ -280,6 +293,8 @@ odtoku v :math:`m^2` sú na :num:`#slope-accumulation`.
    :class: middle
 
    Sklonové pomery v stupňoch a akumulácia odtoku v :math:`m^2`. 
+
+.. _faktor-ls:
 
 .. _krok7:
 
@@ -316,6 +331,8 @@ Výraz na výpočet `LS` a výsledok sú na :num:`#calc-ls`.
 .. tip:: Výpočet v príkazovom riadku napíšeme ako 
 	 :code:`r.mapcalc expr="ls = pow(accumulation * (10.0 / 22.13), 0.6) * pow(sin(slope * (3.14159/180)) / 0.09, 1.3)"`
 
+.. _faktor-g:
+
 .. _krok8:
 
 Krok 8
@@ -339,17 +356,10 @@ na :num:`#g-map`.
 
 Krok 9
 ^^^^^^
-.. todo:: vytvorenie rastrových vrstiev :map:`ls_m` a :map:`g_m`.
-
-.. _krok10:
-
-Krok 10
-^^^^^^^
-Na určenie priemernej hodnoty a sumy straty pre každé čiastkové
+Na určenie priemernej hodnoty straty pre každé čiastkové
 povodie využijeme modul |v.rast.stats| :sup:`v.rast.stats`. Kľúčovou vrstvou je
-vektorová mapa povodí :map:`povodi`, kde nastavíme prefix
-:item:`g_` pre novovytvorený stĺpec. V prostredí QGIS hodnoty vizualizujeme 
-(:num:`g-pov`).
+vektorová mapa :map:`povodi`, kde nastavíme prefix ``g`` pre 
+novovytvorený stĺpec. V mapovom okne QGIS hodnoty vizualizujeme (:num:`g-pov`).
 
 .. _g-pov:
 
@@ -357,6 +367,48 @@ vektorová mapa povodí :map:`povodi`, kde nastavíme prefix
    :class: small
 
    Povodia s priemernými hodnotami straty pôdy v jednotkách :math:`t.ha^{-1}.rok^{-1}`. 
+
+.. _krok10:
+
+Krok 10
+^^^^^^^
+
+Pre výpočet uvedený vyššie môže vychádzať strata pôdy v niektorých miestach 
+enormne vysoká. To je spôsobené tým, že vo výpočtoch nie sú zahrnuté líniové a 
+plošné prvky prerušujúce povrchový odtok. Týmito prvkami sú najmä budovy, 
+priekopy diaľnic a ciest, železničné trate alebo múry lemujúce pozemky.
+
+Presnejšie hodnoty možno získať zahrnutím týchto prvkov do výpočtu. 
+Použijeme masku líniových a plošných prvkov prerušujúcich odtok 
+(vrstva :map:`maska` na :num:`#dmt-maska` vpravo) a vypočítame nové hodnoty `LS` 
+faktora a straty pôdy `G`. 
+
+Modulom |r.mask.rast| :sup:`r.mask.rast` :ref:`nastavíme oblasť výpočtu <maska>` 
+bez neželaných miest. Nastavenie skontrolujeme napríklad zobrazením digitálneho 
+modelu terénu (:num:`#dmt-m`). Dopočítame :ref:`faktor LS <faktor-ls>` a 
+:ref:`faktor G <faktor-g>`.
+
+.. _dmt-m:
+
+.. figure:: images/dmt_m.png
+   :class: small
+
+   Vrstva digitálneho modelu terénu vstupujúca do výpočtov bez prvkov prerušujúcich odtok. 
+
+Porovnanie výsledkov *USLE* bez ohľadu na prvky prerušujúce odtok a s nimi
+je na :num:`#g-por`.
+
+.. _g-por:
+
+.. figure:: images/g_por.png
+   :class: middle
+
+   Porovnanie výsledkov USLE bez ohľadu na prvky prerušujúce odtok (vľavo) a s prvkami prerušujúcimi odtok (vpravo)
+
+.. _krok11:
+
+Krok 11
+^^^^^^^
 
 .. todo:: 10. výpočet priemerných hodnôt `G` pre povodie s maskou a vytvorenie :map:`g_pov_m`
 
