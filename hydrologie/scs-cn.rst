@@ -30,6 +30,16 @@
    :width: 3.5em
 .. |v.rast.stats| image:: ../images/gplugin/v.rast.stats.3.png
    :width: 4.5em
+.. |add_vector| image:: ../images/icon/mIconVectorLayer.png
+   :width: 1.5em
+.. |add_csv| image:: ../images/icon/mActionAddDelimitedTextLayer.png
+   :width: 1.5em
+.. |grasslogo| image:: ../images/icon/grasslogo.png
+   :width: 1.5em
+.. |diagram| image:: ../images/icon/diagram.png
+   :width: 1.5em
+
+
 
 1. Metóda SCS CN
 ================
@@ -41,16 +51,15 @@ Ide o výpočet priameho odtoku z povodia, ktorý je tvorený tzv. povrchovým o
 a tzv. hypodermockým odtokom (odteká pod povrchom). Metóda bola vypracovaná
 službou na ochranu pôd *Soil Conservation Service* (:wikipedia:`SCS CN
 <Metoda CN křivek>`) v USA. Objem zrážok je na objem odtoku prevedený
-podľa čísel odtokových kriviek *CN*, ktoré sú tabelizované na
-základe hydrologických vlastností pôd *HydrSk*. Metóda zohľadňuje
+podľa čísel odtokových kriviek `CN`, ktoré sú tabelizované na
+základe hydrologických vlastností pôd. Metóda zohľadňuje
 závislosť retencie (zadržiavanie vody) od hydrologických vlastností pôd,
-počiatočné nasýtenie a spôsob využívania pôdy. Číslo *CN* krivky
-reprezentuje teda vlastnosť povodia a platí, že čím je hodnota CN hodnota
-vyššia, tým je väčšia pravdepodobnosť, že pri zrážkovej udalosti dôjde k priamemu
-odtoku. Číslo obvykle nadobúda hodnoty :item:`30`, t.j. veľké straty až 
-:item:`100`, t.j. malé straty.  
+počiatočné nasýtenie a spôsob využívania pôdy. Číslo `CN` krivky
+reprezentuje teda vlastnosť povodia a platí, že čím je hodnota `CN` vyššia, 
+tým je väčšia pravdepodobnosť, že pri zrážkovej udalosti dôjde k priamemu
+odtoku. 
 
-Číslo *CN* závisí od kombinácie hydrologickej skupiny pôdy a spôsobu využitia
+Číslo `CN` závisí od kombinácie hydrologickej skupiny pôdy a spôsobu využitia
 územia v danom mieste. Kód hydrologickej skupiny pôdy je získaný z dát hlavných
 pôdnych jednotiek (presnejší spôsob) alebo dát komplexného prieskumu pôd (tam, 
 kde informácie o hlavných pôdnych jednotkách k dispozícii nie sú).
@@ -78,41 +87,42 @@ ako pomer odtoku a zrážky, ktorá je redukovaná o počiatočné straty.
 Vstupné dáta
 ------------
 
- * :map:`hpj.shp` - vektorová vrstva hlavných pôdnych jednotiek (z kódov BPEJ),
- * :map:`kpp.shp` - vektorová vrstva komplexného prieskumu pôd,
- * :map:`landuse.shp` - vektorová vrstva využitia územia,
+ * :map:`hpj.shp` - vektorová vrstva hlavných pôdnych jednotiek z kódov BPEJ, :num:`#hpj-kpp` vľavo
+ * :map:`kpp.shp` - vektorová vrstva komplexného prieskumu pôd, :num:`#hpj-kpp` vpravo
+ * :map:`landuse.shp` - vektorová vrstva využitia územia, :num:`lu-pov` vľavo
  * :map:`povodi.shp` - vektorová vrstva povodí IV. rádu s návrhovými
-   zrážkami :math:`H_s` (doba opakovania 2, 5, 10, 20, 50 a 100 rokov)
+   zrážkami :math:`H_s` (doba opakovania 2, 5, 10, 20, 50 a 100 rokov), :num:`lu-pov` vpravo
  * :dbtable:`hpj_hydrsk` - číselník s hydrologickými skupinami pôd pre hlavné 
-   pôdne jednotky,
+   pôdne jednotky, :num:`#ciselniky1` vľavo
  * :dbtable:`kpp_hydrsk` - číselník s hydrologickými skupinami pôd pre vrstvu 
-   komplexného prieskumu pôd,
+   komplexného prieskumu pôd, :num:`#ciselniky1` v strede
  * :dbtable:`lu_hydrsk_cn` - číselník s číslami CN pre kombináciu využitia 
-   územia a hydrologickej skupiny,
+   územia a hydrologickej skupiny, :num:`#ciselniky1` vpravo
 
 .. note:: Vrstvu povodí možno získať z voľne dostupnej 
-	  databázy DIBAVOD. Bonitované pôdne ekologické jednotky (dve číslice 
-	  päťmiestneho kódu udávajúce hlavnú pôdnu jednotku), informácie o využití 
-	  územia (Land Parcel Identification System) a dáta komplexného 
+	  databázy DIBAVOD. Bonitované pôdne ekologické jednotky - dve číslice 
+	  päťmiestneho kódu udávajúce hlavnú pôdnu jednotku, informácie o využití 
+	  územia *Land Parcel Identification System* a dáta komplexného 
 	  prieskumu pôd poskytuje väčšinou krajský úrad príslušného 
-	  územia. Návrhové zrážky možno získať z HMU.
+	  územia. Návrhové zrážky možno získať z hydrometeorologického ústavu.
 
 Navrhovaný postup
 ------------------
 :ref:`1.<kr1>` 
-zjednotenie hlavných pôdnych jednotiek a komplexného prieskumu pôd (:map:`hpj_kpp`) 
+zjednotenie hlavných pôdnych jednotiek a komplexného prieskumu pôd 
 
 :ref:`2.<kr2>` 
 pripojenie informácií o hydrologickej skupine
 
 :ref:`3.<kr3>` 
-3. prienik vrstvy s hydrologickými skupinami s vrstvou využitia územia (:map:`hpj_kpp_landuse`)
+prienik vrstvy s hydrologickými skupinami s vrstvou využitia územia 
 
 :ref:`4.<kr4>` 
 pripojenie čísel odtokovej krivky :math:`CN`
 
 :ref:`5.<kr5>` 
-zjednotenie :map:`hpj_kpp_landuse` s vrstvou povodí (:map:`hpj_kpp_lu_pov`)
+zjednotenie prieniku vrstvy s hydrologickými skupinami a využitím územia 
+s vrstvou povodí 
 
 :ref:`6.<kr6>` 
 výpočet výmery elementárnych plôch, parametra :math:`A` a parametra :math:`I_a`
@@ -121,59 +131,61 @@ výpočet výmery elementárnych plôch, parametra :math:`A` a parametra :math:`
 výpočet parametra :math:`H_o` a parametra :math:`O_p` pre každú elementárnu plochu
 
 :ref:`8.<kr8>` 
-vytvorenie rastrových vrstiev :map:`ho` a :map:`op`
+vytvorenie rastrových vrstiev výšky a objemu priameho odtoku
 
 :ref:`9.<kr9>` 
-výpočet priemerných hodnôt priameho odtoku pre povodie a vytvorenie rastrových vrstiev :map:`ho_pov` a :map:`op_pov`
+výpočet priemerných hodnôt výšky a objemu priameho odtoku pre povodie 
 
 .. _schema:
 
 .. figure:: images/schema_scs-cn.png
-   :class: large
+   :class: middle
 
    Grafická schéma postupu
-
-Postup spracovania v QGIS
--------------------------
 
 Znázornenie vstupných dát spolu s atribútovými tabuľkami je na :num:`#hpj-kpp`
 a :num:`lu-pov`. Tabuľky s informáciami o hydrologickej skupine pôdy a o 
 číslach CN pre kombináciu využitia územia a hydrologickej skupiny, resp. 
-číselníky sú na :num:`#ciselniky`.
+číselníky sú na :num:`#ciselniky1`.
 
 .. _hpj-kpp:
 
 .. figure:: images/hpjkpp.png
    :class: large
 
-   Hlavné pôdne jednotky a podrobný prieskup pôd - vstupné vektorové vrstvy.
+   Hlavné pôdne jednotky a podrobný prieskup pôd spolu s ich atribútovými tabuľkami.
 
 .. _lu-pov:
 
 .. figure:: images/lupov.png
    :class: large
 
-   Využitie územia a vrstva povodí IV. rádu - vstupné vektorové vrstvy.
+   Využitie územia a vrstva povodí IV. rádu spolu s ich atribútovými tabuľkami.
 
-.. _ciselniky:
+.. _ciselniky1:
 
 .. figure:: images/ciselniky.png
    :class: middle
 
    Číselníky s informáciami o hydrologickej skupine a číslami CN.
 
+Postup spracovania v QGIS
+-------------------------
+
 .. _kr1:
 
 Krok 1
 ^^^^^^
-V prvom kroku založíme projekt a importujeme vstupné vrstvy (:map:`hpj.shp`, 
+V prvom kroku založíme projekt a pomocou |add_vector| a |add_csv| pridáme do 
+panelu vrstiev súbory :map:`hpj.shp`, 
 :map:`kpp.shp`, :map:`landuse.shp`, :map:`povodi.shp`, :dbtable:`hpj_hydrsk`,
-:dbtable:`kpp_hydrsk` a :dbtable:`lu_hydrsk_cn`). 
+:dbtable:`kpp_hydrsk` a :dbtable:`lu_hydrsk_cn`. 
 
 Následne zjednotíme vrstvu hlavných pôdnych jednotiek 
-a komplexného prieskumu pôd. Využijeme nástroj geoprocessingu |union| 
-:sup:`Sjednotit` (:menuselection:`Vector --> Nástroje geoprocessingu --> Sjednotit)`. 
-Vznikne vektorový výstup :map:`hpj_kpp`). 
+a komplexného prieskumu pôd. Využijeme nástroj geoprocessingu 
+|union| :sup:`Sjednotit`, ktorý nájdeme v záložke 
+:menuselection:`Vector --> Nástroje geoprocessingu`. 
+Vznikne vektorový výstup :map:`hpj_kpp`. 
 
 .. _kr2:
 
@@ -216,7 +228,7 @@ Potom otvoríme atribútovú tabuľku :map:`hpj_kpp`, zapneme editovací mód ik
 atribúty o hydrologickej skupine (:dbcolumn:`hpj_HydrSk` z hlavných 
 pôdnych jednotiek a :dbcolumn:`kpp_HydrSk` z komplexného 
 prieskupu pôd). Primárne použijeme hydrologickú skupinu pre hlavné pôdne jednotky.
-Kde informácia nie je (hodnota :dbcolumn:`NULL`), tam použijeme 
+Kde informácia nie je - hodnota :dbcolumn:`NULL`, tam použijeme 
 :dbcolumn:`kpp_HydrSk` (:num:`#at-hydrsk-kalk`) a výsledok znázorníme
 (:num:`#hydrsk`).
 
@@ -277,7 +289,7 @@ pri ďalších kódoch. Výsledok je na :num:`#hydrsk-ok`.
 Do tejto fázy je možné používať QGIS relatívne bez problémov. Ďalej však budeme
 pridávať informácie o využití územia pre každú elementárnu plochu pomocou operácie 
 prieniku. Pri väčších dátach môžu byť nástroje geoprocessingu časovo náročné.
-Využijeme zásuvný modul GRASS GIS.
+Využijeme zásuvný modul |grasslogo| :sup:`GRASS`.
 
 **Vytvorenie LOKÁCIE a MAPSET-u** 
 
@@ -298,7 +310,7 @@ Nastavíme súradnicový systém a výpočtový región. Okrem mapsetu `PERMANEN
 ktorý sa vytvorí automaticky, je potrebné zadať názov nového mapsetu, v ktorom 
 budú prebiehať výpočty. Mapset sa automaticky otvorí ako súčasný pracovný mapset. 
 V záložke *Region* dialógového okna GRASS nástrojov možno meniť rozsah výpočtovej
-oblasti výberom v mapovom okne pomocou `Select the extent by dragging on canvas`
+oblasti výberom v mapovom okne QGIS pomocou `Select the extent by dragging on canvas`
 (:num:`#n-mapset`). Taktiež sa tu nastavuje rozlíšenie. 
 
 .. _n-mapset:
@@ -330,8 +342,8 @@ QGIS. Názvy máp zachováme rovnaké.
    Možnosti importu vektorových vrstiev do mapset-u v prostredí QGIS.
 
 Ak chceme overiť, či sa dané vrstvy v mapsete nachádzajú použijeme *shell*.
-Kliknutím na |grass_shell| :sup:`grass shell` spustíme príkazový riadok. Modul, 
-ktorý vypíše obsah konkrétneho mapsetu je :grasscmd:`g.list`. Pre výpis vektorov 
+Kliknutím na |grass_shell| :sup:`grass shell` spustíme príkazový riadok. Modul 
+:grasscmd:`g.list` vypíše obsah konkrétneho mapsetu. Pre výpis vektorov 
 v aktuálnom mapsete zadáme :code:`g.list type = vector mapset=.`. Ak zadáme
 iba :code:`g.list`, otvorí sa dialógové okno modulu a parametre môžeme zadať 
 interaktívne.
@@ -340,9 +352,10 @@ interaktívne.
 	  zadaním *man* pred názov modulu, napríklad :code:`man g.list`. 
 
 Na prekrývanie, resp. nájdenie prieniku vektorových vrstiev slúži modul
-|v.overlay.and| :sup:`v.overlay.and`, viď. 
+|v.overlay.and| :sup:`v.overlay.and`, ktorý spustíme cez 
 :menuselection:`Vektor --> Prostorová analýza --> Překrytí` (:num:`#v-overlay-and`). 
-Výsledný prienik nazveme :map:`hpj_kpp_landuse`.
+Výsledný prienik nazveme :map:`hpj_kpp_landuse`. Počet záznamov v atribútovej 
+tabuľke sa prienikom výrazne zvýši.
 
 .. _v-overlay-and:
 
@@ -351,16 +364,14 @@ Výsledný prienik nazveme :map:`hpj_kpp_landuse`.
         
    Modul na získanie prieniku dvoch vektorových vrstiev.
 
-Počet záznamov v atribútovej tabuľke sa prienikom výrazne zvýšil. V príkazovom
-riadku možeme vypísať napríklad:
+.. tip:: V príkazovom riadku možeme vypísať napríklad:
 
-* zoznam tabuliek v aktuálnom mapsete, resp. ich názvy: :code:`db.tables`
-* zoznam atribútov konkrétnej tabuľky: :code:`db.columns table = NAZOVTABULKY` 
-* počet záznamov v tabuľke: :code:`db.select sql = 'select count(*) from NAZOVTABULKY'` 
-Príklad použitia `grass shell` je na :num:`#gshell-db-columns`. Pomocou modulu 
-|v.db.select| :sup:`v.db.select` môžeme vypísať 
-hodnoty atribútu, resp. modulom |v.db.select| :sup:`v.db.select.where` 
-možno zadať aj podmienku.
+	 * zoznam tabuliek v aktuálnom mapsete, resp. ich názvy: :code:`db.tables`
+	 * zoznam atribútov konkrétnej tabuľky: :code:`db.columns table = NAZOVTABULKY` 
+	 * počet záznamov v tabuľke: :code:`db.select sql = 'select count(*) from NAZOVTABULKY'` 
+Príklad použitia `grass shell` je na :num:`#gshell-db-columns`. Modulom 
+|v.db.select| :sup:`v.db.select` vypíšeme hodnoty atribútu, modulom 
+|v.db.select| :sup:`v.db.select.where` možno zadať aj podmienku.
 
 .. _gshell-db-columns:
 
@@ -384,9 +395,9 @@ formátu `*csv`.
 
 Krok 4
 ^^^^^^
-V ďalšom kroku musíme vytvoriť stĺpec, ktorý bude obsahovať údaje o využití územia 
-a o hydrologickej skupine pôdy danej elementárnej plochy v tvare 
-*VyužitieÚzemia_HydrologickáSkupina*, resp. landuse_hydrsk.
+V ďalšom kroku je potrebné vytvoriť stĺpec, ktorý bude obsahovať údaje o využití 
+územia a o hydrologickej skupine pôdy danej elementárnej plochy v tvare 
+*VyužitieÚzemia_HydrologickáSkupina*.
 
 .. _novy-stlpec:
 
@@ -402,9 +413,9 @@ Hodnotu zadáme v tvare ``b_LandUse||'_'||a_hydrsk``.
 .. figure:: images/v_db_addcolumn.png
    :class: middle
         
-   Export atribútov do formátu *csv.
+   Pridanie stĺpca do atribútovej tabuľky s dátovým typom *text*.
 
-.. note:: Výsledok možeme skontrolovať v príkazovom riadku zadaním:
+.. note:: Výsledok možeme skontrolovať v príkazovom riadku zadaním
 
 	  .. code-block:: bash
 	
@@ -413,13 +424,14 @@ Hodnotu zadáme v tvare ``b_LandUse||'_'||a_hydrsk``.
 	     cat|b_LandUse|a_hydrsk|landuse_hydrsk
 	     1|OP|B|OP_B
 
-Ďalej do mapsetu modulom :grasscmd:`db.in.ogr` importujeme tabuľku s číslami CN.
+Ďalej do mapsetu modulom :grasscmd:`db.in.ogr` importujeme tabuľku s číslami `CN`.
 Nazveme ju :map:`lu_hydrsk_cn`.
 
 Následne použijeme modul |v.db.join| :sup:`v.db.join`, ktorým pripojíme 
 importovanú tabuľku k vektorovej vrstve :map:`hpj_kpp_landuse` 
-(kvôli priradeniu hodnôt CN ku každej elementárnej ploche riešeného územia), 
-viď. :num:`#v-dbjoin`.
+kvôli priradeniu hodnôt `CN` ku každej elementárnej ploche riešeného územia, 
+viď. :num:`#v-dbjoin`. Obsah výslednej tabuľky možno overiť v príkazovom riadku 
+pomocou ``db.select sql='select * from hpj_kpp_landuse_1 where cat=1``.
 
 .. important:: Jednotlivé atribúty v tabuľkách, ktoré spájame nemôžu obsahovať 
 	       rovnaký názov (pozor, nie je ani "case-sensitive").
@@ -434,9 +446,6 @@ viď. :num:`#v-dbjoin`.
 .. note:: Tento spôsob spájania je alternatívou k spájaniu pomocou 
 	  záložky |join| :sup:`Připojení` vo vlastnostiach vektorovej vrstvy, 
 	  viď. :ref:`pripojenie tabuľky k vektoru <join-vo-vlastnostiach>`.
-
-Obsah výslednej tabuľky možno overiť v príkazovom riadku pomocou 
-``db.select sql='select * from hpj_kpp_landuse_1 where cat=1``.
 
 .. _kr5:
 
@@ -458,9 +467,9 @@ vrstvy :map:`hpj_kpp_lu_pov` pre 2-ročný úhrn zrážok v *mm* s dobou trvania
    1|80|21.6804582207
 
 Ukážka ako sa zmenil počet plošných prvkov v mape :map:`hpj_kpp_landuse` po 
-zjednotení s vrstvou povodí dostaneme ako výstup modulu :grasscmd:`v.info` 
-(:menuselection:`Vektor --> Zprávy a statistiky`). Štandardné zobrazenie je na 
-:num:`#v-info`
+zjednotení s vrstvou povodí dostaneme ako výstup modulu :grasscmd:`v.info`, viď. 
+:menuselection:`Vektor --> Zprávy a statistiky`. Štandardné zobrazenie je na 
+:num:`#v-info`.
 
 .. _v-info:
 
@@ -470,26 +479,26 @@ zjednotení s vrstvou povodí dostaneme ako výstup modulu :grasscmd:`v.info`
    Výpis základných informácií o vektorovej mape pomocou modulu *v.info*.
 
 .. tip:: Z príkazového riadku možno zapnúť klasické prostredie GRASS-u
-	 príkazom `g.gui`. Tiež je možné zapnúť mapové okno GRASS-u (príkaz
+	 príkazom ``g.gui``. Tiež je možné zapnúť mapové okno GRASS-u (príkaz
 	 ``d.mon``), vykresliť v nej konkrétnu rastrovú (``d.rast``) alebo 
 	 vektorovú (``d.vect``) vrstvu, pridať mierku (``d.barscale``) či 
 	 legendu (``d.legend``). Príkazom ``d.rast.leg`` vykreslíme rastrovú 
 	 vrstvu aj s legendou.
 
 Ďalej budeme pracovať najmä s hodnotami `CN`. Pre ďalšie operácie je potrebné,
-aby typ tohto atribútu bol číselný (použijeme ``cast(a_CN as int)``). 
+aby typ tohto atribútu bol číselný, na čo použijeme funkciu ``cast()``. 
 
 .. noteadvanced:: 
    
    Vektorovú vrstvu 
-   :map:`hpj_kpp_landuse` možno prekonvertovať na rastrovú vrstvu s číslami CN
-   a zobraziť v mapovom okne. Začneme vytvorením nového stĺpca typu *integer* 
-   (modul :grasscmd:`v.db.addcolumn`), pokračujeme jeho editáciou 
+   :map:`hpj_kpp_landuse` možno prekonvertovať na rastrovú vrstvu s číslami `CN`
+   a zobraziť v mapovom okne GRASS-u. Začneme vytvorením nového stĺpca typu 
+   *integer* (modul :grasscmd:`v.db.addcolumn`), pokračujeme jeho editáciou 
    :grasscmd:`v.db.update_op` a následne spustíme modul 
    |v.to.rast.attr| :sup:`v.to.rast.attr`,
    viď. :num:`#v-to-rast-cn`. Príkazmi ``d.mon wx0``, ``d.rast.leg cn``,
-   ``d.barscale`` a ``d.vect povodi type=boundary`` by sme mapu :map:`cn` 
-   zobrazili s mierkou a legendou a prekryli ju vektorovou vrstvou povodí. 
+   ``d.barscale`` a ``d.vect povodi type=boundary`` mapu s `CN` 
+   zobrazíme s mierkou, legendou a v prekrytí s vektorovou vrstvou povodí. 
    
    .. _v-to-rast-cn:
 
@@ -503,8 +512,8 @@ aby typ tohto atribútu bol číselný (použijeme ``cast(a_CN as int)``).
 Krok 6
 ^^^^^^
 
-Pre každú elementárnu plochu vypočítame jej výmeru, parameter `A` (maximálna
-strata) a parameter :math:`I_a` (počiatočná strata), čo je 5 % z `A`.
+Pre každú elementárnu plochu vypočítame jej výmeru, parameter `A` a parameter 
+:math:`I_a`.
 
 .. math::
 
@@ -520,8 +529,8 @@ ich príslušné hodnoty. Postupujeme obdobne ako pri :ref:`tvorbe stĺpca <novy
 s údajmi o využití územia a o hydrologickej skupine (:dbcolumn:`landuse_hydrsk`),
 pričom na výpočet použijeme matematické operácie ako sčítanie, 
 odčítanie, násobenie a podobne (:num:`#add-columns` a :num:`#area-a`). Na určenie 
-plochy každej elementárnej plochy využijeme modul |v.to.db| :sup:`v.to.db` 
-(z kategórie :menuselection:`Vektor --> Zprávy a statistiky`).
+plochy každej elementárnej plochy využijeme modul z kategórie 
+:menuselection:`Vektor --> Zprávy a statistiky`, modul |v.to.db| :sup:`v.to.db`.
 
 .. _add-columns:
 
@@ -552,24 +561,10 @@ plochy každej elementárnej plochy využijeme modul |v.to.db| :sup:`v.to.db`
 
 Krok 7
 ^^^^^^
-
-Následne vypočítame výšku priameho odtoku v *mm* ako parameter :math:`H_o` 
-a objem ako parameter :math:`O_{p}`. 
-
-.. math::
-
-   H_O = \frac{(H_S − 0.2 \times A)^2}{H_S + 0.8 \times A}
-   
-   O_P = P_P \times \frac{H_O}{1000}
-
-.. note:: V ďalších krokoch budeme uvažovať priemerný úhrn návrhovej zrážky 
-	  :math:`H_{s}` = 32 mm. Pri úhrne s dobou opakovania 2 roky (atribút
-	  :dbcolumn:`H_002_120`) či dobou 5, 10, 20, 50 alebo 100 rokov by bol 
-	  postup obdobný.
-
-	  Znázornenie vektorovej vrstvy povodí s návrhovými zrážkami je na 
-	  :num:`navrhove-zrazky` (maximálna hodnota atribútu
-	  :dbcolumn:`H_002_120` predstavuje 23 mm).
+Znázornenie vektorovej vrstvy povodí s návrhovými zrážkami v prostredí QGIS je na 
+:num:`navrhove-zrazky` (maximálna hodnota atribútu :dbcolumn:`H_002_120` 
+predstavuje 23 mm). Histogramy je možné vykresliť v záložke 
+|diagram| :sup:`Diagramy` vo vlastnostiach konkrétnej vrstvy.
  
 .. _navrhove-zrazky:
 
@@ -578,7 +573,21 @@ a objem ako parameter :math:`O_{p}`.
         
    Zobrazenie povodí IV. rádu s návrhovými zrážkami.
 
-.. important:: Hodnota v čitateli musí byť kladná, resp. nesmieme umocňovať 
+Vypočítame výšku priameho odtoku v *mm* ako parameter :math:`H_o` a objem ako 
+parameter :math:`O_{p}`. 
+
+.. math::
+
+   H_O = \frac{(H_S − 0.2 \times A)^2}{H_S + 0.8 \times A}
+   
+   O_P = P_P \times \frac{H_O}{1000}
+
+V ďalších krokoch budeme uvažovať priemerný úhrn návrhovej zrážky 
+:math:`H_{s}` = 32 mm. Pri úhrne s dobou opakovania 2 roky (atribút
+:dbcolumn:`H_002_120`) či dobou 5, 10, 20, 50 alebo 100 rokov by bol postup obdobný.
+
+.. important:: Hodnota v čitateli vzťahu pre :math:`H_o` musí byť kladná, resp. 
+	       nesmieme umocňovať 
 	       záporné číslo. V prípade, že čitateľ je záporný, výška priameho 
 	       odtoku je rovná nule. Na vyriešenie tejto situácie si pomôžeme 
 	       novým stĺpcom v atribútovej tabuľke, ktorý nazveme 
@@ -655,7 +664,7 @@ je na :num:`v-rast-stats`.
    Dialógové okno modulu *v.rast.stats*.
 
 Vektor povodí potom prevedieme na rastrové vrstvy, pričom kľúčovým atribútom
-je :dbcolumn:`ho_average`, resp. :dbcolumn:`op_average`. Výsledok zobrazený 
+je :dbcolumn:`ho_average`, resp. :dbcolumn:`op_average`. Výstup zobrazený 
 v prostredí QGIS je na :num:`ho-op-avg`.
 
 .. _ho-op-avg:
