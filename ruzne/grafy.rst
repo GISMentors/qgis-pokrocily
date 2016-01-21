@@ -49,7 +49,7 @@ Mapy kriminality krajov ČR
 ==========================
 
 Záložka |diagram| :sup:`Diagramy`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Pravým kliknutím na mapu v paneli vrstiev zvolíme 
 :item:`Otevrít atributovou tabulku` a prezrieme stĺpce a hodnoty v atribútovej 
