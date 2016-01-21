@@ -410,6 +410,14 @@ je na :num:`#g-por`.
 Krok 11
 ^^^^^^^
 
-.. todo:: 10. výpočet priemerných hodnôt `G` pre povodie s maskou a vytvorenie :map:`g_pov_m`
+Priemerné hodnoty `G` určíme pre každé povodie po uvážení prvkov, ktoré 
+prerušujú odtok. Pre porovnanie sú na :num:`#g-pov-por` hodnoty 
+straty pôdy vykreslené pomocou textového diagramu v jednotkách 
+:math:`t.ha^{-1}.rok^{-1}` bez a s úvážením prvkov prerušujúcich odtok.
 
+.. _g-pov-por:
 
+.. figure:: images/g_pov_por.png
+   :class: small
+
+   Povodia s priemernými hodnotami straty pôdy v jednotkách :math:`t.ha^{-1}.rok^{-1}` bez a s úvážením prvkov prerušujúcich odtok. 
