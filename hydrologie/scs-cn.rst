@@ -48,7 +48,7 @@ Teoretické východiská
 ---------------------
 
 Ide o výpočet priameho odtoku z povodia, ktorý je tvorený tzv. povrchovým odtokom
-a tzv. hypodermockým odtokom (odteká pod povrchom). Metóda bola vypracovaná
+a tzv. hypodermockým (podpovrchovým) odtokom. Metóda bola vypracovaná
 službou na ochranu pôd *Soil Conservation Service* (:wikipedia:`SCS CN
 <Metoda CN křivek>`) v USA. Objem zrážok je na objem odtoku prevedený
 podľa čísel odtokových kriviek `CN`, ktoré sú tabelizované na
@@ -89,9 +89,9 @@ Vstupné dáta
 
  * :map:`hpj.shp` - vektorová vrstva hlavných pôdnych jednotiek z kódov BPEJ, :num:`#hpj-kpp` vľavo
  * :map:`kpp.shp` - vektorová vrstva komplexného prieskumu pôd, :num:`#hpj-kpp` vpravo
- * :map:`landuse.shp` - vektorová vrstva využitia územia, :num:`lu-pov` vľavo
+ * :map:`landuse.shp` - vektorová vrstva využitia územia, :num:`#lu-pov` vľavo
  * :map:`povodi.shp` - vektorová vrstva povodí IV. rádu s návrhovými
-   zrážkami :math:`H_s` (doba opakovania 2, 5, 10, 20, 50 a 100 rokov), :num:`lu-pov` vpravo
+   zrážkami :math:`H_s` (doba opakovania 2, 5, 10, 20, 50 a 100 rokov), :num:`#lu-pov` vpravo
  * :dbtable:`hpj_hydrsk` - číselník s hydrologickými skupinami pôd pre hlavné 
    pôdne jednotky, :num:`#ciselniky1` vľavo
  * :dbtable:`kpp_hydrsk` - číselník s hydrologickými skupinami pôd pre vrstvu 
@@ -144,7 +144,7 @@ výpočet priemerných hodnôt výšky a objemu priameho odtoku pre povodie
    Grafická schéma postupu
 
 Znázornenie vstupných dát spolu s atribútovými tabuľkami je na :num:`#hpj-kpp`
-a :num:`lu-pov`. Tabuľky s informáciami o hydrologickej skupine pôdy a o 
+a :num:`#lu-pov`. Tabuľky s informáciami o hydrologickej skupine pôdy a o 
 číslach CN pre kombináciu využitia územia a hydrologickej skupiny, resp. 
 číselníky sú na :num:`#ciselniky1`.
 
@@ -562,7 +562,7 @@ plochy každej elementárnej plochy využijeme modul z kategórie
 Krok 7
 ^^^^^^
 Znázornenie vektorovej vrstvy povodí s návrhovými zrážkami v prostredí QGIS je na 
-:num:`navrhove-zrazky` (maximálna hodnota atribútu :dbcolumn:`H_002_120` 
+:num:`#navrhove-zrazky` (maximálna hodnota atribútu :dbcolumn:`H_002_120` 
 predstavuje 23 mm). Histogramy je možné vykresliť v záložke 
 |diagram| :sup:`Diagramy` vo vlastnostiach konkrétnej vrstvy.
  
@@ -593,7 +593,7 @@ V ďalších krokoch budeme uvažovať priemerný úhrn návrhovej zrážky
 	       novým stĺpcom v atribútovej tabuľke, ktorý nazveme 
 	       :dbcolumn:`HOklad`. 
 
-Postupujeme obdobne ako na :num:`#add-columns` a :num:`area-a` alebo pomocou
+Postupujeme obdobne ako na :num:`#add-columns` a :num:`#area-a` alebo pomocou
 príkazového riadku.
 
 .. code-block:: bash
@@ -621,7 +621,7 @@ Záporným hodnotám :dbcolumn:`HOklad` priradíme konštantu `0` modulom
 .. tip:: 
    
    Priradenie konštantnej hodnoty `0` pre záporné :dbcolumn:`HOklad` možno
-   skontrolovať tak ako je to na :num:`ho-klad`.
+   skontrolovať tak ako je to na :num:`#ho-klad`.
 
    .. _ho-klad:
 
@@ -636,7 +636,7 @@ Krok 8
 ^^^^^^
 Modulom |v.to.rast.attr| :sup:`v.to.rast.attr` vytvoríme z vektorovej vrstvy 
 :map:`hpj_kpp_lu_pov` rastre :map:`ho` a :map:`op`. Zobrazenie v prostredí QGIS 
-je na :num:`ho-op`.
+je na :num:`#ho-op`.
 
 .. _ho-op:
 
@@ -654,7 +654,7 @@ V ďalšom kroku vypočítame priemerné hodnoty priameho odtoku pre každé pov
 riešenom území. Modul |v.rast.stats| :sup:`v.rast.stats` počíta základné 
 štatistické informácie rastrovej mapy na základe vektorovej vrstvy a navyše
 tieto informácie ukladá do nových stĺpcov atribútovej tabuľky. Dialógové okno 
-je na :num:`v-rast-stats`. 
+je na :num:`#v-rast-stats`. 
 
 .. _v-rast-stats:
 
@@ -665,7 +665,7 @@ je na :num:`v-rast-stats`.
 
 Vektor povodí potom prevedieme na rastrové vrstvy, pričom kľúčovým atribútom
 je :dbcolumn:`ho_average`, resp. :dbcolumn:`op_average`. Výstup zobrazený 
-v prostredí QGIS je na :num:`ho-op-avg`.
+v prostredí QGIS je na :num:`#ho-op-avg`.
 
 .. _ho-op-avg:
 

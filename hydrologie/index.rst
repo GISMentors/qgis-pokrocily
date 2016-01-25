@@ -16,12 +16,12 @@ Od verzie QGIS 2.12 sa mnohí používatelia tešia z funkčnosti zásuvného mo
 GRASS. Geografický informačný systém GRASS GIS ponúka celú radu nástrojov 
 pre hydrologické modelovanie či výpočet erózie. 
 V tejto časti si ukážeme, ako možno užitočné nástroje GRASS-u využívať pri 
-hydrologických analýzach v prostredí QGIS (:num:`#hmmoduly`). Zameriame sa na 
+hydrologických analýzach v prostredí QGIS (:num:`#hm-moduly`). Zameriame sa na 
 odtokové pomery. Stav riešeného územia z hľadiska zrážkoodtokových vzťahov a 
 straty pôdy eróziou budeme hodnotiť pomocou metód SCS CN a USLE, pričom pri 
 riešení využijeme aj niektoré moduly programu GRASS GIS.
 
-.. _hmmoduly:
+.. _hm-moduly:
 
 .. figure:: images/hmmoduly.png
    :class: middle

@@ -166,7 +166,7 @@ iba s tým rozdielom, že spoločným atribútom nie je hydrologická skupina
 :dbtable:`HPJ`, ale faktor :dbtable:`K`. Dialógové okno s nastaveniami pre 
 toto spájanie je na :num:`#usle-join`. Vyplnenie informácií o faktore `K`
 z vrstvy komplexného prieskumu pôd pomocou kalkulačky polí 
-a znázornenie výsledku sú na :num:`usle-kalk-k`.
+a znázornenie výsledku sú na :num:`#usle-kalk-k`.
 
 .. _usle-join: 
 
@@ -359,7 +359,7 @@ Krok 9
 Na určenie priemernej hodnoty straty pre každé čiastkové
 povodie využijeme modul |v.rast.stats| :sup:`v.rast.stats`. Kľúčovou vrstvou je
 vektorová mapa :map:`povodi`, kde nastavíme prefix ``g`` pre 
-novovytvorený stĺpec. V mapovom okne QGIS hodnoty vizualizujeme (:num:`g-pov`).
+novovytvorený stĺpec. V mapovom okne QGIS hodnoty vizualizujeme (:num:`#g-pov`).
 
 .. _g-pov:
 
