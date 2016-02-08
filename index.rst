@@ -31,6 +31,7 @@ Dlouhodobá stabilní verze je doplěna dvěma krátkodobými verzemi.
    :maxdepth: 2
 
    hydrologie/index
+   georeferencovani/georeferencovani
    
 
 
