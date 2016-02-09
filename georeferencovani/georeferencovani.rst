@@ -4,6 +4,11 @@
    :width: 1.5em
 .. |mActionAddGCPPoint| image:: ../images/icon/mActionAddGCPPoint.png 
    :width: 1.5em
+.. |mActionDeleteGCPPoint| image:: ../images/icon/mActionDeleteGCPPoint.png 
+   :width: 1.5em
+.. |mActionMoveGCPPoint| image:: ../images/icon/mActionMoveGCPPoint.png 
+   :width: 1.5em
+
 
 Georeferencování obrazových dat 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -92,10 +97,49 @@ Postup je zobrazen na :num:`add-gcp-point`.
    Přídávání identických bodů.
 
 .. note::
-   Pro dosažení požadovaného výseldku je nutné použít vícero bodů (
-   minimální počet bodů se liší dle dalšího voleného nastavení typu
+   Pro dosažení požadovaného výseldku je nutné použít vícero bodů 
+   (minimální počet bodů se liší dle dalšího voleného nastavení typu
    transformace). Podstatné je také jejich rozmístění, které by mělo 
    být takové, aby body pokryly ideálně celou plochu rastru rovnoměrně.
+
+.. tip::
+   V určitých případech můžeme georeferencovat obrázek na kterém jsou
+   definované souřadnice (formou křížů se souřadnicemi :num:`input-coordinates`,
+   mapovým rámem s popisem, nebo zeměpisnou sítí s popiskami).
+
+   .. _input-coordinates:
+
+   .. figure:: images/input-coordinates.png
+
+      Příklad vstupního obrázku s definovanými souřadnicemi.
+   
+   V takovém případě nemusíme bod zadávat kliknutím v mapovém okně ale přímo
+   zadat souřadnice.
+   Další možností je zadávání z mapového okna, kde se vykreslí souřadnicová 
+   mřížka i s popisem. Nastavení mřížky je dostupné z menu
+   :menuselection:`Zorazit --> Dekorace --> Mřížka...` (:num:`grid`).
+   Samostatně se zde nastavuje vykreslování mřížky (symbologie, rozestupy,
+   odsazení) a popisků (orientace, font, odsazení, počet desetinných míst).
+   Nevýhodou je, že při georeferencování nejde dochytávat (snapovat) na tyto body
+   (klasická vektorizace to umožňuje).
+
+   .. _grid:
+
+   .. figure:: images/grid.png
+       
+      Vykreslení mřížky a souřadnic v mapovém okně.
+
+   Další možností je využití pluginu :item:`ZoomToCoordinates`. Zadáním
+   žádaných souřadnic do vyhledávacích políček je možné zazoomovat na hledanou
+   plohu. Nástroj funguje s souřadnicovém systému projektu.
+
+Body je možné umazávat |mActionDeleteGCPPoint| :sup:`Smazat bod` anebo změnit
+polohu bodu ve zpracovávaném obrázku nebo mapovém okně |mActionMoveGCPPoint|
+:sup:`Přesunout CP bod`.   
+
+.. figure:: images/gcp_points.png
+   
+   Přehled zadaných bodů v tabulce.
 
 4. nastavení transformace
 =========================
@@ -103,13 +147,92 @@ Po zadání dostatečného množství identických bodů je možné pokračovat
 dalším krokem. Buňky vstupního rastru musí být přepočítány pomocí klíče,
 který je definován identickými body a typem transformace.
 Tlačítko |mActionTransformSettings| :sup:`Nastavení transformace` otevře
-dialogové okno, kde se nastavují následující parametry:
-    * typ transformace
-    * metoda převzorkování
-    * komprese
-    * výstupní rastr
-    * souřadnicový systém výstupního rastru
-    * vytvoření `pdf` mapy
-    * vytvoření `pdf` zprávy
-    * cílové rozlišení
-    * použít průhlednost  
+dialogové okno, kde se nastavují následující parametry (:num:`transformation`)
+
+ * komprese
+ * výstupní rastr
+ * souřadnicový systém výstupního rastru
+ * vytvoření `pdf` mapy
+ * vytvoření `pdf` zprávy
+ * cílové rozlišení
+ * použít průhlednost 
+
+.. _transformation:
+ 
+.. figure:: images/transformation_settings.png
+   :class: small
+
+   Okno pro nastavení transformace.
+
+Typ transformace:
+-----------------
+Jak již bylo uvedeno, tak k dispozici je zde více druhů transformací. Výběr
+vhodné transformace záleží na kvalitě vstupního obrázku, jeho deformacích, které
+chceme ve výsledku ovlivnit a na počtu identických bodů.
+
+ * Lineární - (shodnostní) transformace založená na posunu a rotaci (měřítko se
+   nemění), má speciální užití
+ * Helmertova - (podobnostní) základní druh trasnformace založený na změně 
+   měřítka, rotaci a posunu (tyto hodnoty jsou konstantní pro celý vstupní rastr)
+ * Polynomiální (1.-3. stupeň) - transformace deformující zdrojový rastr za účelem
+   minimalizování odchylek na identických bodech. Výslední rastr je lokálně
+   deformován podle stupně polynomiální transformace. Například 1. stupeň je
+   tzv. afinní transformace, kde je různý měřítkový koeficient pro osy X a
+   Y. Polynomiální transformace jsou obecně nejčastěji používané pro
+   georeferencování skenovaných map, ale je nutné dbát na vhodné rozložení
+   identických bodů.
+ * Thin Plate Spline - je modernější metoda pro georeferencování na základě
+   zložitějších vztahů. Využití je podobné jako u polynomiálních.
+ * Projektivní - (kolineární) založená na principu středového promítání 
+
++---------------------------------+--------------------------------------------+
+| Typ transformace                | Minimální počet identických bodů           |
++=================================+============================================+
+| Lineární                        | 2                                          |
++---------------------------------+--------------------------------------------+
+| Helmertova                      | 2                                          |
++---------------------------------+--------------------------------------------+
+| Polynomiální 1. stupně          | 3                                          |
++---------------------------------+--------------------------------------------+
+| Polynomiální 2. stupně          | 6                     	               |
++---------------------------------+--------------------------------------------+
+| Polynomiální 3. stupně          | 10			                       |
++---------------------------------+--------------------------------------------+
+| Thin Plate Spline               | 3                                          |
++---------------------------------+--------------------------------------------+
+| Projektivní             	  | 4                                          |
++---------------------------------+--------------------------------------------+
+
+Metoda převzorkování
+--------------------
+Vzhled výsledného rastru lze ovlivnit i pomocí nastavení metody převzorkování.
+Výběr konkrétní metody záleží zejména na požadavcích, zda má být zachována
+původní charakterictika, nebo je spíš požadováno optické vyhlazení.
+
+K dispozici jsou následující metody převzorkování:
+ * nejbližší soused
+ * lineární
+ * kubický
+ * kubický spline
+ * Lanczos  
+
+#TODO zhodnotit je nějak?
+
+Další nastavení:
+----------------
+
+Komprese - lze vybrat kompresi pro vytvářený rastr
+
+Výstupní rastr - zadání vstupního rastru
+
+Cílový CRS - souřadnicový systém výstupního rastru
+
+Vytvořit PDF mapu - vytvoření výstupního  :map:`.pdf`
+
+Vytvořit PDF zprávu - uložení zprávy o parametrech transformace do :map:`.pdf`
+
+Změnit cílové rozlišení - zadáním rozlišení v obou směrech (v mapových
+jednotkách)
+
+
+
