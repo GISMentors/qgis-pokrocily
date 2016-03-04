@@ -28,10 +28,11 @@ Dlouhodobá stabilní verze je doplěna dvěma krátkodobými verzemi.
    #####
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 5
 
    hydrologie/index
    georeferencovani/georeferencovani
+   ruzne/index
    
 
 
