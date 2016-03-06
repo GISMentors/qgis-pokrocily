@@ -28,7 +28,7 @@ Dlouhodobá stabilní verze je doplěna dvěma krátkodobými verzemi.
    #####
 
 .. toctree::
-   :maxdepth: 5
+   :maxdepth: 3
 
    hydrologie/index
    georeferencovani/georeferencovani

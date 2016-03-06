@@ -3,6 +3,7 @@ Různé
 *****
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 	      
-   kriminalita-grafy
+   grafy
+   novy-plugin
