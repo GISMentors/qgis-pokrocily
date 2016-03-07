@@ -364,7 +364,9 @@ obsahom.
    Doplnenie kódu do metódy *run*.
 
 Grafické výstupy po aplikovaní na vrstvu krajov sú na :num:`#np-plugin-result`. 
-Kompletný obsah výsledného súboru `save_views.py` je uvedený nižšie.
+Ich názov v adresári závisí od názvu konkrétnej vektorovej vrstvy. Líšia sa len 
+poradovým číslom. Kompletný obsah výsledného súboru `save_views.py` je uvedený 
+nižšie.
 
 .. _np-plugin-result:
 
@@ -372,6 +374,21 @@ Kompletný obsah výsledného súboru `save_views.py` je uvedený nižšie.
    :class: large
 
    Grafické súbory uložené vo zvolenom adresári pre vektorovú vrstvu krajov Českej republiky.
+
+.. tip::
+
+	V prípade, že chceme zmeniť ikonu, stačí ak novú podobu, napríklad 
+	ako na :num:`#np-new-icon` vložíme do adresára
+	`~/.qgis2/python/plugins/SaveViews`, nazveme ju ako `icon.png` a 
+	spustíme príkazy `make clean` a `make deploy`. Nakoniec 
+	reštartujeme plugin pomocou modulu *Plugin Reloader*.
+
+	.. _np-new-icon:
+
+	.. figure:: images/np_new_icon.png
+   	   :scale: 15%
+
+	   Príklad novej ikony.
 
 .. code::
 
