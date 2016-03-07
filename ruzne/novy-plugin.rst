@@ -632,5 +632,27 @@ nižšie.
                         self.iface.mapCanvas().saveAsImage(mapfile, pixmap)
         
 
+Iný príklad využitia
+^^^^^^^^^^^^^^^^^^^^
 
+Na obrázku :num:`#np-kn-project` je projekt s katastrálnymi dátami. Vyznačené
+sú parcely, cez ktoré prechádza vedenie. 
+
+.. _np-kn-project:
+
+.. figure:: images/np_kn_project.png
+   :class: middle
+
+   Znázornenie parciel, cez ktoré prechádza plánované vedenie.
+
+Použitím pluginu `Save Views` vieme
+pre každého vlastníka vyhotoviť grafické znázornenie jeho parcely, na ktorej bude 
+zapísané vecné bremeno (:num:`#np-kn-project-views`).
+
+.. _np-kn-project-views:
+
+.. figure:: images/np_kn_project_views.png
+   :class: middle
+
+   Pohľad na každú parcelu ako výsledok zásuvného modulu *Save Views*.
 
