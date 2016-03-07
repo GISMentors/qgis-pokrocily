@@ -363,7 +363,15 @@ obsahom.
 
    Doplnenie kódu do metódy *run*.
 
+Grafické výstupy po aplikovaní na vrstvu krajov sú na :num:`#np-plugin-result`. 
 Kompletný obsah výsledného súboru `save_views.py` je uvedený nižšie.
+
+.. _np-plugin-result:
+
+.. figure:: images/np_plugin_result.png
+   :class: large
+
+   Grafické súbory uložené vo zvolenom adresári pre vektorovú vrstvu krajov Českej republiky.
 
 .. code::
 
@@ -376,7 +384,7 @@ Kompletný obsah výsledného súboru `save_views.py` je uvedený nižšie.
                                       -------------------
                 begin                : 2016-03-06
                 git sha              : $Format:%H$
-                copyright            : (C) 2016 by GISMentos
+                copyright            : (C) 2016 by GISMentors
                 email                : info@gismentors.eu
          ***************************************************************************/
         
