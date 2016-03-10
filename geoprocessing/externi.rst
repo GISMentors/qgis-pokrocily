@@ -1,0 +1,2 @@
+Externí geoalgorytmy (GRASS, SAGA ...)
+======================================

@@ -29,7 +29,9 @@ Dlouhodobá stabilní verze je doplěna dvěma krátkodobými verzemi.
 
 .. toctree::
    :maxdepth: 3
-
+	
+   geoprocessing/index
+   modeler/index
    hydrologie/index
    georeferencovani/georeferencovani
    ruzne/index
