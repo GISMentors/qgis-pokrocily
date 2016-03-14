@@ -295,7 +295,8 @@ dosažená polohová přesnost vyhovuje požadavkům.
    použité identické body a pak je jenom zkontrolovat. Body lze uložit v
    :menuselection:`Soubor --> Uložit GCP body jako...` zadáním názvu výstupního
    souboru.
-   Body lze znovu načíst pomocí :menuselection:`Soubor --> Načíst GCP body` . 
+   Body lze znovu načíst pomocí :menuselection:`Soubor --> Načíst GCP body` .
+   Takto uložené body lze editovat jednoduše jako textový soubor. 
 
  
 
