@@ -8,6 +8,9 @@
    :width: 1.5em
 .. |mActionMoveGCPPoint| image:: ../images/icon/mActionMoveGCPPoint.png 
    :width: 1.5em
+.. |mActionStartGeoref| image:: ../images/icon/mActionStartGeoref.png 
+   :width: 1.5em
+   
 
 
 Georeferencování obrazových dat 
@@ -28,7 +31,13 @@ Typickým příkladem může být územní plán. Ten je často vypracován jako
 přerozdělení prostoru do různých kategorií. Výsledný produkt je často ve 
 formátu `pdf` - bez prostorových informací.
 Abychom měli možnost pracovat s takovýmito daty jako s prostorovými, 
-musíme využít nástroj pro georeferencování. 
+musíme využít nástroj pro georeferencování.
+
+.. tip::
+
+   Pokud zvolený rastr obsahuje i jiné části než samotnou polohovou složku dat
+   (například legendu, popisek, měřítko a jíné), tak je vhodné zpracovávat
+   již ořezaný obrázek.
 
 1. instalace pluginu
 ====================
@@ -101,8 +110,13 @@ Postup je zobrazen na :num:`add-gcp-point`.
    (minimální počet bodů se liší dle dalšího voleného nastavení typu
    transformace). Podstatné je také jejich rozmístění, které by mělo 
    být takové, aby body pokryly ideálně celou plochu rastru rovnoměrně.
+   Pokud pro daný typ zvolené transforamce použijete víc než minimální 
+   potřebný počet bodů, tak se budou spočtené vektory odchylek na jednotlivých
+   bodech vykreslovat do georeferencovaného obrázku. Je tak i graficky vidět
+   směr a velikost jednotlivých odchylek.
 
 .. tip::
+
    V určitých případech můžeme georeferencovat obrázek na kterém jsou
    definované souřadnice (formou křížů se souřadnicemi :num:`input-coordinates`,
    mapovým rámem s popisem, nebo zeměpisnou sítí s popiskami).
@@ -216,14 +230,12 @@ K dispozici jsou následující metody převzorkování:
  * kubický spline
  * Lanczos  
 
-#TODO zhodnotit je nějak?
-
 Další nastavení:
 ----------------
 
 Komprese - lze vybrat kompresi pro vytvářený rastr
 
-Výstupní rastr - zadání vstupního rastru
+Výstupní rastr - zadání výstupního rastru
 
 Cílový CRS - souřadnicový systém výstupního rastru
 
@@ -233,6 +245,59 @@ Vytvořit PDF zprávu - uložení zprávy o parametrech transformace do :map:`.p
 
 Změnit cílové rozlišení - zadáním rozlišení v obou směrech (v mapových
 jednotkách)
+
+5.Spuštění georeferencování
+===========================
+Po nastavení transfomace a zadání dostatečného počtu identických bodů je možné
+spustit tranformaci (|mActionStartGeoref| :sup:`Spustit georeferencování`).
+Déla výpočtu je závislá na velikosti georeferencovaného rastru, ale také na
+parametrech, které jsou nastaveny pro jeho zpracování.
+
+Pokud pro nastavený typ transformace není zadán dostatečný počet identických
+bodů, tak je to vidět na tabulce GCP (hodnoty odchylek na jednotlivých bodch
+nejsou spočteny a je uvedena pouze "0" - první část :num:`gcp-points` )
+Pokud by jste zkusili spustit georeferencování, tak vás varovná hláška informuje
+o selhání tranformace z důvodu neřešitelnosti.
+V druhé části :num:`gcp-points` je již do výpočtu zahrnut i bod ID = 2. U
+každého bodu je vidět souřadnice zdroje, cíle, a odchylky v pixelech v
+jednotlivých osách.
+
+
+.. _gcp-points:
+
+.. figure:: images/gcp_points2.png
+
+   Příklad nedostačujícího počtu identických bodů pro zvolenou transformaci.
+
+.. tip::
+
+   Pokud by sme v tabulce viděli body se značnou odchylkou, tak je tento bod
+   dobré zkontrolovat (v mapě i na zpracovávaném obrázku). Polohu bodu můžeme
+   opravit, nebo bod vyřadit z rešení anebo ho úplně odstranit.
+
+   Na :num:`gcp-mistake` je vidět, že byl zadán bod, který má extrémní odchylky.
+   Výstupem georeferencování je pak rastr, který má značnou deformaci. Vektor
+   odchylky je pak vykreslen do zpracovávaného obrázku 
+    
+   .. _gcp-mistake:
+
+   .. figure:: images/gcp_remove_point.png
+
+      Příklad nezahrnutí špatného bodu do výpočtu.
+
+Výslený georeferencovaný rastr je pak možné přidat do mapového okna. Pomocí
+transparentosti jednotlivých vrstev je možné dostatečně skontrolovat, zda
+dosažená polohová přesnost vyhovuje požadavkům.
+
+.. note::
+   
+   Pro zpracování jedné lokality na více obrazových vstupech je vhodné uložit
+   použité identické body a pak je jenom zkontrolovat. Body lze uložit v
+   :menuselection:`Soubor --> Uložit GCP body jako...` zadáním názvu výstupního
+   souboru.
+   Body lze znovu načíst pomocí :menuselection:`Soubor --> Načíst GCP body` . 
+
+ 
 
 
 
