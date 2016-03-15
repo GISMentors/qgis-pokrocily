@@ -7,3 +7,5 @@ Různé
 	      
    grafy
    novy-plugin
+   geotag_obrazky
+
