@@ -2,6 +2,8 @@
    :width: 1.5em
 .. |mActionIdentify| image:: ../images/icon/mActionIdentify.png
    :width: 1.5em
+.. |mActionCalculateField| image:: ../images/icon/mActionCalculateField.png
+   :width: 1.5em
 
 
 Obrazová data jako součást vektorů 
@@ -41,20 +43,33 @@ souboru).
 
       sudo apt-get install exiftool
 
-.. tip::
-  
+
+.. tip::   
    Pokud si chcete prohlédnout informace vztažené k danému obrázku, tak obrázek
    jednoduše otevřete v *ExifTool*. 
    Ve *Windows* tak udělále pomocí drag-and-drop v Linuxu například pomocí 
-   příkazu :map:`exiftool -a gps:nazev_obrazku.jpg`. 
-   Na obrázku :num:`exif-data` je vidět přehled ecidovaných informací.
+   příkazu :map:`exiftool nazev_obrazku.jpg`. 
+   Výpis obsahuje informace od definice zařízení, parametry snímku, definici
+   polohy až po detailní parametry z času tovrby snímku. 
 
-  .. _exif-data:
-   
-  .. figure:: images/exif_data.png
-     :class: small
+   .. code-block:: bash
 
-     Příklad vypsaných informací u geotagované fotky 'ukazkova.jpg'.
+      exiftool nazev_obrazku.jpg
+
+      ======== WP_20160403_13_48_24_Pro.jpg
+      ExifTool Version Number         : 9.46
+      File Name                       : WP_20160403_13_48_24_Pro.jpg
+      Image Width                     : 1840
+      Image Height                    : 3264
+
+      ...
+
+      GPS Latitude                    : 50 deg 7' 37.74" N
+      GPS Longitude                   : 14 deg 27' 11.27" E
+      GPS Position                    : 50 deg 7' 37.74" N, 14 deg 27' 11.27" E
+
+      ...
+  
 
 
 2. instalace pluginu 
@@ -94,11 +109,15 @@ photos` (:num:`menu-geotag`).
 
 3. import fotek do vektorové vrstvy
 ===================================
+
 Pro vytvoření bodové vrstvy z jednotlivých fotografií použijeme funkci pluginu
 :item:`Import photos`.
 Prvním krokem je zadání adresáře, ve kterém se nacházejí požadované fotky.
-Pozadání adresáře s fotkami se do pole `EXIF tags` vypíšou nalezené typy hodnot. 
-Pro základné zpracování dále toto pole nemusíme používat.
+Po zadání adresáře s fotkami se do pole `EXIF tags` vypíšou nalezené kategorie
+hodnot.
+Pro základné zpracování dále toto pole nemusíme používat. Pokud by jsme označili
+některý z nalezených tagů, tak by se po importu uložil jako další atribut.
+Hodnoty se můžou různit podle toho, jaké údaje dané zařízení pořizuje. 
 Pomocí checkboxu :item:`Recurse subdirectories` můžeme polovit prohledávání i
 podadresářů námi vybrané složky. 
 Druhým krokem je zádání výstupního `shapefilu`. Pokud by jsme chtěli jenom
@@ -208,8 +227,75 @@ obrázek.
    kterých atributy je možno například pomocí :item:`Připojit atributy podle 
    umístění` připojit k původním datům. 
    
-.. todo:: zkusit najít vhodný příklad v podkladových datech,urobiť záživnejšie
-   fotky
+
+Další zpracování
+================
+Tvorba vektorových dat pomocí pořizování geotagovaných fotografií může mít různé
+možnosti využití. 
+Jednou z nich může být mapování prvků za ůčelem tvorby evidence. Ve výše
+udedeném příkladu jsme z pořízených fotografií udělali  bodovou vektorovou
+vrstvu, kde je možné každý prvek vidět na fotografii. 
+Obrázek zachycuje velké množství informací, které se běžně evidují formou
+atributů. Z obrázku je možné tyto atributy jednoduše určit a vytvořit tak
+běžnou evidenci.
+
+U dopravného značení se určují víceré parametry (kód tabule, ukotvení,
+provedení a další). Většinou slouží k vytvoření mapového výstupu a přehledné
+tabulky s určenými atributy.
+Vytvoření jednoduchého mapového výstupu je popsáno v dalších krocích.
+
+1.Kód značky
+------------
+Prvním krokem pro znázornění dopravního značení je nutnost identifikovat
+jednotlivé značky v místě jejich výskytu.
+V případě, že by na jednom místě byla maximálně jedna dopravní tabule, tak by
+stačilo přidat atribut pro její kód. 
+Protože je ale běžné, že se na jednom místě nachází vysšší počet dopravních
+tabulí,tak je nutné tuto situaci ošetřit.
+
+Jako první si označíme všechny umístění číselným identifikátorem pomocí 
+|mActionCalculateField| :sup:`Otevřít kalkulátor polí`. Druhým krokem je přidání
+atributu pro určení kódu dopravní značky (dle platného zákona). V případě, že je
+na jedné pozici vícero dopravních tabulí, tak je  dobré prvek zkopírovat a do
+atributu  pořadí určit pořadí tabule směrem sezhora. Jednotlivé prvky se budou
+vykreslovat pomocí jednotlivých `.svg` symbolů a proto je umístíme s odstupem a
+v pořadí tak, aby respektovali reálný stav.
+
+Výsledkem jsou záznamy pro každou dopravní tabuli, které mají určený
+identifikátor umístění, pořadí a kód dopravní tabule.
+
+2.Uložení .svg symbolů
+----------------------
+Jednotlivé prvky budeme vykreslovat `.svg` znakem  vytvořeným podle dopravních
+tabulí. 
+Názvy jednotlivých symbolů odpovídají kódům tabulí a jsou uloženy v jedné
+složce.
+Tuto složku pak umístíme mezi ostatní systémové sady svg symbolů.
+
+V případě práce v systému Linux se jedná o složku `/usr/share/qgis/svg/`
+sem je nutné složku přesunout jako `root`.
+
+`doplnit príkaz`
+
+
+3.Nastavení stylování objektů
+-----------------------------
+Dalším krokem je zobrazení prvku podle atributu s kódem dopravní značky.
+Jednotlivé symboly však chceme vykreslit značkou, která je umístěná ve složce
+`dop_znaceni` a má příponu `.svg`. Vytvoříme tedy nový atribut a vyplníme jej
+opět pomocí `Kalkulátoru polí` a změny uložíme.
+
+Pak ve vlastnostech vrstvy upravíme stylování.
+
+
+4.Určení rotace
+---------------
+
+
+ 
+
+
+
 
 
 
