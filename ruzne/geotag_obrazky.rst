@@ -4,6 +4,8 @@
    :width: 1.5em
 .. |mActionCalculateField| image:: ../images/icon/mActionCalculateField.png
    :width: 1.5em
+.. |mIconDataDefine| image:: ../images/icon/mIconDataDefine.png
+   :width: 1.5em
 
 
 Obrazová data jako součást vektorů 
@@ -244,53 +246,100 @@ provedení a další). Většinou slouží k vytvoření mapového výstupu a p�
 tabulky s určenými atributy.
 Vytvoření jednoduchého mapového výstupu je popsáno v dalších krocích.
 
-1.Kód značky
-------------
+1.Definice dopravní tabule
+--------------------------
 Prvním krokem pro znázornění dopravního značení je nutnost identifikovat
 jednotlivé značky v místě jejich výskytu.
-V případě, že by na jednom místě byla maximálně jedna dopravní tabule, tak by
+V případě, že by na jednom místě byla maximálně jedna dopravní tabule, tak aby
 stačilo přidat atribut pro její kód. 
-Protože je ale běžné, že se na jednom místě nachází vysšší počet dopravních
+Protože je ale běžné, že se na jednom místě nachází vyšší počet dopravních
 tabulí,tak je nutné tuto situaci ošetřit.
 
-Jako první si označíme všechny umístění číselným identifikátorem pomocí 
-|mActionCalculateField| :sup:`Otevřít kalkulátor polí`. Druhým krokem je přidání
-atributu pro určení kódu dopravní značky (dle platného zákona). V případě, že je
-na jedné pozici vícero dopravních tabulí, tak je  dobré prvek zkopírovat a do
-atributu  pořadí určit pořadí tabule směrem sezhora. Jednotlivé prvky se budou
-vykreslovat pomocí jednotlivých `.svg` symbolů a proto je umístíme s odstupem a
-v pořadí tak, aby respektovali reálný stav.
+Prvním krokem je přidání evidovaných atributů.
+
+* id_kotvy (celé číslo defaultně dvyplněn pomocí proměnné @row_number)
+* kod (text - bez vyplnění, je nutno jej určit z obrázku)
+* poradi (celé číslo defaultně vyplněno na hodnotu 1 - v případě více tabulí
+  na jedné kotvě se hodnota upraví)  
+
+.. figure:: images/znaceni_add_attribute.png
+   :class: large
+
+   Přidání jednotlivýcha atributů (id_kotvy, kod, poradi) a jejich definování.
+
+Druhým krokem je určování kódu jednotlivým prvkům. Pokud se na jedné kotvě
+nachází vícero tabulí, tak musíme vytvořit adekvátní počet prvků zkopírováním
+původního. Jednotlivé prvky se budou vykreslovat `.svg` značkou podle atributu
+kódu. Proto musíme prvky uspořádat dle jejich skutečného pořadí sezhora dolů a
+toto i zapsat jako atribut. (Rozestup záleží na velikosti ikon a měřítku.)
+Příklad výchozího a upraveného stavu je na :num:`copy-feature`.
+
+.. _copy-feature:
+
+.. figure:: images/znaceni_editace.png
+   :class: large
+
+   Původní a upravené prvky definující dopravní tabule umístěné na jedné kotvě.
 
 Výsledkem jsou záznamy pro každou dopravní tabuli, které mají určený
-identifikátor umístění, pořadí a kód dopravní tabule.
+identifikátor umístění, pořadí a kód dopravní tabule. 
+
 
 2.Uložení .svg symbolů
 ----------------------
-Jednotlivé prvky budeme vykreslovat `.svg` znakem  vytvořeným podle dopravních
-tabulí. 
+Jednotlivé prvky budeme vykreslovat `.svg` znakem. 
 Názvy jednotlivých symbolů odpovídají kódům tabulí a jsou uloženy v jedné
 složce.
 Tuto složku pak umístíme mezi ostatní systémové sady svg symbolů.
 
 V případě práce v systému Linux se jedná o složku `/usr/share/qgis/svg/`
-sem je nutné složku přesunout jako `root`.
+sem je nutné složku nakopírovat jako `root`.
 
-`doplnit príkaz`
+.. code-block:: bash
+
+   sudo cp -a /source/. /usr/share/qgis/svg/dopr_znaceni/
 
 
 3.Nastavení stylování objektů
 -----------------------------
 Dalším krokem je zobrazení prvku podle atributu s kódem dopravní značky.
 Jednotlivé symboly však chceme vykreslit značkou, která je umístěná ve složce
-`dop_znaceni` a má příponu `.svg`. Vytvoříme tedy nový atribut a vyplníme jej
-opět pomocí `Kalkulátoru polí` a změny uložíme.
+`dop_znaceni` a má příponu `.svg`. Vytvoříme tedy nový atribut s hodnotou
+relativní cesty symbolu.
 
-Pak ve vlastnostech vrstvy upravíme stylování.
+.. figure:: images/icon_path.png
+   :class: small
+
+   Určení relativní cesty k ikoně podle určeného kódu dopravní tabule.
+
+Pak ve vlastnostech vrstvy upravíme stylování. 
+Podstatné je vybrat typ symbolu :item:`SVG značka` a pomocí ikony
+|mIconDataDefine| z menu vybereme pole `icon_path`. V tomto případě je vhodné
+používat ikonky s velikostí 6 milimetrů.
+
+.. figure:: images/set_icon.png
+   :class: large
+   
+   Nastavení stylování podle atributu s umístěním svg symbolu a ukázka výsledku.
 
 
 4.Určení rotace
 ---------------
+Posledním krokem je rotování ikon. Jednotlivé ikony by se měli rotovat podle
+reálného umístění v terénu.
+Takovéto natočení lze uplatnit i pro vykreslování v mapovém okně. Rotaci lze
+určit hromadně, ale v tomto případě to není dostačující.
+Ideální je přidat atribut rotace, kde se defnuje celočíselná hodnota pootočení
+požadovaného směru vůči směru na sever (jde o hodnotu azimutu, kde lze zadávat i
+záporná čísla -10 = 350).
 
+Po vyplnění atributu u všech prvků nastavíme položku Rotace pomocí
+|mIconDataDefine| na atribut `rotace`.
+
+.. figure:: images/icon_rotation.png
+   :class: large
+
+   Nastavení rotace sympolu podle hodnoty atributu a ukázka výsledku.
 
  
 
