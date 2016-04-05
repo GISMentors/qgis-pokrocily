@@ -6,8 +6,7 @@ Kromě spouštění různých nástrojů a analýz z hlanvho menu (položky
 funkce spouštět pomocí okna :item:`Nástroje zpracování`
 
 .. figure:: images/geoproc.png
-   :class: small
-   :scale-latex: 40
+   :scale: 80%
 
    Okno :item:`Nástroje zpracování`.
 
