@@ -18,6 +18,15 @@ funkce lze rychle vyhledávat pomocí filtru v horní části okna. Snadno lze
 spouštět dávkové zpracování dat, a v neposlední řadě funkce (včetně externích) 
 lze používat v grafickém modeleru (viz. kapitola :ref:`modeler`).
 
+Algoritmy mohou generovat 4 typy dat
+	
+	- rastrové vrstvy
+	- vektorové vrstvy
+	- tabulky
+	- HTML soubory (textové a grafické výstupy) 
+	
+Pokud nenastavíme cestu, nebo název souboru, výstup se nám automaticky uloží na disk do dočasných souborů.
+
 
 
 
