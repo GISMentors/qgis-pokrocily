@@ -10,6 +10,7 @@
 
 Obrazová data jako součást vektorů 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Možnost různě kombinovat různá data je čím dál víc dostupná. Jedním z běžných
 požadavků se stává možnost přiřadit obrázek k vektorovým datům jako jakýkoli
 jiný atribut. Způsobů jak naložit s takovým požadavkem je vícero. Jednou z
@@ -22,6 +23,7 @@ kroky pro nastavení jsou popsány níže.
 
 Využití
 =======
+
 Příkladem využití je pořizování geotagovaných fotografií (fotka s určeným místem
 jejího pořízení). V současné době je možné dělat takovéto záznamy i s běžnými
 mobilními telefony (je však nutné brát v potaz přesnost určení polohy).
@@ -149,6 +151,7 @@ název souboru.
 
 4. vykreslování obrázku v detailu prvku
 =======================================
+
 Pokud má vrstva jako atribut zapsanou cestu k obrázku (nebo přímo název
 souboru), tak je možné zobrazovat tento obrázek při zobrazení detailu prvku.
 
@@ -232,6 +235,7 @@ obrázek.
 
 Další zpracování
 ================
+
 Tvorba vektorových dat pomocí pořizování geotagovaných fotografií může mít různé
 možnosti využití. 
 Jednou z nich může být mapování prvků za ůčelem tvorby evidence. Ve výše
@@ -248,6 +252,7 @@ Vytvoření jednoduchého mapového výstupu je popsáno v dalších krocích.
 
 1.Definice dopravní tabule
 --------------------------
+
 Prvním krokem pro znázornění dopravního značení je nutnost identifikovat
 jednotlivé značky v místě jejich výskytu.
 V případě, že by na jednom místě byla maximálně jedna dopravní tabule, tak aby
@@ -287,6 +292,7 @@ identifikátor umístění, pořadí a kód dopravní tabule.
 
 2.Uložení .svg symbolů
 ----------------------
+
 Jednotlivé prvky budeme vykreslovat `.svg` znakem. 
 Názvy jednotlivých symbolů odpovídají kódům tabulí a jsou uloženy v jedné
 složce.
@@ -302,6 +308,7 @@ sem je nutné složku nakopírovat jako `root`.
 
 3.Nastavení stylování objektů
 -----------------------------
+
 Dalším krokem je zobrazení prvku podle atributu s kódem dopravní značky.
 Jednotlivé symboly však chceme vykreslit značkou, která je umístěná ve složce
 `dop_znaceni` a má příponu `.svg`. Vytvoříme tedy nový atribut s hodnotou
@@ -325,6 +332,7 @@ používat ikonky s velikostí 6 milimetrů.
 
 4.Určení rotace
 ---------------
+
 Posledním krokem je rotování ikon. Jednotlivé ikony by se měli rotovat podle
 reálného umístění v terénu.
 Takovéto natočení lze uplatnit i pro vykreslování v mapovém okně. Rotaci lze
@@ -340,12 +348,6 @@ Po vyplnění atributu u všech prvků nastavíme položku Rotace pomocí
    :class: large
 
    Nastavení rotace sympolu podle hodnoty atributu a ukázka výsledku.
-
- 
-
-
-
-
 
 
 

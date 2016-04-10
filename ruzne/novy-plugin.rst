@@ -7,12 +7,16 @@
 Vytvorenie zásuvného modulu
 ---------------------------
 
-Zásuvné moduly, tzv. :wikipedia:`pluginy <https://en.wikipedia.org/wiki/Plug-in_(computing)>` predstavujú doplnkové moduly a ich úlohou je 
-rozširovať funkčnosť a širokú škálu použitia QGIS. Úvod a predstavenie tejto 
-problematiky je súčasťou `Školenia pre začiatočníkov <http://training.gismentors.eu/qgis-zacatecnik/#>`_ ako kapitola 
-`QGIS pluginy <http://training.gismentors.eu/qgis-zacatecnik/ruzne/qgis_pluginy.html>`_, 
-kde sa okrem iného píše, že v súčasnosti existuje pre QGIS viac než 300 
-zásuvných modulov napísaných v programovacom jazyku `Python 
+Zásuvné moduly, tzv. :wikipedia:`pluginy
+<https://en.wikipedia.org/wiki/Plug-in_(computing)>` predstavujú
+doplnkové moduly a ich úlohou je rozširovať funkčnosť a širokú škálu
+použitia QGIS. Úvod a predstavenie tejto problematiky je súčasťou
+`Školenia pre začiatočníkov
+<http://training.gismentors.eu/qgis-zacatecnik/#>`_ ako kapitola `QGIS
+pluginy
+<http://training.gismentors.eu/qgis-zacatecnik/ruzne/qgis_pluginy.html>`_,
+kde sa okrem iného píše, že v súčasnosti existuje pre QGIS viac než
+300 zásuvných modulov napísaných v programovacom jazyku `Python
 <https://www.python.org/>`_ alebo `C++ <https://isocpp.org/>`_.
 
 
@@ -32,8 +36,10 @@ Potrebné nástroje
 I. Qt Creator
 ^^^^^^^^^^^^^
 
-Pri tvorbe nového pluginu budeme potrebovať `Qt Creator <https://wiki.qt.io/Category:Tools::QtCreator>`_, čo je aplikácia vývojového framework-u s názvom **Qt**. 
-Túto aplikáciu využijeme pri tvorbe užívateľského rozhrania nového modulu. 
+Pri tvorbe nového pluginu budeme potrebovať `Qt Creator
+<https://wiki.qt.io/Category:Tools::QtCreator>`_, čo je aplikácia
+vývojového framework-u s názvom **Qt**.  Túto aplikáciu využijeme pri
+tvorbe užívateľského rozhrania nového modulu.
 
 II. Python väzby pre Qt
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -63,10 +69,11 @@ Aquamacs, GNU Nano, Kate, gedit*, prostredie *Spyder* a podobne.
 IV. Zásuvný modul Plugin Builder
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Tento veľmi užitočný zásuvný modul nám vytvorí všetky potrebné súbory a 
-štandardnú podobu kódu pre budúci plugin. Nainštalujeme ho klasickým spôsobom
-pomocou správcu zásuvných modulov, viď. 
-`Správca zásuvných modulov <http://training.gismentors.eu/qgis-zacatecnik/ruzne/qgis_pluginy.html#spravce-zasuvnych-modulu>`_
+Tento veľmi užitočný zásuvný modul nám vytvorí všetky potrebné súbory
+a štandardnú podobu kódu pre budúci plugin. Nainštalujeme ho klasickým
+spôsobom pomocou správcu zásuvných modulov, viď.  `Správca zásuvných
+modulov
+<http://training.gismentors.eu/qgis-zacatecnik/ruzne/qgis_pluginy.html#spravce-zasuvnych-modulu>`_
 
 V. Zásuvný modul Reloader plugin
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -95,6 +102,7 @@ Pridanie logiky pomocou python kódu a ďalšie úpravy
 
 1. Spustenie zásuvného modulu *Plugin Builder* a vyplnenie dialógu
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Po spustení zásuvného modulu na tvorbu pluginov sa objaví dialógové okno, kde 
 zadáme základné údaje o našom novom plugine, viď. :num:`#plugin-builder`.
 Potom prejdeme tlačidlom `Next` na ďalšie okno, kde vyplníme bližšie informácie
@@ -185,12 +193,14 @@ vrstiev. Na :num:`#np-project` sú zobrazené napríklad požiarne stanice,
 4. Vytvorenie užívateľského rozhrania pomocou Qt Creator
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Vzhľad a elementy dialógového okna pluginu vieme customizovať vďaka aplikácii
-Qt Creator. V hlavnej lište prejdeme na :menuselection:`File --> Open File or Project` a otvoríme súbor `*.ui`, v našom prípade `save_views_dialog_base.ui`, ktorý 
-nájdeme v adresári vytváraného pluginu. Na :num:`#qtcreator` je znázornené
-zatiaľ prázdne okno s objektami `SaveViewsDialogBase` a `button_box`. Spôsobom 
-`drag-and-drop` je možné z ľavého panelu pridávať ďalšie objekty a ich názvy 
-a vlastnosti meniť v pravej časti okna aplikácie *Qt Creator*.
+Vzhľad a elementy dialógového okna pluginu vieme customizovať vďaka
+aplikácii Qt Creator. V hlavnej lište prejdeme na :menuselection:`File
+--> Open File or Project` a otvoríme súbor `*.ui`, v našom prípade
+`save_views_dialog_base.ui`, ktorý nájdeme v adresári vytváraného
+pluginu. Na :num:`#qtcreator` je znázornené zatiaľ prázdne okno s
+objektami `SaveViewsDialogBase` a `button_box`. Spôsobom
+`drag-and-drop` je možné z ľavého panelu pridávať ďalšie objekty a ich
+názvy a vlastnosti meniť v pravej časti okna aplikácie *Qt Creator*.
 
 .. _qtcreator:
 
