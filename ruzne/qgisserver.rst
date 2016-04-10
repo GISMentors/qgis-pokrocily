@@ -53,9 +53,21 @@ projektu` v záložce `OWS Server`.
 
    Nastavení služeb v QGIS projektu.
 
+WMS služba
+^^^^^^^^^^
 
-GetCapabilities
-^^^^^^^^^^^^^^^
+QGIS Server podporuje následující typy požadavků na WMS službu:
+
+- GetCapabilities
+- GetMap
+- GetFeatureInfo
+- GetLegendGraphics
+- DescribeLayer
+- GetStyles  
+
+
+**GetCapabilities**
+
 Jedním z požadavků od klienta na server je požadavek na vypsání informací 
 GetCapabilities. Jde o specfikaci služeb ve dvou základních částech - *Service*
 a *Capability*.
@@ -85,14 +97,44 @@ Lze zde upravit **Rozsah** poskytovaného obsahu, podporované **souřadnicové
 systémy**, vyloučit jednotlivé **tvůrce mapy**. Nejdůležitější je omezení
 (vyloučení) **vrstev**. Lze tedy
 definovat vrstvy, které služba nebude zahrnovat -  z velkého projektu lze
-nadefinvat službu poskytující jenom určitý obsah. 
+nadefinovat službu poskytující jenom určitý obsah. 
 Z dalších nastavení je podstatné zejména kvalita obrázků a nastavení maximální
 velikosti pro požadavek GetMap.
+
+Dotazování na prvek můžeme rozšířit i výpisem geometrie dotazovaného prvku
+pomocí checkboxu :item:`Add geometry to feature response`. Geometrie je
+pak vypsaná jako samostatný atribut ve formě WKT.
 
 .. figure:: images/wms_capabilites.png
    :class: small
 
    Přklad detailnějšího nastavení WMS služby.
+
+WFS služba
+^^^^^^^^^^
+
+Nastavení služby WFS je v samostatné části. 
+Lze zde nastavit WFS službu pro každou vrstvu zvlášť. A dokonce je možné
+nastavit práva ke každé vrstvě pro **publikaci, aktualizaci, vkládání a mazání**
+samostatně.
+
+.. figure:: images/wfs.png
+   :class: small
+
+   Nastavení práv pro jednotlivé vrstvy ve službě WFS.
+
+
+.. tip:: V nastavení projektu je ještě položka :item:`Otestovat nastavení`, kde
+   je možné spustit kontrolu nastavení jednotlivých služeb. Kontrolují se
+   například názvy vrstev ajejich kódování.
+   Jako výstup testování se vypíše krátká správa o stavu nastavení.
+
+   .. figure:: images/test_qgisserver.png
+      :class: small
+
+      Výsledná zpráva testování nastavených služeb.
+   
+
 
   
 
