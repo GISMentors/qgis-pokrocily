@@ -78,6 +78,7 @@ Dlouhodobá stabilní verze (LTR) je doplněna dvěma krátkodobými verzemi.
 
    geoprocessing/index
    modeler/index
+   grass/index
    hydrologie/index
    georeferencovani/index
    ruzne/index
