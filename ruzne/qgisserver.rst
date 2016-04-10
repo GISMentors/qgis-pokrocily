@@ -78,15 +78,21 @@ Jak je na obrázku zvýrazněno, je nutné mít zaškrtnutý checkbox
    Defaultní odpověď na požadavek, nastavení informací o službě v projektu a 
    nová odpověď dle nastavení.
 
+Službu WMS lze definovat i detailněji.
+V záložce :item:`Schopnosti WMS` jsou k dispozici detailnější nastavení, které
+modifikují  výchozí nastavení.
+Lze zde upravit **Rozsah** poskytovaného obsahu, podporované **souřadnicové 
+systémy**, vyloučit jednotlivé **tvůrce mapy**. Nejdůležitější je omezení
+(vyloučení) **vrstev**. Lze tedy
+definovat vrstvy, které služba nebude zahrnovat -  z velkého projektu lze
+nadefinvat službu poskytující jenom určitý obsah. 
+Z dalších nastavení je podstatné zejména kvalita obrázků a nastavení maximální
+velikosti pro požadavek GetMap.
 
+.. figure:: images/wms_capabilites.png
+   :class: small
 
--get capabilities z defaultu vs. nastavení v projektu
-- nastavení extentu a zobrazovaného obsahu
-- nastavení WFS - v menu projektu
+   Přklad detailnějšího nastavení WMS služby.
 
--nastavení atributů vrstev  pro WMS a WFS
-
-- nastavení
-
-        
+  
 
