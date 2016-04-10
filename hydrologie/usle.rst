@@ -41,6 +41,7 @@
 
 Teoretické východiská
 ---------------------
+
 Priemerné ročné straty pôdy spôsobené odtokom z pozemku určitého sklonu a 
 určitého spôsobu využívania možno predikovať pomocou matematického modelu 
 :wikipedia:`USLE <Univerzální rovnice ztráty půdy>`, tzv. univerzálnej rovnice 
@@ -403,7 +404,8 @@ je na :num:`#g-por`.
 .. figure:: images/g_por.png
    :class: middle
 
-   Porovnanie výsledkov USLE bez ohľadu na prvky prerušujúce odtok (vľavo) a s prvkami prerušujúcimi odtok (vpravo)
+   Porovnanie výsledkov USLE bez ohľadu na prvky prerušujúce odtok
+   (vľavo) a s prvkami prerušujúcimi odtok (vpravo)
 
 .. _krok11:
 
@@ -420,4 +422,6 @@ straty pôdy vykreslené pomocou textového diagramu v jednotkách
 .. figure:: images/g_pov_por.png
    :class: small
 
-   Povodia s priemernými hodnotami straty pôdy v jednotkách :math:`t.ha^{-1}.rok^{-1}` bez a s úvážením prvkov prerušujúcich odtok. 
+   Povodia s priemernými hodnotami straty pôdy v jednotkách
+   :math:`t.ha^{-1}.rok^{-1}` bez a s úvážením prvkov prerušujúcich
+   odtok.
