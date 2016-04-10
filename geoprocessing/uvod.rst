@@ -9,7 +9,7 @@
 Nastavení a orientace v nástrojích
 ==================================
 
-Aktivace sydy nástrojů
+Aktivace sady nástrojů
 ----------------------
 
 Okno sady nástrojů |alg| lze aktivovat v hlavním menu
@@ -22,13 +22,15 @@ a výběrem z nabídky.
    :scale: 70%
 
    Aktivace sady nástrojů v hlavním menu :menuselection:`Zpracování
-   --> Sada nástrojů`
+   --> Sada nástrojů`.
    
 
 
 .. note:: Pokud nemáte možnost aktivovat panel sady nástrojů, je
           možné, že máte deaktivovaný plugin :item:`Processing`, který
-          tento panel poskytuje.
+          tento panel poskytuje. Aktivovat ho lze ve správci zásuvných
+          modulů, viz :skoleni:`školení pro začátečníky
+          <qgis-zacatecnik/ruzne/qgis_pluginy.html#spravce-zasuvnych-modulu>`.
 
 Nastavení
 ---------
@@ -45,27 +47,27 @@ poskytovatelů. Pro prohledávání nastavení lze využít filtr v horní
    :scale: 70%
    :scale-latex: 40 
 
-   Okno nastavení sady nástrojů
+   Okno nastavení sady nástrojů.
 
 
 Obecné nastavení
 ^^^^^^^^^^^^^^^^
 
 V obecném nastavení lze nastavit globální chování všech algoritmů
-(nezávisle na poskytovateli)
+(nezávisle na poskytovateli).
 
 .. figure:: images/geoproc_obec.png 
    :scale: 70% 
    :scale-latex: 40 
 
-   Obecné nastavení zpracování
+   Obecné nastavení zpracování.
    
 Vybrané nastavení:
 
 	- :guilabel:`Použít název souboru pro název vrstvy` - pokud je
           neaktivní výstupní vrstva nese automaticky vygenerovaný
-          název, většinou související z funkcí. (např funkce
-          :guilabel:`Obalová vrstva vekt. vrstvy` --> vrstva
+          název, většinou související s danou funkcí (např funkce
+          :guilabel:`Obalová vrstva vekt. vrstvy` ``->`` vrstva
           :guilabel:`Obalová zóna`). V případě že máme nastavení
           aktivní, název vrstvy se generuje z vytvořeného výstupního
           souboru, to je vhodné pokud ručně zadáváme název
@@ -95,27 +97,27 @@ Vybrané nastavení:
           vrstvy i její EPSG kód.
 
 
-Nastavení poskytovatelů, medeleru aj.
+Nastavení poskytovatelů, modeleru aj.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 V nastavení poskytovatelů procesů se hlavně setkáme z možností
 aktivace a deaktivace poskytovatelů (:guilabel:`Activate`
 |checkbox|). U jednotlivých poskytovatelů potom mohou být další
 možnosti nastavení, jako v případě uživatelských skriptů |tileindex|
-:item:`Složka skriptů`, kde můžeme zmenit cestu k našim uživatelským
+:item:`Složka skriptů`, kde můžeme nastavit cestu k našim uživatelským
 skriptům.
 
 .. figure:: images/geoproc_poskyt.png 
    :scale: 70% 
    :scale-latex: 40 
 
-   Popis obrázku
+   Nastavení uživatelských skriptů.
 
 Orientace v okně Nástroje zpracování
 ------------------------------------
 
 Orientace v okně a prohledávání nástrojů je velice
-intuitivní. Nástroje jsou struktorované podle poskytovatelů a dále
+intuitivní. Nástroje jsou strukturované podle poskytovatelů a dále
 zpravidla rozdělené do tematických okruhů (vektorové analýzy, rastrové
 analýzy atd.). Součástí této struktury je také položka
 :menuselection:`Naposledy použité algoritmy` kde naleznete naposledy
@@ -125,7 +127,7 @@ použité funkce.
    :scale: 70%
    :scale-latex: 40 
 
-   Ukázka orientace v okně podle tromové struktury
+   Ukázka orientace v okně podle stromové struktury.
 
 
 V horní části panelu je filtr pro rychlé vyhledání funkce. Výhodou
@@ -137,7 +139,7 @@ možností prohlížení a rychlé aktivace algoritmů.
    :scale: 70%
    :scale-latex: 40 
 
-   Použití filtru a upozornění na výsledky v neaktivních algoritmech
+   Použití filtru a upozornění na výsledky v neaktivních algoritmech.
 
 Po kliknutí na odkaz na konci upozornění (:guilabel:`to view item`) se
 ukáže struktura s výsledky od neaktivních poskytovatelů (šedá barva
@@ -148,7 +150,7 @@ poskytovatel aktivuje.
    :scale: 70%
    :scale-latex: 40 
 
-   Zobrazení výsledků neaktivních algoritmů s možností aktivace
+   Zobrazení výsledků neaktivních algoritmů s možností aktivace.
    
 Historie
 --------
@@ -156,9 +158,9 @@ Historie
 V okně historie můžeme procházet historii použitých procesů. Okno lze
 spustit z menu :menuselection:`Zpracování --> Historie...`, nebo
 použitím klávesové zkratky :kbd:`Ctrl+Alt+H`. Ve složce
-:item:`ALGORITHM` najdeme seznam spuštěných procesů s vypsaným python
+:item:`ALGORITHM` najdeme seznam spuštěných procesů s vypsaným Python
 kódem ve spodní části okna. Tyto procesy lze znovu spustit dvojitým
-klikem, a nebo pomocí python kódu. V okně se mohou objevit i další
+klikem anebo pomocí Python kódu. V okně se mohou objevit i další
 složky: :item:`INFO`, :item:`ERROR`, :item:`WARNINGS`, ve kterých
 najdeme další informace nebo chyby ve spouštěných procesech.
 
@@ -167,7 +169,7 @@ najdeme další informace nebo chyby ve spouštěných procesech.
    :scale: 70% 
    :scale-latex: 40 
 
-   Okno historie spuštěných algoritmů
+   Okno historie spuštěných algoritmů.
    
 .. noteadvanced::
 	
@@ -186,4 +188,4 @@ použitím klávesové zkratky :kbd:`Ctrl+Alt+R`.
    :scale-latex: 40 
 
    Ukázka výsledku z funkce :guilabel:`Základní statistiky pro
-   numerická pole`
+   numerická pole`.

@@ -2,31 +2,38 @@
 Nástroje zpracování - Geoprocessing
 ***********************************
 
-Kromě spouštění různých nástrojů a analýz z hlanvho menu (položky
+Kromě spouštění různých nástrojů a analýz z hlavního menu (položky
 :menuselection:`Vektor` a :menuselection:`Rastr`), můžeme stejné, nebo
-obdnoné funkce spouštět pomocí okna :item:`Nástroje zpracování`
+obdobné funkce spouštět i z okna :item:`Nástroje zpracování`.
 
 .. figure:: images/geoproc.png
    :scale: 80%
 
    Okno :item:`Nástroje zpracování`.
 
-Používání nástrojů zpracování má hned několik výhod. V jednom okně
+Použití nástrojů zpracování má hned několik výhod. V jednom okně
 najdeme funkce z knihovny GDAL, algoritmy poskytované pluginy a další
 funkce dostupných externích nástrojů jako jsou například GRASS GIS,
-SAGA nebo R. Jednotlivé funkce lze rychle vyhledávat pomocí filtru v
-horní části okna. Snadno lze spouštět dávkové zpracování dat, a v
-neposlední řadě funkce (včetně externích) lze používat v grafickém
-modeleru (viz. kapitola :ref:`modeler`).
+SAGA nebo R.
 
-Algoritmy mohou generovat 4 typy dat
+.. note:: Více o knihovně GDAL ve školení :skoleni:`GeoPython pro
+          začátečníky <geopython>`. Nástroj GRASS GIS je podrobně
+          popsán ve školení :skoleni:`GRASS GIS pro začátečníky
+          <grass-gis-zacatecnik>`.
+
+Jednotlivé funkce lze rychle vyhledávat pomocí filtru v horní části
+okna. Snadno lze spouštět dávkové zpracování dat, a v neposlední řadě
+funkce (včetně externích) lze používat v grafickém modeleru
+(viz. kapitola :ref:`modeler`).
+
+Algoritmy mohou generovat 4 typy dat:
 	
 	- rastrové vrstvy
 	- vektorové vrstvy
 	- tabulky
 	- HTML soubory (textové a grafické výstupy) 
 	
-Pokud nenastavíme cestu, nebo název souboru, výstup se nám automaticky
+Pokud nenastavíme cestu nebo název souboru, výstup se nám automaticky
 uloží na disk do dočasných souborů.
 
 .. toctree::
