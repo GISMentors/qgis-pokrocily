@@ -142,16 +142,15 @@ Pokročilé nastavení
 
 **GetFeatureInfo - nastavení vrstvy**
 
-Dalším nastavením je možnost povolit vrstvu k identifikování, co určuje zda je k
+Dalším nastavením je možnost povolit vrstvu k identifikování, což určuje zda je k
 dispozici požadavek GetFeatureInfo u WMS služby. Toto nastavení je v
 :menuselection:`Projekt --> Vlastnosti projektu` záložka :item:`Identifikovat
 vrstvy`. Jak je vidět i na :num:`get-feature-info-set` nastavení je formou
-checkboxů u každá vrstvy samostatně.
+voleb u každá vrstvy samostatně.
 
 .. _get-feature-info-set:
 
 .. figure:: images/set_get_feature_info.png
-   :class: small
 
    Ukázka nastavení reakce na požadavek GetFeatureInfo u jednotlivých vrstev.
 
@@ -162,7 +161,7 @@ poskytovat jenom určité atributy u vrstev, tak i toto chování lze jednoduše
 docílit. Ve vlastnostech  každé vrstvy je záložka :item:`Pole`, kde jsou uvedeny
 všechny atributy dané vrstvy. 
 Mimo běžných informací např. o datovém typu každé vlastnosti je u každé kolonka
-s checkboxem pro *WMS* a *WFS* službu. Ve výchozím nastavení jsou pro obě služby
+s volbou pro *WMS* a *WFS* službu. Ve výchozím nastavení jsou pro obě služby
 dostupné všechny atributy. Jednoduchou úpravou docílíme, že atribut pro zvolenou
 službu nebude dostupný.
 
