@@ -137,6 +137,41 @@ samostatně.
       Výsledná zpráva testování nastavených webových služeb.
    
 
+Pokročilé nastavení
+===================
+
+**GetFeatureInfo - nastavení vrstvy**
+
+Dalším nastavením je možnost povolit vrstvu k identifikování, co určuje zda je k
+dispozici požadavek GetFeatureInfo u WMS služby. Toto nastavení je v
+:menuselection:`Projekt --> Vlastnosti projektu` záložka :item:`Identifikovat
+vrstvy`. Jak je vidět i na :num:`get-feature-info-set` nastavení je formou
+checkboxů u každá vrstvy samostatně.
+
+.. _get-feature-info-set:
+
+.. figure:: images/set_get_feature_info.png
+   :class: small
+
+   Ukázka nastavení reakce na požadavek GetFeatureInfo u jednotlivých vrstev.
+
+**GetFeatureInfo - nastavení atributů**   
+
+Rozlišit možnost přístupu k datům lze i na úrovni atributů. Pokud bychom chtěli
+poskytovat jenom určité atributy u vrstev, tak i toto chování lze jednoduše 
+docílit. Ve vlastnostech  každé vrstvy je záložka :item:`Pole`, kde jsou uvedeny
+všechny atributy dané vrstvy. 
+Mimo běžných informací např. o datovém typu každé vlastnosti je u každé kolonka
+s checkboxem pro *WMS* a *WFS* službu. Ve výchozím nastavení jsou pro obě služby
+dostupné všechny atributy. Jednoduchou úpravou docílíme, že atribut pro zvolenou
+službu nebude dostupný.
+
+.. figure:: images/set_attribute_to_service.png
+   :class: large
+
+   Nastavení přístupu pro službu WMS k vybraným atributům a výsledek požadavku
+   GetFeatureInfo na službu - atributy `krim_2015c` a `krim_2015v` nejsou  v
+   odpovědi.
 
   
 
