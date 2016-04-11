@@ -120,9 +120,7 @@ Postup je zobrazen na :num:`add-gcp-point`.
    bodech vykreslovat do georeferencovaného obrázku. Je tak i graficky vidět
    směr a velikost jednotlivých odchylek.
 
-.. tip::
-
-   V určitých případech můžeme georeferencovat obrázek, na kterém jsou
+.. tip:: V určitých případech můžeme georeferencovat obrázek, na kterém jsou
    definované souřadnice (formou křížů se souřadnicemi :num:`input-coordinates`,
    mapovým rámem s popisem, nebo zeměpisnou sítí s popiskami).
 
@@ -297,6 +295,23 @@ jednotlivých osách.
 Výsledný georeferencovaný rastr je pak možné přidat do mapového okna. Pomocí
 transparentnosti jednotlivých vrstev je možné dostatečně zkontrolovat, zda
 dosažená polohová přesnost vyhovuje požadavkům.
+
+Pokud by velikost výsledního rastru byla příliš velká a jeho vykreslování by 
+bylo pomalé, tak je možné vytvořit tzv. pyramidy. 
+Toto nastavení je dostupné přímo ve vlastnostech rastrové vrstvy, v záložce 
+:item:`Pyramidy`. Na :num:`pyramids` je vidět i text popisující funkčnost 
+pyramid, varování, že bude upravován přímo zdrojový rastr a paramtery pro tvorbu
+pyramid (levely, formát náhledu a metoda převzorkování). Pyramidy je také možné 
+vytvořit pomocí :menuselection:`Rastr -->Různé --> Vytvořit prehledy (pyramidy)`,
+kde je také nutné nastavit stejné parametry, ale je také možné spustit funkci
+v dávkovém režimu pro celý adresář. 
+
+.. _pyramids:
+
+.. figure:: images/pyramids.png
+   :class: small
+
+   Možnost vytvoření pyramid přes vlastnosti rastrové vrstvy.
 
 .. note::
    
