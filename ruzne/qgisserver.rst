@@ -7,31 +7,35 @@
 QGIS Server
 -----------
 
-QGIS Server je FastCGI/CGI (Common Gateway Interface) aplikace implenentující
-WMS 1.3, WFS 1.0.0 a WCS 1.1.1.
-Je napsaná v jazyce C++ a funguje spolu s webovým servrem (například Apache2).
-Využívá QGIS pro GIS logiku a vykreslování mapy. Oba používají totožné
-vizualizační knihovny, proto se výstup zobrazuje stejně při publikaci přez
-QGIS Server ale i přímo v QGISu.
-Takovýmto způsobem lze tedy jednoduše publikovat např. WMS službu z
-existujícího QGIS projektu a příslušných dat.
+**QGIS Server** je :wikipedia:`FastCGI`/CGI (:wikipedia:`Common
+Gateway Interface`) aplikace implementující OGC webové služby WMS (Web
+Map Service) 1.3, WFS (Web Feature Service) 1.0.0 a WCS (Web Coverage
+Service) 1.1.1.
+
+.. note:: Více k tématu webových služeb OGC ve školení :skoleni:`Open
+          Source GIS <open-source-gis/standardy/ogc/index.html>`.
+
+QGIS Server je podobně jako samotný QGIS napsán v jazyce C++, pro svůj
+běh vyžaduje webový server (například :wikipedia:`Apache <Apache HTTP
+Server>`). QGIS potom využívá pro GIS logiku a vykreslování mapy. Oba
+softwary používají totožné vizualizační knihovny, proto se výstup
+zobrazuje stejně při publikaci přes QGIS Server ale i přímo v QGISu.
+Takovýmto způsobem lze tedy jednoduše publikovat např. WMS službu na
+základě existujícího QGIS projektu a příslušných dat.
 
 Technologie je popsaná na `stránkách QGISu <http://docs.qgis.org/2.8/en/docs/user_manual/working_with_ogc/ogc_server_support.html>`_.
 
 Instalace a první použití
 =========================
 
-Pro jednoduché testování je možné využít návod na stránkách pro základní 
-instalaci a na jednoduchém příkladu vyzkoušet nastavení služeb, jako je uvedeno 
-níže.
+Pro jednoduché testování je možné využít návod na výše uvedených
+stránkách pro základní instalaci a na jednoduchém příkladu vyzkoušet
+nastavení služeb, jako je uvedeno níže.
 
-Definice služeb `WMS <http://training.gismentors.eu/open-source-gis/standardy/ogc/wms.html>`_,
-`WFS <http://training.gismentors.eu/open-source-gis/standardy/ogc/wfs.html>`_ a
-WCS je dostupná i na obecném školení GIS.
-
-Defaultní nastavení QGIS projektu umožňuje jeho přímou publikaci jako jednoduché 
-WMS služby, bez jakéhokoli dalšího nastavení. 
-Přidáme novou službu WMS z url *http://localhost/cgi-bin/qgis_mapserv.fcgi?MAP=/home/betka/Plocha/diagram1.qgs*,
+Výchozí nastavení QGIS projektu umožňuje jeho přímou publikaci jako
+jednoduché WMS služby, bez jakéhokoli dalšího nastavení.  Přidáme
+novou službu WMS z URL
+*http://localhost/cgi-bin/qgis_mapserv.fcgi?MAP=/home/user/diagram1.qgs*,
 kde pomocí parametru MAP definujeme cestu k projektu.
 
 .. figure:: images/qgis_server_wms.png
@@ -39,19 +43,16 @@ kde pomocí parametru MAP definujeme cestu k projektu.
 
    Přidání základní WMS služby z lokálního projektu.
 
-
-
 Nastavení publikačních služeb v projektu
 ========================================
 
 Specifikace a detailní nastavení služeb pro každý projekt je možné měnit pomocí
-nastavení samotného QGIS porjektu v :menuselection:`Projekt --> Vlastnosti
+nastavení samotného QGIS projektu v :menuselection:`Projekt --> Vlastnosti
 projektu` v záložce `OWS Server`.
 
 .. figure:: images/project_settings.png
-   :class: small
 
-   Nastavení služeb v QGIS projektu.
+   Nastavení webových služeb v QGIS projektu.
 
 WMS služba
 ^^^^^^^^^^
@@ -68,27 +69,31 @@ QGIS Server podporuje následující typy požadavků na WMS službu:
 
 **GetCapabilities**
 
-Jedním z požadavků od klienta na server je požadavek na vypsání informací 
-GetCapabilities. Jde o specfikaci služeb ve dvou základních částech - *Service*
+Jedním z požadavků klienta na server je požadavek na vypsání informací 
+GetCapabilities. Jde o specifikaci služeb ve dvou základních částech - *Service*
 a *Capability*.
 
-Jak již bylo uvedeno, tak pro základní publikaci služby není nutné žádné
-speciální nastavení. V takovém případě ale požadavek GetCapabilities vrátí
-odpověd, která je nastavená v soubou `wms_metadata.xml` v adresáři *cgi-bin*.
+Jak již bylo uvedeno, tak pro základní publikaci služby není nutné
+žádné speciální nastavení. V takovém případě ale požadavek
+GetCapabilities vrátí odpověď, která je nastavená ve výchozím souboru
+`wms_metadata.xml` v adresáři *cgi-bin*.
 
-Sestavený požadavek pro náš příklad může vypadat následovně -
-*http://localhost/cgi-bin/qgis_mapserv.fcgi?service=WMS&REQUEST=GetCapabilities&MAP=/home/betka/Plocha/diagram1.qgs*
+Sestavený požadavek pro náš příklad může vypadat následovně:
 
-Na následujícím obrázku je ukázka odpovědi na požadavek před úpravou projektu,
-nastavení projektu a následní odpověď na stejný požadavek po uložení projektu. 
-Jak je na obrázku zvýrazněno, je nutné mít zaškrtnutý checkbox 
-:item:`Schopnosti služby`.
+::
+   
+   http://localhost/cgi-bin/qgis_mapserv.fcgi?service=WMS&REQUEST=GetCapabilities&MAP=/home/user/diagram1.qgs
+
+Na následujícím obrázku je ukázka odpovědi na požadavek před úpravou
+projektu, nastavení projektu a následní odpověď na stejný požadavek po
+uložení projektu.  Jak je na obrázku zvýrazněno, je nutné mít
+zaškrtnutou volbu :item:`Schopnosti služby`.
 
 .. figure:: images/capabilities.png
    :class: large
 
-   Defaultní odpověď na požadavek, nastavení informací o službě v projektu a 
-   nová odpověď dle nastavení.
+   Výchozí odpověď na požadavek GetCapabilities, nastavení informací o
+   službě v projektu a nová odpověď dle nastavení.
 
 Službu WMS lze definovat i detailněji.
 V záložce :item:`Schopnosti WMS` jsou k dispozici detailnější nastavení, které
@@ -102,37 +107,34 @@ Z dalších nastavení je podstatné zejména kvalita obrázků a nastavení max
 velikosti pro požadavek GetMap.
 
 Dotazování na prvek můžeme rozšířit i výpisem geometrie dotazovaného prvku
-pomocí checkboxu :item:`Add geometry to feature response`. Geometrie je
+pomocí volby :item:`Add geometry to feature response`. Geometrie je
 pak vypsaná jako samostatný atribut ve formě WKT.
 
 .. figure:: images/wms_capabilites.png
-   :class: small
 
-   Přklad detailnějšího nastavení WMS služby.
+   Příklad detailnějšího nastavení WMS služby.
 
 WFS služba
 ^^^^^^^^^^
 
 Nastavení služby WFS je v samostatné části. 
 Lze zde nastavit WFS službu pro každou vrstvu zvlášť. A dokonce je možné
-nastavit práva ke každé vrstvě pro **publikaci, aktualizaci, vkládání a mazání**
+nastavit práva ke každé vrstvě pro *publikaci, aktualizaci, vkládání a mazání*
 samostatně.
 
 .. figure:: images/wfs.png
-   :class: small
 
    Nastavení práv pro jednotlivé vrstvy ve službě WFS.
 
 
 .. tip:: V nastavení projektu je ještě položka :item:`Otestovat nastavení`, kde
    je možné spustit kontrolu nastavení jednotlivých služeb. Kontrolují se
-   například názvy vrstev ajejich kódování.
+   například názvy vrstev a jejich kódování.
    Jako výstup testování se vypíše krátká správa o stavu nastavení.
 
    .. figure:: images/test_qgisserver.png
-      :class: small
 
-      Výsledná zpráva testování nastavených služeb.
+      Výsledná zpráva testování nastavených webových služeb.
    
 
 
