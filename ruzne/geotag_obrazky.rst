@@ -290,11 +290,15 @@ identifikátor umístění, pořadí a kód dopravní tabule.
 
 Jednotlivé prvky budeme vykreslovat SVG znakem. Názvy jednotlivých
 symbolů odpovídají kódům tabulí a jsou uloženy v jedné složce. Tuto
-složku pak umístíme mezi ostatní systémové sady SVG symbolů.
+složku pak umístíme do složky `.qgis/svg/`.
 
-.. note:: V případě práce v systému Linux se jedná o složku
-          `/usr/share/qgis/svg/`. Pro kopírování do systémového
-          adresáře musíme použít práva superuživatele `root`.
+.. note:: V případě budoucí publikace služby přes QGIS Server je vhodné použít
+          pro umístění složky s ikonkami systémový adresář 
+          `/usr/share/qgis/svg/`. Stejný obsah by měl být nakopírován i na 
+          server. Projekt se pak bude chovat nezávisle na jeho umístění a vždy
+          bude používat systémové ikony (základní nebo rozšířené).
+          Pro kopírování do systémového adresáře musíme použít práva 
+          superuživatele `root`.
 
           .. code-block:: bash
 
