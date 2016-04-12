@@ -1,3 +1,6 @@
+.. |mActionGrassTools| image:: ../images/icon/grass_tools.png
+   :width: 1.5em
+
 *******************
 Zásuvný modul GRASS
 *******************
@@ -36,10 +39,8 @@ zásuvné moduly`.
 
 Po aktivaci se objeví panel nástrojů tohoto zásuvného modulu. Tento
 panel lze otevřít  i z menu :menuselection:`Zásuvné moduly --> GRASS
---> Otevřít GRASS nástroje` nebo pomocí ikonky ...
+--> Otevřít GRASS nástroje` nebo pomocí ikonky |mActionGrassTools|.
 
-.. todo:: doplnit ikonku
-   
 .. figure:: images/grass-plugin-tools.png
    
    Panel nástrojů zásuvného modulu GRASS.
