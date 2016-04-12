@@ -41,7 +41,7 @@ Nejčastější parametry
 Vstupní vrstva
 ^^^^^^^^^^^^^^
 Lze vybrat pomocí rolovací nabídky kde se nám vypíšou vrstvy nahrané v projektu, v nabídce se nám zobrazí pouze ty vrstvy, které mohou do algoritmu vstupit (je-li potreba rastr, vektorové vrstvy se zde vypisovat nebudou). Za názvem vrstvy je v hranatých závorkách uveden EPSG vrstvy např :item:`[EPSG:5514]`.
-Pokud požadovanou vrstvu v projektu nemáme, můžeme použít tlačítko :item:`...` a vybrat odpovídající vrstvu uloženou na disku. U vektorových vrstev se můžeme setkat s tlačítkem |iterate|, která složí ke spouštění iterace nad vrstvou. V takovém případě se algoritmus bude spouštět pro každý prvek ve vrstvě zvlášť. Při iteraci se ve výchozím nastavení processingu používají pouze vybrané prvky.
+Pokud požadovanou vrstvu v projektu nemáme, můžeme použít tlačítko :item:`...` a vybrat odpovídající vrstvu uloženou na disku. U vektorových vrstev se můžeme setkat s tlačítkem |iterate|, která složí ke spouštění iterace nad vrstvou. V takovém případě se algoritmus bude spouštět pro každý prvek ve vrstvě zvlášť. Při iteraci se ve výchozím nastavení processingu používají pouze vybrané prvky (pokud nějaký výběr máme).
 
 .. figure:: images/geoproc_vstup_vrst.png 
    :class: middle 
@@ -130,7 +130,7 @@ Pomocí funkce GDAL |gdal| :guilabel:`Oříznout rastr podle rozsahu` vytvořím
 
 Využití iterace
 ^^^^^^^^^^^^^^^
-Pomocí funkce GDAL |gdal| :guilabel:`Oříznout rastr podle vrstvy masky` ořežeme rastrovou vrstvu EU-DEM pomocí masky Velkoplošných chráněných území. Pro ořezání rastru jen pro naše vybraná území využijeme možnosti iterace.
+Pomocí funkce GDAL |gdal| :guilabel:`Oříznout rastr podle vrstvy masky` ořežeme rastrovou vrstvu EU-DEM pomocí masky Velkoplošných chráněných území. Pro ořezání rastru jen pro naše vybraná území využijeme možnosti iterace. Jak jsme již zmínili výše, při iteraci se ve výchozím nastavení processingu používají pouze vybrané prvky.
 
 .. figure:: images/geoproc_pract_2.png 
    :class: large 
