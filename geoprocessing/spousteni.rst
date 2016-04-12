@@ -107,9 +107,6 @@ Dále se často můžeme setkat s výběrem nebo zadáváním různých parametr
 
 
 
-Dávkové zpracování
-------------------
-
 
 .. todo::
 	Praktická ukázka
