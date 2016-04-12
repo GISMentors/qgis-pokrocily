@@ -1,5 +1,7 @@
 .. _modeler:
 
+.. todo:: Popis a výhody
+
 ****************
 Grafický modeler
 ****************
