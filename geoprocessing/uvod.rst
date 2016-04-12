@@ -1,10 +1,5 @@
 .. |alg| image:: ../images/icon/alg.png
    :width: 1.5em
-.. |checkbox| image:: ../images/icon/checkbox.png
-   :width: 1.5em
-.. |tileindex| image:: ../images/icon/tileindex.png
-   :width: 1.5em
-
 
 Orientace v nástrojích
 ======================

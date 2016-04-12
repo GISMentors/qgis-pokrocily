@@ -1,6 +1,8 @@
-.. |selectnuber| image:: ../images/icon/selectnuber.png
+.. |selectnumber| image:: ../images/icon/selectnumber.png
    :width: 1.5em
 .. |iterate| image:: ../images/icon/custom_iterate.png
+   :width: 1.5em
+.. |gdal| image:: ../images/icon/gdal.png
    :width: 1.5em
 
 Spouštění geoalgoritmů
@@ -84,7 +86,7 @@ Rozsah se zadává v souřadnicích xmin, xmax, ymin, ymax. Tento parametr lze z
 
 Číslené hodnoty
 ^^^^^^^^^^^^^^^
-Číselné hodnoty se mohou oběvovat ve dvou formátech - celé číslo (int) a číslo s desetinnou čárkou (float). Zadat je lze ručně nebo pomocí tlačítek |selectnuber|. Pomocí tlačítka :item:`...` lze také použít jednoduchý kalkulátor, ve kterém můžeme vybírat i z nabídky odvozených hodnot z vlastností vrstev (rozsah, statistiky rastrových vrstev atd.).
+Číselné hodnoty se mohou oběvovat ve dvou formátech - celé číslo (int) a číslo s desetinnou čárkou (float). Zadat je lze ručně nebo pomocí tlačítek |selectnumber|. Pomocí tlačítka :item:`...` lze také použít jednoduchý kalkulátor, ve kterém můžeme vybírat i z nabídky odvozených hodnot z vlastností vrstev (rozsah, statistiky rastrových vrstev atd.).
 
 .. figure:: images/geoproc_vstup_cis.png 
    :class: small 
@@ -112,28 +114,35 @@ Dále se často můžeme setkat s výběrem nebo zadáváním různých parametr
 
 
 
-.. todo::
-	Praktická ukázka
-	----------------
+Praktická ukázka
+----------------
 
-	Ořez rastru
-	^^^^^^^^^^^
+Ořez rastru
+^^^^^^^^^^^
 
-	.. todo:: GDAL clip podle vrstvy (1kraj+DEM)
+Pomocí funkce GDAL |gdal| :guilabel:`Oříznout rastr podle rozsahu` vytvoříme výřez rastru EU-DEM, z rozsahem vybraným v mapovém okně. Výstupní soubor necháme uložit do dočasných souborů.
 
-	Využití iterace
-	^^^^^^^^^^^^^^^
-	.. todo:: GDAL clip podle vrstvy (mesta+DEMkraje --> nekolik rastru DEM)
+.. figure:: images/geoproc_pract_1.png 
+   :class: large 
+   :scale-latex: 40 
+
+   Ořezání rastru pomocí funkce |gdal| :guilabel:`Oříznout rastr podle rozsahu` 
+
+Využití iterace
+^^^^^^^^^^^^^^^
+Pomocí funkce GDAL |gdal| :guilabel:`Oříznout rastr podle vrstvy masky` ořežeme rastrovou vrstvu EU-DEM pomocí masky Velkoplošných chráněných území. Pro ořezání rastru jen pro naše vybraná území využijeme možnosti iterace.
+
+.. figure:: images/geoproc_pract_2.png 
+   :class: large 
+   :scale-latex: 40 
+
+   Ořezání rastru vybranými prvky vrstvy pomocí funkce |gdal| :guilabel:`Oříznout rastr podle vrstvy masky` 
+   
+.. figure:: images/geoproc_pract_2_2.png 
+   :class: middle 
+   :scale-latex: 40 
+
+   Výsledek výřezu vybraných prvků
 
 
-	.. _davka:
-
-	Dávkové zpracování
-	^^^^^^^^^^^^^^^^^^
-	.. todo:: GDAL slope (nekolik rastru DEM)
-
-	HTML výstup
-	^^^^^^^^^^^
-
-	..todo:: GDAL statistika,gdalinfo nebo histogram - html output
 		

@@ -1,3 +1,10 @@
+.. |checkbox| image:: ../images/icon/checkbox.png
+   :width: 1.5em
+.. |tileindex| image:: ../images/icon/tileindex.png
+   :width: 1.5em
+
+.. _nastaveni:
+
 Nastavení, historie, prohlížení výsledků
 ========================================
 
@@ -120,3 +127,8 @@ použitím klávesové zkratky :kbd:`Ctrl+Alt+R`.
 
    Ukázka výsledku z funkce :guilabel:`Základní statistiky pro
    numerická pole`.
+   
+HTML výstup
+^^^^^^^^^^^
+
+..todo:: GDAL statistika,gdalinfo nebo histogram - html output
