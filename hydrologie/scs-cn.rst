@@ -41,8 +41,8 @@
 
 
 
-1. Metóda SCS CN
-================
+Metóda SCS CN
+=============
 
 Teoretické východiská
 ---------------------

@@ -33,11 +33,8 @@
 .. |v.rast.stats| image:: ../images/gplugin/v.rast.stats.3.png
    :width: 4.5em
 
-
-
-
-2. Priemerná dlhodobá strata pôdy
-=================================
+Priemerná dlhodobá strata pôdy
+==============================
 
 Teoretické východiská
 ---------------------

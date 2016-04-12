@@ -41,8 +41,11 @@ daty jako s prostorovými, musíme využít nástroj pro georeferencování.
    (například legendu, popisek, měřítko a jiné), tak je vhodné zpracovávat
    již ořezaný obrázek.
 
+Postup
+======
+
 1. Instalace pluginu
-====================
+--------------------
 
 Nástroj pro georeferencování je možné nainstalovat přes Správce zásuvných
 modulů menu :menuselection:`Zásuvné moduly --> Spravovat a instalovat
@@ -60,7 +63,7 @@ rastr a v druhém tabulka tzv. `GCP bodů - identických bodů`.
    Nástroj pro georeferencování.   
 
 2. Přidání zvoleného obrázku
-============================
+----------------------------
 
 Prvním krokem po spuštění pluginu je přidání zvoleného rastru do
 nástroje.  Pomocí tlačítka |mActionAddRasterLayer| :sup:`Otevřít
@@ -81,7 +84,7 @@ Výběrem a potvrzením se zvolený rastr načte do první části okna pluginu,
 kde je připraven na další kroky.
 
 3. Zadávání GCP - identických bodů
-==================================
+----------------------------------
 
 Dalším krokem je zadání tzv. identických bodů (z ang. `ground control 
 points`). Jde o identifikaci polohy na zpracovávaném obrázku a následné
@@ -159,7 +162,7 @@ polohu bodu ve zpracovávaném obrázku nebo mapovém okně |mActionMoveGCPPoint
    Přehled zadaných identických bodů v tabulce.
 
 4. Nastavení transformace
-=========================
+-------------------------
 
 Po zadání dostatečného množství identických bodů je možné pokračovat 
 dalším krokem. Buňky vstupního rastru musí být přepočítány pomocí klíče,
@@ -183,7 +186,7 @@ dialogové okno, kde se nastavují následující parametry (:num:`transformatio
    Okno pro nastavení transformace.
 
 Typ transformace
-----------------
+~~~~~~~~~~~~~~~~
 
 Jak již bylo uvedeno, tak k dispozici je zde více druhů transformací. Výběr
 vhodné transformace záleží na kvalitě vstupního obrázku, jeho deformacích, které
@@ -223,7 +226,7 @@ chceme ve výsledku ovlivnit a na počtu identických bodů.
 +---------------------------------+--------------------------------------------+
 
 Metoda převzorkování
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 Vzhled výsledného rastru lze ovlivnit i pomocí nastavení metody převzorkování.
 Výběr konkrétní metody záleží zejména na požadavcích, zda má být zachována
@@ -237,7 +240,7 @@ K dispozici jsou následující metody převzorkování:
  * Lanczos  
 
 Další nastavení
----------------
+~~~~~~~~~~~~~~~
 
 Komprese - lze vybrat kompresi pro vytvářený rastr
 
@@ -253,7 +256,7 @@ Změnit cílové rozlišení - zadáním rozlišení v obou směrech (v mapovýc
 jednotkách)
 
 5.Spuštění georeferencování
-===========================
+---------------------------
 
 Po nastavení transformace a zadání dostatečného počtu identických bodů je možné
 spustit transformaci (|mActionStartGeoref| :sup:`Spustit georeferencování`).

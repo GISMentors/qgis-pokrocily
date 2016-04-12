@@ -108,6 +108,7 @@ Za `GISMentors <http://www.gismentors.cz/>`_:
 * `Alžbeta Gardoňová <http://www.gismentors.cz/mentors/gardonova/>`_
 * `Ľudmila Furtkevičová <http://www.gismentors.cz/mentors/furtkevicova/>`_
 * `Oto Kaláb <http://www.gismentors.cz/mentors/kalab/>`_ 
+* `Martin Landa <http://www.gismentors.cz/mentors/landa>`_
 
 Text dokumentu
 --------------

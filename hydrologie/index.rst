@@ -32,7 +32,7 @@ riešení využijeme aj niektoré moduly programu GRASS GIS.
    :class: secnotoc
       
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    scs-cn
    usle
