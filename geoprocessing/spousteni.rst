@@ -96,8 +96,12 @@ Rozsah se zadává v souřadnicích xmin, xmax, ymin, ymax. Tento parametr lze z
 
 Výstupní soubor
 ^^^^^^^^^^^^^^^
-
-
+Pokud nenastavíme cestu nebo název souboru, výstup se nám automaticky
+uloží na disk do dočasných souborů. Pokud zadáme do pole název, vrstva se 
+nám uloží do předdefinované složky (výchozí nastavení 
+/.qgis2/processing/outputs). Pomocí tlačítka :item:`...` je možné uložit
+vrstvu standartním způsobem na disk. Chování tvorby výstupního souboru se dá
+změnit v nastavení (viz. kapitola :ref:`nastaveni`)
 
 
 

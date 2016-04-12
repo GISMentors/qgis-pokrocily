@@ -42,6 +42,8 @@ Algoritmy mohou generovat 4 typy dat:
    
    uvod
    spousteni
-   externi
+   nastaveni
    davka
+   externi
+   
            
