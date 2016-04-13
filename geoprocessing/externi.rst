@@ -70,13 +70,13 @@ Tento algoritmus nám umožní vytvořit z digitálního modelu terénu (dmt) vr
    
 .. _sagajednotky:
 .. figure:: images/geoproc_saga2.png 
-   :class: middle 
+   :class: small 
    :scale-latex: 40 
 
    Možnost výběru jednotek
    
 .. figure:: images/geoproc_saga3.png 
-   :class: middle 
+   :class: large 
    :scale-latex: 40 
 
    Výsledek algoritmu |saga|:guilabel:`Slope, aspect, curvature`
