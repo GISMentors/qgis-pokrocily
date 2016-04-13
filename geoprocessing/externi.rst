@@ -1,6 +1,6 @@
 .. |grass| image:: ../images/icon/grasslogo.png
    :width: 1.5em
-.. |saga| image:: ../images/icon/intro_logo.png
+.. |saga| image:: ../images/icon/custom_saga.png
    :width: 1.5em
    
 Externí geoalgorytmy (GRASS GIS, SAGA, R)
@@ -58,5 +58,25 @@ Pokud bychom chtěli získat data s plovoucí desetinou čárkou (float) je nutn
 	
 SAGA
 ----
+Slope, aspect, curvature
+^^^^^^^^^^^^^^^^^^^^^^^^
+Tento algoritmus nám umožní vytvořit z digitálního modelu terénu (dmt) vrstvu sklonů, orientace svahů a různých typů zakřivení. Výhodou je možnost výběru metody, ale především výstupních jednotek u svahů a orientací (:num:`#sagajednotky`). Sklon svahu můžeme zvolit buď ve stupních, radiánech nebo procentech. Orientaci svahu potom ve stupních nebo radiánech. Při spuštění algoritmu se vypočítají sice všechny výstupy, ale lze samostatně vybrat ty, které chceme nahrát do projektu či uložit do souboru.
 
-.. todo:: SAGA Slope...
+.. figure:: images/geoproc_saga.png 
+   :class: middle 
+   :scale-latex: 40 
+
+   Dialogové okno algoritmu |saga|:guilabel:`Slope, aspect, curvature`
+   
+.. _sagajednotky:
+.. figure:: images/geoproc_saga2.png 
+   :class: middle 
+   :scale-latex: 40 
+
+   Možnost výběru jednotek
+   
+.. figure:: images/geoproc_saga3.png 
+   :class: middle 
+   :scale-latex: 40 
+
+   Výsledek algoritmu |saga|:guilabel:`Slope, aspect, curvature`
