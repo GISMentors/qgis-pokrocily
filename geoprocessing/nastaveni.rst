@@ -113,10 +113,6 @@ najdeme další informace nebo chyby ve spouštěných procesech.
 
    Okno historie spuštěných algoritmů.
    
-.. noteadvanced::
-	
-	.. todo:: popsat python
-	
 
 Prohlížeč výsledků
 ------------------
