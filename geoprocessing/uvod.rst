@@ -56,6 +56,8 @@ možností prohlížení a rychlé aktivace algoritmů.
 
    Použití filtru a upozornění na výsledky v neaktivních algoritmech.
 
+.. tip:: Filtr vyhledává jak české tak anglické názvy, také prohledává popisky funkcí.
+
 Po kliknutí na odkaz na konci upozornění (:guilabel:`to view item`) se
 ukáže struktura s výsledky od neaktivních poskytovatelů (šedá barva
 tetu). Po kliknutí na tlačítko :guilabel:`Activete` se nám
