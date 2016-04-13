@@ -8,7 +8,9 @@
    :width: 1.5em
 .. |alg| image:: ../images/icon/alg.png
    :width: 1.5em
-
+.. |qgis| image:: ../images/intro_logo.png
+   :width: 1.5em
+   
 .. _davka:
 
 Dávkové zpracování
@@ -31,7 +33,7 @@ Dávkové zpracování nám umožní spustit jeden algoritmus vícekrát najedno
 
 Popis okna
 ----------
-V okně dávkového zprcování máme opět záložky :guilabel:`Parametry` a :guilabel:`Záznam`. V záložce :guilabel:`Parametry` se nám zobrazí všechny vstupní parametry vybraného algoritmu v jednom řádku, každý řádek potom odopvídá samostatnému procesu. Řádky lze přidávat a odebírat pomíc tlačítek |symbologyAdd| a |symbologyRemove|. Dále lze nakonfigurovaný dávkový proces uložit |mActionFileSave| do souboru .JSON nebo tento typ souboru nahrát |mActionFileOpen|. U algoritmů, kde je možná volba pokročilého nastavení se pro aktivaci těchto parametrů ukáže ikonka |alg|.
+V okně dávkového zprcování máme opět záložky :guilabel:`Parametry` a :guilabel:`Záznam`. V záložce :guilabel:`Parametry` se nám zobrazí všechny vstupní parametry vybraného algoritmu v jednom řádku, každý řádek potom odopvídá samostatnému procesu. Řádky lze přidávat a odebírat pomíc tlačítek |symbologyAdd| a |symbologyRemove|. Dále lze nakonfigurovaný dávkový proces uložit |mActionFileSave| do souboru .JSON nebo tento typ souboru nahrát |mActionFileOpen|. U algoritmů, kde je možná volba pokročilého nastavení se pro aktivaci těchto parametrů ukáže ikonka |alg|. Záložka záznam má totožnou funkci jako u samostatného procesu.
 
 .. figure:: images/geoproc_batch_win.png 
    :class: middle 
@@ -88,12 +90,53 @@ Zde je, oproti samostatnému procesu, nutné zadat cestu k výstupnímu souboru 
    Možnosti automatického vytvoření přípon výstupního souboru
 
 
+.. note:: U vektorových dat vstupují pouze vybrané prvky (v závislosti na obecném nastavení)
+
 Ostatní vstupy
 ^^^^^^^^^^^^^^
 Ostatní vstupy nelze vyplnit pro všechny procesy hromadně, pro snadnější a rychlejší přesun mezi jednotlivými řádky lze použít šipky na klávesnici. U číselných vstupů nelze zadávat hodnoty pomocí kalkulátoru tak jako u samostatného procesu
 
 Praktická ukázka
 ----------------
-.. todo:: buffer 1000 5000 10000
+V následujících příkladech si ukážeme možné praktické využití dávkového zpracování.
+
+Tvorba vícenásobné obalové zóny
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+V případě, že potřebujeme kolem nějakého území vytvořít větší počet různě velkých obalových zón, je možné využít funkci |qgis|:guilabel:`Obalová zóna dle pevné vzdálenosti` v režimu dávkového procesu. Z vrstvy velkoplošných chráněných území vybereme jedno území a vytvoříme tři obalové zóny (1, 5 a 10km)
+
+Spustíme dávkový proces algoritmu, nastavíme vstupní vrstvu s vybraným prvkem do tří řádků (pro každý proces) a požadované hodnoty vzdáleností obalové zóny v metrech (1000, 5000, 10000). 
+
+.. figure:: images/geoproc_batch_pract1.png 
+   :class: middle 
+   :scale-latex: 40 
+
+   Tvorba vícenásobné obalové zóny vybraného území
+
+Vybereme výstupní soubor a nastavíme automatickou výpň na základě parametru :guilabel:`Vzdálenost` a spustíme dávkový proces tlačítkem :item:`Run`, zkontrolujeme záznama a zavřeme okno.
+
+.. figure:: images/geoproc_batch_pract1_2.png 
+   :class: small 
+   :scale-latex: 40 
+
+   Nastavení automatického vyplnění na základě paraetru - Vzdálenost
+
+.. figure:: images/geoproc_batch_pract1_3.png 
+   :class: small 
+   :scale-latex: 40 
+
+   Výsledné názvy výstupních souborů
+   
+.. figure:: images/geoproc_batch_pract1_4.png 
+   :class: large 
+   :scale-latex: 40 
+
+   Výsledek tvorby vícenásobné obalové zóny
+
+
+Ořezání více rastrových vrstev 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 .. todo:: GDAL clip (ořez více rastrů)
+
+
 .. todo:: GDAL slope (rastry DEM z iterace)
