@@ -10,6 +10,12 @@
    :width: 1.5em
 .. |qgis| image:: ../images/intro_logo.png
    :width: 1.5em
+.. |grass| image:: ../images/icon/grasslogo.png
+   :width: 1.5em
+.. |saga| image:: ../images/icon/custom_saga.png
+   :width: 1.5em
+.. |gdal| image:: ../images/icon/gdal.png
+   :width: 1.5em
    
 .. _davka:
 
@@ -75,6 +81,8 @@ Výstupní soubor
 ^^^^^^^^^^^^^^^
 Zde je, oproti samostatnému procesu, nutné zadat cestu k výstupnímu souboru pomocí tlačítka :item:`...`. Stačí však zadat uložení prvního výstupního souboru a objeví se nám okno pro automatické doplnění výstupních souborů (:num:`#batchout`). Zde je možné automaticky vytvořit výstupní soubory s příponou pořadového čísla nebo na základě vybraného vstupního parametru (název vrstvy, velikost bufferu atd.)(:num:`#batchout2`).
 
+.. warning:: Pokud v obecném nastavení možností zpracování neaktivujeme |alg|:guilabel:`Použít název souboru pro název vrstvy` budou všechny vrstvy stále pojmenovávány podle algoritmu (viz. :ref:`nastaveni` ). Soubory však budou pojmenované podle naší konfigurace výstupu.
+
 .. _batchout:
 .. figure:: images/geoproc_batch_out.png 
    :class: small 
@@ -94,7 +102,7 @@ Zde je, oproti samostatnému procesu, nutné zadat cestu k výstupnímu souboru 
 
 Ostatní vstupy
 ^^^^^^^^^^^^^^
-Ostatní vstupy nelze vyplnit pro všechny procesy hromadně, pro snadnější a rychlejší přesun mezi jednotlivými řádky lze použít šipky na klávesnici. U číselných vstupů nelze zadávat hodnoty pomocí kalkulátoru tak jako u samostatného procesu
+Ostatní vstupy nelze vyplnit pro všechny procesy hromadně. U číselných vstupů nelze zadávat hodnoty pomocí kalkulátoru tak jako u samostatného procesu
 
 Praktická ukázka
 ----------------
@@ -135,8 +143,37 @@ Vybereme výstupní soubor a nastavíme automatickou výpň na základě paramet
 
 Ořezání více rastrových vrstev 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+K tomuto úkolu si nejdříve vytvoříme z digitálního modelu terénu (dmt) vybraného velkoplošného chráněného území vrstvu sklonu svahů (Slope) a orientace svahů (Aspect). K vytvoření vrstvy sklonu a orientace svahů jsme nyní schopni využít mnoho funkcí, mimo vestavěné funkce to jsou  např. GDAL |gdal|:guilabel:`Sklon` a |gdal|:guilabel:`Aspekt` nebo využít externí |grass|:grasscmd:`r.slope.aspect` nebo |saga|:guilabel:`Slope, aspect, curvature`
 
-.. todo:: GDAL clip (ořez více rastrů)
+.. figure:: images/geoproc_batch_pract2.png 
+   :class: middle 
+   :scale-latex: 40 
+
+   Vybrané území
+   
+Vytvořily jsme tedy 2 nové rastrové vrstvy pro dané území. Zjistili jsme však, že potřebujeme  i výstup z vybrané části území. V tomto případě využijeme opět funkce |gdal| :guilabel:`Oříznout rastr podle rozsahu`, ale tentokrát jako dávkový proces na všechny rastrové vrstvy najednou. 
+  
+  
+  
+Jako vstupní vrstvy vybereme rastrové vrstvy, které chceme ořezat (dmt, aspect, slope), a zvolíme rozsah ořezu v mapovém okně, hodnotu rozsahu potom nakopírujeme do dalších řádků (:num:`#batchclip`). Výstupním souborům necháme přidělit příponu podle paraetru :guilabel:`Vstupní vrstva` a spustíme proces.
 
 
-.. todo:: GDAL slope (rastry DEM z iterace)
+.. _batchclip:
+.. figure:: images/geoproc_batch_pract2_3.png 
+   :class: large 
+   :scale-latex: 40 
+
+   Vstupní vrstvy a zbvolený rozsah pro dávkový zpracování |gdal| :guilabel:`Oříznout rastr podle rozsahu`
+   
+.. figure:: images/geoproc_batch_pract2_4.png 
+   :class: middle 
+   :scale-latex: 40 
+   
+   Automatické přidělení přípony výstupním souborům na základě vstupních vrstev
+   
+.. figure:: images/geoproc_batch_pract2_5.png 
+   :class: large 
+   :scale-latex: 40 
+   
+   Výsledek hromadného ořezání rastrových vrstev
+   
