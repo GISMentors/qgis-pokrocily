@@ -172,6 +172,9 @@ a :num:`#lu-pov`. Tabuľky s informáciami o hydrologickej skupine pôdy a o
 Postup spracovania v QGIS
 -------------------------
 
+.. note:: Návod vychází z textu ve školení :skoleni:`GRASS GIS pro
+          pokročilé <grass-gis-pokrocily/hydrologie/scs-cn.html>`.
+
 .. _kr1:
 
 Krok 1
