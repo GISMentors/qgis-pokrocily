@@ -2,7 +2,9 @@
    :width: 1.5em
 .. |saga| image:: ../images/icon/custom_saga.png
    :width: 1.5em
-   
+
+.. _externi:
+
 Externí geoalgorytmy (GRASS GIS, SAGA, R)
 =========================================
 Jak již bylo zmíněno, pomocí nástrojů zpracování lze spouštět algoritmy 
