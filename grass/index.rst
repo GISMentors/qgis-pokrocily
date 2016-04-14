@@ -5,8 +5,6 @@
 Zásuvný modul GRASS
 *******************
 
-.. todo:: v procesu tvorby
-
 **Zásuvný modul GRASS** umožňuje kromě čtení a zápisu dat ve formátu GRASS
 především volání nástrojů systému GRASS.
 
@@ -45,7 +43,7 @@ panel lze otevřít  i z menu :menuselection:`Zásuvné moduly --> GRASS
    
    Panel nástrojů zásuvného modulu GRASS.
 
-Proto aby jsme mohli nástroje systému GRASS používat, je potřeba
+Proto, aby jsme mohli nástroje systému GRASS používat, je potřeba
 definovat tzv. **mapset**, se kterým chceme pracovat. Mapset je kromě
 tzv. *Gisdbase* a *lokace* základními stavebními kameny struktury dat,
 kterou GRASS pro svůj běh vyžaduje. Podrobný popis této struktury
