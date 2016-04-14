@@ -17,11 +17,11 @@ Service) 1.1.1.
 
 QGIS Server je podobně jako samotný QGIS napsán v jazyce C++, pro svůj
 běh vyžaduje webový server (například :wikipedia:`Apache <Apache HTTP
-Server>`). QGIS potom využívá pro GIS logiku a vykreslování mapy. Oba
-softwary používají totožné vizualizační knihovny, proto se výstup
-zobrazuje stejně při publikaci přes QGIS Server ale i přímo v QGISu.
-Takovýmto způsobem lze tedy jednoduše publikovat např. WMS službu na
-základě existujícího QGIS projektu a příslušných dat.
+Server>`). QGIS knihovny jsou potom serverem využívány pro GIS logiku a
+vykreslování mapy. Oba softwary používají totožné vizualizační knihovny, proto
+se výstup zobrazuje stejně při publikaci přes QGIS Server ale i přímo v QGISu.
+Takovýmto způsobem lze tedy jednoduše publikovat např. WMS službu na základě
+existujícího QGIS projektu a příslušných dat.
 
 Technologie je popsaná na `stránkách QGISu <http://docs.qgis.org/2.8/en/docs/user_manual/working_with_ogc/ogc_server_support.html>`_.
 
@@ -67,15 +67,15 @@ QGIS Server podporuje následující typy požadavků na WMS službu:
 - GetStyles  
 
 
-**GetCapabilities**
+**`GetCapabilities`**
 
 Jedním z požadavků klienta na server je požadavek na vypsání informací 
-GetCapabilities. Jde o specifikaci služeb ve dvou základních částech - *Service*
+`GetCapabilities`. Jde o specifikaci služeb ve dvou základních částech - *Service*
 a *Capability*.
 
 Jak již bylo uvedeno, tak pro základní publikaci služby není nutné
 žádné speciální nastavení. V takovém případě ale požadavek
-GetCapabilities vrátí odpověď, která je nastavená ve výchozím souboru
+`GetCapabilities` vrátí odpověď, která je nastavená ve výchozím souboru
 `wms_metadata.xml` v adresáři *cgi-bin*.
 
 Sestavený požadavek pro náš příklad může vypadat následovně:
@@ -92,7 +92,7 @@ zaškrtnutou volbu :item:`Schopnosti služby`.
 .. figure:: images/capabilities.png
    :class: large
 
-   Výchozí odpověď na požadavek GetCapabilities, nastavení informací o
+   Výchozí odpověď na požadavek `GetCapabilities`, nastavení informací o
    službě v projektu a nová odpověď dle nastavení.
 
 Službu WMS lze definovat i detailněji.
@@ -104,7 +104,7 @@ systémy**, vyloučit jednotlivé **tvůrce mapy**. Nejdůležitější je omeze
 definovat vrstvy, které služba nebude zahrnovat -  z velkého projektu lze
 nadefinovat službu poskytující jenom určitý obsah. 
 Z dalších nastavení je podstatné zejména kvalita obrázků a nastavení maximální
-velikosti pro požadavek GetMap.
+velikosti pro požadavek `GetMap`.
 
 Dotazování na prvek můžeme rozšířit i výpisem geometrie dotazovaného prvku
 pomocí volby :item:`Add geometry to feature response`. Geometrie je
@@ -120,7 +120,7 @@ WFS služba
 Nastavení služby WFS je v samostatné části. 
 Lze zde nastavit WFS službu pro každou vrstvu zvlášť. A dokonce je možné
 nastavit práva ke každé vrstvě pro *publikaci, aktualizaci, vkládání a mazání*
-samostatně.
+samostatně (tedy využívat standard WFS-T -- *WFS - Transactional*).
 
 .. figure:: images/wfs.png
 
@@ -135,15 +135,18 @@ samostatně.
    .. figure:: images/test_qgisserver.png
 
       Výsledná zpráva testování nastavených webových služeb.
+
+.. note:: Ve stávající verzi podporuje QGISServer OGC WFS ve verzi 1.0.0, což už
+        je poněkud překonaná verze.
    
 
 Pokročilé nastavení
 ===================
 
-**GetFeatureInfo - nastavení vrstvy**
+**`GetFeatureInfo` - nastavení vrstvy**
 
 Dalším nastavením je možnost povolit vrstvu k identifikování, což určuje zda je k
-dispozici požadavek GetFeatureInfo u WMS služby. Toto nastavení je v
+dispozici požadavek `GetFeatureInfo` u služby WMS. Toto nastavení je v
 :menuselection:`Projekt --> Vlastnosti projektu` záložka :item:`Identifikovat
 vrstvy`. Jak je vidět i na :num:`get-feature-info-set` nastavení je formou
 voleb u každá vrstvy samostatně.
@@ -152,9 +155,9 @@ voleb u každá vrstvy samostatně.
 
 .. figure:: images/set_get_feature_info.png
 
-   Ukázka nastavení reakce na požadavek GetFeatureInfo u jednotlivých vrstev.
+   Ukázka nastavení reakce na požadavek `GetFeatureInfo` u jednotlivých vrstev.
 
-**GetFeatureInfo - nastavení atributů**   
+**`GetFeatureInfo` - nastavení atributů**   
 
 Rozlišit možnost přístupu k datům lze i na úrovni atributů. Pokud bychom chtěli
 poskytovat jenom určité atributy u vrstev, tak i toto chování lze jednoduše 
@@ -169,7 +172,7 @@ službu nebude dostupný.
    :class: large
 
    Nastavení přístupu pro službu WMS k vybraným atributům a výsledek požadavku
-   GetFeatureInfo na službu - atributy `krim_2015c` a `krim_2015v` nejsou  v
+   `GetFeatureInfo` na službu - atributy `krim_2015c` a `krim_2015v` nejsou  v
    odpovědi.
 
   
