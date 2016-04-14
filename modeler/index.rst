@@ -24,6 +24,9 @@ bodů v námi zvoleném území.
    :maxdepth: 2
    
    uvod
+   casti
+   spousteni
+   napoveda_export
    tvorba
    
 	      
