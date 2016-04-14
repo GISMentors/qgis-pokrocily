@@ -8,8 +8,8 @@
    :width: 1.5em
 
 
-Obrazová data jako součást vektorů 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Obrazová data jako součást vektorů (práce s geotagovanými fotografiemi)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Možnost různě kombinovat různorodá data je čím dál víc dostupná. Jedním z běžných
 požadavků se stává možnost přiřadit obrázek k vektorovým datům jako jakýkoli

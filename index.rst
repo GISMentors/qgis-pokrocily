@@ -77,11 +77,11 @@ Dlouhodobá stabilní verze (LTR) je doplněna dvěma krátkodobými verzemi.
 .. toctree::
    :maxdepth: 2
 
+   georeferencovani/index
    geoprocessing/index
    modeler/index
    grass/index
    hydrologie/index
-   georeferencovani/index
    ruzne/index
 
 *******
