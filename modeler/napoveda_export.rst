@@ -7,11 +7,16 @@
    
 Tvorba nápovědy a export modelu
 ===============================
-Nápověda modelu je důležitá jak pro orientaci ostatních uživatelů se kterými chceme model sdíet, ale také pro vlastní orientaci v modelu v budoucnu. 
+Nápověda modelu je důležitá jak pro orientaci ostatních uživatelů se kterými 
+chceme model sdíet, ale také pro vlastní orientaci v modelu v budoucnu. 
 
 Tvorba nápovědy
 ---------------
-Nápověda modelu, slouží jednak k popisu jednotlivých operací, vstupů a výstupů tak i k doprovodným informacím jako jsou autor nebo verze modelu. Editaci nápovědy spustíme s okna modeláře pomocí ikony |help|. Takto vytvořená nápověda se potom bude zobrazovat při spuštění odelu v záložce :guilabel:`Nápověda` (:num:`#modelerhelp`)
+Nápověda modelu, slouží jednak k popisu jednotlivých operací, vstupů a výstupů 
+tak i k doprovodným informacím jako jsou autor nebo verze modelu. Editaci 
+nápovědy spustíme s okna modeláře pomocí ikony |help|. Takto vytvořená nápověda 
+se potom bude zobrazovat při spuštění odelu v záložce :guilabel:`Nápověda` 
+(:num:`#modelerhelp`)
 
 .. figure:: images/modeler_help.png 
    :class: middle 
@@ -36,7 +41,9 @@ Nápověda modelu, slouží jednak k popisu jednotlivých operací, vstupů a v�
 
 Export modelu
 -------------
-Kromě uložení modelu do souboru :file:`.model` můžeme pomocí ikony |mActionSaveMapAsImage| exportovat model jako obrázek :file:`.PNG` a nebo jako Python skript |iconSaveAsConsole|.
+Kromě uložení modelu do souboru :file:`.model` můžeme pomocí ikony 
+|mActionSaveMapAsImage| exportovat model jako obrázek :file:`.PNG` a nebo 
+jako Python skript |iconSaveAsConsole|.
 
 .. figure:: images/modeler_exportpng.png 
    :class: middle 

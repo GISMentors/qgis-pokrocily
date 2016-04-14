@@ -18,7 +18,9 @@
 ====
 Spuštění grafického modeláře
 ----------------------------
-Okno grafického modeláře můžeme otevřít z menu :menuselection:`Zpracování --> Grafický modelář...`, klávesovou zkratkou :kbd:`Ctrl+Alt+M` nebo pomocí položky |model| :guilabel:`Vytvořit nový model` v okně nástrojů zpracování.
+Okno grafického modeláře můžeme otevřít z menu :menuselection:`Zpracování --> 
+Grafický modelář...`, klávesovou zkratkou :kbd:`Ctrl+Alt+M` nebo pomocí položky 
+|model| :guilabel:`Vytvořit nový model` v okně nástrojů zpracování.
 
 .. figure:: images/modeler_menu.png 
    :class: small 
@@ -27,7 +29,9 @@ Okno grafického modeláře můžeme otevřít z menu :menuselection:`Zpracován
    Spouštění okna modeláře z hlahvního menu
    
    
-Uložené modely lze nálezt mezi ostatními algoritmy v okně nástrojů zpracování, kde jsou strukturovány podle zadaných skupin při tvorbě modelu. Také lze přidávat modely ze souboru (.model) nebo z online kolekce.
+Uložené modely lze nálezt mezi ostatními algoritmy v okně nástrojů zpracování, 
+kde jsou strukturovány podle zadaných skupin při tvorbě modelu. Také lze 
+přidávat modely ze souboru (.model) nebo z online kolekce.
 
 .. figure:: images/modeler_panel.png 
    :class: tiny 
@@ -45,14 +49,19 @@ Popis okna
 
 Popis jednotlivých částí okna:
 
-1. V horní části okna máme sadu ikonek pro základní operace (ukládání, export atd.)
+1. V horní části okna máme sadu ikonek pro základní operace (ukládání, export 
+   atd.)
 
-	- |mActionFileOpen|, |mActionFileSave|, |mActionFileSaveAs| - ikony pro otevření a uložení souboru :file:`.model`
+	- |mActionFileOpen|, |mActionFileSave|, |mActionFileSaveAs| - ikony pro 
+	  otevření a uložení souboru :file:`.model`
 	- |mActionSaveMapAsImage| - export modelu jako obrázku :file:`.PNG`
 	- |iconSaveAsConsole| - export modelu jako Python skript :file:`.py`
 	- |help| - editace informací o modelu a nápovědy k modelu 
 	- |run| - spustí model
 	
-2. Levá část okna slouží k přidávání prvků do modelu - vstupních parametrů (záložka :guilabel:`Vstupy`) a Algoritmů (záložka :guilabel:`Algoritmy`)
-3. Dvě textové pole složí k zadání názvu a skupiny, do které se model zařadí v rámci nástrojů zpracování (před uložením nutné vyplnit)
-4. Hlavní okno modeláře. Zde se skládají, configurují a propojují jednotlivé části modelu
+2. Levá část okna slouží k přidávání prvků do modelu - vstupních parametrů 
+   (záložka :guilabel:`Vstupy`) a Algoritmů (záložka :guilabel:`Algoritmy`)
+3. Dvě textové pole složí k zadání názvu a skupiny, do které se model zařadí v 
+   rámci nástrojů zpracování (před uložením nutné vyplnit)
+4. Hlavní okno modeláře. Zde se skládají, configurují a propojují jednotlivé 
+   části modelu

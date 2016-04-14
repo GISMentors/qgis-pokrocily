@@ -7,7 +7,9 @@
 ============
 Název a skupina
 ---------------
-Před samotnou tvorbou modelu je vhodné zadat název a skupinu modelu (num část 3) a uložit jej |mActionFileSave|. Potom můžeme model při jeho tvorbě průběžně ukládat.
+Před samotnou tvorbou modelu je vhodné zadat název a skupinu modelu (num část 
+3) a uložit jej |mActionFileSave|. Potom můžeme model při jeho tvorbě průběžně 
+ukládat.
 
 .. figure:: images/modeler_name.png 
    :class: middle 
@@ -24,7 +26,11 @@ Vstupní parametry
 
    Značení vstupního parametru v modelu
    
-Prvním krokem při tvorbě modelu je vložení vstupních parametrů.Tyto parametry jsou stejné jako u běžných algoritmů - vrstva, rozsah vrstvy, číslo, text, boolean (formou checkboxu) atd. Při spouštění vytvořeného modelu bude požadováno vyplnění vložených vstupních parametrů. Tyto parametry jsou navázany na konkrétní algoritmy v modelu.
+Prvním krokem při tvorbě modelu je vložení vstupních parametrů.Tyto parametry 
+jsou stejné jako u běžných algoritmů - vrstva, rozsah vrstvy, číslo, text, 
+boolean (formou checkboxu) atd. Při spouštění vytvořeného modelu bude 
+požadováno vyplnění vložených vstupních parametrů. Tyto parametry jsou 
+navázany na konkrétní algoritmy v modelu.
 
 .. figure:: images/modeler_vstup.png 
    :class: small 
@@ -32,7 +38,11 @@ Prvním krokem při tvorbě modelu je vložení vstupních parametrů.Tyto param
 
    Možné vstupní parametry
    
-Jednotlivé parametry lze do modelu přidat tažením nebo poklikáním. Po přídání se objeví dialogové okno, které je u většiny parametrů jednoduché, základní položkou je zde název parametru. Nastavení parametrů v modelu lze průběžně měnit kliknutím na symbol tužky, nebo lze parametry odstranit kliknutím na křížek (:num:`#vstupdia`).
+Jednotlivé parametry lze do modelu přidat tažením nebo poklikáním. Po přídání 
+se objeví dialogové okno, které je u většiny parametrů jednoduché, základní 
+položkou je zde název parametru. Nastavení parametrů v modelu lze průběžně 
+měnit kliknutím na symbol tužky, nebo lze parametry odstranit kliknutím na 
+křížek (:num:`#vstupdia`).
 
 .. figure:: images/modeler_vstup_num.png 
    :class: small 
@@ -41,7 +51,9 @@ Jednotlivé parametry lze do modelu přidat tažením nebo poklikáním. Po př�
    Dialogové okno při vložení číselného parametru
 
 
-- do našeho modelu přidáme vstupy :item:`Extent` a :item:`Number`. Pojmenujeme např. :guilabel:`Rozsah` a :guilabel:`Počet bodů`, pozděj můžeme podle potřeby změnit.
+- do našeho modelu přidáme vstupy :item:`Extent` a :item:`Number`. Pojmenujeme 
+  např. :guilabel:`Rozsah` a :guilabel:`Počet bodů`, pozděj můžeme podle potřeby 
+  změnit.
 
 Algoritmy
 ---------
@@ -51,7 +63,9 @@ Algoritmy
 
    Značení algoritmu v modelu
    
-Hlavní součástí modelů jsou algoritmy. Nalezneme zde většinu algoritmů, které jsou v okně nástrojů zpracování. Kromě těchto funkcí jsou zde speciální :guilabel:`Nástroje jen pro modely` (:num:`#algor`)
+Hlavní součástí modelů jsou algoritmy. Nalezneme zde většinu algoritmů, které 
+jsou v okně nástrojů zpracování. Kromě těchto funkcí jsou zde speciální 
+:guilabel:`Nástroje jen pro modely` (:num:`#algor`)
 
 .. _algor:
 .. figure:: images/modeler_algor.png 
@@ -60,9 +74,16 @@ Hlavní součástí modelů jsou algoritmy. Nalezneme zde většinu algoritmů, 
 
    Možné vstupní algoritmy
    
-Algoritmy se přidávají do modelu opět tažením nebo poklikáním. Po přidání se ukáže běžné dialogové okno konkrétního algoritmu (:num:`#algorrand`). Zde máme možnost nastavit výchozí hodnoty parametrů algoritmu, se kterými se bude počítat při spuštění modelu. Jesltiže chceme mít parametry při spouštění modelu volitelné je třeba nakonfigurovat odpovídající vstupy (:num:`#algorrand2`).
+Algoritmy se přidávají do modelu opět tažením nebo poklikáním. Po přidání se 
+ukáže běžné dialogové okno konkrétního algoritmu (:num:`#algorrand`). Zde máme 
+možnost nastavit výchozí hodnoty parametrů algoritmu, se kterými se bude 
+počítat při spuštění modelu. Jesltiže chceme mít parametry při spouštění modelu 
+volitelné je třeba nakonfigurovat odpovídající vstupy (:num:`#algorrand2`).
 
-- vložíme algoritmus |qgis|:guilabel:`Random points in extent` a jako vstupní rozsah zadáme náš vstupní parametr :item:`Rozsah`. Jako pošet bodů zvolíme vstupní parametr :item:`Počet bodů` . Minimální vzdálenost a výstupní soubor měnit prozatím nebudeme, potvrdíme parametry tlačítkem :item:`OK`. 
+- vložíme algoritmus |qgis|:guilabel:`Random points in extent` a jako vstupní 
+  rozsah zadáme náš vstupní parametr :item:`Rozsah`. Jako pošet bodů zvolíme 
+  vstupní parametr :item:`Počet bodů` . Minimální vzdálenost a výstupní soubor 
+  měnit prozatím nebudeme, potvrdíme parametry tlačítkem :item:`OK`. 
 
 .. _algorrand:
 .. figure:: images/modeler_algor_rand.png 
@@ -78,27 +99,40 @@ Algoritmy se přidávají do modelu opět tažením nebo poklikáním. Po přid�
 
    Nastavení parametrů na základě vstupů do modelu
 
-Nastavení algoritmů v modelu lze průběžně editovat kliknutím na symbol tužky, nebo lze algotritmy odstranit kliknutím na křížek. Také lze pomocí tlačítek + a -  jaké mohou být vstupy a výstpy algoritmu. 
+Nastavení algoritmů v modelu lze průběžně editovat kliknutím na symbol tužky, 
+nebo lze algotritmy odstranit kliknutím na křížek. Také lze pomocí tlačítek + a 
+- jaké mohou být vstupy a výstpy algoritmu. 
 
 .. _algorrand3:
 .. figure:: images/modeler_algor_rand3.png 
    :class: middle 
    :scale-latex: 40 
 
-   Nastavení volitelných parametrů algoritmu |qgis|:guilabel:`Random points in extent` při spouštění modelu
+   Nastavení volitelných parametrů algoritmu |qgis|:guilabel:`Random points in 
+   extent` při spouštění modelu
 
-Jednotlivé algoritmy lze na sebe dále navazovat - to co je výstupem z jednoho algoritmu může nějakým způsobem vstupovat do algoritmu druhého (:num:`#algorrand4`).
+Jednotlivé algoritmy lze na sebe dále navazovat - to co je výstupem z jednoho 
+algoritmu může nějakým způsobem vstupovat do algoritmu druhého 
+(:num:`#algorrand4`).
 
-- vložíme do modelu algoritmus |qgis|:guilabel:`Fixed distance buffer`. Jako vstupní vrstvu nastavíme :guilabel:`'Náhodné body' z algoritmu 'Random points in extent'` a dále nastavíme libovolnou fixní vzdálenost v metrech.
+- vložíme do modelu algoritmus |qgis|:guilabel:`Fixed distance buffer`. Jako 
+  vstupní vrstvu nastavíme :guilabel:`'Náhodné body' z algoritmu 'Random points 
+  in extent'` a dále nastavíme libovolnou fixní vzdálenost v metrech.
 
 .. _algorrand4:
 .. figure:: images/modeler_algor_rand4.png 
    :class: middle 
    :scale-latex: 40 
 
-   Náhodné body vygenerované |qgis|:guilabel:`Random points in extent` použité jako vstup pro vytvoření obalových zón
+   Náhodné body vygenerované |qgis|:guilabel:`Random points in extent` použité 
+   jako vstup pro vytvoření obalových zón
 
-Pravým kliknutím na algoritmus v modelu můžeme vyvolat kontextové menu, vekterém můžeme algoritmus vymazat, deaktivovat nebo spustit jeho editaci (:num:`#algkont`). Ve spodní části dialogového okna každého algoritmu je parametr :guilabel:`Rodičovské algoritmy`, pomocí kterého lze nastavit nadřazené algorimty, takto vybrané algoritmy se budou vždy spouštět před tímto algoritmem (:num:`#algpar`).
+Pravým kliknutím na algoritmus v modelu můžeme vyvolat kontextové menu, 
+vekterém můžeme algoritmus vymazat, deaktivovat nebo spustit jeho editaci 
+(:num:`#algkont`). Ve spodní části dialogového okna každého algoritmu je 
+parametr :guilabel:`Rodičovské algoritmy`, pomocí kterého lze nastavit 
+nadřazené algorimty, takto vybrané algoritmy se budou vždy spouštět před 
+tímto algoritmem (:num:`#algpar`).
 
 .. _algkont:
 .. figure:: images/modeler_algor_kont.png 
@@ -122,7 +156,13 @@ Výstupy
 
    Značení výstupu v modelu
    
-Výstup slouží k vytvoření souboru (vrstva, html atd.). Může sloužit jako vlastní konečný výsledek modelu, ale také lze nastavit výstupy průběžně a jakéhokoliv algoritmu. Výstup se konfiguruje u každého algoritmu zvlášť, stačí zadat název výstupu do textového pole ve spodní části dialogového okna algoritmu (:num:`#modeloutname`). Všeobecně, a především při generování více výstupů, je vhodné zvolit smysluplný název podle toho jaký je obsah dat, nebo co nám data sdělují.
+Výstup slouží k vytvoření souboru (vrstva, html atd.). Může sloužit jako 
+vlastní konečný výsledek modelu, ale také lze nastavit výstupy průběžně a 
+jakéhokoliv algoritmu. Výstup se konfiguruje u každého algoritmu zvlášť, stačí 
+zadat název výstupu do textového pole ve spodní části dialogového okna 
+algoritmu (:num:`#modeloutname`). Všeobecně, a především při generování více 
+výstupů, je vhodné zvolit smysluplný název podle toho jaký je obsah dat, nebo 
+co nám data sdělují.
    
 .. _modeloutname:
 .. figure:: images/modeler_out_name.png 
@@ -131,9 +171,12 @@ Výstup slouží k vytvoření souboru (vrstva, html atd.). Může sloužit jako
 
    Dialogové okno algoritmu - pole pro zadání názvu výstupu
 
-- otevřeme (editace) algoritmus |qgis|:guilabel:`Fixed distance buffer` zadáme libovolný název finálního výstupu (např. :item:`Výstup`).
+- otevřeme (editace) algoritmus |qgis|:guilabel:`Fixed distance buffer` 
+  zadáme libovolný název finálního výstupu (např. :item:`Výstup`).
 
-Zadáním jména do textového pole pro výstup, nastavíme model aby vytvořil výstupní soubor. Pokud pole necháme nevyplněné, model žádný soubor nevytvoří. Výsledek algoritmu však může dále sloužit jako vstup pro jiné algoritmy.
+Zadáním jména do textového pole pro výstup, nastavíme model aby vytvořil 
+výstupní soubor. Pokud pole necháme nevyplněné, model žádný soubor nevytvoří. 
+Výsledek algoritmu však může dále sloužit jako vstup pro jiné algoritmy.
 
 .. _modelerukaz:
 .. figure:: images/modeler_out_model.png 

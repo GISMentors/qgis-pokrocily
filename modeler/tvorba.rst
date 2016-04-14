@@ -8,12 +8,15 @@ Další příklady
 ==============
 Model pro analýzu terénu
 ------------------------
-Na tomto příkladu si ukážeme jak vytvořit model, který nám z výřezu digitálního modelu terénu vytvoří vrstvy sklonu svahů, orientace svahů a index drsnoti terénu (TRI)
+Na tomto příkladu si ukážeme jak vytvořit model, který nám z výřezu digitálního 
+modelu terénu vytvoří vrstvy sklonu svahů, orientace svahů a index drsnoti 
+terénu (TRI)
 
 Základní model
 ^^^^^^^^^^^^^^
 1. Zadáme název modelu a skupiny. Model uložíme.
-2. Přidáme vstupní parametry :item:`Raster layer` a :item:`Extent` a pojmenujeme si je (např. :guilabel:`DEM` a :guilabel:`Rozsah ořezu`)
+2. Přidáme vstupní parametry :item:`Raster layer` a :item:`Extent` a 
+   pojmenujeme si je (např. :guilabel:`DEM` a :guilabel:`Rozsah ořezu`)
 
 .. figure:: images/modeler_terr.png 
    :class: middle 
@@ -21,7 +24,10 @@ Základní model
 
    Popis obrázku
  
-3. Přidáme algoritmus |gdal|:guilabel:`Oříznout rastr podle rozsahu`. Jako vstupní vrstvu nastavíme parametr :item:`DEM`, nastavíme hodnotu pro :guilabel:`nodata` (např. -9999) a jako rozsah ořezu nastavíme vstupní parametr :item:`Rozsah ořezu`
+3. Přidáme algoritmus |gdal|:guilabel:`Oříznout rastr podle rozsahu`. Jako 
+   vstupní vrstvu nastavíme parametr :item:`DEM`, nastavíme hodnotu pro 
+   :guilabel:`nodata` (např. -9999) a jako rozsah ořezu nastavíme vstupní 
+   parametr :item:`Rozsah ořezu`
 
 .. figure:: images/modeler_terr2.png 
    :class: middle 
@@ -29,7 +35,10 @@ Základní model
    
    Popis obrázku  
    
-4. Přidáme algoritmy |gdal|:guilabel:`Aspekt`, |gdal|::guilabel:`Sklon` a |gdal|:guilabel:`TRI - index drsnosti terénu`. U všech nastavíme jako vstupní vrstvu :guilabel:`'Oříznuto (rozsah)' z algoritmu 'Clip raster by extent'` a u všech vyplníme odpovídající výstup.
+4. Přidáme algoritmy |gdal|:guilabel:`Aspekt`, |gdal|::guilabel:`Sklon` a 
+   |gdal|:guilabel:`TRI - index drsnosti terénu`. U všech nastavíme jako 
+   vstupní vrstvu :guilabel:`'Oříznuto (rozsah)' z algoritmu 'Clip raster by 
+   extent'` a u všech vyplníme odpovídající výstup.
 
    
 .. figure:: images/modeler_terr3.png 
@@ -56,7 +65,8 @@ Pomocí editace můžeme model upravovat a dále rozšiřovat.
 
 Volitelné nastavení vypočtení sklonu svahu ve stupních/procentech
 .................................................................
-Díky jednomu z parametrů algoritmu |gdal|:guilabel:`Sklon` můžeme vybrat jestli chceme výsledek v precentech namísto stupňů (boolean - Ano/Ne). 
+Díky jednomu z parametrů algoritmu |gdal|:guilabel:`Sklon` můžeme vybrat jestli 
+chceme výsledek v precentech namísto stupňů (boolean - Ano/Ne). 
 
 .. figure:: images/modeler_terr_slope.png 
    :class: middle 
@@ -64,7 +74,12 @@ Díky jednomu z parametrů algoritmu |gdal|:guilabel:`Sklon` můžeme vybrat jes
 
    Popis obrázku
 
-Jak jsme již vysvětlili, model se spouští vždy s hodnotou, která je nastavena při jeho tvorbě. Pokud bychom chtěli mít možnost volby při spouštění, musíme na tento parametr navázat nový vstupní parametr :item:`Boolean`. Vložíme tedy nový parametr :item:`Boolean` , pojmenujeme ho :guilabel:`Sklon v procentech`. Nyní budeme mít v dialogovém okně algoritmu :item:`Slope` u parametru na výběr hodnotu :guilabel:`Sklon v procentech`.
+Jak jsme již vysvětlili, model se spouští vždy s hodnotou, která je nastavena 
+při jeho tvorbě. Pokud bychom chtěli mít možnost volby při spouštění, musíme 
+na tento parametr navázat nový vstupní parametr :item:`Boolean`. Vložíme tedy 
+nový parametr :item:`Boolean` , pojmenujeme ho :guilabel:`Sklon v procentech`. 
+Nyní budeme mít v dialogovém okně algoritmu :item:`Slope` u parametru na výběr 
+hodnotu :guilabel:`Sklon v procentech`.
 
 .. figure:: images/modeler_terr_slope2.png 
    :class: middle 
@@ -80,7 +95,12 @@ Jak jsme již vysvětlili, model se spouští vždy s hodnotou, která je nastav
 
 Vytvoření již reklasifikované orientace svahu (Aspekt)
 ......................................................
-Pro přidání reklasifikace do modelu využijeme aloritmu |grass|:grasscmd:`r.reclass`. V kapitole :ref:`externi` jsme si ukázali jak vytvořit soubor reklasifikace. Abychom takový soubor dostali do modelu musíme přidat vstupní parametr :item:`File` (pojmenujeme si ho např. :guilabel:`Soubor pro reklasifikaci`). V dialogovém okně aloritmu |grass|:grasscmd:`r.reclass` nastavíme jednotlivé parametry (:num:`#modelreclass`).
+Pro přidání reklasifikace do modelu využijeme aloritmu 
+|grass|:grasscmd:`r.reclass`. V kapitole :ref:`externi` jsme si ukázali jak 
+vytvořit soubor reklasifikace. Abychom takový soubor dostali do modelu musíme 
+přidat vstupní parametr :item:`File` (pojmenujeme si ho např. :guilabel:`Soubor 
+pro reklasifikaci`). V dialogovém okně aloritmu |grass|:grasscmd:`r.reclass` 
+nastavíme jednotlivé parametry (:num:`#modelreclass`).
 
 .. _modelreclass:
 .. figure:: images/modeler_terr_reclass.png 
@@ -90,7 +110,8 @@ Pro přidání reklasifikace do modelu využijeme aloritmu |grass|:grasscmd:`r.r
    Nastavení parametrů |grass|:grasscmd:`r.reclass` v modelu
    
    
-Výsledný model nám nyní může vygenerovat vedle původního rastru :item:`Aspekt` i reklasifikovanou verzi :item:`Reklasifikovaný aspekt`
+Výsledný model nám nyní může vygenerovat vedle původního rastru :item:`Aspekt` 
+i reklasifikovanou verzi :item:`Reklasifikovaný aspekt`
 
 
 .. figure:: images/modeler_terr_reclass2.png 
