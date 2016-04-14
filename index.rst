@@ -50,9 +50,10 @@ Dlouhodobá stabilní verze (LTR) je doplněna dvěma krátkodobými verzemi.
                <https://www.qgis.org/en/site/forusers/download.html>`_. V
                jiných verzích není zaručena funkčnost uvedených
                příkladů. Dále předpokládáme zapnutou *českou
-               lokalizaci*, viz kapitola
-               :ref:`volba-lokalizace`. Obsahově navazuje na školení
-               :skoleni:`QGIS pro začátečníky <qgis-zacatecnik>`.
+               lokalizaci*, viz kapitola :skoleni:`volba-lokalizace
+               <qgis-zacatecnik/ruzne/lokalizace.html>`. Obsahově
+               navazuje na školení :skoleni:`QGIS pro začátečníky
+               <qgis-zacatecnik>`.
 
 .. index::
    pair: datové sady; ke stažení
@@ -122,7 +123,3 @@ Text dokumentu
 Zdrojové texty školení jsou dostupné na adrese:
 
 * https://github.com/GISMentors/qgis-pokrocily
-
-
-
-

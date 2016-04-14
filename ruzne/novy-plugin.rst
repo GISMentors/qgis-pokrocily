@@ -81,7 +81,7 @@ Vďaka tomuto pluginu nemusíme pri každej zmene kódu reštartovať QGIS. Zmen
 prejavia po jeho spustení.
 
 Päť základných krokov pre vytvorenie pluginu Save Views
-======================================================
+=======================================================
 
 :ref:`1.<krok1>` 
 Spustenie zásuvného modulu *Plugin Builder* a vyplnenie dialógu
