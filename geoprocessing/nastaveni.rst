@@ -153,7 +153,7 @@ se budou údaje počítat. Výsledek potom zkontrolujeme v prohlížeči výsled
    :class: middle 
    :scale-latex: 40 
 
-   Popis obrázku
+   Funkce |qgis| :guilabel:`Základní statistiky pro numerická pole` 
 
 Informace (rastr)
 .................
@@ -166,4 +166,4 @@ výsledků...`.
    :class: middle 
    :scale-latex: 40 
 
-   Popis obrázku
+   Funkce |gdal| :guilabel:`Informace` (spouští příkaz :guilabel:`gdalinfo`)
