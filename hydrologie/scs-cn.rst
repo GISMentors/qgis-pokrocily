@@ -324,7 +324,7 @@ oblasti výberom v mapovom okne QGIS pomocou `Select the extent by dragging on c
 .. _n-mapset:
 
 .. figure:: images/n_mapset.png
-   :class: middle
+   :class: large
         
    Vytvorenie lokácie a mapsetu, nastavenie výpočtovej oblasti a rozlíšenie.
 
@@ -352,7 +352,7 @@ QGIS. Názvy máp zachováme rovnaké.
 Ak chceme overiť, či sa dané vrstvy v mapsete nachádzajú použijeme *shell*.
 Kliknutím na |grass_shell| :sup:`grass shell` spustíme príkazový riadok. Modul 
 :grasscmd:`g.list` vypíše obsah konkrétneho mapsetu. Pre výpis vektorov 
-v aktuálnom mapsete zadáme :code:`g.list type = vector mapset=.`. Ak zadáme
+v aktuálnom mapsete zadáme :code:`g.list type=vector mapset=.`. Ak zadáme
 iba :code:`g.list`, otvorí sa dialógové okno modulu a parametre môžeme zadať 
 interaktívne.
 
