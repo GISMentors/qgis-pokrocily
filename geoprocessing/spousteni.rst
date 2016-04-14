@@ -105,7 +105,7 @@ nám uloží do předdefinované složky (výchozí nastavení
 vrstvu standartním způsobem na disk. Chování tvorby výstupního souboru se dá
 změnit v nastavení (viz. kapitola :ref:`nastaveni`)
 
-
+.. tip:: Pomocí pložky :guilabel:`Upravit vykreslovací styly pro výstupy` v kontextovém menu algoritmu (pravý klik na algoritmus v seznamu), lze změnit výchozí styly jednotlivých výstupů, použitím uložených stylů.
 
 Další parametry
 ^^^^^^^^^^^^^^^
