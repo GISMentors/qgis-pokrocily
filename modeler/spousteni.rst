@@ -8,13 +8,13 @@ Model se spouští z okna nástrojů zpracování, stejným způsobem jako ostat
    :class: middle 
    :scale-latex: 40 
 
-   Dialogové okno ukázkového modelu (:num:`#modelerukaz`)
+   Dialogové okno ukázkového modelu
 
 .. figure:: images/modeler_spust_vysl.png 
    :class: middle 
    :scale-latex: 40 
 
-   Výstup ukázkového modelu (:num:`#modelerukaz`)
+   Výstup ukázkového modelu
    
 Editace, smazání modelu
 -----------------------
