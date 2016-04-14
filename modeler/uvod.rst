@@ -7,6 +7,8 @@
    
 Úvod
 ====
+Spuštění grafického modeláře
+----------------------------
 Okno grafického modeláře můžeme otevřít z menu :menuselection:`Zpracování --> Grafický modelář...`, klávesovou zkratkou :kbd:`Ctrl+Alt+M` nebo pomocí položky |model| :guilabel:`Vytvořit nový model` v okně nástrojů zpracování.
 
 .. figure:: images/modeler_menu.png 
@@ -118,6 +120,9 @@ Jednotlivé algoritmy lze na sebe dále navazovat - to co je výstupem z jednoho
 
    Náhodné body vygenerované |qgis|:guilabel:`Random points in extent` použité jako vstup pro vytvoření obalových zón
 
+
+.. todo:: rodičovské algoritmy
+
 Výstupy
 ^^^^^^^
 .. figure:: images/modeler_out_dia.png 
@@ -126,9 +131,52 @@ Výstupy
 
    Značení výstupu v modelu
    
-.. todo:: typy výstupu (vrstva,html), jak vytvořit
+Výstup slouží k vytvoření souboru (vrstva, html atd.). Může sloužit jako vlastní konečný výsledek modelu, ale také lze nastavit výstupy průběžně a jakéhokoliv algoritmu. Výstup se konfiguruje u každého algoritmu zvlášť, stačí zadat název výstupu do textového pole ve spodní části dialogového okna algoritmu (:num:`#modeloutname`).
+   
+.. _modeloutname:
+.. figure:: images/modeler_out_name.png 
+   :class: middle
+   :scale-latex: 40 
 
+   Dialogové okno algoritmu - pole pro zadání názvu výstupu
+   
+Při zadání jména do textového pole pro výstup, nastavíme model aby vytvořil výstupní soubor. Pokud pole necháme nevyplněné, model žádný soubor nevytvoří. Výsledek algoritmu však může dále sloužit jako vstup pro jiné algoritmy.
 
+.. _modelerukaz:
+.. figure:: images/modeler_out_model.png 
+   :class: middle 
+   :scale-latex: 40 
 
-.. todo:: rodičovské algoritmy
+   Model, ve kterém bude výstup vrstva obalových zón
 
+.. figure:: images/modeler_out_model2.png 
+   :class: middle 
+   :scale-latex: 40 
+
+   Ukázka modelu z více výstupy
+
+Spouštění modelu
+----------------
+Model se spouští z okna nástrojů zpracování, stejným způsobem jako ostatní algoritmy. Lze jej také spustit jako dávkový proces.
+
+.. figure:: images/modeler_spust.png 
+   :class: middle 
+   :scale-latex: 40 
+
+   Dialogové okno ukázkového modelu (:num:`#modelerukaz`)
+
+.. figure:: images/modeler_spust_vysl.png 
+   :class: middle 
+   :scale-latex: 40 
+
+   Výstup ukázkového modelu (:num:`#modelerukaz`)
+   
+Editace, smazání modelu
+-----------------------
+K modelu se můžeme vracet a provádět změny pomocí kontextového menu vyvolaného v okně nástrojů zpracování. Zde můžeme také změnit výchozí styl pro generované výstupy nebo model smazat.
+
+.. figure:: images/modeler_edit.png 
+   :class: small 
+   :scale-latex: 40 
+
+   Kontextová nabídka modelu
