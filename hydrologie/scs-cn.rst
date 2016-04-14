@@ -226,6 +226,11 @@ Takýmto spôsobom pripojíme tabuľky s informáciami o hydrologických skupin�
         
    Zobrazenie pripojených vrstiev vo vlastnostiach vrstvy *hpj_kpp*.
 
+.. note:: V některých případech nemusí připojení tabulek proběhnout
+          korektně, např. pokud se liší datový typ sloupečků použitých
+          pro připojení. Typicky textové vs. číselné pole, např. '09'
+          vs. '9'.
+
 Potom otvoríme atribútovú tabuľku :map:`hpj_kpp`, zapneme editovací mód ikonkou 
 |edit| a v kalkulačke polí |kalk| vytvoríme nový stĺpec. Použijeme pripojené
 atribúty o hydrologickej skupine (:dbcolumn:`hpj_HydrSk` z hlavných 
