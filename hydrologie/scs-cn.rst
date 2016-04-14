@@ -271,7 +271,7 @@ pri ďalších kódoch. Výsledok je na :num:`#hydrsk-ok`.
 .. _kalk-ab:
 
 .. figure:: images/kalk_AB.png
-   :class: small
+   :class: middle
         
    Zjednotenie hodnôt atribútov pomocou kalkulátora polí.
 
