@@ -128,7 +128,7 @@ Regionálna štatistika dopravných prostriedkov
 
 Do mapového okna pridáme vrstvy ako železnice (:map:`zeleznice`), 
 diaľnice (:map:`silnice_1`), rýchlostné cesty (:map:`silnice_2`), cesty 1. a 2. 
-triedy (:map:`silnice_3`, map:`silnice_4` a :map:`silnice_5`). 
+triedy (:map:`silnice_3`, :map:`silnice_4` a :map:`silnice_5`). 
 Skontrolujeme či všetky vrstvy majú rovnaký súradnicový systém, t.j. 
 :menuselection:`Vlastnosti --> Obecné --> Souradnicový referenčný systém`). 
 Potom z menu lišty vyberieme :menuselection:`Vektor --> Analytické nástroje -->
