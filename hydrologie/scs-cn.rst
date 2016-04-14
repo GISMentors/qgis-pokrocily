@@ -41,11 +41,12 @@
 
 
 
-Metóda SCS CN
-=============
+===============
+ Metóda SCS CN
+===============
 
 Teoretické východiská
----------------------
+=====================
 
 Ide o výpočet priameho odtoku z povodia, ktorý je tvorený tzv. povrchovým odtokom
 a tzv. hypodermockým (podpovrchovým) odtokom. Metóda bola vypracovaná
@@ -65,7 +66,7 @@ pôdnych jednotiek (presnejší spôsob) alebo dát komplexného prieskumu pôd 
 kde informácie o hlavných pôdnych jednotkách k dispozícii nie sú).
 
 Základné symboly
-----------------
+================
 
  * :math:`CN` - číslo odtokovej krivky
  * :math:`A` - max potenciálna strata z povodia, výška vody zadržaná v povodí; ostatné je odtok (:math:`mm`)
@@ -85,7 +86,7 @@ ako pomer odtoku a zrážky, ktorá je redukovaná o počiatočné straty.
 .. _vstupne-data:
 
 Vstupné dáta
-------------
+============
 
  * :map:`hpj.shp` - vektorová vrstva hlavných pôdnych jednotiek z kódov BPEJ, :num:`#hpj-kpp` vľavo
  * :map:`kpp.shp` - vektorová vrstva komplexného prieskumu pôd, :num:`#hpj-kpp` vpravo
@@ -107,7 +108,7 @@ Vstupné dáta
 	  územia. Návrhové zrážky možno získať z hydrometeorologického ústavu.
 
 Navrhovaný postup
-------------------
+=================
 :ref:`1.<kr1>` 
 zjednotenie hlavných pôdnych jednotiek a komplexného prieskumu pôd 
 
@@ -170,7 +171,7 @@ a :num:`#lu-pov`. Tabuľky s informáciami o hydrologickej skupine pôdy a o
    Číselníky s informáciami o hydrologickej skupine a číslami CN.
 
 Postup spracovania v QGIS
--------------------------
+=========================
 
 .. note:: Návod vychází z textu ve školení :skoleni:`GRASS GIS pro
           pokročilé <grass-gis-pokrocily/hydrologie/scs-cn.html>`.
@@ -178,7 +179,7 @@ Postup spracovania v QGIS
 .. _kr1:
 
 Krok 1
-^^^^^^
+------
 V prvom kroku založíme projekt a pomocou |add_vector| a |add_csv| pridáme do 
 panelu vrstiev súbory :map:`hpj.shp`, 
 :map:`kpp.shp`, :map:`landuse.shp`, :map:`povodi.shp`, :dbtable:`hpj_hydrsk`,
@@ -193,7 +194,7 @@ Vznikne vektorový výstup :map:`hpj_kpp`.
 .. _kr2:
 
 Krok 2
-^^^^^^
+------
 .. _join-vo-vlastnostiach:
 
 Tabuľku :dbtable:`hpj_hydrsk` môžeme pripojiť k atribútom novej vektorovej mapy 
@@ -331,7 +332,7 @@ oblasti výberom v mapovom okne QGIS pomocou `Select the extent by dragging on c
 .. _kr3:
 
 Krok 3
-^^^^^^
+------
 Záujmové územie potrebujeme rozdeliť na viac elementárnych plôch. Vytvoríme 
 prienik vektorových vrstiev. 
 
@@ -402,7 +403,7 @@ formátu `*csv`.
 .. _kr4:
 
 Krok 4
-^^^^^^
+------
 V ďalšom kroku je potrebné vytvoriť stĺpec, ktorý bude obsahovať údaje o využití 
 územia a o hydrologickej skupine pôdy danej elementárnej plochy v tvare 
 *VyužitieÚzemia_HydrologickáSkupina*.
@@ -447,7 +448,7 @@ pomocou ``db.select sql='select * from hpj_kpp_landuse_1 where cat=1``.
 .. _v-dbjoin:
 
 .. figure:: images/v_db_join.png
-   :class: middle
+   :class: large
         
    Pripojenie tabuľky k existujúcej tabuľke vektorov.
 
@@ -458,7 +459,7 @@ pomocou ``db.select sql='select * from hpj_kpp_landuse_1 where cat=1``.
 .. _kr5:
 
 Krok 5
-^^^^^^
+------
 Hodnoty návrhových zrážok s rôznou dobou opakovania do vrstvy pridáme 
 modulom |v.overlay.or| :sup:`v.overlay.or`. Zjednoteniu predchádza import 
 vrstvy povodí s informáciami o zrážkach do mapsetu, pričom postup je obdobný ako 
@@ -482,7 +483,7 @@ zjednotení s vrstvou povodí dostaneme ako výstup modulu :grasscmd:`v.info`, v
 .. _v-info:
 
 .. figure:: images/v_info.png
-   :class: middle
+   :class: large
         
    Výpis základných informácií o vektorovej mape pomocou modulu *v.info*.
 
@@ -511,14 +512,14 @@ aby typ tohto atribútu bol číselný, na čo použijeme funkciu ``cast()``.
    .. _v-to-rast-cn:
 
    .. figure:: images/v_to_rast_cn.png
-      :class: middle
-        
+      :class: large
+      
       Konverzia vektorovej mapy na rastrovú na základe atribútu.
 
 .. _kr6:
 
 Krok 6
-^^^^^^
+------
 
 Pre každú elementárnu plochu vypočítame jej výmeru, parameter `A` a parameter 
 :math:`I_a`.
@@ -543,14 +544,13 @@ plochy každej elementárnej plochy využijeme modul z kategórie
 .. _add-columns:
 
 .. figure:: images/add_columns.png
-   :class: small
         
    Vytvorenie viacerých stĺpcov naraz použitím *v.db.addcolumn*.
 
 .. _area-a:
 
 .. figure:: images/area_A.png
-   :class: middle
+   :class: large
         
    Výpočet výmery modulom *v.to.db* a parametra *A* modulom *v.db.update_op*.
 
@@ -568,7 +568,7 @@ plochy každej elementárnej plochy využijeme modul z kategórie
 .. _kr7:
 
 Krok 7
-^^^^^^
+------
 Znázornenie vektorovej vrstvy povodí s návrhovými zrážkami v prostredí QGIS je na 
 :num:`#navrhove-zrazky` (maximálna hodnota atribútu :dbcolumn:`H_002_120` 
 predstavuje 23 mm). Histogramy je možné vykresliť v záložke 
@@ -621,7 +621,6 @@ Záporným hodnotám :dbcolumn:`HOklad` priradíme konštantu `0` modulom
 .. _v-db-update-query:
 
 .. figure:: images/v_db_update_query.png
-   :class: small
         
    Priradenie novej konštantnej hodnoty v stĺpci v prípade pravdivého dotazu 
    modulom *v.db.update_query*.
@@ -641,7 +640,7 @@ Záporným hodnotám :dbcolumn:`HOklad` priradíme konštantu `0` modulom
 .. _kr8:
 
 Krok 8
-^^^^^^
+------
 Modulom |v.to.rast.attr| :sup:`v.to.rast.attr` vytvoríme z vektorovej vrstvy 
 :map:`hpj_kpp_lu_pov` rastre :map:`ho` a :map:`op`. Zobrazenie v prostredí QGIS 
 je na :num:`#ho-op`.
@@ -657,7 +656,7 @@ je na :num:`#ho-op`.
 .. _kr9:
 
 Krok 9
-^^^^^^ 
+------
 V ďalšom kroku vypočítame priemerné hodnoty priameho odtoku pre každé povodie v 
 riešenom území. Modul |v.rast.stats| :sup:`v.rast.stats` počíta základné 
 štatistické informácie rastrovej mapy na základe vektorovej vrstvy a navyše
@@ -667,7 +666,6 @@ je na :num:`#v-rast-stats`.
 .. _v-rast-stats:
 
 .. figure:: images/v_rast_stats.png
-   :class: small
         
    Dialógové okno modulu *v.rast.stats*.
 
