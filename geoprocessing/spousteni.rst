@@ -32,9 +32,6 @@ algoritmů GDAL/OGR vidíme také ve spodní části okna sestrojený příkaz p
 námi zadaných parametrů. I když je každý algoritmus jiný a potřebuje 
 specifické vstupy a nastavení, základní struktura dialogového okna se nemění. 
 
-.. note:: 
-
-
 .. figure:: images/geoproc_wind.png 
    :class: middle 
    :scale-latex: 40 

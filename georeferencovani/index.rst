@@ -130,9 +130,9 @@ Postup je zobrazen na :num:`add-gcp-point`.
    .. _input-coordinates:
 
    .. figure:: images/input-coordinates.png
-
+      
       Příklad vstupního obrázku s definovanými souřadnicemi.
-   
+
    V takovém případě nemusíme bod zadávat kliknutím v mapovém okně ale přímo
    zadat souřadnice.
    Další možností je zadávání z mapového okna, kde se vykreslí souřadnicová 
