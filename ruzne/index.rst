@@ -7,5 +7,5 @@ Různé
       
    geotag_obrazky
    grafy
+   vfk-ruian
    qgisserver
-
