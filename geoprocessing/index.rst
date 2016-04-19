@@ -4,7 +4,7 @@ Nástroje zpracování - Geoprocessing
 
 Kromě spouštění různých nástrojů a analýz z hlavního menu (položky
 :menuselection:`Vektor` a :menuselection:`Rastr`), můžeme stejné (nebo
-obdobné(,) funkce a mnoho dalších spouštět i z okna :item:`Nástroje zpracování`.
+obdobné) funkce a mnoho dalších spouštět i z okna :item:`Nástroje zpracování`.
 
 .. figure:: images/geoproc.png
    :scale: 80%
