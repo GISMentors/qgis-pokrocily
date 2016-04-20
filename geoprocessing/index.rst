@@ -33,7 +33,7 @@ Algoritmy mohou generovat 4 typy dat:
 	- tabulky
 	- HTML soubory (textové a grafické výstupy) 
 		
-.. note:: Dalším výstupem může být například výběr prvků ve vektorové vrstvě
+.. note:: Dalším výstupem může být například výběr prvků ve vektorové vrstvě.
 
 
 

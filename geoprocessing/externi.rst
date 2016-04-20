@@ -7,6 +7,7 @@
 
 Externí geoalgorytmy (GRASS GIS, SAGA, R)
 =========================================
+
 Jak již bylo zmíněno, pomocí nástrojů zpracování lze spouštět algoritmy 
 externích poskytovatelů. Tímto způsobem lze spouštět algoritmy např. ze 
 softwarů GRASS GIS, SAGA či R. Dále je možné spouštět funkce některých pluginů.
@@ -18,11 +19,12 @@ GRASS
 
 Reklasifikace rastru
 ^^^^^^^^^^^^^^^^^^^^
+
 Pomocí funkce |grass| :grasscmd:`r.reclass` lze snadno reklasifikovat rastry 
 do kategorii. Ukážeme si reklasifikaci na příkladu orientace svahů (aspect). 
 
 Nejdříve je nutné připravit si textový soubor, ve kterém bude definována naše 
-zvolená klasifikace
+zvolená klasifikace:
 
 ::
 
@@ -40,37 +42,33 @@ můžeme rastr nastylovat.
 
 .. figure:: images/geoproc_reclass.png 
    :class: middle 
-   :scale-latex: 40 
 
-   Spouštění algoriitmu |grass| :grasscmd:`r.reclass` 
+   Spouštění algoriitmu |grass| :grasscmd:`r.reclass`.
    
 .. figure:: images/geoproc_reclass2.png 
-   :class: middle 
-   :scale-latex: 40 
 
-   Nastavení stylu reklasifikované vrstvy sklonu svahů
+   Nastavení stylu reklasifikované vrstvy sklonu svahů.
    
 .. figure:: images/geoproc_reclass3.png 
-   :class: middle 
-   :scale-latex: 40 
 
-   Výsledná rastrová vrstva sklonu svahů
+   Výsledná rastrová vrstva sklonu svahů.
 
+Pokud bychom chtěli reklasifikovat data s plovoucí desetinou čárkou
+(float) je nutné použít funkci |grass| :grasscmd:`r.recode`. Toho lze
+využít pokud potřebujeme rastr s hodnotami od 0 do 1 (např. pro
+klasifikaci vhodnosti podmínek při výpočtu krajiného potenciálu pro
+výskyt konkrétního organismu).
 
-Pokud bychom chtěli získat data s plovoucí desetinou čárkou (float) je nutné 
-použít funkci |grass| :grasscmd:`r.recode`. Toho lze využít pokud potřebujeme 
-rastr s hodnotami od 0 do 1 (např. pro klasifikaci vhodnosti podmínek při 
-výpočtu krajiného potenciálu pro výskyt konkrétního organismu)
+.. tip:: Pro další možnosti zápisu reklasifikace přejděte v okně
+         nástroje na záložku nápověda nebo otevřete nápovědu přímo v
+         manuálu GRASS GIS :grasscmd:`r.reclass`.
 
-
-.. tip:: Pro další možnosti zápisu reklasifikace přejděte v okně nástroje na 
-		 záložku nápověda, nebo otevřete nápovědu přímo v manuálu GRASS GIS - 
-		 :grasscmd:`r.reclass`
-	
 SAGA
 ----
+
 Slope, aspect, curvature
 ^^^^^^^^^^^^^^^^^^^^^^^^
+
 Tento algoritmus nám umožní vytvořit z digitálního modelu terénu (dmt) vrstvu 
 sklonů, orientace svahů a různých typů zakřivení. Výhodou je možnost výběru 
 metody, ale především výstupních jednotek u svahů a orientací 
@@ -80,20 +78,16 @@ Při spuštění algoritmu se vypočítají sice všechny výstupy, ale lze samo
 vybrat ty, které chceme nahrát do projektu či uložit do souboru.
 
 .. figure:: images/geoproc_saga.png 
-   :class: middle 
-   :scale-latex: 40 
 
-   Dialogové okno algoritmu |saga|:guilabel:`Slope, aspect, curvature`
+   Dialogové okno algoritmu |saga|:guilabel:`Slope, aspect, curvature`.
    
 .. _sagajednotky:
 .. figure:: images/geoproc_saga2.png 
-   :class: small 
-   :scale-latex: 40 
+   :class: tiny
 
-   Možnost výběru jednotek
+   Možnost výběru jednotek.
    
 .. figure:: images/geoproc_saga3.png 
-   :class: large 
-   :scale-latex: 40 
+   :class: middle
 
-   Výsledek algoritmu |saga|:guilabel:`Slope, aspect, curvature`
+   Výsledek algoritmu |saga|:guilabel:`Slope, aspect, curvature`.

@@ -7,8 +7,8 @@ Orientace v nástrojích
 Aktivace sady nástrojů
 ----------------------
 
-Okno sady nástrojů |alg| lze aktivovat v hlavním menu
-:menuselection:`Zpracování --> Sada nástrojů`, nebo použitím klávesové
+Okno *sady nástrojů* |alg| lze aktivovat v hlavním menu
+:menuselection:`Zpracování --> Sada nástrojů`, použitím klávesové
 zkratky :kbd:`Ctrl+Alt+T`, nebo stejně jako u vypínání a zapínání
 ostatních panelů, nástrojových lišt a oken - pravým kliknutím na panel
 a výběrem z nabídky.
@@ -35,7 +35,7 @@ Orientace v okně a prohledávání nástrojů je velice
 intuitivní. Nástroje jsou strukturované podle poskytovatelů a dále
 zpravidla rozdělené do tematických okruhů (vektorové analýzy, rastrové
 analýzy atd.). Součástí této struktury je také položka
-:menuselection:`Naposledy použité algoritmy` kde naleznete naposledy
+:menuselection:`Naposledy použité algoritmy`, kde naleznete naposledy
 použité funkce.
 
 .. figure:: images/geoproc_orient.png
