@@ -12,21 +12,19 @@ Před samotnou tvorbou modelu je vhodné zadat název a skupinu modelu (num čá
 ukládat.
 
 .. figure:: images/modeler_name.png 
-   :class: middle 
-   :scale-latex: 40 
 
-   Zadání jména a skupiny modelu
-	
+   Zadání jména a skupiny modelu.
+
 Vstupní parametry
 -----------------
+
 .. _vstupdia:
 .. figure:: images/modeler_vstup_dia.png 
    :class: tiny
-   :scale-latex: 40 
 
-   Značení vstupního parametru v modelu
+   Značení vstupního parametru v modelu.
    
-Prvním krokem při tvorbě modelu je vložení vstupních parametrů.Tyto parametry 
+Prvním krokem při tvorbě modelu je vložení vstupních parametrů. Tyto parametry 
 jsou stejné jako u běžných algoritmů - vrstva, rozsah vrstvy, číslo, text, 
 boolean (formou checkboxu) atd. Při spouštění vytvořeného modelu bude 
 požadováno vyplnění vložených vstupních parametrů. Tyto parametry jsou 
@@ -34,22 +32,19 @@ navázany na konkrétní algoritmy v modelu.
 
 .. figure:: images/modeler_vstup.png 
    :class: small 
-   :scale-latex: 40 
 
-   Možné vstupní parametry
+   Možné vstupní parametry.
    
 Jednotlivé parametry lze do modelu přidat tažením nebo poklikáním. Po přídání 
-se objeví dialogové okno, které je u většiny parametrů jednoduché, základní 
+se objeví dialogové okno, které je u většiny parametrů jednoduché. Základní 
 položkou je zde název parametru. Nastavení parametrů v modelu lze průběžně 
 měnit kliknutím na symbol tužky, nebo lze parametry odstranit kliknutím na 
 křížek (:num:`#vstupdia`).
 
 .. figure:: images/modeler_vstup_num.png 
    :class: small 
-   :scale-latex: 40 
 
-   Dialogové okno při vložení číselného parametru
-
+   Dialogové okno při vložení číselného parametru.
 
 - do našeho modelu přidáme vstupy :item:`Extent` a :item:`Number`. Pojmenujeme 
   např. :guilabel:`Rozsah` a :guilabel:`Počet bodů`, pozděj můžeme podle potřeby 
@@ -57,22 +52,21 @@ křížek (:num:`#vstupdia`).
 
 Algoritmy
 ---------
+
 .. figure:: images/modeler_algor_dia.png 
    :class: tiny
-   :scale-latex: 40 
 
-   Značení algoritmu v modelu
+   Značení algoritmu v modelu.
    
 Hlavní součástí modelů jsou algoritmy. Nalezneme zde většinu algoritmů, které 
 jsou v okně nástrojů zpracování. Kromě těchto funkcí jsou zde speciální 
-:guilabel:`Nástroje jen pro modely` (:num:`#algor`)
+:guilabel:`Nástroje jen pro modely` (:num:`#algor`).
 
 .. _algor:
 .. figure:: images/modeler_algor.png 
    :class: small 
-   :scale-latex: 40 
 
-   Možné vstupní algoritmy
+   Možné vstupní algoritmy.
    
 Algoritmy se přidávají do modelu opět tažením nebo poklikáním. Po přidání se 
 ukáže běžné dialogové okno konkrétního algoritmu (:num:`#algorrand`). Zde máme 
@@ -81,112 +75,103 @@ počítat při spuštění modelu. Jesltiže chceme mít parametry při spoušt�
 volitelné je třeba nakonfigurovat odpovídající vstupy (:num:`#algorrand2`).
 
 - vložíme algoritmus |qgis|:guilabel:`Random points in extent` a jako vstupní 
-  rozsah zadáme náš vstupní parametr :item:`Rozsah`. Jako pošet bodů zvolíme 
+  rozsah zadáme náš vstupní parametr :item:`Rozsah`. Jako počet bodů zvolíme 
   vstupní parametr :item:`Počet bodů` . Minimální vzdálenost a výstupní soubor 
   měnit prozatím nebudeme, potvrdíme parametry tlačítkem :item:`OK`. 
 
 .. _algorrand:
 .. figure:: images/modeler_algor_rand.png 
    :class: medium 
-   :scale-latex: 40 
 
-   Dialogové okno algoritmu s pevně stanpvenými parametry
+   Dialogové okno algoritmu s pevně stanovenými parametry.
 
 .. _algorrand2:
 .. figure:: images/modeler_algor_rand2.png 
    :class: large 
-   :scale-latex: 40 
 
-   Nastavení parametrů na základě vstupů do modelu
+   Nastavení parametrů na základě vstupů do modelu.
 
-Nastavení algoritmů v modelu lze průběžně editovat kliknutím na symbol tužky, 
-nebo lze algotritmy odstranit kliknutím na křížek. Také lze pomocí tlačítek + a 
-- jaké mohou být vstupy a výstpy algoritmu. 
+Nastavení algoritmů v modelu lze průběžně editovat kliknutím na symbol
+tužky nebo lze algotritmy odstranit kliknutím na křížek. Také lze
+použít tlačítek ``+`` a ``-`` lze měnit vstupy a výstupy algoritmu.
 
 .. _algorrand3:
 .. figure:: images/modeler_algor_rand3.png 
-   :class: middle 
-   :scale-latex: 40 
 
    Nastavení volitelných parametrů algoritmu |qgis|:guilabel:`Random points in 
-   extent` při spouštění modelu
+   extent` při spouštění modelu.
 
 Jednotlivé algoritmy lze na sebe dále navazovat - to co je výstupem z jednoho 
 algoritmu může nějakým způsobem vstupovat do algoritmu druhého 
 (:num:`#algorrand4`).
 
-- vložíme do modelu algoritmus |qgis|:guilabel:`Fixed distance buffer`. Jako 
+- Vložíme do modelu algoritmus |qgis|:guilabel:`Fixed distance buffer`. Jako 
   vstupní vrstvu nastavíme :guilabel:`'Náhodné body' z algoritmu 'Random points 
   in extent'` a dále nastavíme libovolnou fixní vzdálenost v metrech.
 
 .. _algorrand4:
 .. figure:: images/modeler_algor_rand4.png 
    :class: middle 
-   :scale-latex: 40 
 
    Náhodné body vygenerované |qgis|:guilabel:`Random points in extent` použité 
-   jako vstup pro vytvoření obalových zón
+   jako vstup pro vytvoření obalových zón.
 
 Pravým kliknutím na algoritmus v modelu můžeme vyvolat kontextové menu, 
-vekterém můžeme algoritmus vymazat, deaktivovat nebo spustit jeho editaci 
+ve kterém můžeme algoritmus vymazat, deaktivovat nebo spustit jeho editaci 
 (:num:`#algkont`). Ve spodní části dialogového okna každého algoritmu je 
 parametr :guilabel:`Rodičovské algoritmy`, pomocí kterého lze nastavit 
-nadřazené algorimty, takto vybrané algoritmy se budou vždy spouštět před 
+nadřazené algoritmy. Takto vybrané algoritmy se budou vždy spouštět před 
 tímto algoritmem (:num:`#algpar`).
 
 .. _algkont:
 .. figure:: images/modeler_algor_kont.png 
    :class: small 
-   :scale-latex: 40 
 
-   Kontextové menu algoritmu v modelu
+   Kontextové menu algoritmu v modelu.
 
 .. _algpar:
 .. figure:: images/modeler_algor_parent.png 
    :class: middle 
-   :scale-latex: 40 
 
-   Nastavení rodičovských algoritmů
+   Nastavení rodičovských algoritmů.
 
 Výstupy
 -------
+
 .. figure:: images/modeler_out_dia.png 
    :class: tiny
-   :scale-latex: 40 
 
-   Značení výstupu v modelu
+   Značení výstupu v modelu.
    
-Výstup slouží k vytvoření souboru (vrstva, html atd.). Může sloužit jako 
-vlastní konečný výsledek modelu, ale také lze nastavit výstupy průběžně a 
-jakéhokoliv algoritmu. Výstup se konfiguruje u každého algoritmu zvlášť, stačí 
-zadat název výstupu do textového pole ve spodní části dialogového okna 
-algoritmu (:num:`#modeloutname`). Všeobecně, a především při generování více 
-výstupů, je vhodné zvolit smysluplný název podle toho jaký je obsah dat, nebo 
-co nám data sdělují.
+Výstup slouží k vytvoření souboru (vrstva, HTML stránka atd.). Může
+sloužit jako vlastní konečný výsledek modelu, ale také lze nastavit
+výstupy průběžně a jakéhokoliv algoritmu. Výstup se konfiguruje u
+každého algoritmu zvlášť, stačí zadat název výstupu do textového pole
+ve spodní části dialogového okna algoritmu
+(:num:`#modeloutname`). Všeobecně, a především při generování více
+výstupů, je vhodné zvolit smysluplný název podle toho jaký je obsah
+dat nebo co nám data sdělují.
    
 .. _modeloutname:
 .. figure:: images/modeler_out_name.png 
    :class: middle
-   :scale-latex: 40 
 
-   Dialogové okno algoritmu - pole pro zadání názvu výstupu
+   Dialogové okno algoritmu - pole pro zadání názvu výstupu.
 
-- otevřeme (editace) algoritmus |qgis|:guilabel:`Fixed distance buffer` 
+- Otevřeme (editace) algoritmus |qgis|:guilabel:`Fixed distance buffer` 
   zadáme libovolný název finálního výstupu (např. :item:`Výstup`).
 
-Zadáním jména do textového pole pro výstup, nastavíme model aby vytvořil 
+Zadáním jména do textového pole pro výstup, nastavíme model, aby vytvořil 
 výstupní soubor. Pokud pole necháme nevyplněné, model žádný soubor nevytvoří. 
 Výsledek algoritmu však může dále sloužit jako vstup pro jiné algoritmy.
 
 .. _modelerukaz:
 .. figure:: images/modeler_out_model.png 
    :class: middle 
-   :scale-latex: 40 
 
-   Model, ve kterém bude výstup vrstva obalových zón
+   Model, ve kterém bude výstup vrstva obalových zón.
 
 .. figure:: images/modeler_out_model2.png 
    :class: middle 
-   :scale-latex: 40 
 
-   Ukázka modelu z více výstupy
+   Ukázka modelu z více výstupy.

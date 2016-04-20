@@ -24,10 +24,8 @@ Grafický modelář...`, klávesovou zkratkou :kbd:`Ctrl+Alt+M` nebo pomocí pol
 
 .. figure:: images/modeler_menu.png 
    :class: small 
-   :scale-latex: 40 
 
-   Spouštění okna modeláře z hlahvního menu
-   
+   Spouštění okna modeláře z hlahvního menu.
    
 Uložené modely lze nálezt mezi ostatními algoritmy v okně nástrojů zpracování, 
 kde jsou strukturovány podle zadaných skupin při tvorbě modelu. Také lze 
@@ -35,17 +33,16 @@ přidávat modely ze souboru (.model) nebo z online kolekce.
 
 .. figure:: images/modeler_panel.png 
    :class: tiny 
-   :scale-latex: 40 
 
-   Modely jako součást okna nástrojů zpracování
+   Modely jako součást okna nástrojů zpracování.
    
 Popis okna
 ----------
+
 .. figure:: images/modeler.png 
    :class: middle 
-   :scale-latex: 40 
 
-   Okno grafického modeláře
+   Okno grafického modeláře.
 
 Popis jednotlivých částí okna:
 
@@ -60,8 +57,8 @@ Popis jednotlivých částí okna:
 	- |run| - spustí model
 	
 2. Levá část okna slouží k přidávání prvků do modelu - vstupních parametrů 
-   (záložka :guilabel:`Vstupy`) a Algoritmů (záložka :guilabel:`Algoritmy`)
+   (záložka :guilabel:`Vstupy`) a Algoritmů (záložka :guilabel:`Algoritmy`).
 3. Dvě textové pole složí k zadání názvu a skupiny, do které se model zařadí v 
-   rámci nástrojů zpracování (před uložením nutné vyplnit)
+   rámci nástrojů zpracování (před uložením nutné vyplnit).
 4. Hlavní okno modeláře. Zde se skládají, configurují a propojují jednotlivé 
-   části modelu
+   části modelu.
