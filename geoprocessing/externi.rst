@@ -5,7 +5,7 @@
 
 .. _externi:
 
-Externí geoalgorytmy (GRASS GIS, SAGA, R)
+Externí geoalgoritmy (GRASS GIS, SAGA, R)
 =========================================
 
 Jak již bylo zmíněno, pomocí nástrojů zpracování lze spouštět algoritmy 
