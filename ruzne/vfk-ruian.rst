@@ -93,22 +93,20 @@ Instalace
 V současné době není VFK plugin součástí oficiálního repositáře
 QGISu. Pro jeho instalaci je nutné do QGISu zaregistrovat nový
 repositář, který je dostupný na adrese
-*http://geo.fsv.cvut.cz/osgeorel/qgis-plugins.xml*.
+*http://geo.fsv.cvut.cz/geoforall/qgis-plugins.xml*.
 
 V dialogu :menuselection:`Zásuvné moduly --> Spravovat a instalovat
-zásuvné moduly` přidáme nový repositář a aktivuje experimentální
-moduly.
+zásuvné moduly` přidáme nový repositář.
 
 .. figure:: images/vfk-repo-pridat.png
 
-   Pro instalaci VFK pluginu je nutné aktivovat experimentální zásuvné
-   moduly a přidat nový repositář.
+   Pro instalaci VFK pluginu je nutné přidat nový repositář.
 
 .. figure:: images/vfk-repo.png
    :class: small
         
    V dialogu definujeme název a URL 
-   http://geo.fsv.cvut.cz/osgeorel/qgis-plugins.xml.
+   http://geo.fsv.cvut.cz/geoforall/qgis-plugins.xml.
 
 .. figure:: images/vfk-repo-instalace.png
 
@@ -194,7 +192,7 @@ cílového formátu. Jako cílový formát doporučujeme
 
 .. note:: Konverzní nástroje *vfr2ogr* najdete na serveru GitHub, viz
           `stránka s verzemi
-          <https://github.com/ctu-osgeorel/gdal-vfr/releases>`_ ke
+          <https://github.com/ctu-geoforall-lab/gdal-vfr/releases>`_ ke
           stažení.
 
 Jako příklad si ukážeme stažení dat pro OPR Litoměřice a konverzi dat
