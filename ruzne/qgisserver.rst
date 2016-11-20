@@ -35,7 +35,7 @@ nastavení služeb, jako je uvedeno níže.
 Výchozí nastavení QGIS projektu umožňuje jeho přímou publikaci jako
 jednoduché WMS služby, bez jakéhokoli dalšího nastavení.  Přidáme
 novou službu WMS z URL
-*http://localhost/cgi-bin/qgis_mapserv.fcgi?MAP=/home/user/diagram1.qgs*,
+*http://server:91/cgi-bin/qgis_mapserv.fcgi?service=WMS&REQUEST=GetCapabilities&MAP=user/diagram1.qgs*,
 kde pomocí parametru MAP definujeme cestu k projektu.
 
 .. figure:: images/qgis_server_wms.png
@@ -82,7 +82,7 @@ Sestavený požadavek pro náš příklad může vypadat následovně:
 
 ::
    
-   http://localhost/cgi-bin/qgis_mapserv.fcgi?service=WMS&REQUEST=GetCapabilities&MAP=/home/user/diagram1.qgs
+   http://server:91/cgi-bin/qgis_mapserv.fcgi?service=WMS&REQUEST=GetCapabilities&MAP=user/diagram1.qgs
 
 Na následujícím obrázku je ukázka odpovědi na požadavek před úpravou
 projektu, nastavení projektu a následní odpověď na stejný požadavek po
