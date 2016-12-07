@@ -66,6 +66,8 @@ Návod vychází z textu školení :skoleni:`GRASS GIS pro pokročilé
 Krok 1
 ------
 
+*Sjednocení hlavních půdních jednotek a komplexního průzkumu půd*
+
 V prvním kroku založíme projekt a pomocí |add_vector| :sup:`Přidaní
 vektorové vrstvy` a |add_csv| :sup:`Přidat vrstvu s odděleným textem`
 vložíme do panelu vrstev vstupní data - vektorová data ve formátu Esri
@@ -76,7 +78,7 @@ Shapefile :file:`hpj.shp`, :file:`kpp.shp`, :file:`landuse.shp`,
 <qgis-zacatecnik/vektorova_data/import_delim.html>`.
 
 Následně sjednotíme vrstvu hlavních půdních jednotek (:map:`hpj`) a
-komplexního průzkumu půd (:map:`kpp`). Využijeme nástroje
+komplexního průzkumu půd (:map:`kpp`). Využijeme nástroj
 geoprocessingu |union| :sup:`Sjednotit`, který najdeme v záložce
 :menuselection:`Vektor --> Nástroje geoprocessingu`.  Vznikne nová
 vektorová vrstva :map:`hpj_kpp`.
@@ -86,10 +88,12 @@ vektorová vrstva :map:`hpj_kpp`.
 Krok 2
 ------
 
+*Připojení informací o hydrologické skupině*
+
 Tabulku :dbtable:`hpj_hydrsk` můžeme připojit k atributům nové
 vektorové vrstvy :map:`hpj_kpp` pomocí společného sloupce
 :dbcolumn:`HPJ` (:num:`#at-pred-join`).  Pravým tlačítkem myši v
-panelu vrstev pro :map:`hpj_kpp` zvolíme :item:`Vlastnosti` a v
+panelu vrstev u :map:`hpj_kpp` zvolíme :item:`Vlastnosti` a v
 dialogovém okně přejdeme do záložky |join| :sup:`Připojení`. Kliknutím
 na ikonku |plus| spustíme dialogové okno s nastavením pro připojení
 (:num:`#join`), viz kapitola :skoleni:`Připojení tabulkových dat
@@ -128,7 +132,7 @@ skupinách (:num:`#tab-pripojene`).
 .. _novy-atribut:
 
 Poté otevřeme atributovou tabulku :map:`hpj_kpp`, zapneme editační mód
-ikonkou |edit| :sup:`Přepnout editaci` a v kalkulačce polí |kalk|
+ikonkou |edit| :sup:`Přepnout editaci` a pomocí kalkulačky polí |kalk|
 :sup:`Otevřít kalkulačku polí` vytvoříme nový atribut. Použijeme
 připojené atributy o hydrologické skupině (:dbcolumn:`hpj_HydrSk` z
 hlavních půdních jednotek a :dbcolumn:`kpp_HydrSk` z komplexního
@@ -158,7 +162,7 @@ půdní jednotky.  Kde informace není dosupná - hodnota
 
 Při pohledu na legendu na :num:`#hydrsk` je možno si všimnout, že kódy
 hydrologických skupin jako ``(A)B``, ``A(B)``, ``AB`` a podobně by
-bylo vhodné sjednotit.  K tomu použijeme editovací mód a atribútové
+bylo vhodné sjednotit.  K tomu použijeme editační mód a atributové
 dotazy. V hlavní liště anebo v liště atributové tabulky zvolíme volbu
 |select-attr| :sup:`Vybrat prvky pomocí vzorce` pomocí které vybereme
 elementární plochy s hydrologickou skupinou ``(A)B`` a ``A(B)``, potom
@@ -194,9 +198,9 @@ prezentován na :num:`#hydrsk-ok`.
    Sjednocené hydrologické skupiny elementárních ploch v zájmovém území.
 
 Do této fáze je možné používat QGIS relativně bez problémů. Dále však
-budeme přidávat informace o využití území pre každou elementární
-plochu pomocí operáce průniku. Při větších objemech dat mohou být
-nástroje geoprocessingu časove náročné a nestabilní. Pro další řešení
+budeme přidávat informace o využití území pro každou elementární
+plochu pomocí operace průniku. Při větších objemech dat mohou být
+nástroje geoprocessingu časově náročné a nestabilní. Pro další řešení
 tedy použijeme výpočetně stabilnější nástroje systému GRASS GIS.
 
 .. tip:: Více o systému GRASS v rámci školení :skoleni:`GRASS GIS pro
@@ -205,11 +209,11 @@ tedy použijeme výpočetně stabilnější nástroje systému GRASS GIS.
 Vytvoření lokace a mapsetu
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Data GRASS udržuje v pevné 3-úrovňové struktuře (databaze, lokace a
-mapset), viz :skoleni:`Struktura dat - koncept lokací a mapsetů
-<grass-gis-zacatecnik/intro/struktura-dat.html>` ze školení GRASS GIS
-pro začátečníky. Z hlavní lišty menu vybereme :menuselection:`Zásuvné
-moduly --> GRASS --> Nový mapset`.
+Data, ke kterým GRASS přistupuje, udržuje v pevné 3-úrovňové struktuře
+(databáze, lokace a mapset), viz :skoleni:`Struktura dat - koncept
+lokací a mapsetů <grass-gis-zacatecnik/intro/struktura-dat.html>` ze
+školení *GRASS GIS pro začátečníky*. Z hlavní lišty menu vybereme
+:menuselection:`Zásuvné moduly --> GRASS --> Nový mapset`.
 
 .. _hydrsk:
 
@@ -217,15 +221,15 @@ moduly --> GRASS --> Nový mapset`.
 
    Zásuvný modul GRASS - vytvoření nového mapsetu.
 
-V dialogovém okně sa objeví předvolená cesta k hlavnímu adresáři
+V dialogovém okně se objeví předvolená cesta k hlavnímu adresáři
 databáze GRASS (obvykle adresář s názvem `grassdata`). V případě, že
-tento adresář obsahuje lokace, vybereme tu, ve ktoré chceme pracovat
-anebo si vytvoříme novou. Nastavíme souřadnicový systém a výpočetní
-region (viz :skoleni:`školení GRASS GIS pro začátečníky
+tento adresář obsahuje již nějaké lokace, vybereme tu, ve které chceme
+pracovat anebo si vytvoříme novou. Nastavíme souřadnicový systém a
+výpočetní region (viz :skoleni:`školení GRASS GIS pro začátečníky
 <grass-gis-zacatecnik/intro/region.html>`). Kromě mapsetu `PERMANENT`,
 který se vytvoří automaticky, je vhodné zadat i název nového mapsetu,
 ve kterém budou probíhat výpočty. Mapset se automaticky otevře jako
-aktuální aktualní mapset. V záložce *Region* dialogového okna nástrojů
+aktuální mapset. V záložce *Region* dialogového okna nástrojů
 GRASS je možné měnit rozsah výpočetní oblasti výběršm v mapovém okně
 QGIS pomocí `Select the extent by dragging on canvas`
 (:num:`#n-mapset`). Taktéž se tu nastavuje rozlišení.
