@@ -230,9 +230,9 @@ výpočetní region (viz :skoleni:`školení GRASS GIS pro začátečníky
 který se vytvoří automaticky, je vhodné zadat i název nového mapsetu,
 ve kterém budou probíhat výpočty. Mapset se automaticky otevře jako
 aktuální mapset. V záložce *Region* dialogového okna nástrojů
-GRASS je možné měnit rozsah výpočetní oblasti výběršm v mapovém okně
+GRASS je možné měnit rozsah výpočetní oblasti výběrem v mapovém okně
 QGIS pomocí `Select the extent by dragging on canvas`
-(:num:`#n-mapset`). Taktéž se tu nastavuje rozlišení.
+(:num:`#n-mapset`). Zároveň je zde možno nastavit prostorové rozlišení.
 
 .. _n-mapset:
 
@@ -247,13 +247,13 @@ QGIS pomocí `Select the extent by dragging on canvas`
 Krok 3
 ------
 
-Zájmové území potřebujeme rozdělit na více elementárních
-ploch. Vytvoříme průnik vektorových vrstev.
+*Průnik vrstvy hydrologických skupin s vrstvou využití území*
 
 .. _import-qgrass:
 
-Vrstvy :map:`hpj_kpp` a :map:`landuse` pro které chceme vytvořit
-průnik musíme nejprve naimportovat do mapsetu. Import dat zajišťuje
+Zájmové území potřebujeme rozdělit na více elementárních
+ploch. Vrstvy :map:`hpj_kpp` a :map:`landuse`, pro které vytvoříme
+průnik, musíme nejprve naimportovat do mapsetu. Import dat zajišťuje
 více nástrojů, tzv. modulů (:num:`#import`). Použijeme například modul
 :grasscmd:`v.in.ogr.qgis`, který umožňuje načítat vrstvy (jakoby) z
 prostředí QGIS. Názvy vrstev zachováme stejné.
@@ -267,22 +267,25 @@ prostředí QGIS. Názvy vrstev zachováme stejné.
 
 Pokud chceme oveřit, zda se zadané vrstvy po importu v mapsetu
 nacházejí, použijeme *shell*.  Kliknutím na |grass_shell| :sup:`GRASS
-shell` spustíme příkazový řádek. Modul :grasscmd:`g.list` vypíše obsah
-konkrétního mapsetu. Pro výpis vektorových vrstev v aktuálním mapsetu
-zadáme :code:`g.list type=vector mapset=.`. Pokud zadáme pouze příkaz
-:code:`g.list`, tak se otevře dialogové okno modulu a parametry můžeme
-zadat interaktivně.
+shell` spustíme příkazový řádek. Obsah konkrétního mapsetu vypiše
+modul :grasscmd:`g.list`. Pro výpis vektorových vrstev v aktuálním
+mapsetu zadáme :code:`g.list type=vector mapset=.`. Pokud zadáme pouze
+příkaz :code:`g.list`, tak se otevře dialogové okno modulu a parametry
+můžeme zadat interaktivně.
 
 .. note:: Dokumentaci a povinné parametry každého modulu lze zobrazit
 	  zadáním příkazu *man* před název modulu, například
 	  :code:`man g.list`.
 
-Operaci překrytí, resp. pro určení průniku vektorových vrstev,
+Operaci překrytí, resp. určení průniku vektorových vrstev,
 zajišťuje modul |v.overlay.and| :sup:`v.overlay.and`, který spustíme z
 :menuselection:`Vektor --> Prostorová analýza --> Překrytí`
 (:num:`#v-overlay-and`).  Výslednou vrstvu průniku nazveme
-:map:`hpj_kpp_landuse`. Počet záznamů v atributové tabulce se
-průnikem prvků výrazně zvýší.
+:map:`hpj_kpp_landuse`. 
+
+.. note:: Počet záznamů v atributové tabulce se průnikem prvků výrazně
+	  zvýší. Což je zapříčiněno hlavně tím, že QGIS zobrazuje
+	  záznamy pro multiprvky jako duplicitní.
 
 .. _v-overlay-and:
 
@@ -294,36 +297,38 @@ průnikem prvků výrazně zvýší.
 .. tip:: V příkazovém řádku můžeme vypsat například:
 
    * seznam tabulek v aktuálním mapsetu, resp. jejich názvy: :code:`db.tables`
-   * seznam atributů konkrétní tabulky: :code:`db.columns table = NAZOVTABULKY` 
-   * počet záznamů v tabulce: :code:`db.select sql = 'select count(*) from NAZOVTABULKY'`
+   * seznam atributů konkrétní tabulky: :code:`db.columns table=NAZEVTABULKY` 
+   * počet záznamů v tabulce: :code:`db.select sql='select count(*) from NAZEVTABULKY'`
      
-Příklad použití `grass shell` je znázorněn na
-:num:`#gshell-db-columns`. Modul |v.db.select| :sup:`v.db.select`
-vypíšeme hodnoty atributů, modulem |v.db.select|
-:sup:`v.db.select.where` je možné zadat i podmínku.
+   Příklad použití `GRASS shell` je znázorněn na
+   :num:`#gshell-db-columns`. Modul |v.db.select| :sup:`v.db.select`
+   vypíšeme hodnoty atributů, modulem |v.db.select|
+   :sup:`v.db.select.where` je možné zadat i podmínku.
 
-.. _gshell-db-columns:
+   .. _gshell-db-columns:
 
-.. figure:: images/gshell_db_columns.png
-   :class: small
+   .. figure:: images/gshell_db_columns.png
+      :class: small
         
-   Zobrazení tabulek a záznamů v příkazovém řádku.
+      Zobrazení tabulek a záznamů v příkazovém řádku.
 
-Modul :grasscmd:`v.out.ogr` umožňuje exportovat atributovou tabulku do
-různých formátů a dále s ni pracovat. Na :num:`#db-export` je
-znázorněn export do bežného formátu :wikipedia:`CSV`.
+   Modul :grasscmd:`v.out.ogr` umožňuje exportovat atributovou tabulku do
+   různých formátů a dále s ni pracovat. Na :num:`#db-export` je
+   znázorněn export do bežného formátu :wikipedia:`CSV`.
 
-.. _db-export:
+   .. _db-export:
 
-.. figure:: images/db_export.png
-   :class: middle
+   .. figure:: images/db_export.png
+      :class: middle
         
-   Export atributů do formátu CSV.
+      Export atributů do formátu CSV.
 
 .. _kr4:
 
 Krok 4
 ------
+
+*Připojení hodnot odtokové křivky* :math:`CN` 
 
 V dalším kroku je potřeba vytvořit atribut, který bude obsahovat údaje
 o využití území a o hydrologické skupině půdy dané elementární plochy
@@ -347,7 +352,7 @@ rámci jedné atributové tabulky.  Hodnotu zadáme ve tvaru
 
    .. code-block:: bash
 	
-      db.select sql='select cat,b_LandUse,a_hydrsk,landuse_hydrsk from hpj_kpp_landuse_1 where cat=1
+      v.db.select map=hpj_kpp_landuse columns=cat,b_LandUse,a_hydrsk,landuse_hydrsk where=cat=1
 
       cat|b_LandUse|a_hydrsk|landuse_hydrsk
       1|OP|B|OP_B
@@ -357,13 +362,15 @@ hodnotami `CN`. Nazveme ji :map:`lu_hydrsk_cn`.
 
 Následně použijeme modul |v.db.join| :sup:`v.db.join` pomocí kterého
 připojíme importovanou tabulku k vektorové vrstvě
-:map:`hpj_kpp_landuse`a to kvůli přiřazení hodnot `CN` ke každé
+:map:`hpj_kpp_landuse` a to kvůli přiřazení hodnot `CN` ke každé
 elementární ploše řešeného území, viz. :num:`#v-dbjoin`. Obsah
-výsledné tabulky je možno oveřit v příkazovém řádku pomocí ``db.select
-sql='select * from hpj_kpp_landuse_1 where cat=1``.
+výsledné tabulky je možno oveřit v příkazovém řádku pomocí
+:code:`v.db.select map=hpj_kpp_landuse where=cat=1`.
 
-.. important:: Jednotlivé atributy v tabulkách, které spojujeme
-   nemohou obsahovat stejné název.
+.. important:: Jednotlivé atributy v tabulkách, které spojujeme ,
+   nesmí obsahovat stejné názvy atributů. Tento problém lze vyřešit
+   zavoláním modulu :grasscmd:`v.db.join` z GUI systému GRASS a volbou
+   :option:`subset_columns`, která v GRASS pluginu chybí.
 
 .. _v-dbjoin:
 
@@ -381,11 +388,14 @@ sql='select * from hpj_kpp_landuse_1 where cat=1``.
 Krok 5
 ------
 
+*Sjednocení průniku vrstvy hydrologických skupin a využití území s vrstvou povodí*
+
+
 Hodnoty návrhových srážek s různou dobou opakovaní do vrstvy přidáme
 pomocí modulu |v.overlay.or| :sup:`v.overlay.or`. Sjednocení předchází
-import vrstvy povodí s informacemi o srážkách do mapsetu, přičem
-postup je obdobný jo pří :ref:`importu vektorových vrstev v
-úvodě<import-qgrass>`.
+import vrstvy povodí s informacemi o srážkách do mapsetu, přičemž
+postup je obdobný jako při :ref:`importu vektorových vrstev v
+úvodní části <import-qgrass>`.
 
 Ukázka záznamu (vybrané atributy) atributové tabulky nově vytvořené
 vektorové vrstvy :map:`hpj_kpp_lu_pov` pro 2-letý úhrn srážek v *mm* s
@@ -411,31 +421,33 @@ Zprávy a statistiky`. Standardní zobrazení je uvedeno :num:`#v-info`.
    Výpis základních informací o vektorové vrstvě pomocí modulu
    *v.info*.
 
-.. tip:: Z příkazového rádku je možno zapout klasické prostředí
-	 systému GRASS příkazem :grasscmd:`g.gui`. Taktéž je možné
-	 zapnout mapové okno (příkaz :grasscmd:`d.mon`), vykreslit v
-	 něm konkrétní rastrovou (:grasscmd:`d.rast`) anebo vektorovou
-	 (:grasscmd:`d.vect`) vrstvu, pridat měřítko
+.. tip:: Z příkazového řádku je možno spustit nativní grafické
+	 uživatelké rozhraní systému GRASS příkazem
+	 :grasscmd:`g.gui`. Taktéž je možné zapnout mapové okno
+	 (příkaz :grasscmd:`d.mon`), vykreslit v něm konkrétní
+	 rastrovou (:grasscmd:`d.rast`) anebo vektorovou
+	 (:grasscmd:`d.vect`) vrstvu, přidat měřítko
 	 (:grasscmd:`d.barscale`) či legendu
 	 (:grasscmd:`d.legend`). Příkazem :grasscmd:`d.rast.leg`
 	 vykreslíme rastrovou vrstvu i s legendou.
 
 Dále budeme pracovat především s hodnotami `CN`. Pro další operace je
 potřeba, aby typ tohoto atributu byl číselný, na což použijeme funkci
-``cast()``.
+``cast()``. Vytvoříme tedy nový atribut :dbcolumn:`CN` s datovým typem
+*integer*.
 
 .. noteadvanced:: 
    
    Vektorovou vrstvu :map:`hpj_kpp_landuse` je možno převést na
-   rastrovú vrstvu s hodnotami `CN` a zobrazit v mapovém okně systému
+   rastrovou vrstvu s hodnotami `CN` a zobrazit v mapovém okně systému
    GRASS. Začneme vytvořením nového atributu typu *integer* (modul
    :grasscmd:`v.db.addcolumn`), pokračujeme jeho editací
    :grasscmd:`v.db.update_op` a následně spustíme modul
    |v.to.rast.attr| :sup:`v.to.rast.attr`,
-   viz. :num:`#v-to-rast-cn`. Příkazy ``d.mon wx0``, ``d.rast.leg
-   cn``, ``d.barscale`` a ``d.vect povodi type=boundary`` mapu s `CN`
-   zobrazíme včetně měřítka legendy a v překrytí s vektorovou vrstvou
-   povodí.
+   viz. :num:`#v-to-rast-cn`. Pomocí příkazů ``d.mon wx0``,
+   ``d.rast.leg cn``, ``d.barscale`` a ``d.vect povodi type=boundary``
+   zobrazíme mapu s `CN` včetně měřítka legendy v překrytí s
+   vektorovou vrstvou povodí.
    
    .. _v-to-rast-cn:
 
@@ -448,6 +460,8 @@ potřeba, aby typ tohoto atributu byl číselný, na což použijeme funkci
 
 Krok 6
 ------
+
+*Výpočet výměry elementárních ploch, parametru* :math:`A` *a parametru* :math:`I_a` 
 
 Pro každou elementární plochu vypočítame její výměru, parametr
 :math:`A` a :math:`I_a`.
@@ -464,10 +478,10 @@ Do atributové tabulky `hpj_kpp_lu_pov` přidáme nové atributy typu
 *double*, konkrétně :dbcolumn:`vymera`, :dbcolumn:`A`,
 :dbcolumn:`I_a`. Poté vypočítame jejich příslušné hodnoty. Postupujeme
 obdobně jako při :ref:`tvorbě atributu <novy-atribut>` s hodnotami o
-využití území a o hydrologické skupině (:dbcolumn:`landuse_hydrsk`),
-přičem na výpočet použijeme matematické operáce jako sčítaní,
+využití území a hydrologické skupině (:dbcolumn:`landuse_hydrsk`),
+přičemž pro jejich výpočet použijeme matematické operáce jako sčítaní,
 odčítaní, násobení a podobně (:num:`#add-columns` a
-:num:`#area-a`). Na určení plochy každé elementární plochy využijeme
+:num:`#area-a`). Pro určení plochy každé elementární plochy využijeme
 modul z kategorie :menuselection:`Vektor --> Zprávy a statistiky`,
 modul |v.to.db| :sup:`v.to.db`.
 
@@ -486,7 +500,7 @@ modul |v.to.db| :sup:`v.to.db`.
 
 .. noteadvanced::
 
-   V příkazovém řádku by predcházející kroky vypadali takto:
+   V příkazovém řádku by predcházející kroky vypadaly takto:
 
    .. code-block:: bash
 
