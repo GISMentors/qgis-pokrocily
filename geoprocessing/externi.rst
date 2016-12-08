@@ -32,7 +32,7 @@ zvolená klasifikace:
 	45 thru 135 = 2 vyhod
 	135 thru 225 = 3 jih
 	225 thru 315 = 4 zapad
-	315 thru 360= 1 sever
+	315 thru 360 = 1 sever
 	0 = 5 rovina
 	
 

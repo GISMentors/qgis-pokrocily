@@ -145,7 +145,7 @@ Výstupy
    
 Výstup slouží k vytvoření souboru (vrstva, HTML stránka atd.). Může
 sloužit jako vlastní konečný výsledek modelu, ale také lze nastavit
-výstupy průběžně a jakéhokoliv algoritmu. Výstup se konfiguruje u
+výstupy průběžně u jednotlivých algoritmů. Výstup se konfiguruje u
 každého algoritmu zvlášť, stačí zadat název výstupu do textového pole
 ve spodní části dialogového okna algoritmu
 (:num:`#modeloutname`). Všeobecně, a především při generování více

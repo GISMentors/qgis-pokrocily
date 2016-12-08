@@ -61,7 +61,7 @@ možností prohlížení a rychlé aktivace algoritmů.
 
 Po kliknutí na odkaz na konci upozornění (:guilabel:`to view item`) se
 ukáže struktura s výsledky od neaktivních poskytovatelů (šedá barva
-tetu). Po kliknutí na tlačítko :guilabel:`Activete` se nám
+textu). Po kliknutí na tlačítko :guilabel:`Activate` se nám
 poskytovatel aktivuje.
 
 .. figure:: images/geoproc_filter_disa.png

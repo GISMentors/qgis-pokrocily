@@ -99,7 +99,7 @@ pomocí tlačítka :item:`...`. Stačí však zadat uložení prvního výstupn�
 souboru a objeví se nám okno pro automatické doplnění výstupních souborů 
 (:num:`#batchout`). Zde je možné automaticky vytvořit výstupní soubory s 
 příponou pořadového čísla nebo na základě vybraného vstupního parametru 
-(název vrstvy, velikost bufferu atd., viz :num:`#batchout2`.
+(název vrstvy, velikost bufferu atd., viz :num:`#batchout2`).
 
 .. warning:: Pokud v obecném nastavení možností zpracování neaktivujeme 
 	     |alg|:guilabel:`Použít název souboru pro název vrstvy` budou 
@@ -140,7 +140,7 @@ V případě, že potřebujeme kolem nějakého území vytvořít větší poč
 různě velkých obalových zón, je možné využít funkci
 |qgis|:guilabel:`Obalová zóna dle pevné vzdálenosti` v režimu
 dávkového procesu. Z vrstvy velkoplošných chráněných území vybereme
-jedno území a vytvoříme tři obalové zóny (1, 5 a 10km).
+jedno území a vytvoříme tři obalové zóny (1, 5 a 10 km).
 
 Spustíme dávkový proces algoritmu, nastavíme vstupní vrstvu s vybraným prvkem 
 do tří řádků (pro každý proces) a požadované hodnoty vzdáleností obalové zóny 
