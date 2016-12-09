@@ -281,7 +281,7 @@ jednotlivých osách.
 
 .. tip::
 
-   Pokud bysme v tabulce viděli body se značnou odchylkou, tak je tento bod
+   Pokud bychom v tabulce viděli body se značnou odchylkou, tak je tento bod
    dobré zkontrolovat (v mapě i na zpracovávaném obrázku). Polohu bodu můžeme
    opravit, nebo bod vyřadit z řešení anebo ho úplně odstranit.
 

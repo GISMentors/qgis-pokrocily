@@ -115,12 +115,12 @@ Pro vytvoření bodové vrstvy z jednotlivých fotografií použijeme funkci
 pluginu :item:`Import photos`.  Prvním krokem je zadání adresáře, ve
 kterém se nacházejí požadované fotky.  Po zadání adresáře s fotkami se
 do pole `EXIF tags` vypíšou nalezené kategorie hodnot.  Pro základní
-zpracování dále toto pole nemusíme používat. Pokud by jsme označili
+zpracování dále toto pole nemusíme používat. Pokud bychom označili
 některý z nalezených tagů, tak by se po importu uložil jako další
 atribut.  Hodnoty se mohou lišit podle toho, jaké údaje dané zařízení
 pořizuje.  Pomocí volby :item:`Recurse subdirectories` můžeme povolit
 prohledávání i podadresářů námi vybrané složky.  Druhým krokem je
-zadání výstupního souboru ve formátu Esri Shapefile. Pokud by jsme
+zadání výstupního souboru ve formátu Esri Shapefile. Pokud bychom
 chtěli jenom doplnit již existující vektorovou vrstvu, tak použijeme
 volbu :item:`Append to existing file`.
 
