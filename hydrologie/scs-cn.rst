@@ -403,7 +403,7 @@ dobou trvaní *120 min*:
 
 .. code-block:: bash
    
-   db.select sql='select cat,a_CN,b_H_002_120 from hpj_kpp_lu_pov_1 where cat=1'
+   v.db.select map=hpj_kpp_lu_pov columns=cat,a_CN,b_H_002_120 where"cat=1"
 
    cat|a_CN|b_H_002_120
    1|80|21.6804582207
@@ -474,7 +474,7 @@ Pro každou elementární plochu vypočítame její výměru, parametr
 
    I_a = 0.2 \times A
 
-Do atributové tabulky `hpj_kpp_lu_pov` přidáme nové atributy typu
+Do atributové tabulky :dbtable:`hpj_kpp_lu_pov` přidáme nové atributy typu
 *double*, konkrétně :dbcolumn:`vymera`, :dbcolumn:`A`,
 :dbcolumn:`I_a`. Poté vypočítame jejich příslušné hodnoty. Postupujeme
 obdobně jako při :ref:`tvorbě atributu <novy-atribut>` s hodnotami o
@@ -500,22 +500,24 @@ modul |v.to.db| :sup:`v.to.db`.
 
 .. noteadvanced::
 
-   V příkazovém řádku by predcházející kroky vypadaly takto:
+   V příkazovém řádku by tyto kroky vypadaly následovně:
 
    .. code-block:: bash
 
       v.db.addcolumn map=hpj_kpp_lu_pov columns="vymera double,A double,Ia double"
       v.to.db map=hpj_kpp_lu_pov option=area columns=vymera
-      v.db.update map=hpj_kpp_lu_pov column=A value="24.5 * (1000 / a_CN - 10)"
-      v.db.update map=hpj_kpp_lu_pov column=Ia value="0.2 * A"
+      v.db.update map=hpj_kpp_lu_pov column=A value="24.5 * (1000 / CN - 10)"
+      v.db.update map=hpj_kpp_lu_pov column=I_a value="0.2 * A"
 
 .. _kr7:
 
 Krok 7
 ------
 
+*Výpočet parametru* :math:`H_o` *a parametru* :math:`O_p` *pro každou elementární plochu*
+
 Znázornění vektorové vrstvy povodí s návrhovými srážkami v prostředí
-QGIS je na :num:`#navrhove-zrazky` (maximální hodnota atributů
+QGIS je uvedeno na :num:`#navrhove-zrazky` (maximální hodnota atributů
 :dbcolumn:`H_002_120` představuje 23 mm). Histogramy je možné
 vykreslit v záložce |diagram| :sup:`Diagramy` ve vlastnostech
 konkrétní vrstvy.
@@ -538,17 +540,16 @@ objem jako parametr :math:`O_{p}`.
 
 V dalších krocích budeme uvažovat průměrný úhrn návrhové srážky
 :math:`H_{s}` = 32 mm. Při úhrnu s dobou opakovaní 2 roky (atribut
-:dbcolumn:`H_002_120`) či dobou 5, 10, 20, 50 anebo 100 rokov by byl
+:dbcolumn:`H_002_120`) či dobou 5, 10, 20, 50 anebo 100 roků by byl
 postup obdobný.
 
 .. important:: Hodnota v čitateli vztahu pro :math:`H_o` musí být
    kladná, resp. nelze umocňovat záporné číslo. V případě, že čitatel
-   je záporný, výška přímého odtoku je rovná nule. Na vyřešení této
-   situace si pomůžeme novým atributem v atributové tabulce, který
-   nazveme :dbcolumn:`HOklad`.
+   je záporný, výška přímého odtoku je rovná nule. Pomůžeme si novým
+   atributem v atributové tabulce, který nazveme :dbcolumn:`HOklad`.
 
 Postupujeme obdobně jako na :num:`#add-columns` a :num:`#area-a` anebo
-pomocí příkazového rádku.
+pomocí příkazového řádku.
 
 .. code-block:: bash
 
@@ -569,8 +570,8 @@ vyplníme modulem |v.db.update| :sup:`v.db.update_op`.
 
 .. figure:: images/v_db_update_query.png
         
-   Přiřazení konstatní hodnoty do atributu v případě pravdivého dotazu
-   modulem *v.db.update_query*.
+   Přiřazení konstatní hodnoty atributu v případě splnění podmínkt
+   dotazu modulem *v.db.update_query*.
 
 .. tip:: 
    
@@ -589,9 +590,16 @@ vyplníme modulem |v.db.update| :sup:`v.db.update_op`.
 Krok 8
 ------
 
+*Vytvoření rastrových vrstev výšky a objemu přímého odtoku*
+
 Modulem |v.to.rast.attr| :sup:`v.to.rast.attr` vytvoříme z vektorové
 vrstvy :map:`hpj_kpp_lu_pov` rastrové vrstvy :map:`ho` a
-:map:`op`. Zobrazení v prostředí QGIS je na :num:`#ho-op`.
+:map:`op`. Výsledky vizualizované v prostředí QGIS jsou uvedeny na
+:num:`#ho-op`.
+
+.. warning:: Před samotnou rasterizací je nutné korektně nastavit
+             :skoleni:`výpočetní region
+             <grass-gis-zacatecnik/intro/region.html>`.
 
 .. _ho-op:
 
@@ -605,6 +613,8 @@ vrstvy :map:`hpj_kpp_lu_pov` rastrové vrstvy :map:`ho` a
 
 Krok 9
 ------
+
+*Výpočet průměrných hodnot výšky a objemu přímého odtoku pro povodí*
 
 V dalším kroku vypočítáme průměrné hodnoty přímého odtoku pro každé
 povodí v řešeném území. Modul |v.rast.stats| :sup:`v.rast.stats`
