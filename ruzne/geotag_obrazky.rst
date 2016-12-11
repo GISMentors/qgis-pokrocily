@@ -107,6 +107,7 @@ photos` (:num:`menu-geotag`).
 
       Okno pro nastavení cesty k `exiftool.exe`. 
 
+.. _import:
 
 3. Import fotek do vektorové vrstvy
 ===================================
@@ -349,6 +350,22 @@ Po vyplnění atributu u všech prvků nastavíme položku Rotace pomocí
    Nastavení rotace symbolu podle hodnoty atributu a ukázka výsledku.
 
 
+.. tip::
+   Některá zařízení jsou schopna určovat a i ukládat informace o orientaci
+   přístoje.
+   U takovýchto přístrojů se tedy v exif datech objeví takováto položka:
 
+   .. code-block:: bash
 
+      ...
+
+     GPS Img Direction Ref           : True North
+     GPS Img Direction               : 32.52336904
+      ...
+
+   Tyto údaje můžeme pak rovnou využít a při zpracování je nechat vepsat do 
+   atributové tabulky (při :ref:`importu<import>` si zaškrtneme požadovaný tag,
+   který se pak přidá jako atribut i s hodnotami).
+
+   Dále je pak možné rotaci symbolů nastavit přímo z toho atributu.
 
