@@ -9,3 +9,4 @@ Různé
    grafy
    vfk-ruian
    qgisserver
+   atlas
