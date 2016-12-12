@@ -14,6 +14,8 @@
    :width: 1.5em    
 .. |add_scale| image:: ../images/icon/mActionScaleBar.png
    :width: 1.5em
+.. |add_label| image:: ../images/icon/mActionLabel.png
+   :width: 1.5em
 .. |add_attributes| image:: ../images/icon/grass_edit_attributes.png
    :width: 1.5em  
    
@@ -137,7 +139,7 @@ Pokud chceme vytvořit název vytvořený na základě více atributů (např. n
 
     [% "nazev"  || ' (' ||"nutslau" ||')'%]
 
-.. note:: Všiměte si, že vložený výraz má je v okně pro zadání textu "obalený" v hranatých závorkách se znakem procent. Mimo tyto závorky lze pokračovat v zadávání běžného textu.
+.. note:: Všiměte si, že vložený výraz je v okně pro zadání textu "obalený" v hranatých závorkách se znakem procent. Mimo tyto závorky lze pokračovat v zadávání běžného textu.
 
 .. tip:: Po zaškrtnuní položky |checkbox|:item:`Vykreslit jako HTML` můžeme do popisku vložit html kód.
 
@@ -154,7 +156,7 @@ Do políčka |checkbox|:item:`Filtrovat s` tedy opět použijeme výraz:
 
     $id  =  @atlas_featureid
     
-.. tip:: Pro alternativní možnost vložení atrbitu a jejich hodnot je možné využít běžné textové pole z využitím formátování html, také je možné vkládat výrazy pro výpočet např. *$area*.
+.. tip:: Pro alternativní možnost vložení atrbitu a jejich hodnot je možné využít běžné textové pole s využitím formátování html, také je možné vkládat výrazy pro výpočet např. *$area*.
 
 Tiráž a doplňující informace
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -196,7 +198,7 @@ Jak byl v úvodu zmíněno, základní nastavení pro export najdeme na kartě :
    :class: middle 
    :scale-latex: 40 
 
-   Výsledný atlas (jeden soubor .pdf) otevřený v prohížeši pdf souborů
+   Výsledný atlas (jeden soubor .pdf) otevřený v prohlížeči pdf souborů
 
 
 
