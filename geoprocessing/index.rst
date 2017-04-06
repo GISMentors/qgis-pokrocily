@@ -17,7 +17,7 @@ funkce dostupných externích nástrojů jako jsou například GRASS GIS,
 SAGA nebo R.
 
 .. note:: Více o knihovně GDAL ve školení :skoleni:`GeoPython pro
-          začátečníky <geopython>`. Nástroj GRASS GIS je podrobně
+          pokročilé <geopython-pokrocily>`. Nástroj GRASS GIS je podrobně
           popsán ve školení :skoleni:`GRASS GIS pro začátečníky
           <grass-gis-zacatecnik>`.
 
