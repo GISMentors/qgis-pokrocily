@@ -26,7 +26,7 @@ Tento nástroj doporučujeme používat až od verze QGIS 2.14.
           vrátil tento zásuvný modul do verze QGIS 2.10 a plně
           funkčním poté ve verzi QGIS 2.12.
 
-.. note:: Volat nástroje systému GRASS lze také z
+.. tip:: Volat nástroje systému GRASS lze také z
           :doc:`../geoprocessing/index`. Hlavní rozdíl je především v
           tom, že druhý jmenovaný nástroj vytváří přechodné GRASS
           lokace, vstupní data do nich importuje nebo připojuje. V
