@@ -56,11 +56,6 @@ součástí školení **GRASS GIS pro pokročilé**.
 Postup zpracovaní v QGIS
 ========================
 
-Návod vychází z textu školení :skoleni:`GRASS GIS pro pokročilé
-<grass-gis-pokrocily/hydrologie/scs-cn.html>`, viz
-:skoleni:`navrhovaný postup
-<grass-gis-pokrocily/hydrologie/scs-cn.html#scs-cn-postup>`.
-
 .. _kr1:
 
 Krok 1
