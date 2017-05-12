@@ -87,6 +87,8 @@ specializovaný **VFK plugin**.
           FreeGIS
           <http://freegis.fsv.cvut.cz/gwiki/VFK_/_QGIS_plugin>`_.
 
+.. _geoforall-instalace:
+          
 Instalace
 ~~~~~~~~~
 
@@ -146,21 +148,20 @@ vyhledávat, postupovat podle listů vlastnictví a mnoho dalších funkcí.
 Výměnný formát RÚIAN (VFR)
 ==========================
 
-:wikipedia:`RÚIAN` (Registr Územní Identifikace, Adres a Nemovitostí)
-patří do systému základních registrů. Poskytuje údaje o základních
-územních prvcích jako jsou území státu, katastr, parcela, nemovitost a
-další. Více informací `zde <http://www.ruian.cz>`_.
+:wikipedia:`RÚIAN` (**Registr Územní Identifikace, Adres a
+Nemovitostí**) patří do systému základních registrů. Poskytuje údaje o
+základních územních prvcích jako jsou území státu, katastr, parcela,
+nemovitost a další. Více informací najdete na stránkách `ruian.cz
+<http://www.ruian.cz>`_.
 
 Data jsou poskytována ve *výměnném formátu RÚIAN* (VFR) službou
-`Veřejného dálkového přístupu <http://vdp.cuzk.cz>`_.
-
-Datový formát VFR je podporován knihovnou GDAL od verze 1.11. Vzhledem
-k tomu je můžeme načíst do QGISu jako každá jiná vektorová souborová
-data.
+`Veřejného dálkového přístupu <http://vdp.cuzk.cz>`_. Datový formát
+VFR je podporován knihovnou GDAL od verze 1.11. Vzhledem k tomu je
+můžeme načíst do QGISu jako každá jiná vektorová souborová data.
 
 .. important:: Formát VFR definuje více geometrických reprezentací na
                prvek, typicky definiční bod, originální a
-               generalizovanou hranici. QGIS je v současnosti (2.14)
+               generalizovanou hranici. QGIS je v současnosti (2.18)
                schopen zobrazit pouze první geometrii (tj. většinou
                pouze definiční bod), přestože je knihovna GDAL schopná
                tyto data číst korektně. Viz porovnání dotazu na data
@@ -182,74 +183,84 @@ data.
                   načíst pouze definiční body.
 
 Limit QGISu je možné obejít pomocí konverze dat VFR do vhodného
-formátu a výběru preferované geometrie. Tuto konverzi můžeme provést
-konzolovými konverzními nástroji *vfr2ogr*. Výhoda těchto nástrojů je,
-že kromě jednotlivých vstupních VFR souborů můžeme použít seznam linků
-stažitelný z `VDP <http://vdp.cuzk.cz>`_. V tomto případě budou VFR
-data nástrojem *vfr2ogr* automaticky stažena a naimportována do
-cílového formátu. Jako cílový formát doporučujeme
-:wikipedia-en:`SpatiaLite` anebo :wikipedia:`PostGIS`.
+formátu a výběru preferované geometrie. Takto k problému přístupuje i
+**RUIAN plugin**, který podporuje uložení dat do formátů SQLite, OGC
+GeoPackage a Esri Shapefile. Plugin lze :ref:`nainstalovat
+<geoforall-instalace>` obdobným způsobem jako VFK plugin, viz
+`dokumentace pluginu
+<https://ctu-geoforall-lab.github.io/qgis-ruian-plugin>`__.
 
-.. note:: Konverzní nástroje *vfr2ogr* najdete na serveru GitHub, viz
-          `stránka s verzemi
-          <https://github.com/ctu-geoforall-lab/gdal-vfr/releases>`_ ke
-          stažení.
-
-Jako příklad si ukážeme stažení dat pro OPR Litoměřice a konverzi dat
-do databáze SQLite.
-
-.. figure:: images/vfr-vdp-ltm.png
+.. figure:: images/ruian-plugin.png
    :class: middle
+
+   Ukázka použití pluginu pro práci s daty RÚIAN.
+
+.. noteadvanced:: Konverzi můžeme provést konzolovými konverzními
+   nástroji *vfr2ogr*. Výhoda těchto nástrojů je, že kromě jednotlivých
+   vstupních VFR souborů můžeme použít seznam linků stažitelný z `VDP
+   <http://vdp.cuzk.cz>`_. V tomto případě budou VFR data nástrojem
+   *vfr2ogr* automaticky stažena a naimportována do cílového
+   formátu. Jako cílový formát doporučujeme :wikipedia-en:`SpatiaLite`
+   anebo :wikipedia:`PostGIS`.
+
+   Konverzní nástroje *vfr2ogr* najdete na serveru GitHub, viz
+   `stránka s verzemi
+   <https://github.com/ctu-geoforall-lab/gdal-vfr/releases>`_ ke
+   stažení.
+
+   Jako příklad si ukážeme stažení dat pro OPR Litoměřice a konverzi dat
+   do databáze SQLite.
+
+   .. figure:: images/vfr-vdp-ltm.png
+      :class: middle
         
-   Na portálu VDP vybereme ORP Litoměřice a stáhneme seznam linků.
+      Na portálu VDP vybereme ORP Litoměřice a stáhneme seznam linků.
 
-Seznam linků z VDP použijeme jako vstup pro nástroj *vfr2ogr*.
+   Seznam linků z VDP použijeme jako vstup pro nástroj
+   *vfr2ogr*. Seznam z VDP obsahuje data za poslední tři měsíce. Před
+   importem vybereme pouze ty nejaktuálnější, např. pomocí unixového
+   nástroje *grep*.
 
-.. note:: Seznam z VDP obsahuje data za poslední tři měsíce. Před
-          importem vybereme pouze ty nejaktuálnější, např. pomocí
-          unixového nástroje *grep*.
+   .. code-block:: bash
 
-          .. code-block:: bash
-
-             grep '20160131' seznamlinku.txt > seznamlinku-aktualni.txt
+      grep '20160131' seznamlinku.txt > seznamlinku-aktualni.txt
           
-.. code-block:: bash
+   .. code-block:: bash
 
-   vfr2ogr --file seznamlinku-aktualni.txt --format SQLite --dsn ruian_ltm.db --geom OriginalniHranice
+      vfr2ogr --file seznamlinku-aktualni.txt --format SQLite --dsn ruian_ltm.db --geom OriginalniHranice
 
-.. note:: Jako vstupní soubor do nástroje můžete použít přímo data ve
-          formátu VFR. Potom se provede import pouze zvoleného
-          souboru.
+   Jako vstupní soubor do nástroje můžete použít přímo data ve formátu
+   VFR. Potom se provede import pouze zvoleného souboru.
 
-          .. code-block:: bash
+   .. code-block:: bash
       
-             vfr2ogr --file data/20160131_OB_530506_UKSH.xml.gz --format SQLite --dsn ruian_obec.db --geom OriginalniHranice 
+      vfr2ogr --file data/20160131_OB_530506_UKSH.xml.gz --format SQLite --dsn ruian_obec.db --geom OriginalniHranice 
                 
-Výsledná databáze potom obsahuje data za celou zvolenou ORP:
+   Výsledná databáze potom obsahuje data za celou zvolenou ORP:
 
-::
+   ::
 
-   Layer            obce                 ...         40 features
-   Layer            spravniobvody        ...          0 features
-   Layer            mop                  ...          0 features
-   Layer            momc                 ...          0 features
-   Layer            castiobci            ...        142 features
-   Layer            katastralniuzemi     ...        128 features
-   Layer            zsj                  ...        195 features
-   Layer            ulice                ...        445 features
-   Layer            parcely              ...     173825 features
-   Layer            stavebniobjekty      ...      25727 features
-   Layer            adresnimista         ...      17513 features
+      Layer            obce                 ...         40 features
+      Layer            spravniobvody        ...          0 features
+      Layer            mop                  ...          0 features
+      Layer            momc                 ...          0 features
+      Layer            castiobci            ...        142 features
+      Layer            katastralniuzemi     ...        128 features
+      Layer            zsj                  ...        195 features
+      Layer            ulice                ...        445 features
+      Layer            parcely              ...     173825 features
+      Layer            stavebniobjekty      ...      25727 features
+      Layer            adresnimista         ...      17513 features
 
-Výslednou databázi `ruian_ltm.db` můžeme v QGISu načíst jako běžná
-souborová vektorová data.
+   Výslednou databázi `ruian_ltm.db` můžeme v QGISu načíst jako běžná
+   souborová vektorová data.
 
-.. figure:: images/vfr-sqlite-vrstvy.png
+   .. figure:: images/vfr-sqlite-vrstvy.png
 
-   Seznam vrstev včetně polygonových vrstev (originální nebo
-   generalizované hranice).
+      Seznam vrstev včetně polygonových vrstev (originální nebo
+      generalizované hranice).
 
-.. figure:: images/vfr-ltm-vizualizace.png
-   :class: middle
+   .. figure:: images/vfr-ltm-vizualizace.png
+      :class: middle
         
-   Příklad vizualizace parcel v ORP Litoměřice.
+      Příklad vizualizace parcel v ORP Litoměřice.
