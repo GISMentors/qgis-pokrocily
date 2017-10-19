@@ -25,9 +25,9 @@ Dávkové zpracování
 Dávkové zpracování nám umožní spustit jeden algoritmus vícekrát najednou s 
 různými parametry. Spustit dávkový preces lze přímo z okna nástrohů zpracování 
 vyvoláním kontextové nabídky pravým kliknutím na požadovaný algoritmus a 
-výběrem :guilabel:`Spustit dávkový proces` (:num:`#batch`). Další možnost jak 
+výběrem :guilabel:`Spustit dávkový proces` (:numref:`batch`). Další možnost jak 
 dávkový proces spustit je přío z okna algoritmu, kde se nám v horní liště 
-ukáže tlačítko :item:`Spustit jako dávkový proces` (:num:`#batch2`).
+ukáže tlačítko :item:`Spustit jako dávkový proces` (:numref:`batch2`).
 
 .. _batch:
 .. figure:: images/geoproc_batch.png 
@@ -69,7 +69,7 @@ procesu. Některá specifika si popíšeme níže.
 Výběr vrstev
 ^^^^^^^^^^^^
 Výběr vrstev provádíme za pomocí tlačítka :item:`...`, kdy můžeme buď vybrat 
-vrstvy nahrané v projektu (:num:`#batchlay`) nebo vyhledat soubory uložené na 
+vrstvy nahrané v projektu (:numref:`batchlay`) nebo vyhledat soubory uložené na 
 disku. V obou případech je možné (u některých algoritmů nutné) vybrat více 
 vrstev. Pokud se jedná o algoritmus se vstupem jedné vrstvy, při výběru  více 
 vrstev se jednotlivé vrstvy přiřadí k vlastním procesům procesům.
@@ -97,9 +97,9 @@ Výstupní soubor
 Zde je, oproti samostatnému procesu, nutné zadat cestu k výstupnímu souboru 
 pomocí tlačítka :item:`...`. Stačí však zadat uložení prvního výstupního 
 souboru a objeví se nám okno pro automatické doplnění výstupních souborů 
-(:num:`#batchout`). Zde je možné automaticky vytvořit výstupní soubory s 
+(:numref:`batchout`). Zde je možné automaticky vytvořit výstupní soubory s 
 příponou pořadového čísla nebo na základě vybraného vstupního parametru 
-(název vrstvy, velikost bufferu atd., viz :num:`#batchout2`).
+(název vrstvy, velikost bufferu atd., viz :numref:`batchout2`).
 
 .. warning:: Pokud v obecném nastavení možností zpracování neaktivujeme 
 	     |alg|:guilabel:`Použít název souboru pro název vrstvy` budou 
@@ -192,7 +192,7 @@ jako dávkový proces na všechny rastrové vrstvy najednou.
   
 Jako vstupní vrstvy vybereme rastrové vrstvy, které chceme ořezat (dmt, aspect, 
 slope), a zvolíme rozsah ořezu v mapovém okně, hodnotu rozsahu potom 
-nakopírujeme do dalších řádků (:num:`#batchclip`). Výstupním souborům necháme 
+nakopírujeme do dalších řádků (:numref:`batchclip`). Výstupním souborům necháme 
 přidělit příponu podle paraetru :guilabel:`Vstupní vrstva` a spustíme proces.
 
 

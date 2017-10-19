@@ -39,7 +39,7 @@ Jednotlivé parametry lze do modelu přidat tažením nebo poklikáním. Po př�
 se objeví dialogové okno, které je u většiny parametrů jednoduché. Základní 
 položkou je zde název parametru. Nastavení parametrů v modelu lze průběžně 
 měnit kliknutím na symbol tužky, nebo lze parametry odstranit kliknutím na 
-křížek (:num:`#vstupdia`).
+křížek (:numref:`vstupdia`).
 
 .. figure:: images/modeler_vstup_num.png 
    :class: small 
@@ -60,7 +60,7 @@ Algoritmy
    
 Hlavní součástí modelů jsou algoritmy. Nalezneme zde většinu algoritmů, které 
 jsou v okně nástrojů zpracování. Kromě těchto funkcí jsou zde speciální 
-:guilabel:`Nástroje jen pro modely` (:num:`#algor`).
+:guilabel:`Nástroje jen pro modely` (:numref:`algor`).
 
 .. _algor:
 .. figure:: images/modeler_algor.png 
@@ -69,10 +69,10 @@ jsou v okně nástrojů zpracování. Kromě těchto funkcí jsou zde speciáln�
    Možné vstupní algoritmy.
    
 Algoritmy se přidávají do modelu opět tažením nebo poklikáním. Po přidání se 
-ukáže běžné dialogové okno konkrétního algoritmu (:num:`#algorrand`). Zde máme 
+ukáže běžné dialogové okno konkrétního algoritmu (:numref:`algorrand`). Zde máme 
 možnost nastavit výchozí hodnoty parametrů algoritmu, se kterými se bude 
 počítat při spuštění modelu. Jesltiže chceme mít parametry při spouštění modelu 
-volitelné je třeba nakonfigurovat odpovídající vstupy (:num:`#algorrand2`).
+volitelné je třeba nakonfigurovat odpovídající vstupy (:numref:`algorrand2`).
 
 - vložíme algoritmus |qgis|:guilabel:`Random points in extent` a jako vstupní 
   rozsah zadáme náš vstupní parametr :item:`Rozsah`. Jako počet bodů zvolíme 
@@ -103,7 +103,7 @@ použít tlačítek ``+`` a ``-`` lze měnit vstupy a výstupy algoritmu.
 
 Jednotlivé algoritmy lze na sebe dále navazovat - to co je výstupem z jednoho 
 algoritmu může nějakým způsobem vstupovat do algoritmu druhého 
-(:num:`#algorrand4`).
+(:numref:`algorrand4`).
 
 - Vložíme do modelu algoritmus |qgis|:guilabel:`Fixed distance buffer`. Jako 
   vstupní vrstvu nastavíme :guilabel:`'Náhodné body' z algoritmu 'Random points 
@@ -118,10 +118,10 @@ algoritmu může nějakým způsobem vstupovat do algoritmu druhého
 
 Pravým kliknutím na algoritmus v modelu můžeme vyvolat kontextové menu, 
 ve kterém můžeme algoritmus vymazat, deaktivovat nebo spustit jeho editaci 
-(:num:`#algkont`). Ve spodní části dialogového okna každého algoritmu je 
+(:numref:`algkont`). Ve spodní části dialogového okna každého algoritmu je 
 parametr :guilabel:`Rodičovské algoritmy`, pomocí kterého lze nastavit 
 nadřazené algoritmy. Takto vybrané algoritmy se budou vždy spouštět před 
-tímto algoritmem (:num:`#algpar`).
+tímto algoritmem (:numref:`algpar`).
 
 .. _algkont:
 .. figure:: images/modeler_algor_kont.png 
@@ -148,7 +148,7 @@ sloužit jako vlastní konečný výsledek modelu, ale také lze nastavit
 výstupy průběžně u jednotlivých algoritmů. Výstup se konfiguruje u
 každého algoritmu zvlášť, stačí zadat název výstupu do textového pole
 ve spodní části dialogového okna algoritmu
-(:num:`#modeloutname`). Všeobecně, a především při generování více
+(:numref:`modeloutname`). Všeobecně, a především při generování více
 výstupů, je vhodné zvolit smysluplný název podle toho jaký je obsah
 dat nebo co nám data sdělují.
    

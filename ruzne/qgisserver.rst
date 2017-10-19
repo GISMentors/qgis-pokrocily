@@ -148,7 +148,7 @@ Pokročilé nastavení
 Dalším nastavením je možnost povolit vrstvu k identifikování, což určuje zda je k
 dispozici požadavek `GetFeatureInfo` u služby WMS. Toto nastavení je v
 :menuselection:`Projekt --> Vlastnosti projektu` záložka :item:`Identifikovat
-vrstvy`. Jak je vidět i na :num:`get-feature-info-set` nastavení je formou
+vrstvy`. Jak je vidět i na :numref:`get-feature-info-set` nastavení je formou
 voleb u každá vrstvy samostatně.
 
 .. _get-feature-info-set:

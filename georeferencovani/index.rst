@@ -51,7 +51,7 @@ Nástroj pro georeferencování je možné nainstalovat přes Správce zásuvný
 modulů menu :menuselection:`Zásuvné moduly --> Spravovat a instalovat
 zásuvné moduly`. Plugin se jmenuje :item:`Georeferencovač GDAL` a je možné
 jej najít v :menuselection:`Rastr --> Georeferencování --> Georeferencér` 
-(:num:`georeferencer-menu`).
+(:numref:`georeferencer-menu`).
 V pluginu se nachází 2 oddělená okna. V prvním se zobrazí zpracovávaný
 rastr a v druhém tabulka tzv. `GCP bodů - identických bodů`.
 
@@ -90,7 +90,7 @@ Dalším krokem je zadání tzv. identických bodů (z ang. `ground control
 points`). Jde o identifikaci polohy na zpracovávaném obrázku a následné
 zadání souřadnic bodu v daném souřadnicovém systému (grafickým výběrem 
 nebo zadáním souřadnic). 
-Postup je zobrazen na :num:`add-gcp-point`. 
+Postup je zobrazen na :numref:`add-gcp-point`. 
  * Prvním krokem je výběr nástroje pro přidávání bodů pomocí ikonky
    |mActionAddGCPPoint| :sup:`Přidat bod`.
  * Pak identifikujeme bod v georeferencovaném obrázku kliknutím na jeho
@@ -124,7 +124,7 @@ Postup je zobrazen na :num:`add-gcp-point`.
    směr a velikost jednotlivých odchylek.
 
 .. tip:: V určitých případech můžeme georeferencovat obrázek, na kterém jsou
-   definované souřadnice (formou křížů se souřadnicemi :num:`input-coordinates`,
+   definované souřadnice (formou křížů se souřadnicemi :numref:`input-coordinates`,
    mapovým rámem s popisem, nebo zeměpisnou sítí s popiskami).
 
    .. _input-coordinates:
@@ -137,7 +137,7 @@ Postup je zobrazen na :num:`add-gcp-point`.
    zadat souřadnice.
    Další možností je zadávání z mapového okna, kde se vykreslí souřadnicová 
    mřížka i s popisem. Nastavení mřížky je dostupné z menu
-   :menuselection:`Zobrazit --> Dekorace --> Mřížka...` (:num:`grid`).
+   :menuselection:`Zobrazit --> Dekorace --> Mřížka...` (:numref:`grid`).
    Samostatně se zde nastavuje vykreslování mřížky (symbologie, rozestupy,
    odsazení) a popisků (orientace, font, odsazení, počet desetinných míst).
    Nevýhodou je, že při georeferencování nejde dochytávat (snapovat) na tyto body
@@ -168,7 +168,7 @@ Po zadání dostatečného množství identických bodů je možné pokračovat
 dalším krokem. Buňky vstupního rastru musí být přepočítány pomocí klíče,
 který je definován identickými body a typem transformace.
 Tlačítko |mActionTransformSettings| :sup:`Nastavení transformace` otevře
-dialogové okno, kde se nastavují následující parametry (:num:`transformation`):
+dialogové okno, kde se nastavují následující parametry (:numref:`transformation`):
 
  * komprese
  * výstupní rastr
@@ -265,10 +265,10 @@ parametrech, které jsou nastaveny pro jeho zpracování.
 
 Pokud pro nastavený typ transformace není zadán dostatečný počet identických
 bodů, tak je to vidět na tabulce GCP (hodnoty odchylek na jednotlivých bodech
-nejsou spočteny a je uvedena pouze "0" - první část :num:`gcp-points` )
+nejsou spočteny a je uvedena pouze "0" - první část :numref:`gcp-points` )
 Pokud by jste zkusili spustit georeferencování, tak vás varovná hláška informuje
 o selhání transformace z důvodu neřešitelnosti.
-V druhé části :num:`gcp-points` je již do výpočtu zahrnut i bod ID = 2. U
+V druhé části :numref:`gcp-points` je již do výpočtu zahrnut i bod ID = 2. U
 každého bodu je vidět souřadnice zdroje, cíle, a odchylky v pixelech v
 jednotlivých osách.
 
@@ -285,7 +285,7 @@ jednotlivých osách.
    dobré zkontrolovat (v mapě i na zpracovávaném obrázku). Polohu bodu můžeme
    opravit, nebo bod vyřadit z řešení anebo ho úplně odstranit.
 
-   Na :num:`gcp-mistake` je vidět, že byl zadán bod, který má extrémní odchylky.
+   Na :numref:`gcp-mistake` je vidět, že byl zadán bod, který má extrémní odchylky.
    Výstupem georeferencování je pak rastr, který má značnou deformaci. Vektor
    odchylky je pak vykreslen do zpracovávaného obrázku.
     
@@ -302,7 +302,7 @@ dosažená polohová přesnost vyhovuje požadavkům.
 Pokud by velikost výsledního rastru byla příliš velká a jeho vykreslování by 
 bylo pomalé, tak je možné vytvořit tzv. pyramidy. 
 Toto nastavení je dostupné přímo ve vlastnostech rastrové vrstvy, v záložce 
-:item:`Pyramidy`. Na :num:`pyramids` je vidět i text popisující funkčnost 
+:item:`Pyramidy`. Na :numref:`pyramids` je vidět i text popisující funkčnost 
 pyramid, varování, že bude upravován přímo zdrojový rastr a paramtery pro tvorbu
 pyramid (levely, formát náhledu a metoda převzorkování). Pyramidy je také možné 
 vytvořit pomocí :menuselection:`Rastr -->Různé --> Vytvořit prehledy (pyramidy)`,

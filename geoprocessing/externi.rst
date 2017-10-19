@@ -72,7 +72,7 @@ Slope, aspect, curvature
 Tento algoritmus nám umožní vytvořit z digitálního modelu terénu (dmt) vrstvu 
 sklonů, orientace svahů a různých typů zakřivení. Výhodou je možnost výběru 
 metody, ale především výstupních jednotek u svahů a orientací 
-(:num:`#sagajednotky`). Sklon svahu můžeme zvolit buď ve stupních, 
+(:numref:`sagajednotky`). Sklon svahu můžeme zvolit buď ve stupních, 
 radiánech nebo procentech. Orientaci svahu potom ve stupních nebo radiánech. 
 Při spuštění algoritmu se vypočítají sice všechny výstupy, ale lze samostatně 
 vybrat ty, které chceme nahrát do projektu či uložit do souboru.

@@ -84,7 +84,7 @@ Spravovat a instalovat zásuvné moduly...`. Potřebný modul je pouze
 experimentální, proto musíte být povolené zobrazování experimentálních modulů.
 
 Po instalaci se modul nachází v :menuselection:`Vektor --> Geotag and import
-photos` (:num:`menu-geotag`).
+photos` (:numref:`menu-geotag`).
 
 .. _menu-geotag:
 
@@ -95,7 +95,7 @@ photos` (:num:`menu-geotag`).
 .. note::
    
    Pro práci v OS Windows je nutné nastavit cestu k složce :item:`ExifTool`,
-   ve které se nachází `exiftool.exe` (:num:`exif-win`).
+   ve které se nachází `exiftool.exe` (:numref:`exif-win`).
    Nastavení se nachází v :menuselection:`Vektor --> Geotag and import photos 
    --> Settings`. 
    Na OS Linux toto není potřebné.
@@ -134,7 +134,7 @@ Naprostá většina zařízení, která dokáže dělat takto zpracovatelné fot
 pracuje se souřadnicemi v systému *WGS - 84*. Výsledná vrstva má tudíž ten samý
 souřadnicový systém (:epsg:`4326`).
 
-Pokud si otevřeme atributovou tabulku (:num:`attribute-tab`), tak se
+Pokud si otevřeme atributovou tabulku (:numref:`attribute-tab`), tak se
 tam standardně nachází 2 atributy.  Prvním je `filepath` - absolutní
 cesta k obrázku v čase vytvoření a `filename` - název souboru.
 
@@ -273,7 +273,7 @@ zkopírováním původního. Jednotlivé prvky se budou vykreslovat
 :wikipedia:`SVG` značkou podle atributu kódu. Proto musíme prvky
 uspořádat dle jejich skutečného pořadí ze shora dolů a toto i zapsat
 jako atribut (rozestup záleží na velikosti ikon a měřítku.)  Příklad
-výchozího a upraveného stavu je na :num:`copy-feature`.
+výchozího a upraveného stavu je na :numref:`copy-feature`.
 
 .. _copy-feature:
 

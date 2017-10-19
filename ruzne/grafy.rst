@@ -31,7 +31,7 @@ základe dát vytvárať či už koláčové, textové alebo stĺpcové diagramy
 ich zobrazovať v mape.
 
 Do mapového okna pridáme vektorovú vrstvu vyšších územných samosprávnych celkov
-(:map:`vusc_krim`). Nastavíme štýl, napr. na :num:`#cr-styl` je typ vrstvy 
+(:map:`vusc_krim`). Nastavíme štýl, napr. na :numref:`cr-styl` je typ vrstvy 
 symbolu nastavený na ``Shapeburst fill``, ide o ``Prevrácené polygóny`` s farbami
 prechodu ``modrá`` a ``biela`` s nastaveným tieňovaním do vzdialenosti
 5 mm. Popisky predstavujú názvy jednotlivých samosprávnych celkov 
@@ -70,7 +70,7 @@ layer`. Potom vyberieme typ diagramu, pričom môže ísť o
 |histogram| :sup:`Histogram`. V rámci tohto okna je možné nastaviť jeho vzhľad, 
 formát, viditeľnosť, tlačidlami |plus| a |minus| sa dajú pridávať, resp. uberať 
 zobrazované atribúty, tlačidlom |expression| možno definovať atribút založený 
-na výraze. Na :num:`#d-pie` sú kombináciou koláčového grafu a textového diagramu
+na výraze. Na :numref:`d-pie` sú kombináciou koláčového grafu a textového diagramu
 znázornené informácie o celkovej kriminalite pre jednotlivé vyššie územné 
 samosprávne celky Českej republiky. Je to jeden z najjednoduchších spôsobov
 takejto reprezentácie dát (zobrazujeme len jeden atribút).
@@ -97,7 +97,7 @@ za rok 2015.
 Nastavíme štýlovanie vrstiev, t.j. |catsymbol| :sup:`Kategorizovaný symbol` pre hodnoty
 o počte vrážd za rok 2015. Pomocou :menuselection:`Web --> OpenLayers Plugin`
 pridáme do mapového okna napríklad aj vrstvu :map:`OpenStreetMap`. Výsledok môže
-vyzerať ako to znázorňuje :num:`cr-graf-osm`. 
+vyzerať ako to znázorňuje :numref:`cr-graf-osm`. 
 
 .. _cr-graf-osm:
 
@@ -114,7 +114,7 @@ Nakoniec v záložke ``Polygon`` použijeme vrstvu :map:`vusc_krim` a jej atrib�
 :dbcolumn:`krim_2015v` prenásobený hodnotou napr. ``3000``. 
 Potvrdíme stlačením :item:`Run` a počkáme na automatické otvorenie výsledku 
 vo webovom prehliadači. Tu môžeme zapínať, resp. vypínať vrstvy, meniť 
-transparentnosť vrstiev či pozadia, viď. :num:`cr-graf-g2t`.
+transparentnosť vrstiev či pozadia, viď. :numref:`cr-graf-g2t`.
 
 .. _cr-graf-g2t:
 
@@ -133,11 +133,11 @@ Skontrolujeme či všetky vrstvy majú rovnaký súradnicový systém, t.j.
 :menuselection:`Vlastnosti --> Obecné --> Souradnicový referenčný systém`). 
 Potom z menu lišty vyberieme :menuselection:`Vektor --> Analytické nástroje -->
 Součet délek čar`. Otvorí sa dialógové okno, kde nastavíme vstupnú polygónovú
-a líniovú vektorovú vrstvu a názov výstupnej vrstvy (:num:`#soucet-silnice-okno`). 
+a líniovú vektorovú vrstvu a názov výstupnej vrstvy (:numref:`soucet-silnice-okno`). 
 Urobíme to pre všetky dopravné komunikácie tak, že výstupnú plošnú vrstvu
-použijeme ako vstup pre ďalšiu, viď. :num:`cr-silnice`. Takto nám nakoniec 
+použijeme ako vstup pre ďalšiu, viď. :numref:`cr-silnice`. Takto nám nakoniec 
 vznikne vektorová vrstva krajov s informáciami o dĺžke vybraných komunikácií,
-viď. atribútová tabuľka poslednej mapy :map:`sum_z` na :num:`#at-sum`. 
+viď. atribútová tabuľka poslednej mapy :map:`sum_z` na :numref:`at-sum`. 
 
 .. _soucet-silnice-okno:
 
@@ -163,7 +163,7 @@ viď. atribútová tabuľka poslednej mapy :map:`sum_z` na :num:`#at-sum`.
 Potom pomocou kalkulačky polí |mActionCalculateField| :sup:`Otvoriť kalkulátor polí`
 zaokrúhlime hodnoty na celé kilometre. Najprv zaklikneme 
 |box_yes| :sup:`Aktualizovať existujúce pole` a následne do okna *Výraz*
-zadáme ``round("sum_s1"/1000)``, viď. :num:`kalk-poli`. Obdobne postupujeme aj
+zadáme ``round("sum_s1"/1000)``, viď. :numref:`kalk-poli`. Obdobne postupujeme aj
 pri stĺpcoch :dbcolumn:`sum_s2`, :dbcolumn:`sum_s3`, :dbcolumn:`sum_s4`, 
 :dbcolumn:`sum_s5` a :dbcolumn:`sum_z`. Na záver zmeny uložíme. 
 
@@ -179,7 +179,7 @@ pri stĺpcoch :dbcolumn:`sum_s2`, :dbcolumn:`sum_s3`, :dbcolumn:`sum_s4`,
 Potom postupujeme podobne ako pri mape celkovej kriminality záložkou 
 |diagram| :sup:`Diagramy`. Nastavíme priehľadnú výplň a umiestnenie 
 ``Inside polygon``. Výsledok prekryjeme s vrstvou :map:`vusc` 
-(:num:`#silnice-graf-all`)
+(:numref:`silnice-graf-all`)
 
 .. _silnice-graf:
 
@@ -198,7 +198,7 @@ Potom postupujeme podobne ako pri mape celkovej kriminality záložkou
 
 Ďalej môžeme vrstvu :map:`vusc-silnice` duplikovať a namiesto koláčového grafu 
 znázorniť textové diagramy. V prípade, že všetky vrstvy prekryjeme, výsledok
-môže byť ako na :num:`#silnice-graf-text`.
+môže byť ako na :numref:`silnice-graf-text`.
 
 .. _silnice-graf-text:
 

@@ -94,7 +94,7 @@ ukázali jak vytvořit soubor reklasifikace. Abychom takový soubor
 dostali do modelu musíme přidat vstupní parametr :item:`File`
 (pojmenujeme si ho např. :guilabel:`Soubor pro reklasifikaci`). V
 dialogovém okně aloritmu |grass|:grasscmd:`r.reclass` nastavíme
-jednotlivé parametry (:num:`#modelreclass`).
+jednotlivé parametry (:numref:`modelreclass`).
 
 .. _modelreclass:
 .. figure:: images/modeler_terr_reclass.png 
