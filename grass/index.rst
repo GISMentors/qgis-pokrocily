@@ -16,7 +16,7 @@ analýze geografických dat.
 Tento nástroj doporučujeme používat až od verze QGIS 2.14.
                
 .. note:: Zásuvný modul GRASS byl součástí i starších verzi QGISu,
-          nicméně podporoval pouze starší verzi systému GRASS
+          nicméně podporoval pouze zastaralou verzi systému GRASS
           6.4. Vzhledem k tomu, že nebyl svými tvůrci dostatečně
           udržován, tak byl v LTR verzi QGIS 2.8 odstraněn. V roce
           2015 proběhla `crowdfundingová kampaň
@@ -27,16 +27,19 @@ Tento nástroj doporučujeme používat až od verze QGIS 2.14.
           funkčním poté ve verzi QGIS 2.12.
 
 .. tip:: Volat nástroje systému GRASS lze také z
-          :doc:`../geoprocessing/index`. Hlavní rozdíl je především v
-          tom, že druhý jmenovaný nástroj vytváří přechodné GRASS
-          lokace, vstupní data do nich importuje nebo připojuje. V
-          této lokaci provede výpočet, výsledná data vyexportuje
-          zpravidla do GeoTIFF nebo Esri Shapefile a přechodnou lokaci
-          smaže. GRASS plugin naopak umožňuje zpravovat vlastní lokace
-          a data v nich udržovat. V tomto případě v podstatě QGIS
-          slouží jako grafický front-end pro GRASS GIS.
+         :doc:`../geoprocessing/index`. Hlavní rozdíl je především v
+         tom, že druhý jmenovaný nástroj vytváří přechodné GRASS
+         projekty, tzv. lokace (viz školení GRASS GIS pro
+         začátečníky - :skoleni:`koncept lokací a mapsetů
+         <grass-gis-zacatecnik/intro/struktura-dat.html>`), vstupní
+         data do nich importuje nebo připojuje. Provede výpočet,
+         výsledná data vyexportuje zpravidla do GeoTIFF nebo Esri
+         Shapefile a přechodnou lokaci smaže. GRASS plugin naopak
+         umožňuje spravovat vlastní lokace a data v nich udržovat. V
+         tomto případě v podstatě QGIS slouží jako grafický front-end
+         pro GRASS GIS.
 
-Tento zásuvný modul je výchozí součástí QGISu, je potřeba ho ale
+Zásuvný modul GRASS je výchozí součástí QGISu, je potřeba jej pouze
 aktivovat v :menuselection:`Zásuvné moduly --> Instalovat a spravovat
 zásuvné moduly`.
 
@@ -52,13 +55,14 @@ panel lze otevřít  i z menu :menuselection:`Zásuvné moduly --> GRASS
    
    Panel nástrojů zásuvného modulu GRASS.
 
-Proto, abycho mohli nástroje systému GRASS používat, je potřeba
+Proto, abychom mohli nástroje systému GRASS používat, je potřeba
 definovat tzv. **mapset**, se kterým chceme pracovat. Mapset je kromě
-tzv. *gisdbase* a *lokace* základními stavebními kameny struktury dat,
-kterou GRASS pro svůj běh vyžaduje. Podrobný popis této struktury
-naleznete ve školení GRASS GIS pro začátečníky v kapitole
-:skoleni:`struktura dat
-<grass-gis-zacatecnik/intro/struktura-dat.html>`.
+tzv. *databázový adresář* a *lokace* základními stavebními kameny
+struktury dat, kterou GRASS pro svůj běh vyžaduje. Podrobný popis této
+struktury naleznete ve školení GRASS GIS pro začátečníky v kapitole
+:skoleni:`struktura dat - koncept lokací a mapsetů
+<grass-gis-zacatecnik/intro/struktura-dat.html>` ve školení GRASS GIS
+pro začátečníky.
 
 Vytvoření a otevření mapsetu
 ============================
@@ -89,14 +93,19 @@ adresáře či vytvořit lokaci novou.
    Vytvoření lokace nové.
 
 V případě, že vytváříme novou lokaci je po nás vyžadováno zadání
-souřadnicového systému, který bude k lokaci přiřazen.
+souřadnicového systému, který bude k lokaci přiřazen. To je podstatná
+vlastnost GRASS lokace, všechna data v ni spravovaná budou ve stejném
+souřadnicovém systému. 
    
 .. figure:: images/new-mapset-5.png
 
    Definice souřadnicového systému pro nově vytvořenou lokaci.
 
-Dále můžeme definovat výchozí výpočení region, viz :skoleni:`GRASS GIS
-pro začátečníky <grass-gis-zacatecnik/intro/region.html>`.
+Dále můžeme definovat výchozí *výpočení region*, viz školení 
+:skoleni:`GRASS GIS pro začátečníky
+<grass-gis-zacatecnik/intro/region.html>`. Výpočetní region je
+podstatný především pro rastrové operace, v případě vektorových dat až
+na vyjímky nehraje roli.
    
 .. figure:: images/new-mapset-6.png
 
@@ -117,8 +126,8 @@ Celý process je dokončen potvrzovacím dialogem.
    Dokončení procesu tvorby nového mapsetu.
 
 Již existující mapset můžeme otevřít z menu :menuselection:`Zásuvné
-moduly --> GRASS --> Otevřít mapset`. Po dokončení práce zavřeme
-mapset z menu :menuselection:`Zásuvné moduly --> GRASS --> Zavřít
+moduly --> GRASS --> Otevřít mapset`. Po dokončení práce můžeme mapset
+zavřít z menu :menuselection:`Zásuvné moduly --> GRASS --> Zavřít
 mapset`.
 
 Spouštění nástrojů systému GRASS
@@ -136,32 +145,36 @@ kolem požarních stanic v Praze.
         
    Volba parametrů nástroje.
 
-.. note:: Další příklad prostorové analýzy ve školení :skoleni:`GRASS
-          GIS pro začátečníky
-          <grass-gis-zacatecnik/vektorova_data/prostorove-funkce.html>`.
+.. tip:: Další příklady prostorových analýz naleznete ve školení
+         :skoleni:`GRASS GIS pro začátečníky
+         <grass-gis-zacatecnik/vektorova_data/prostorove-funkce.html>`.
 
 Zobrazování dat vytvořených v systému GRASS
 ===========================================
 
 Vytvořená rastrová a vektorová data v systému GRASS můžeme zobrazovat
-v mapovém okně QGISu pomocí datového katalogu.
+v mapovém okně QGISu pomocí datového katalogu - panelu prohlížeče.
 
 .. figure:: images/grass-buffer-2.png
    :class: small
         
-   Problížení GRASS dat v datovém katalogu GRASS.
+   Problížení GRASS dat v panelu prohlížeče.
 
 .. figure:: images/grass-buffer-3.png
    :class: middle
         
-   Příklad vizualizace požárních stanic v Praze a jejich obalovým
+   Příklad vizualizace požárních stanic v Praze a jejich obalových
    zón. Na pozadí je ortofoto Prahy.
 
 GRASS Shell
 ===========
 
 Spouštět příkazy systému GRASS je možno také z příkazové řádky
-pluginu, tzv. GRASS Shellu. Následující příklad ukazuje výběr stavebních
+pluginu, tzv. GRASS Shellu.
+
+.. figure:: images/grass-shell-launch.png
+
+Následující příklad ukazuje výběr stavebních
 objektů, které leží uvnitř obalových zón požárních stanic v Praze.
 
 .. figure:: images/grass-shell.png
