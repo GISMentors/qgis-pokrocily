@@ -122,7 +122,7 @@ skupinách (:numref:`tab-pripojene`).
 .. note:: V některých případech nemusí připojení tabulek proběhnout
           korektně, např. pokud se liší datový typ sloupečků použitých
           pro připojení. Typicky textové vs. číselné pole, např. '09'
-          vs. '9'.
+          vs. '9'. V tomto případě je nutné data před přípojením sjednotit.
 
 .. _novy-atribut:
 
@@ -134,7 +134,7 @@ hlavních půdních jednotek a :dbcolumn:`kpp_HydrSk` z komplexního
 průzkumu půd). Primárně použijeme hydrologickou skupinu pro hlavní
 půdní jednotky.  Kde informace není dosupná - hodnota
 :dbcolumn:`NULL`, tam použijeme :dbcolumn:`kpp_HydrSk`
-(:numref:`at-hydrsk-kalk`) a výsledek znázorníme (:numref:`hydrsk`).
+(:numref:`at-hydrsk-kalk`) a výsledek zobrazíme (:numref:`hydrsk-map`).
 
 .. code-block:: bash
 	
@@ -148,14 +148,14 @@ půdní jednotky.  Kde informace není dosupná - hodnota
    Vytvoření atributu s informacemi o hydrologické skupině pro
    elementární plochy.
 
-.. _hydrsk:
+.. _hydrsk-map:
 
 .. figure:: images/hydrsk.png
    :class: small
         
    Hydrologické skupiny elementárních ploch v zájmovém území.
 
-Při pohledu na legendu na :numref:`hydrsk` je možno si všimnout, že kódy
+Při pohledu na legendu na :numref:`hydrsk-map` je možno si všimnout, že kódy
 hydrologických skupin jako ``(A)B``, ``A(B)``, ``AB`` a podobně by
 bylo vhodné sjednotit.  K tomu použijeme editační mód a atributové
 dotazy. V hlavní liště anebo v liště atributové tabulky zvolíme volbu
@@ -194,8 +194,8 @@ prezentován na :numref:`hydrsk-ok`.
 
 Do této fáze je možné používat QGIS relativně bez problémů. Dále však
 budeme přidávat informace o využití území pro každou elementární
-plochu pomocí operace průniku. Při větších objemech dat mohou být
-nástroje geoprocessingu časově náročné a nestabilní. Pro další řešení
+plochu pomocí operace průniku. *Při větších objemech dat mohou být
+nástroje geoprocessingu časově náročné a nestabilní.* Pro další řešení
 tedy použijeme výpočetně stabilnější nástroje systému GRASS GIS.
 
 .. tip:: Více o systému GRASS v rámci školení :skoleni:`GRASS GIS pro
@@ -250,7 +250,7 @@ Zájmové území potřebujeme rozdělit na více elementárních
 ploch. Vrstvy :map:`hpj_kpp` a :map:`landuse`, pro které vytvoříme
 průnik, musíme nejprve naimportovat do mapsetu. Import dat zajišťuje
 více nástrojů, tzv. modulů (:numref:`import`). Použijeme například modul
-:grasscmd:`v.in.ogr.qgis`, který umožňuje načítat vrstvy (jakoby) z
+`v.in.ogr.qgis`, který umožňuje načítat vrstvy (jakoby) z
 prostředí QGIS. Názvy vrstev zachováme stejné.
 
 .. _import:
@@ -260,17 +260,17 @@ prostředí QGIS. Názvy vrstev zachováme stejné.
         
    Možnosti importu vektorových vrstev do GRASS mapsetu v prostředí QGIS.
 
-Pokud chceme oveřit, zda se zadané vrstvy po importu v mapsetu
-nacházejí, použijeme *shell*.  Kliknutím na |grass_shell| :sup:`GRASS
-shell` spustíme příkazový řádek. Obsah konkrétního mapsetu vypiše
-modul :grasscmd:`g.list`. Pro výpis vektorových vrstev v aktuálním
-mapsetu zadáme :code:`g.list type=vector mapset=.`. Pokud zadáme pouze
-příkaz :code:`g.list`, tak se otevře dialogové okno modulu a parametry
-můžeme zadat interaktivně.
-
-.. note:: Dokumentaci a povinné parametry každého modulu lze zobrazit
-	  zadáním příkazu *man* před název modulu, například
-	  :code:`man g.list`.
+.. tip:: Pokud chceme oveřit, zda se zadané vrstvy po importu v mapsetu
+         nacházejí, použijeme *shell*.  Kliknutím na |grass_shell| :sup:`GRASS
+         shell` spustíme příkazový řádek. Obsah konkrétního mapsetu vypiše
+         modul :grasscmd:`g.list`. Pro výpis vektorových vrstev v aktuálním
+         mapsetu zadáme :code:`g.list vector`. Parametry nástroje lze zadat i
+         interaktivně v grafickém dialogu nástroje, který se vyvolá pomocí
+         přepínače ``--ui``, např. :code:`g.list --ui`.
+         
+         Dokumentaci a povinné parametry každého modulu lze zobrazit
+	 zadáním příkazu *man* před název modulu, například
+	 :code:`man g.list`.
 
 Operaci překrytí, resp. určení průniku vektorových vrstev,
 zajišťuje modul |v.overlay.and| :sup:`v.overlay.and`, který spustíme z
@@ -285,7 +285,6 @@ zajišťuje modul |v.overlay.and| :sup:`v.overlay.and`, který spustíme z
 .. _v-overlay-and:
 
 .. figure:: images/v_overlay_and.png
-   :class: small
         
    Modul pro určení průniku dvou vektorových vrstev.
 
@@ -331,7 +330,7 @@ ve tvaru *VyužitíÚzemí_HydrologickáSkupina*.
 
 Vytvoříme nový atribut pomocí modulu |v.db.addcolumn|
 :sup:`v.db.add.column`, který nazveme :dbcolumn:`landuse_hydrsk`
-(:numref:`v-db-add-column`). Potom doplníme hodnoty atributu s využitím
+(:numref:`v-db-add-column`). Poté doplníme hodnoty atributu s využitím
 modulu |v.db.update| :sup:`v.db.update_op` jako výsledek operace v
 rámci jedné atributové tabulky.  Hodnotu zadáme ve tvaru
 ``b_LandUse||'_'||a_hydrsk``.
@@ -355,17 +354,19 @@ rámci jedné atributové tabulky.  Hodnotu zadáme ve tvaru
 Dále do mapsetu modulem :grasscmd:`db.in.ogr` importujeme tabulku s
 hodnotami `CN`. Nazveme ji :map:`lu_hydrsk_cn`.
 
-Následně použijeme modul |v.db.join| :sup:`v.db.join` pomocí kterého
+Následně použijeme modul |v.db.join| :sup:`v.db.join`, pomocí kterého
 připojíme importovanou tabulku k vektorové vrstvě
 :map:`hpj_kpp_landuse` a to kvůli přiřazení hodnot `CN` ke každé
 elementární ploše řešeného území, viz. :numref:`v-dbjoin`. Obsah
 výsledné tabulky je možno oveřit v příkazovém řádku pomocí
 :code:`v.db.select map=hpj_kpp_landuse where=cat=1`.
 
-.. important:: Jednotlivé atributy v tabulkách, které spojujeme ,
-   nesmí obsahovat stejné názvy atributů. Tento problém lze vyřešit
+.. important:: Jednotlivé atributy v tabulkách, které spojujeme, nesmí
+   obsahovat stejné názvy atributů. Tento problém lze vyřešit
    zavoláním modulu :grasscmd:`v.db.join` z GUI systému GRASS a volbou
-   :option:`subset_columns`, která v GRASS pluginu chybí.
+   :option:`subset_columns`, která ale v dialogu GRASS pluginu
+   chybí. Tento problém lze obejít nativním dialogem nástroje
+   vyvolaného příkazem :code:`v.db.join --ui`.
 
 .. _v-dbjoin:
 
@@ -394,11 +395,11 @@ postup je obdobný jako při :ref:`importu vektorových vrstev v
 
 Ukázka záznamu (vybrané atributy) atributové tabulky nově vytvořené
 vektorové vrstvy :map:`hpj_kpp_lu_pov` pro 2-letý úhrn srážek v *mm* s
-dobou trvaní *120 min*:
+dobou trvaní srážky *120 min*:
 
 .. code-block:: bash
    
-   v.db.select map=hpj_kpp_lu_pov columns=cat,a_CN,b_H_002_120 where"cat=1"
+   v.db.select map=hpj_kpp_lu_pov columns=cat,a_CN,b_H_002_120 where="cat=1"
 
    cat|a_CN|b_H_002_120
    1|80|21.6804582207
@@ -406,7 +407,8 @@ dobou trvaní *120 min*:
 Přehled o tom, jak se změnil počet plošných prvků ve vrstvě
 :map:`hpj_kpp_landuse` po sjednocení s vrstvou povodí, dostaneme jako
 výstup modulu :grasscmd:`v.info`, viz.  :menuselection:`Vektor -->
-Zprávy a statistiky`. Standardní zobrazení je uvedeno :numref:`v-info`.
+Zprávy a statistiky`. Standardní zobrazení informací je uvedeno
+:numref:`v-info`.
 
 .. _v-info:
 
@@ -431,7 +433,7 @@ potřeba, aby typ tohoto atributu byl číselný, na což použijeme funkci
 ``cast()``. Vytvoříme tedy nový atribut :dbcolumn:`CN` s datovým typem
 *integer*.
 
-.. noteadvanced:: 
+.. note:: 
    
    Vektorovou vrstvu :map:`hpj_kpp_landuse` je možno převést na
    rastrovou vrstvu s hodnotami `CN` a zobrazit v mapovém okně systému
@@ -565,7 +567,7 @@ vyplníme modulem |v.db.update| :sup:`v.db.update_op`.
 
 .. figure:: images/v_db_update_query.png
         
-   Přiřazení konstatní hodnoty atributu v případě splnění podmínkt
+   Přiřazení konstatní hodnoty atributu v případě splnění podmínky
    dotazu modulem *v.db.update_query*.
 
 .. tip:: 
@@ -624,7 +626,7 @@ tabulce. Dialogové okno je uvedeno na :numref:`v-rast-stats`.
    Dialogové okno modulu *v.rast.stats*.
 
 Vektorovou vrstvu povodí potom převedeme do podoby rastrové vrstvy,
-přičem jako klíčový atribut použime :dbcolumn:`ho_average`,
+přičem jako klíčový atribut použijeme :dbcolumn:`ho_average`,
 resp. :dbcolumn:`op_average`. Výstup zobrazený v prostředí QGIS je na
 :numref:`ho-op-avg`.
 

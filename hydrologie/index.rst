@@ -26,7 +26,7 @@ ztráty půdy erozí budeme hodnotit pomocí metod :wikipedia:`SCS CN
 <Metoda CN křivek>` a :wikipedia:`USLE`, přičem při samotném řešení
 využijeme také některé nástroje systému GRASS GIS.
 
-.. tip:: Problematice řešení těchto úloh čistě v systému GRASS se
+.. note:: Problematice řešení těchto úloh čistě v systému GRASS se
          věnuje část :skoleni:`školení GRASS GIS pokročilé
          <grass-gis-pokrocily/hydrologie>`, ze které také následující
          návody vycházejí.
@@ -34,7 +34,7 @@ využijeme také některé nástroje systému GRASS GIS.
 .. figure:: images/hmmoduly.png
    :class: middle
         
-   Nástroje pro hydrologické modelovaní v prostředí QGIS.
+   Nástroje pro hydrologické modelovaní v prostředí zásuvného modulu GRASS.
 
 .. rubric:: Témata
    :class: secnotoc
