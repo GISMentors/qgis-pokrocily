@@ -594,9 +594,9 @@ vrstvy :map:`hpj_kpp_lu_pov` rastrové vrstvy :map:`ho` a
 :map:`op`. Výsledky vizualizované v prostředí QGIS jsou uvedeny na
 :numref:`ho-op`.
 
-.. warning:: Před samotnou rasterizací je nutné korektně nastavit
-             :skoleni:`výpočetní region
-             <grass-gis-zacatecnik/intro/region.html>`.
+.. important:: Před samotnou rasterizací je nutné korektně nastavit
+   :skoleni:`výpočetní region
+   <grass-gis-zacatecnik/intro/region.html>`.
 
 .. _ho-op:
 
