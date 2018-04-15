@@ -1,4 +1,4 @@
-.. |qgis| image:: ../images/intro_logo.png
+.. |qgis| image:: ../images/qgis_logo.png
    :width: 1.5em
 .. |mActionFileSave| image:: ../images/icon/mActionFileSave.png
    :width: 1.5em

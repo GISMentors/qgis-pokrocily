@@ -4,7 +4,7 @@
    :width: 1.5em
 .. |gdal| image:: ../images/icon/gdal.png
    :width: 1.5em
-.. |qgis| image:: ../images/intro_logo.png
+.. |qgis| image:: ../images/qgis_logo.png
    :width: 1.5em
 
 .. _nastaveni:

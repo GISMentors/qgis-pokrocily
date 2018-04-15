@@ -8,7 +8,7 @@
    :width: 1.5em
 .. |alg| image:: ../images/icon/alg.png
    :width: 1.5em
-.. |qgis| image:: ../images/intro_logo.png
+.. |qgis| image:: ../images/qgis_logo.png
    :width: 1.5em
 .. |grass| image:: ../images/icon/grasslogo.png
    :width: 1.5em
