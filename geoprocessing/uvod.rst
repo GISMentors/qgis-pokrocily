@@ -4,10 +4,10 @@
 Orientace v nástrojích
 ======================
 
-Aktivace sady nástrojů
-----------------------
+Aktivace Nástrojů zpracování
+----------------------------
 
-Okno *sady nástrojů* |alg| lze aktivovat v hlavním menu
+Panel *sady nástrojů* |alg| lze aktivovat v hlavním menu
 :menuselection:`Zpracování --> Sada nástrojů`, použitím klávesové
 zkratky :kbd:`Ctrl+Alt+T`, nebo stejně jako u vypínání a zapínání
 ostatních panelů, nástrojových lišt a oken - pravým kliknutím na panel
@@ -28,10 +28,10 @@ a výběrem z nabídky.
           <qgis-zacatecnik/ruzne/qgis_pluginy.html#spravce-zasuvnych-modulu>`.
 
 
-Orientace v okně Nástroje zpracování
-------------------------------------
+Orientace v panelu Nástroje zpracování
+--------------------------------------
 
-Orientace v okně a prohledávání nástrojů je velice
+Orientace v panelu a prohledávání nástrojů je velice
 intuitivní. Nástroje jsou strukturované podle poskytovatelů a dále
 zpravidla rozdělené do tematických okruhů (vektorové analýzy, rastrové
 analýzy atd.). Součástí této struktury je také položka
@@ -42,7 +42,7 @@ použité funkce.
    :scale: 70%
    :scale-latex: 40 
 
-   Ukázka orientace v okně podle stromové struktury.
+   Ukázka orientace v panelu podle stromové struktury.
 
 
 V horní části panelu je filtr pro rychlé vyhledání funkce. Výhodou

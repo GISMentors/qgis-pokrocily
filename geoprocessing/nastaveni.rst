@@ -4,7 +4,7 @@
    :width: 1.5em
 .. |gdal| image:: ../images/icon/gdal.png
    :width: 1.5em
-.. |qgis| image:: ../images/qgis_logo.png
+.. |qgis| image:: ../images/qgis_logo_old.png
    :width: 1.5em
 
 .. _nastaveni:
@@ -18,10 +18,10 @@ Nastavení
 Nastavení sady nástrojů nalezneme v hlavním menu
 :menuselection:`Zpracování --> Možnosti...` (:kbd:`Ctrl+Alt+C`). Zde
 můžeme procházet, aktivovat a deaktivovat poskytovatele algoritmů,
-uživatelské skripty a modely, dále lze nastavit obecné chování při
-spouštění algoritmů případně nastavit chování konkrétních
-poskytovatelů. Pro prohledávání nastavení lze využít filtr v horní
-části okna.
+uživatelské skripty a modely, dále lze přidat jednotlivé funkce do hlavního menu
+a lišty, nastavit obecné chování při spouštění algoritmů případně nastavit
+chování konkrétních poskytovatelů. Pro prohledávání nastavení lze využít filtr
+v horní části okna.
 
 .. figure:: images/geoproc_conf.png 
    :class: small
@@ -72,7 +72,6 @@ Vybraná nastavení:
           boxech` - při výběru vrstev v analýzách uvidíme kromě názvu
           vrstvy i její EPSG kód.
 
-
 Nastavení poskytovatelů, modeleru aj.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -88,6 +87,26 @@ skriptům.
         
    Nastavení uživatelských skriptů.
    
+Přidání tlačítka do nástrojové lišty a hlavního menu
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+V okně nastavení zpracování máme také možnost vytvořit pro jednotlivé algoritmy
+položku v hlavním menu, přičemž se nám na liště vytvoří tlačítko pro rychlé
+spouštění. To je vhodné pokud používáme k práci opakovaně několik algoritmů,
+zejména pak u vytvořených vlastních nástrojů (skripty, modely). K tlačítku v
+jde nastavit vlastní ikonka.
+
+.. figure:: images/geoproc_menu_add.png 
+   :class: middle 
+   :scale-latex: 40 
+
+   Přidání tlačítka do nástrojové lišty a hlavního menu
+ 
+.. figure:: images/geoproc_menu_add2.png 
+   :class: middle 
+   :scale-latex: 40 
+
+   Vzled položky v menu a ikonka v nástrojové liště
+ 
 
 Historie
 --------

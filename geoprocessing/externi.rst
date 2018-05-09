@@ -23,8 +23,9 @@ Reklasifikace rastru
 Pomocí funkce |grass| :grasscmd:`r.reclass` lze snadno reklasifikovat rastry 
 do kategorii. Ukážeme si reklasifikaci na příkladu orientace svahů (aspect). 
 
-Nejdříve je nutné připravit si textový soubor, ve kterém bude definována naše 
-zvolená klasifikace:
+Nejdříve je nutné připravit si text s pravidly, kterými bude definována naše 
+zvolená klasifikace. Tento text můžeme zadat přímo do okna algoritmu, nebo jej
+ulžit do textového souboru a zadat v okně jen cestu k tomuto souboru:
 
 ::
 

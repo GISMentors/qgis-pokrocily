@@ -1,6 +1,6 @@
-***********************************
-Nástroje zpracování - Geoprocessing
-***********************************
+*******************
+Nástroje zpracování
+*******************
 
 Kromě spouštění různých nástrojů a analýz z hlavního menu (položky
 :menuselection:`Vektor` a :menuselection:`Rastr`), můžeme stejné (nebo
@@ -11,7 +11,8 @@ obdobné) funkce a mnoho dalších spouštět i z okna :item:`Nástroje zpracov�
 
    Okno :item:`Nástroje zpracování`.
 
-Použití nástrojů zpracování má hned několik výhod. V jednom okně
+Nástroje zpracování jsou stěžejní součástí aplikačního rámce `Zpracování`
+(Processing framework), a jejich použití má hned několik výhod. V jednom okně
 najdeme funkce z knihovny GDAL, algoritmy poskytované pluginy a další
 funkce dostupných externích nástrojů jako jsou například GRASS GIS,
 SAGA nebo R.
