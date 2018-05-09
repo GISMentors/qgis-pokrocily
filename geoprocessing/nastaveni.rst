@@ -96,14 +96,14 @@ zejména pak u vytvořených vlastních nástrojů (skripty, modely). K tlačít
 jde nastavit vlastní ikonka.
 
 .. figure:: images/geoproc_menu_add.png 
-   :class: middle 
-   :scale-latex: 40 
+   :class: small 
+
 
    Přidání tlačítka do nástrojové lišty a hlavního menu
  
 .. figure:: images/geoproc_menu_add2.png 
-   :class: middle 
-   :scale-latex: 40 
+   :class: small 
+
 
    Vzled položky v menu a ikonka v nástrojové liště
  
