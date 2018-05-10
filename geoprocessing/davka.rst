@@ -8,13 +8,15 @@
    :width: 1.5em
 .. |alg| image:: ../images/icon/alg.png
    :width: 1.5em
-.. |qgis| image:: ../images/qgis_logo.png
+.. |qgis| image:: ../images/qgis_logo_old.png
    :width: 1.5em
 .. |grass| image:: ../images/icon/grasslogo.png
    :width: 1.5em
 .. |saga| image:: ../images/icon/custom_saga.png
    :width: 1.5em
 .. |gdal| image:: ../images/icon/gdal.png
+   :width: 1.5em
+.. |raster-clip| image:: ../images/icon/raster-clip.png
    :width: 1.5em
    
 .. _davka:
@@ -187,7 +189,7 @@ curvature`.
    
 Vytvořili jsme tedy 2 nové rastrové vrstvy pro dané území. Potřebujeme
 také výstup z vybrané části území. V tomto případě využijeme opět
-funkce |gdal| :guilabel:`Oříznout rastr podle rozsahu`, ale tentokrát
+funkce |raster-clip| :guilabel:`Oříznout rastr podle rozsahu`, ale tentokrát
 jako dávkový proces na všechny rastrové vrstvy najednou.
   
 Jako vstupní vrstvy vybereme rastrové vrstvy, které chceme ořezat (dmt, aspect, 
@@ -201,7 +203,7 @@ přidělit příponu podle paraetru :guilabel:`Vstupní vrstva` a spustíme proc
    :class: middle
         
    Vstupní vrstvy a zvolený rozsah pro dávkový zpracování 
-   |gdal| :guilabel:`Oříznout rastr podle rozsahu`.
+   |raster-clip| :guilabel:`Oříznout rastr podle rozsahu`.
    
 .. figure:: images/geoproc_batch_pract2_4.png 
    

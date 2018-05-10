@@ -132,6 +132,12 @@ checkboxů a rolovacích nabídek. V některých případech vstupují do algori
 tabulky nebo je nutné zadat parametr výstupního SRS (EPSG). To probíhá 
 standardně ze seznamu SRS.
 
+.. tip:: Pomocí položky :item:`Create preconfigured algorithm` v kontextovém
+         menu algoritmu (pravý klik na algoritmus v seznamu), můžeme vytvářet 
+         přednastavené algoritmy pro rychlé spouštění. Pro přednastavené
+         algoritmy se vytváří samostatné spouštěče v položce `Preconfigured
+         algorithms`. Zde se dále dělí podle zvolených kategorií.
+
 Praktická ukázka
 ----------------
 

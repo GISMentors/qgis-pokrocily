@@ -1,10 +1,10 @@
 .. |checkbox| image:: ../images/icon/checkbox.png
    :width: 1.5em
-.. |tileindex| image:: ../images/icon/tileindex.png
+.. |raster-info| image:: ../images/icon/raster-info.png
    :width: 1.5em
-.. |gdal| image:: ../images/icon/gdal.png
+.. |basic_statistics| image:: ../images/basic_statistics.png
    :width: 1.5em
-.. |qgis| image:: ../images/qgis_logo_old.png
+.. |r_logo| image:: ../images/r_logo.png
    :width: 1.5em
 
 .. _nastaveni:
@@ -78,8 +78,8 @@ Nastavení poskytovatelů, modeleru aj.
 V nastavení poskytovatelů procesů se hlavně setkáme z možností
 aktivace a deaktivace poskytovatelů (:guilabel:`Activate`
 |checkbox|). U jednotlivých poskytovatelů potom mohou být další
-možnosti nastavení, jako v případě uživatelských skriptů |tileindex|
-:item:`Složka skriptů`, kde můžeme nastavit cestu k našim uživatelským
+možnosti nastavení, jako v případě uživatelských R skriptů |r_logo|
+:item:`R scripts`, kde můžeme nastavit cestu k našim uživatelským
 skriptům.
 
 .. figure:: images/geoproc_poskyt.png 
@@ -155,7 +155,7 @@ Ukázky algoritmů generující HTML výstupy
 Základní statistiky pro numerická pole (vektor)
 ...............................................
 
-Pomocí funkce |qgis| :guilabel:`Základní statistiky pro numerická
+Pomocí funkce |basic_statistics| :guilabel:`Základní statistiky pro numerická
 pole` zjistíme základní statistiky týkající se rozlohy *velkoplošných
 chráněných území*. Spustíme funkci vybereme požadovanou vrstvu a
 parametr podle kterého se budou údaje počítat. Výsledek potom
@@ -165,12 +165,12 @@ Prohlížeč výsledků...`.
 .. figure:: images/geoproc_pract_3.png 
    :class: middle 
 
-   Funkce |qgis| :guilabel:`Základní statistiky pro numerická pole`.
+   Funkce |basic_statistics| :guilabel:`Základní statistiky pro numerická pole`.
 
 Informace (rastr)
 .................
 
-Pomocí funkce |gdal| :guilabel:`Informace` (spouští příkaz 
+Pomocí funkce |raster-info| :guilabel:`Informace` (spouští příkaz 
 :guilabel:`gdalinfo`) zjistíme základní informace o rastru. Výsledek potom 
 zkontrolujeme v prohlížeči výsledků :menuselection:`Zpracování --> Prohlížeč 
 výsledků...`.
@@ -178,4 +178,4 @@ výsledků...`.
 .. figure:: images/geoproc_pract_4.png 
    :class: middle 
 
-   Funkce |gdal| :guilabel:`Informace` (spouští příkaz :guilabel:`gdalinfo`).
+   Funkce |raster-info| :guilabel:`Informace` (spouští příkaz :guilabel:`gdalinfo`).

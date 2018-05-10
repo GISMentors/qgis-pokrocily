@@ -1,5 +1,7 @@
 .. |gdal| image:: ../images/icon/gdal.png
    :width: 1.5em
+.. |gdalclip| image:: ../images/icon/raster-clip.png
+   :width: 1.5em
 .. |grass| image:: ../images/icon/grasslogo.png
    :width: 1.5em
    
@@ -26,7 +28,7 @@ Základní model
 
    Přidání vstupních parametrů modelu.
  
-3. Přidáme algoritmus |gdal|:guilabel:`Oříznout rastr podle rozsahu`. Jako 
+3. Přidáme algoritmus |gdalclip|:guilabel:`Oříznout rastr podle rozsahu`. Jako 
    vstupní vrstvu nastavíme parametr :item:`DEM`, nastavíme hodnotu pro 
    :guilabel:`nodata` (např. -9999) a jako rozsah ořezu nastavíme vstupní 
    parametr :item:`Rozsah ořezu`.
@@ -94,7 +96,9 @@ ukázali jak vytvořit soubor reklasifikace. Abychom takový soubor
 dostali do modelu musíme přidat vstupní parametr :item:`File`
 (pojmenujeme si ho např. :guilabel:`Soubor pro reklasifikaci`). V
 dialogovém okně aloritmu |grass|:grasscmd:`r.reclass` nastavíme
-jednotlivé parametry (:numref:`modelreclass`).
+jednotlivé parametry (:numref:`modelreclass`). Pokud nechceme používat
+reklasifikační soubor, ale chceme mít možnost zadávat reklasifikační pravidla
+ručně, použijeme vstupní parametr :item:`String`.
 
 .. _modelreclass:
 .. figure:: images/modeler_terr_reclass.png 
