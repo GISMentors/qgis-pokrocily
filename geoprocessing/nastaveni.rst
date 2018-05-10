@@ -2,7 +2,7 @@
    :width: 1.5em
 .. |raster-info| image:: ../images/icon/raster-info.png
    :width: 1.5em
-.. |basic_statistics| image:: ../images/basic_statistics.png
+.. |basic_statistics| image:: ../images/icon/basic_statistics.png
    :width: 1.5em
 .. |r_logo| image:: ../images/r_logo.png
    :width: 1.5em
