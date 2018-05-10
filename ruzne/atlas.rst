@@ -258,7 +258,7 @@ pole s výrazem:
 
 .. code-block:: sql
 
-    [@atlas_featurenumber || ' / ' || @atlas_totalfeatures
+    [%@atlas_featurenumber || ' / ' || @atlas_totalfeatures%]
     
 .. figure:: images/atlas_done.png 
    :class: middle 
