@@ -234,7 +234,13 @@ Do políčka |checkbox|:item:`Filtrovat s` tedy opět použijeme výraz:
 .. code-block:: sql
 
     $id  =  @atlas_featureid
-    
+
+.. figure:: images/atlas_table_filter.png 
+   :class: small 
+   :scale-latex: 40 
+
+   Nastavení filtru atributové tabulky.
+
 .. tip:: Jako alternativní možnost vložení atributu a jeho hodnot je
          možné využít běžné textové pole s využitím formátování HTML.
          Také je možné vkládat výrazy pro výpočet např. *$area*.
@@ -260,15 +266,15 @@ pole s výrazem:
 
     [%@atlas_featurenumber || ' / ' || @atlas_totalfeatures%]
     
+
+Export
+------
+
 .. figure:: images/atlas_done.png 
    :class: middle 
    :scale-latex: 40 
 
    Atlas připravený k exportu.
-
-
-Export
-------
 
 Stejně jako u samostatných mapových listů lze atlas exportovat do
 formátů SVG, PDF nebo jako obrázek (JPG, PNG, ...).  Exportovat můžeme
