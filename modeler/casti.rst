@@ -2,6 +2,12 @@
    :width: 1.5em
 .. |mActionFileSave| image:: ../images/icon/mActionFileSave.png
    :width: 1.5em
+.. |random_points| image:: ../images/icon/random_points.png
+   :width: 1.5em
+.. |buffer| image:: ../images/icon/buffer.png
+   :width: 1.5em
+.. |model| image:: ../images/icon/model.png
+   :width: 1.5em
    
 Části modelu
 ============
@@ -60,7 +66,7 @@ Algoritmy
    
 Hlavní součástí modelů jsou algoritmy. Nalezneme zde většinu algoritmů, které 
 jsou v okně nástrojů zpracování. Kromě těchto funkcí jsou zde speciální 
-:guilabel:`Nástroje jen pro modely` (:numref:`algor`).
+|model|:guilabel:`Nástroje jen pro modely` (:numref:`algor`).
 
 .. _algor:
 .. figure:: images/modeler_algor.png 
@@ -74,10 +80,10 @@ možnost nastavit výchozí hodnoty parametrů algoritmu, se kterými se bude
 počítat při spuštění modelu. Jesltiže chceme mít parametry při spouštění modelu 
 volitelné je třeba nakonfigurovat odpovídající vstupy (:numref:`algorrand2`).
 
-- vložíme algoritmus |qgis|:guilabel:`Random points in extent` a jako vstupní 
-  rozsah zadáme náš vstupní parametr :item:`Rozsah`. Jako počet bodů zvolíme 
-  vstupní parametr :item:`Počet bodů` . Minimální vzdálenost a výstupní soubor 
-  měnit prozatím nebudeme, potvrdíme parametry tlačítkem :item:`OK`. 
+- vložíme algoritmus |random_points|:guilabel:`Random points in extent` a jako
+  vstupní rozsah zadáme náš vstupní parametr :item:`Rozsah`. Jako počet bodů
+  zvolíme vstupní parametr :item:`Počet bodů` . Minimální vzdálenost a výstupní
+  soubor měnit prozatím nebudeme, potvrdíme parametry tlačítkem :item:`OK`. 
 
 .. _algorrand:
 .. figure:: images/modeler_algor_rand.png 
@@ -98,23 +104,23 @@ použít tlačítek ``+`` a ``-`` lze měnit vstupy a výstupy algoritmu.
 .. _algorrand3:
 .. figure:: images/modeler_algor_rand3.png 
 
-   Nastavení volitelných parametrů algoritmu |qgis|:guilabel:`Random points in 
-   extent` při spouštění modelu.
+   Nastavení volitelných parametrů algoritmu |random_points|:guilabel:`Random
+   points in extent` při spouštění modelu.
 
 Jednotlivé algoritmy lze na sebe dále navazovat - to co je výstupem z jednoho 
 algoritmu může nějakým způsobem vstupovat do algoritmu druhého 
 (:numref:`algorrand4`).
 
-- Vložíme do modelu algoritmus |qgis|:guilabel:`Fixed distance buffer`. Jako 
-  vstupní vrstvu nastavíme :guilabel:`'Náhodné body' z algoritmu 'Random points 
-  in extent'` a dále nastavíme libovolnou fixní vzdálenost v metrech.
+- Vložíme do modelu algoritmus |buffer|:guilabel:`Obalová zóna dle pevné
+  vzdálenosti`. Jako vstupní vrstvu nastavíme :guilabel:`'Náhodné body' z
+  algoritmu 'Random points in extent'` a dále nastavíme libovolnou fixní vzdálenost v metrech.
 
 .. _algorrand4:
 .. figure:: images/modeler_algor_rand4.png 
    :class: middle 
 
-   Náhodné body vygenerované |qgis|:guilabel:`Random points in extent` použité 
-   jako vstup pro vytvoření obalových zón.
+   Náhodné body vygenerované |random_points|:guilabel:`Random points in extent`
+   použité jako vstup pro vytvoření obalových zón.
 
 Pravým kliknutím na algoritmus v modelu můžeme vyvolat kontextové menu, 
 ve kterém můžeme algoritmus vymazat, deaktivovat nebo spustit jeho editaci 
@@ -158,7 +164,7 @@ dat nebo co nám data sdělují.
 
    Dialogové okno algoritmu - pole pro zadání názvu výstupu.
 
-- Otevřeme (editace) algoritmus |qgis|:guilabel:`Fixed distance buffer` 
+- Otevřeme (editace) algoritmus |buffer|:guilabel:`Fixed distance buffer` 
   zadáme libovolný název finálního výstupu (např. :item:`Výstup`).
 
 Zadáním jména do textového pole pro výstup, nastavíme model, aby vytvořil 
