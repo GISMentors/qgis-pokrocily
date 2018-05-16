@@ -1,9 +1,5 @@
 .. |diagram| image:: ../images/icon/diagram.png
    :width: 1.5em
-.. |box_no| image:: ../images/icon/checkbox_unchecked.png
-   :width: 1.5em
-.. |box_yes| image:: ../images/icon/checkbox.png
-   :width: 1.5em
 .. |histogram| image:: ../images/icon/histogram.png
    :width: 1.5em
 .. |pie-chart| image:: ../images/icon/pie-chart.png
@@ -16,195 +12,132 @@
    :width: 1.5em
 .. |expression| image:: ../images/icon/mIconExpression.png
    :width: 1.5em
-.. |catsymbol| image:: ../images/icon/rendererCategorizedSymbol.png
-   :width: 1.5em
 .. |q2t| image:: ../images/icon/q2t.png
    :width: 1.5em
-.. |mActionCalculateField| image:: ../images/icon/mActionCalculateField.png
+.. |transparency| image:: ../images/icon/transparency.png
+   :width: 1.5em
+.. |centroids| image:: ../images/icon/centroids.png
    :width: 1.5em
 
-Znázornenie diagramov
----------------------
+Tvorba kartodiagramů
+--------------------
+Záložka |diagram|:sup:`Diagramy`
+================================
+Kromě přípravy dat pro mapové výstupy pomocí základní symbologie, lze na základě hodnot atributů jednotlivých prvků vytvářet také diagramy. K tomu slouží záložka |diagram|:sup:`Diagramy` ve vlastnostech vektorové vrstvy.
 
-Medzi ďalšie možnosti patrí tvorba diagramov a grafov. QGIS nám umožňuje na 
-základe dát vytvárať či už koláčové, textové alebo stĺpcové diagramy a následne 
-ich zobrazovať v mape.
+.. figure:: images/diag_okno.png 
+   :class: middle 
+   :scale-latex: 40 
 
-Do mapového okna pridáme vektorovú vrstvu vyšších územných samosprávnych celkov
-(:map:`vusc_krim`). Nastavíme štýl, napr. na :numref:`cr-styl` je typ vrstvy 
-symbolu nastavený na ``Shapeburst fill``, ide o ``Prevrácené polygóny`` s farbami
-prechodu ``modrá`` a ``biela`` s nastaveným tieňovaním do vzdialenosti
-5 mm. Popisky predstavujú názvy jednotlivých samosprávnych celkov 
-(:dbcolumn:`nazev`), ich veľkosť je nastavná na ``10``, povolená je svetlomodrá 
-obalová zóna s veľkosťou ``3 mm`` a umiestnenie je okolo centroidu.
+   Okno nastavení diagramů
 
-.. _cr-styl:
+V první řadě musíme z rolovací nabídky vybrat typ diagramu. Na výběr máme ze 3 typů:
 
-.. figure:: images/cr_styl.png
+- |pie-chart| :sup:`Koláčový graf`
+- |text| :sup:`Textový diagram`
+- |histogram| :sup:`Histogram`
+
+Poté je nutné pomocí tlačítek |plus| a |minus| vybrat ze seznamu jeden či více atributů, které chceme do diagramů přiřadit resp. odebrat. Atributy lze hromadně označit pomocí káves :item:`Ctrl` a :item:`Shift` a také jednotlivě přidávat poklikáním. Pomocí tlačítka |expression| je možné definovat atribut založený na výrazu. Poklikáním na již přiřazené atributy, můžeme editovat jejich požadované vlastnosti -- nadefinovat výraz, změnit barvu a popisek legendy.
+
+.. figure:: images/diag_okno2.png 
+   :class: middle 
+   :scale-latex: 40 
+
+   Okno nastavení diagramů
+
+Kromě volby atributů můžeme v dalších záložkách měnit základní parametry vzhledu, velikosti, umístění atd. U možností |pie-chart| :sup:`Koláčový graf` a |text| :sup:`Textový diagram` můžeme rovnou použít přednastavené hodnoty, při použití |histogram| :sup:`Histogram` je nutné nastavit alespoň atribut pro výpočet velikosti sloupečků. Ve všech třech případech je však pro lepší vzhled a interpretaci dat vhodné vlastnosti poupravit. Práce s nastavením vlastností je intuitivní a až na malé odchylky u všech typů stejná.
+
+Za zmínku stojí záložka |transparency|:sup:`Velikost` kde můžeme zvolit buď velikost pevnou, nebo velikost diagramu škálovat na základě atributu nebo výrazu (pokud potřebujeme stanovit velikostní kategorie, je tento přístup trochu komplikovanější). U zobrazení histogramu se škálování týká velikosti sloupečků a je nutné ho nastavit.
+
+.. figure:: images/diag_velik.png 
+   :class: middle 
+   :scale-latex: 40 
+
+   Nastavení velikosti diagramů
+
+Slabší stránkou této metody je zatím generování legendy, a to zejména při použití škálování. Pro finální mapový výstup je však možné vytvořit sofistikovanější legendu v grafickém (Gimp) nebo vektorovém (Inkscape) editoru.
+
+.. figure:: images/diag_legend.png 
+   :class: small 
+   :scale-latex: 40 
+
+   Automaticky generovaná legenda
+
+Příklady tvorby kartodiagramů
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+|pie-chart| :sup:`Koláčový graf`
+********************************
+
+.. figure:: images/diag_pie.png
    :class: middle
         
-   Vyššie územné samosprávne celky Českej republiky.
+   Podíl dálnic, silnic I. a II. třídy v krajích.
 
-Mapy kriminality krajov ČR
-==========================
+|text| :sup:`Textový diagram`
+*****************************
 
-Záložka |diagram| :sup:`Diagramy`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Pravým kliknutím na mapu v paneli vrstiev zvolíme 
-:item:`Otevrít atributovou tabulku` a prezrieme stĺpce a hodnoty v atribútovej 
-tabuľke. Nájdeme tam údaje o kriminalite v Českej republike (zdroj:
-`Dátová stránka <http://www.mapakriminality.cz/#tabulky>`_). Konkrétnejšie, 
-stĺpec :dbcolumn:`krim_2015c` obsahuje údaje o počte celkovej kriminality 
-v jednotlivých samosprávnych celkoch Českej republiky od januára 2014 do 
-januára 2015 a stĺpec s názvom :dbcolumn:`krim_2015v` predstavuje počet vrážd 
-pre to isté obdobie. Tieto údaje pridáme do mapy vo forme diagramov.
-
-V dialógovom okne *Vlastnosti vrstvy* (pravé tlačidlo myši na mapu a voľba 
-:item:`Vlastnosti`) zvolíme záložku |diagram| :sup:`Diagramy`. Zobrazia sa 
-nastavenia súvisiace s ich tvorbou.
-
-V prvom kroku zaklikneme |box_no| :sup:`Show diagrams for this 
-layer`. Potom vyberieme typ diagramu, pričom môže ísť o 
-|pie-chart| :sup:`Koláčový graf`, |text| :sup:`Textový diagram` alebo 
-|histogram| :sup:`Histogram`. V rámci tohto okna je možné nastaviť jeho vzhľad, 
-formát, viditeľnosť, tlačidlami |plus| a |minus| sa dajú pridávať, resp. uberať 
-zobrazované atribúty, tlačidlom |expression| možno definovať atribút založený 
-na výraze. Na :numref:`d-pie` sú kombináciou koláčového grafu a textového diagramu
-znázornené informácie o celkovej kriminalite pre jednotlivé vyššie územné 
-samosprávne celky Českej republiky. Je to jeden z najjednoduchších spôsobov
-takejto reprezentácie dát (zobrazujeme len jeden atribút).
-
-.. _d-pie:
-
-.. figure:: images/d_pie.png
+.. figure:: images/diag_text.png
    :class: middle
         
-   Celková kriminalita vyšších územných samosprávnych celkov Českej republiky.
+   Délka dálnic, silnic I. a II. třídy v krajích.
 
 
-Zásuvný modul Qgis2threejs
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Ďalším spôsobom je zobrazenie pomocou pluginu *QGIS2threejs*. Pôjde o informácie
-o počte vrážd pre jednotlivé samosprávne kraje (atribút :dbcolumn:`krim_2015v`)
-za rok 2015. 
-
-.. note:: Tento plugin sa dá spustiť, len ak je prítomná rastrová vrstva 
-	  digitálneho modelu terénu, preto netreba zabudnúť do mapového okna 
-	  pridať rastrovú vrstvu :map:`dmt`.
-
-Nastavíme štýlovanie vrstiev, t.j. |catsymbol| :sup:`Kategorizovaný symbol` pre hodnoty
-o počte vrážd za rok 2015. Pomocou :menuselection:`Web --> OpenLayers Plugin`
-pridáme do mapového okna napríklad aj vrstvu :map:`OpenStreetMap`. Výsledok môže
-vyzerať ako to znázorňuje :numref:`cr-graf-osm`. 
-
-.. _cr-graf-osm:
-
-.. figure:: images/cr_graf_osm.png
+.. figure:: images/diag_text2.png
    :class: middle
         
-   Počet vrážd pre vyššie územné samosprávne celky Českej republiky.
+   Součet délky dálnic v krajích.
 
-V dialógovom okne zásuvného modulu |q2t| :sup:`Qgis2threejs` na zobrazovanie dát 
-v prostredí web-u nastavíme v záložke ``World`` rozsah, mierku, farbu pozadia, 
-typ zobrazovaných súradníc, ... v záložke ``DEM`` predovšetkým vstupný 
-digitálny model terénu, prípadne rozlíšenie či nastavenie transparentnosti.
-Nakoniec v záložke ``Polygon`` použijeme vrstvu :map:`vusc_krim` a jej atribút 
-:dbcolumn:`krim_2015v` prenásobený hodnotou napr. ``3000``. 
-Potvrdíme stlačením :item:`Run` a počkáme na automatické otvorenie výsledku 
-vo webovom prehliadači. Tu môžeme zapínať, resp. vypínať vrstvy, meniť 
-transparentnosť vrstiev či pozadia, viď. :numref:`cr-graf-g2t`.
-
-.. _cr-graf-g2t:
-
-.. figure:: images/cr_graf_g2t.png
+.. figure:: images/diag_text3.png
    :class: middle
         
-   Počet vrážd pre vyššie územné samosprávne celky Českej republiky.
+   Součet délky dálnic v krajích.
 
-Regionálna štatistika dopravných prostriedkov
-=============================================
 
-Do mapového okna pridáme vrstvy ako železnice (:map:`zeleznice`), 
-diaľnice (:map:`silnice_1`), rýchlostné cesty (:map:`silnice_2`), cesty 1. a 2. 
-triedy (:map:`silnice_3`, :map:`silnice_4` a :map:`silnice_5`). 
-Skontrolujeme či všetky vrstvy majú rovnaký súradnicový systém, t.j. 
-:menuselection:`Vlastnosti --> Obecné --> Souradnicový referenčný systém`). 
-Potom z menu lišty vyberieme :menuselection:`Vektor --> Analytické nástroje -->
-Součet délek čar`. Otvorí sa dialógové okno, kde nastavíme vstupnú polygónovú
-a líniovú vektorovú vrstvu a názov výstupnej vrstvy (:numref:`soucet-silnice-okno`). 
-Urobíme to pre všetky dopravné komunikácie tak, že výstupnú plošnú vrstvu
-použijeme ako vstup pre ďalšiu, viď. :numref:`cr-silnice`. Takto nám nakoniec 
-vznikne vektorová vrstva krajov s informáciami o dĺžke vybraných komunikácií,
-viď. atribútová tabuľka poslednej mapy :map:`sum_z` na :numref:`at-sum`. 
+|histogram| :sup:`Histogram`
+****************************
 
-.. _soucet-silnice-okno:
-
-.. figure:: images/soucet_silnice_okno.png
-   :scale: 55%
-        
-   Dialógové okno pre sčítanie dĺžky dopravných komunikácií v rámci krajov.
-
-.. _cr-silnice:
-
-.. figure:: images/cr_silnice.png
+.. figure:: images/diag_hist.png
    :class: middle
         
-   Vybrané dopravné cesty Českej republiky a panel vrstiev po sčítaní ich dĺžok.
+   Podíl dálnic, silnic I. a II. třídy v krajích.
 
-.. _at-sum:
+Další příklady využití QGIS v tematické kartografii
+===================================================
+Použití stylu vrstvy
+^^^^^^^^^^^^^^^^^^^^
+Jednoduché kartogramy se škálováním velikosti podle jednoho atributu lze vytvořit pomocí odstupňovaného stylu bodové vrstvy, kde lze zvolit metodu odstupňování pro velikost. Takovou vrstvu si můžeme z polygonové vrstvy vytvořit například vygenerováním centroidů (|centroids|:sup:`Centroidy polygonů`). Výhodou je, že můžeme pohodlně definovat jednotlivé kategorie, vygeneruje se nám odpovídající legenda a pomocí editace bodové vrstvy, můžeme body jednoduše posunovat podle potřeby.
 
-.. figure:: images/at_sum.png
-   :scale: 55%
-        
-   Atribútová tabuľka s dĺžkou vybraných komunikácií.
-
-Potom pomocou kalkulačky polí |mActionCalculateField| :sup:`Otvoriť kalkulátor polí`
-zaokrúhlime hodnoty na celé kilometre. Najprv zaklikneme 
-|box_yes| :sup:`Aktualizovať existujúce pole` a následne do okna *Výraz*
-zadáme ``round("sum_s1"/1000)``, viď. :numref:`kalk-poli`. Obdobne postupujeme aj
-pri stĺpcoch :dbcolumn:`sum_s2`, :dbcolumn:`sum_s3`, :dbcolumn:`sum_s4`, 
-:dbcolumn:`sum_s5` a :dbcolumn:`sum_z`. Na záver zmeny uložíme. 
-
-.. _kalk-poli:
-
-.. figure:: images/kalk_poli.png
-   :scale: 60%
-        
-   Zaokrúhlenie dĺžok v atribútovej tabuľke pomocou kalkulačky polí.
-
-.. note:: Mapu :map:`sum_z` premenujeme na :map:`vusc_silnice`.
-
-Potom postupujeme podobne ako pri mape celkovej kriminality záložkou 
-|diagram| :sup:`Diagramy`. Nastavíme priehľadnú výplň a umiestnenie 
-``Inside polygon``. Výsledok prekryjeme s vrstvou :map:`vusc` 
-(:numref:`silnice-graf-all`)
-
-.. _silnice-graf:
-
-.. figure:: images/silnice_graf.png
+.. figure:: images/diag_styl_okno.png
    :class: middle
         
-   Vytvorenie diagramov predstavujúcich podiel komunikácií v krajoch ČR.
+   Nastavení stylu bodové vrstvy.
 
-.. _silnice-graf-all:
-
-.. figure:: images/silnice_graf_all.png
+.. figure:: images/diag_styl.png
    :class: middle
         
-   Grafické znázornenie počtu diaľnic, rýchlostných ciest, 
-   ciest 1., 2. a 3. formou diagramov.
+   Součet délky dálnic v krajích.
 
-Ďalej môžeme vrstvu :map:`vusc-silnice` duplikovať a namiesto koláčového grafu 
-znázorniť textové diagramy. V prípade, že všetky vrstvy prekryjeme, výsledok
-môže byť ako na :numref:`silnice-graf-text`.
 
-.. _silnice-graf-text:
+Použití pluginu Cartogram
+^^^^^^^^^^^^^^^^^^^^^^^^^
+Pomocí pluginu Cartogram lze vytvořit geografickou anamorfózu, kdy se rozloha polygonu deformuje na základě daného atributu.
 
-.. figure:: images/silnice_graf_text.png
+.. figure:: images/diag_anamor.png
+   :class: middle
+        
+   Anamorfóza na základě celkové kriminality v krajích.
+
+Použití pluginu Qgis2threejs
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Pomocí pluginu Qgis2threejs lze vytvářet spojité i nespojité povrchy. Tvorbou spojitých povrchů (3D model) se věnuje podkapitola `Zobrazování ve 3D <http://training.gismentors.eu/qgis-zacatecnik/rastrova_data/zobrazovani_3D.html>`_ v materiálech pro Školení QGIS pro začátečníky.
+
+.. figure:: images/diag_qgis2threejs.png
    :class: small
         
-   Grafické znázornenie informácií formou diagramov spolu s textom.
+   Nastavení pro vytvoření nepsojitého povrchu pomocí pluginu |q2t|:sup:`Qgis2threejs`.
 
+.. figure:: images/diag_qgis2threejs2.png
+   :class: middle
+        
+   Nespojitý povrch vyjadřující celkovou míru kriminality v krajích.
 
