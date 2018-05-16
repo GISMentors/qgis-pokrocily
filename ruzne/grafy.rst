@@ -29,7 +29,7 @@ Kromě přípravy dat pro mapové výstupy pomocí základní symbologie, lze na
    :class: middle 
    :scale-latex: 40 
 
-   Okno nastavení diagramů
+   Okno nastavení diagramů.
 
 V první řadě musíme z rolovací nabídky vybrat typ diagramu. Na výběr máme ze 3 typů:
 
@@ -43,7 +43,7 @@ Poté je nutné pomocí tlačítek |plus| a |minus| vybrat ze seznamu jeden či 
    :class: middle 
    :scale-latex: 40 
 
-   Okno nastavení diagramů
+   Výběr atributů zobrazovaných v diagramech.
 
 Kromě volby atributů můžeme v dalších záložkách měnit základní parametry vzhledu, velikosti, umístění atd. U možností |pie-chart| :sup:`Koláčový graf` a |text| :sup:`Textový diagram` můžeme rovnou použít přednastavené hodnoty, při použití |histogram| :sup:`Histogram` je nutné nastavit alespoň atribut pro výpočet velikosti sloupečků. Ve všech třech případech je však pro lepší vzhled a interpretaci dat vhodné vlastnosti poupravit. Práce s nastavením vlastností je intuitivní a až na malé odchylky u všech typů stejná.
 
@@ -53,7 +53,7 @@ Za zmínku stojí záložka |transparency|:sup:`Velikost` kde můžeme zvolit bu
    :class: middle 
    :scale-latex: 40 
 
-   Nastavení velikosti diagramů
+   Nastavení velikosti diagramů.
 
 Slabší stránkou této metody je zatím generování legendy, a to zejména při použití škálování. Pro finální mapový výstup je však možné vytvořit sofistikovanější legendu v grafickém (Gimp) nebo vektorovém (Inkscape) editoru.
 
@@ -61,7 +61,7 @@ Slabší stránkou této metody je zatím generování legendy, a to zejména p�
    :class: small 
    :scale-latex: 40 
 
-   Automaticky generovaná legenda
+   Automaticky generovaná legenda.
 
 Příklady tvorby kartodiagramů
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
