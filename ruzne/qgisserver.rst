@@ -23,7 +23,25 @@ se výstup zobrazuje stejně při publikaci přes QGIS Server ale i přímo v QG
 Takovýmto způsobem lze tedy jednoduše publikovat např. WMS službu na základě
 existujícího QGIS projektu a příslušných dat.
 
+Zjednodušeně by šlo tuto technologii popsat jako možnost prezentace či sdílení 
+dat, či odvozených datasetů pomocí standardizovaných služeb  jakými jsou 
+WMS či WFS, případně další. Způsob publikace je díky jednoduchému nastavení 
+rychlý a umožňuje využít již existující projekty. 
+Díky možnosti použít značně pokročilé způsoby stylování je možné vypublikovat 
+graficky propracované výstupy s vysokou obsahovou kvalitou.
+
+Infrastruktura do které lze QGIS Server začlenit může být vystavěna různým způsobem.
+V případě jakýchkoli projektů je však vhodné využívat ukládání dat v databázích, 
+nikoli pouze využívat souborovou strukturu.
+
 Technologie je popsaná na `stránkách QGISu <http://docs.qgis.org/2.8/en/docs/user_manual/working_with_ogc/ogc_server_support.html>`_.
+
+.. figure:: images/services_structure.png
+   :class: small
+
+   Schématický nákres fungování QGIS serveru
+
+
 
 Instalace a první použití
 =========================
