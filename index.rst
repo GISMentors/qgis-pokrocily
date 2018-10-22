@@ -81,6 +81,7 @@ se připravuje verze 3.0, která je již k dispozici, není však stabilní verz
    modeler/index
    grass/index
    hydrologie/index
+   3d/index
    ruzne/index
 
 *******
