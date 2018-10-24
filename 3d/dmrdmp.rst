@@ -1,4 +1,4 @@
-.. |mActionAddRasterLayer| image:: ../images/icon/mActionAddRasterLayer.png
+.. |mActionAddDelimitedTextLayer| image:: ../images/icon/mActionAddDelimitedTextLayer.png
    :width: 1.5em
    
 .. _dmrdmp:
@@ -37,9 +37,9 @@ Proces zpracování dat je rozebrát v následujících krocích.
 Import dat XYZ
 --------------
 
-Jak již bylo uvedeno data jsou uložena ve textovém formátu po jednotlivém řádku.
-Pro import těchto dat  použijeme nástroj "Přidat vrstvu s odděleným textem" (Add delimited text layer)
-http://training.gismentors.eu/qgis-zacatecnik/vektorova_data/import_delim.html#import-dat
+Jak již bylo uvedeno data jsou uložena v textovém formátu po jednotlivém řádku.
+Pro import těchto dat  použijeme nástroj |mActionAddDelimitedTextLayer| 
+:sup:`Přidat vrstvu s odděleným textem`.
 
 .. figure:: images/xyz_import.png
    :class: middle
@@ -51,9 +51,12 @@ http://training.gismentors.eu/qgis-zacatecnik/vektorova_data/import_delim.html#i
 .. tip::
 
    Při výběru souboru  je výchozí filtrování souborů nastaveno na soubory s
-   příponou .txt, je proto nutné v spodní pravé části změnit nastavení na
-   “Všechny soubory”.
+   příponou `.txt`, je proto nutné v spodní pravé části změnit nastavení na
+   :item:`Všechny soubory`.
 
-Pro nastavení použijeme vlastní oddělovač “mezera”, X nastavíme jako sloupec field_1 a Y nastavíme jako field_2. V rolovacím menu vybereme souřadnicový systém S-JTSK (EPSG:5514). Jelikož soubor neobsahuje žádnou hlavičku a první řádek obsahuje přímo bod, tak musíme odstranit zatrhnutou možnost “První záznam obsahuje názvy polí”. Po vizuální kontrole náhledu  můžeme pomocí tlačítka “Přidat” načíst obsah souboru jako novou bodovou vrstvu. 
+Pro nastavení použijeme vlastní oddělovač :item:`mezera`, **X** nastavíme jako sloupec :item:`field_1` a **Y** nastavíme jako :item:`field_2`. V rolovacím menu
+vybereme souřadnicový systém :item:`S-JTSK (EPSG:5514)`. 
+Jelikož soubor neobsahuje žádnou hlavičku a první řádek obsahuje přímo bod, tak musíme odstranit zatrhnutou možnost :item:`První záznam obsahuje názvy polí`.
+Po vizuální kontrole náhledu  můžeme pomocí tlačítka :item:`Přidat` načíst obsah souboru jako novou bodovou vrstvu. 
 
 
