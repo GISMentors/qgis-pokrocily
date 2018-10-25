@@ -76,6 +76,9 @@ Na obrázku jsou vidět dvě různá zobrazení dat v 3D mapovém okně. Rozdíl
 není v datech samotných, ale v nastavení jednotlivých parametrů. Je důležité
 si uvědomit, že možnosti nastavení jsou závislé na konkrétním zařízení na
 kterém zobrazování probíhá a tím se můžou výrazně lišit i dosažitelné výsledky.
+Nastavení kvality výstupu funguje inverzně vůči běžnému určování rozlišení
+rastrových dat. Místo počtu sloupců a řádků se určuje pouze kvalita
+jednotlivých dlaždic.
 
 
 .. figure:: images/3d_settings2.png 

@@ -59,6 +59,7 @@ možnosti stylování jako jsme zvyklí u symbologie pro 2D.
    dmrdmp
    dmt
    3d_map_view
+   3dgeometry
    profiles
 
 
