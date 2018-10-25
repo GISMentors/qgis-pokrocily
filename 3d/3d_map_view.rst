@@ -20,6 +20,12 @@ vrstvy v pořadí zdola:
  * Dem - výškový raster
  * Stínovaný reliéf - částečně průhledný
  * Index drstnosti - částečně průhledný
+ 
+Vykreslování funguje na principu vykreslování textur na vygenerovaný terén.
+Textury svou symbologií odpovídají symbologii běžného mapového okna. Rozdíly
+jsou způsobeny pouze kvalitou rendrování na terénu, se kterou je možné
+manipulovat a nastavit ji dle potřeb. 
+Rendrování je závislé na přegenerovávání jednotlivých dlaždic dle pozice "pozorovatele". V případě přibližování se počítají nové dlaždice, které lépe odpovídají požadované kvalitě.  
 
 Menu pro nastavení 3D mapového okna je pod ikonkou klíče. V tomto menu můžeme
 udělat základní nastavení v části “Terén”. V rolovacím menu pro položku
@@ -72,7 +78,31 @@ si uvědomit, že možnosti nastavení jsou závislé na konkrétním zařízen�
 kterém zobrazování probíhá a tím se můžou výrazně lišit i dosažitelné výsledky.
 
 
+.. figure:: images/3d_settings2.png 
+   :class: small
 
-
-
-
+   Okno konfigurace 3D mapového okna
+   
+Možnosti konfigurace mapového okna:
+ * Nadmořská výška - výběr rastrové vrstvy, ze které bude geneorván terén
+ * Svislé měřítko - pokud reálný poměr vodorovných a svislých délek neumožňuje
+   dostatečně dobře analyzovat terén je možné zvýšením čísla zveličit výškové
+   poměry (malé nerovnosti vyniknou s vyšším číslem)
+ * Tile resolution - počet vzorkovacích plošek na dlaždici, na obrázku je
+   nastavení, kdy dlaždice o velikosti 512 pixelů bude složená z 256x256 plošek.
+   Princip je tedy takový, že s vyšším číslem roste kvalita, ale také náročnost
+   zobrazování.
+ * Skirt height - jednotlivé dlaždice můžou být lenovány na spodní straně
+   pruhem textury. Ten může pomoct při ucelení případných trhlín medzi
+   dlaždicemi. Tento parametr určuje výšku tohoto pruhu v pixelech.
+ * Map tile resolution - velikost texturového obrázků v pixelech pro jednu
+   dlaždici. Čím větší číslo použíjeme, tím detailnější textura bude na
+   dlaždici vykreslena. Detailnost je závislá na náročnosti vizualizace.
+ * Max. screen error - hraniční hodnota chyby vykreslení dlaždic definující mez,
+   kdy chyba vykreslení způsobí vykreslení nové detailnější/méně detailní sady
+   dlaždic
+ * Max. ground error - mezní hodnota pro toleranci chyby ve vykreslování
+   terénu. Čím menší číslo, tím složitější hierarchie se generuje.
+   
+Zatrhávací položky na konci menu umožňují pracovat se zobrazováním popisků,
+případně dalších informací o dlaždicích a zobrazovaném celku.
