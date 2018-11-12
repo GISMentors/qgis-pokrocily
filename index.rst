@@ -41,8 +41,7 @@ umožňuje i modifikaci zdrojového kódu a jeho následné šíření.
       Logo projektu QGIS.
 
 Současným konceptem ve vývoji je pravidelné a intenzivní publikování nových verzí.
-Dlouhodobá stabilní verze (LTR) je doplněna dvěma krátkodobými verzemi. V současné době 
-se připravuje verze 3.0, která je již k dispozici, není však stabilní verzí. 
+Dlouhodobá stabilní verze (LTR) je doplněna dvěma krátkodobými verzemi.
 
 .. only:: html
 
