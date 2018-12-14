@@ -116,9 +116,11 @@ Výstupní soubor
 Pokud nenastavíme cestu nebo název souboru, výstup se nám automaticky
 uloží na disk do dočasných souborů. Pokud zadáme do pole název, vrstva se 
 nám uloží do předdefinované složky (výchozí nastavení 
-:file:`.qgis2/processing/outputs`). Pomocí tlačítka :item:`...` je možné uložit
-vrstvu standardním způsobem na disk. Chování tvorby výstupního souboru jde
-změnit v nastavení (viz. kapitola :ref:`nastaveni`).
+:file:`.qgis2/processing/outputs`). Pomocí tlačítka :item:`...` lze zvolit
+další možnosti uložení. Výstup je možné uložit do souboru, databáze Spatialite
+nebo PostGIS, případně lze zadání výstupu upravit pomocí vzorce
+(`Use expression...`). Chování tvorby výstupního souboru jde změnit v
+nastavení (viz. kapitola :ref:`nastaveni`).
 
 .. tip:: Pomocí položky :item:`Upravit vykreslovací styly pro výstupy`
          v kontextovém menu algoritmu (pravý klik na algoritmus v
