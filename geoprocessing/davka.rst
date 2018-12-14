@@ -68,6 +68,9 @@ Zadávání parametrů
 Zadávání parametrů funguje, až na malé odchylky, stejně jako u samostatného 
 procesu. Některá specifika si popíšeme níže.
 
+.. tip:: Poklikáním na název sloupce/parametru, se automaticky vyplní hodnoty
+        prvního řádku do ostatních řádků.
+
 Výběr vrstev
 ^^^^^^^^^^^^
 Výběr vrstev provádíme za pomocí tlačítka :item:`...`, kdy můžeme buď vybrat 
