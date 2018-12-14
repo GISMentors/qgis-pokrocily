@@ -27,16 +27,13 @@ okna. Snadno lze spouštět dávkové zpracování dat, a v neposlední řadě
 funkce (včetně externích) lze používat v grafickém modeleru
 (viz. kapitola :ref:`modeler`).
 
-Algoritmy mohou generovat 4 typy dat:
+Algoritmy mohou generovat různe typy výstupů:
 	
 	- rastrové vrstvy
 	- vektorové vrstvy
 	- tabulky
 	- HTML soubory (textové a grafické výstupy) 
-		
-.. note:: Dalším výstupem může být například výběr prvků ve vektorové vrstvě.
-
-
+	- výběr	 prvků ve vektorové vrstvě.
 
 .. toctree::
    :maxdepth: 2
