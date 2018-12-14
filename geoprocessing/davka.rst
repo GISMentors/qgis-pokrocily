@@ -108,8 +108,8 @@ příponou pořadového čísla nebo na základě vybraného vstupního parametr
 
 .. warning:: Pokud v obecném nastavení možností zpracování neaktivujeme 
 	     |alg|:guilabel:`Použít název souboru pro název vrstvy` budou 
-	     všechny vrstvy stále pojmenovávány podle algoritmu (viz. 
-	     :ref:`nastaveni` ). Soubory však budou pojmenované podle naší 
+	     výsledné vrstvy v panelu vrstev pojmenovávány podle algoritmu (viz. 
+	     :ref:`nastaveni` ). Samotné soubory však budou pojmenované podle naší 
 	     konfigurace výstupu.
 
 .. _batchout:
