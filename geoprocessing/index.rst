@@ -33,7 +33,7 @@ Algoritmy mohou generovat různe typy výstupů:
 	- vektorové vrstvy
 	- tabulky
 	- HTML soubory (textové a grafické výstupy) 
-	- výběr	 prvků ve vektorové vrstvě.
+	- výběr prvků ve vektorové vrstvě
 
 .. toctree::
    :maxdepth: 2
