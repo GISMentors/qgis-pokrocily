@@ -12,7 +12,7 @@ Popis datové sady
 
 Tyto sady ČÚZK neposkytuje jako otevřená data, ale je nutné si je zakoupit.
 Vzhledem k jejich technické specifikaci se však jedná o unikátní zdroj informací.
-Jedná se o tzv. lidarová data, která umožňuje lokalizovat objekty  na zemském
+Jedná se o tzv. \"lidarová data\", která umožňují lokalizovat objekty  na zemském
 povrchu s poměrne vysokou přesností (střední chyba výšky v odkrytém terénu
 0,18 m, v zalesněném terénu 0,3 m).
 
@@ -30,7 +30,7 @@ Data jsou poskytovány ve 2 základních formátech:
 
 
 Ukázkový dataset obsahuje data pouze ve formátu XYZ v souřadnicovém systému **S-TJSK (EPSG:5514)**.
-Nadmořská výška, která je uvedeme ja v metrech ve výškovém referenčním systému Balt po vyrovnání- Bpv.
+Nadmořská výška, která je uvedena ja v metrech ve výškovém referenčním systému Balt po vyrovnání- Bpv.
 Proces zpracování dat je rozebrát v následujících krocích.
 
 
@@ -51,7 +51,7 @@ Pro import těchto dat  použijeme nástroj |mActionAddDelimitedTextLayer|
 .. tip::
 
    Při výběru souboru  je výchozí filtrování souborů nastaveno na soubory s
-   příponou `.txt`, je proto nutné v spodní pravé části změnit nastavení na
+   příponou :file:`.txt`, je proto nutné v spodní pravé části změnit nastavení na
    :item:`Všechny soubory`.
 
 Pro nastavení použijeme vlastní oddělovač :item:`mezera`, **X** nastavíme jako sloupec :item:`field_1` a **Y** nastavíme jako :item:`field_2`. V rolovacím menu

@@ -1,5 +1,7 @@
 .. |mActionSignPlus| image:: ../images/icon/mActionSignPlus.png
    :width: 1.5em
+.. |mActionOptions| image:: ../images/icon/mActionOptions.png
+   :width: 1em
    
 .. _3d_map_view:
 
@@ -7,10 +9,20 @@
 Vizualizace ve 3D
 *****************
 
+Vykreslování ve 3D není součástí běžného mapového okna, ale má samostatné 
+okno.
+
+Vykreslování funguje na principu vykreslování textur na vygenerovaný terén.
+Textury rastrových vrstev svou symbologií odpovídá symbologii pro běžné 
+mapové okno. Vykreslování vektorových dat má samostatné nastavení.
+Rozdíly mezi klasickým mapovým oknem jsou způsobeny pouze kvalitou rendrování na terénu, se kterou je možné
+manipulovat a nastavit ji dle potřeb. 
+
+
 Mapové okno
 -----------
 
-Pro zobrazování dat v režimu 3D je nutné si aktivovat samostatné okno. V menu Zobrazit - New 3D Map View, případně přes zkratku Ctrl+Shift+M se spustí nové
+Pro zobrazování dat v režimu 3D je nutné si aktivovat samostatné okno. V menu :menuselection:`Zobrazit --> New 3D Map View`, případně přes zkratku :kbd:`Ctrl+Shift+M` se spustí nové
 okno pro vykreslování 3D objektů.
 
 Do tohoto okna se po spuštění překreslí všechny vrstvy tak, jak se vykreslují
@@ -20,16 +32,12 @@ vrstvy v pořadí zdola:
  * Dem - výškový raster
  * Stínovaný reliéf - částečně průhledný
  * Index drstnosti - částečně průhledný
- 
-Vykreslování funguje na principu vykreslování textur na vygenerovaný terén.
-Textury svou symbologií odpovídají symbologii běžného mapového okna. Rozdíly
-jsou způsobeny pouze kvalitou rendrování na terénu, se kterou je možné
-manipulovat a nastavit ji dle potřeb. 
-Rendrování je závislé na přegenerovávání jednotlivých dlaždic dle pozice "pozorovatele". V případě přibližování se počítají nové dlaždice, které lépe odpovídají požadované kvalitě.  
+   
 
-Menu pro nastavení 3D mapového okna je pod ikonkou klíče. V tomto menu můžeme
-udělat základní nastavení v části “Terén”. V rolovacím menu pro položku
-“Nadmořská výška” vybereme rastrovou vrstvu “DEM” - výškového modelu terénu.
+Menu pro nastavení 3D mapového okna je pod ikonkou |mActionOptions| 
+:sup:`Nastavit`. V tomto menu můžeme
+udělat základní nastavení v části :item:`Terén`. V rolovacím menu pro položku
+:item:`Nadmořská výška` vybereme rastrovou vrstvu :item:`DEM` - výškového modelu terénu.
 Po uložení tohoto základního nastavení  se začne načítat zobrazený terén jako
 3D povrch ve stejném grafickém nastavení jako v mapovém okně. Na vrstvě terénu
 se vykreslí i stínovaný reliéf a drsnost povrchu. 
@@ -39,6 +47,7 @@ se vykreslí i stínovaný reliéf a drsnost povrchu.
 
    Základní nastavení 3D mapového okna a první vizualizace.
 
+Rendrování je závislé na přegenerovávání jednotlivých dlaždic dle pozice "pozorovatele". V případě přibližování se počítají nové dlaždice, které lépe odpovídají požadované kvalitě.
 
 
 Ovládání 3D mapového okna

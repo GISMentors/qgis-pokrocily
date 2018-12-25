@@ -6,7 +6,7 @@ Práce s 3D daty
 ***************
 
 Zobrazování 3D dat v QGISu bylo možné už v minulosti a to zejména pomocí pluginů
-(např. Qgis2threejs  https://plugins.qgis.org/plugins/Qgis2threejs/,).
+(např. `Qgis2threejs <https://plugins.qgis.org/plugins/Qgis2threejs/>`_ ).
 Od verze 3.0 je základní součástí QGISu také `3D mapové okno 
 <https://qgis.org/en/site/forusers/visualchangelog30/index.html#d-features>`_,
 které slouží na vizualizaci 3D dat.
@@ -19,7 +19,7 @@ počítače bez speciálního  vybavení a zvýšených nároků na jejich výko
 
    Ukázka zobrazení dat v 3D mapovém okně QGIS.
 
-   
+  
 **Popis typických dat**
 
 Tak jako u běžných mapových podkladů zobrazujeme zemský povrch a jevy, které se
@@ -32,7 +32,7 @@ Jednu formu reprezentace povrchu jsme použili již v `začátečnickém kurzu
 Jedná se o digitální model terénu, který pokrývá celé území ČR.
 Jeho nevýhodou však je, že jeho prostorové rozlišení není dostačující pro
 řešení úkolů pro jednotlivé části území.
-Pro území ČR ČÚZK poskytuje digitální model reliéfu (nejnovější je pátá generace
+Pro území ČR `ČÚZK <https://www.cuzk.cz/>`_ poskytuje digitální model reliéfu (nejnovější je pátá generace
 `DMR5G <http://geoportal.cuzk.cz/(S(zm3aqx2il4wdjxyk2drf4bn3))/Default.aspx?lng=CZ&mode=TextMeta&side=vyskopis&metadataID=CZ-CUZK-DMR5G-V&mapid=8&menu=302>`_) a digitální model povrchu (jediná verze 
 `DMP1G <http://geoportal.cuzk.cz/(S(zm3aqx2il4wdjxyk2drf4bn3))/Default.aspx?lng=CZ&mode=TextMeta&side=vyskopis&metadataID=CZ-CUZK-DMP1G-V&mapid=8&menu=303>`_).
 
@@ -43,7 +43,7 @@ pomocí nastavení vytáhnou do výšky jako tzv. "boxíky".
 Další možností je přímé modelování objektů zložených z vícero rovinných
 polygonů (takovéto objekty jsou na obrázku výše). Tvorba a editace
 takovýchto dat je časově náročná a QGIS není vhodným nástrojem pro
-tento typ editace.
+tento typ editace pro produkční proces.
 
 Při jednodušších objektech, například bodových, je možné vytvořit zjednodušenou
 symbologii a tu používat. Prozatím ale není možné používat natolik pokročilé
