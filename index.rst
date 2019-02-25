@@ -63,7 +63,9 @@ dlouhodobého plánování a hlavně z požadavků uživatelů.
    Madeira**. V jiných verzích není zaručena funkčnost uvedených
    příkladů. Dále předpokládáme zapnutou *českou lokalizaci*,
    :menuselection:`Možnosti --> Obecné`. Obsahově navazuje na školení
-   :skoleni:`QGIS pro začátečníky <qgis-zacatecnik>`.
+   :skoleni:`QGIS pro začátečníky <qgis-zacatecnik>`. K dispozici jsou
+   i historické školící materiály k verzím QGIS :skoleni:`2.14
+   <qgis-pokrocily/2.14>` a :skoleni:`2.18 <qgis-pokrocily/2.18>`.
 
 .. index::
    pair: datové sady; ke stažení
