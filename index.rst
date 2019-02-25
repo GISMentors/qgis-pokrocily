@@ -80,6 +80,7 @@ Dlouhodobá stabilní verze (LTR) je doplněna dvěma krátkodobými verzemi.
    modeler/index
    grass/index
    hydrologie/index
+   3d/index
    ruzne/index
 
 *******
