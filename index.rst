@@ -26,7 +26,7 @@
    single: GIS
    single: geografický informační systém
 
-`QGIS <http://qgis.org/en/site/>`_  je Open Source *geografický informační systém*
+`QGIS <http://qgis.org/en/site/>`_  je open source *geografický informační systém*
 (:wikipedia:`GIS`) publikovaný pod všeobecnou licencí GNU GPL.
 Projekt QGIS vznikl v roce 2002, verze s označením 1.0 vyšla později v roce 2009.
 Mezi hlavní výhody patří zejména rychlost vývoje a rozšiřování jeho funkcionality.
@@ -36,22 +36,34 @@ umožňuje i modifikaci zdrojového kódu a jeho následné šíření.
 .. only:: latex
 
    .. figure:: images/qgis_logo.png
-      :scale-latex: 150
+      :width-latex: 150
 
       Logo projektu QGIS.
 
-Současným konceptem ve vývoji je pravidelné a intenzivní publikování nových verzí.
-Dlouhodobá stabilní verze (LTR) je doplněna dvěma krátkodobými verzemi.
+Současným konceptem ve vývoji je pravidelné a intenzivní publikování
+nových verzí. Dlouhodobá stabilní verze (LTR) je doplněna dvěma
+krátkodobými verzemi (viz `QGIS release schedule
+<https://qgis.org/en/site/getinvolved/development/roadmap.html#release-schedule>`__). Krátkodobé
+verze mají sloužit pro zveřejňování nových funkcionalit v kratších
+intervalech.
+
+Přechod na verzi 3.x je spojen s postupem technologií, konkrétně zejména povýšení:
+  * Python 2.7 na Python 3
+  * Qt4 na Qt5
+
+S touto změnou přicházejí nejenom novější a lepší technologické nástroje, ale
+také jasná zpráva o tom, že QGIS se neustále vyvíjí, drží krok a nezastarává.
+Součástí velkých změn je i v tomto případě nutnost se adaptovat na ně, což závisí
+hlavně od způsobu jakým QGIS uživatel využívá. Všechny změny ale vycházejí z
+dlouhodobého plánování a hlavně z požadavků uživatelů.
 
 .. only:: html
 
-.. important:: Školení je zaměřeno na aktuální LTR verzi `QGIS 2.18
-               Las Palmas
-               <https://www.qgis.org/en/site/forusers/download.html>`_. V
-               jiných verzích není zaručena funkčnost uvedených
-               příkladů. Dále předpokládáme zapnutou *českou
-               lokalizaci*. Obsahově navazuje na školení
-               :skoleni:`QGIS pro začátečníky <qgis-zacatecnik>`.
+.. important:: Školení je zaměřeno na aktuální LTR verzi **QGIS 3.4
+   Madeira**. V jiných verzích není zaručena funkčnost uvedených
+   příkladů. Dále předpokládáme zapnutou *českou lokalizaci*,
+   :menuselection:`Možnosti --> Obecné`. Obsahově navazuje na školení
+   :skoleni:`QGIS pro začátečníky <qgis-zacatecnik>`.
 
 .. index::
    pair: datové sady; ke stažení
@@ -59,10 +71,8 @@ Dlouhodobá stabilní verze (LTR) je doplněna dvěma krátkodobými verzemi.
 .. notedata::
 
    *Data ke školení* jsou stažitelná jako `zip archiv
-   <http://training.gismentors.eu/geodata/qgis/data.zip>`_ (436
-   MB), rastrová data `DMT
-   <http://training.gismentors.eu/geodata/qgis/dmt.zip>`_
-   (97 MB).
+   <http://training.gismentors.eu/geodata/qgis/data.zip>`__ (614
+   MB).
 
 .. warning:: :red:`Toto je pracovní verze školení, která je aktuálně ve vývoji!`
 
@@ -122,3 +132,7 @@ Text dokumentu
 Zdrojové texty školení jsou dostupné na adrese:
 
 * https://github.com/GISMentors/qgis-pokrocily
+
+  Případné chyby nebo náměty na vylepšení můžete hlásit:
+
+* https://github.com/GISMentors/qgis-pokrocily/issues
