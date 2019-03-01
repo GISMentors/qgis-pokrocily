@@ -1,6 +1,6 @@
-**********
-Hydrologie
-**********
+***************************
+Ukázka analýzy - hydrologie
+***************************
 
 Globalizace, urbanizace, klimatické změny, extrémní počasí - to jsou
 složité problémy, kterým v současné době čelíme. Cílem řady odborníků
@@ -15,9 +15,7 @@ klimatických poměrů a větší nároky na vodní zdroje vyžadují podrobné
 znalosti související s jedním z našich najdůležitějších přírodních
 zdrojů.
 
-Od verze QGIS 2.12 se mnozí uživatelé těší z funkčnosti zásuvného
-modulu GRASS, viz kapitola :doc:`../grass/index`. Geografický
-informačný systém GRASS GIS nabízí celou řadu nástrojů pro
+Geografický informačný systém GRASS GIS nabízí celou řadu nástrojů pro
 hydrologické modelovaní či výpočet eroze.  V této časti si ukážeme,
 jak je možné užitečné nástroje systému GRASS využívat při
 hydrologických analýzách v prostředí QGIS. Zaměříme se na odtokové

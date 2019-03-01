@@ -1,15 +1,3 @@
-.. |union| image:: ../images/icon/union.png
-   :width: 1.5em
-.. |plus| image:: ../images/icon/mActionSignPlus.png
-   :width: 1.5em
-.. |join| image:: ../images/icon/join.png
-   :width: 1.5em
-.. |edit| image:: ../images/icon/mIconEditable.png
-   :width: 1.5em
-.. |kalk| image:: ../images/icon/mActionCalculateField.png
-   :width: 1.5em
-.. |select-attr| image:: ../images/icon/mIconExpressionSelect.png
-   :width: 1.5em
 .. |grass_shell| image:: ../images/gplugin/shell.1.png
    :width: 1.5em
 .. |v.db.select| image:: ../images/gplugin/v.db.select.1.png
@@ -30,10 +18,6 @@
    :width: 3.5em
 .. |v.rast.stats| image:: ../images/gplugin/v.rast.stats.3.png
    :width: 4.5em
-.. |add_vector| image:: ../images/icon/mIconVectorLayer.png
-   :width: 1.5em
-.. |add_csv| image:: ../images/icon/mActionAddDelimitedTextLayer.png
-   :width: 1.5em
 .. |grasslogo| image:: ../images/icon/grasslogo.png
    :width: 1.5em
 .. |diagram| image:: ../images/icon/diagram.png
@@ -51,7 +35,7 @@ dalším textu, :skoleni:`popis vstupních dat
 <grass-gis-pokrocily/hydrologie/scs-cn.html#scs-cn-vstupni-data>` a
 :skoleni:`navrhovaný postup
 <grass-gis-pokrocily/hydrologie/scs-cn.html#scs-cn-postup>` je
-součástí školení **GRASS GIS pro pokročilé**.
+součástí školení *GRASS GIS pro pokročilé*.
 
 Postup zpracovaní v QGIS
 ========================
@@ -63,10 +47,11 @@ Krok 1
 
 *Sjednocení hlavních půdních jednotek a komplexního průzkumu půd*
 
-V prvním kroku založíme projekt a pomocí |add_vector| :sup:`Přidaní
-vektorové vrstvy` a |add_csv| :sup:`Přidat vrstvu s odděleným textem`
-vložíme do panelu vrstev vstupní data - vektorová data ve formátu Esri
-Shapefile :file:`hpj.shp`, :file:`kpp.shp`, :file:`landuse.shp`,
+V prvním kroku založíme projekt a pomocí |mActionAddOgrLayer|
+:sup:`Přidaní vektorové vrstvy` a |mActionAddDelimitedTextLayer|
+:sup:`Přidat vrstvu s odděleným textem` vložíme do panelu vrstev
+vstupní data - vektorová data ve formátu Esri Shapefile
+:file:`hpj.shp`, :file:`kpp.shp`, :file:`landuse.shp`,
 :file:`povodi.shp` a soubory s odděleným textem
 :file:`hpj_hydrsk.csv`, :file:`kpp_hydrsk.csv`,
 :file:`lu_hydrsk_cn.csv`, viz školení :skoleni:`QGIS pro začátečníky
@@ -74,9 +59,9 @@ Shapefile :file:`hpj.shp`, :file:`kpp.shp`, :file:`landuse.shp`,
 
 Následně sjednotíme vrstvu hlavních půdních jednotek (:map:`hpj`) a
 komplexního průzkumu půd (:map:`kpp`). Využijeme nástroj
-geoprocessingu |union| :sup:`Sjednotit`, který najdeme v záložce
-:menuselection:`Vektor --> Nástroje geoprocessingu`.  Vznikne nová
-vektorová vrstva :map:`hpj_kpp`.
+geoprocessingu |mAlgorithmUnion| :sup:`Sjednotit`, který najdeme v
+záložce :menuselection:`Vektor --> Nástroje geoprocessingu`.  Vznikne
+nová vektorová vrstva :map:`hpj_kpp`.
 
 .. _kr2:
 
@@ -90,10 +75,10 @@ vektorové vrstvy :map:`hpj_kpp` pomocí společného sloupce
 :dbcolumn:`HPJ` (:numref:`at-pred-join`).  Pravým tlačítkem myši v
 panelu vrstev u :map:`hpj_kpp` zvolíme :item:`Vlastnosti` a v
 dialogovém okně přejdeme do záložky |join| :sup:`Připojení`. Kliknutím
-na ikonku |plus| spustíme dialogové okno s nastavením pro připojení
-(:numref:`join`), viz kapitola :skoleni:`Připojení tabulkových dat
-<qgis-zacatecnik/vektorova_data/join.html>` ve školení QGIS pro
-začátečníky.
+na ikonku |mActionSignPlus| spustíme dialogové okno s nastavením pro
+připojení (:numref:`join`), viz kapitola :skoleni:`Připojení
+tabulkových dat <qgis-zacatecnik/vektorova_data/join.html>` ve školení
+QGIS pro začátečníky.
 
 .. _at-pred-join:
 
@@ -127,14 +112,15 @@ skupinách (:numref:`tab-pripojene`).
 .. _novy-atribut:
 
 Poté otevřeme atributovou tabulku :map:`hpj_kpp`, zapneme editační mód
-ikonkou |edit| :sup:`Přepnout editaci` a pomocí kalkulačky polí |kalk|
-:sup:`Otevřít kalkulačku polí` vytvoříme nový atribut. Použijeme
-připojené atributy o hydrologické skupině (:dbcolumn:`hpj_HydrSk` z
-hlavních půdních jednotek a :dbcolumn:`kpp_HydrSk` z komplexního
-průzkumu půd). Primárně použijeme hydrologickou skupinu pro hlavní
-půdní jednotky.  Kde informace není dosupná - hodnota
-:dbcolumn:`NULL`, tam použijeme :dbcolumn:`kpp_HydrSk`
-(:numref:`at-hydrsk-kalk`) a výsledek zobrazíme (:numref:`hydrsk-map`).
+ikonkou |mIconEditable| :sup:`Přepnout editaci` a pomocí kalkulačky
+polí |mActionCalculateField| :sup:`Otevřít kalkulačku polí` vytvoříme
+nový atribut. Použijeme připojené atributy o hydrologické skupině
+(:dbcolumn:`hpj_HydrSk` z hlavních půdních jednotek a
+:dbcolumn:`kpp_HydrSk` z komplexního průzkumu půd). Primárně použijeme
+hydrologickou skupinu pro hlavní půdní jednotky.  Kde informace není
+dosupná - hodnota :dbcolumn:`NULL`, tam použijeme
+:dbcolumn:`kpp_HydrSk` (:numref:`at-hydrsk-kalk`) a výsledek zobrazíme
+(:numref:`hydrsk-map`).
 
 .. code-block:: bash
 	
@@ -143,37 +129,39 @@ půdní jednotky.  Kde informace není dosupná - hodnota
 .. _at-hydrsk-kalk:
 
 .. figure:: images/at_hydrsk_kalk.png
-   :scale: 70%
-        
+   :class: middle
+   
    Vytvoření atributu s informacemi o hydrologické skupině pro
    elementární plochy.
 
-.. _hydrsk-map:
+..
+   .. _hydrsk-map:
 
-.. figure:: images/hydrsk.png
+   .. figure:: images/hydrsk.png
    :class: small
         
    Hydrologické skupiny elementárních ploch v zájmovém území.
 
-Při pohledu na legendu na :numref:`hydrsk-map` je možno si všimnout, že kódy
-hydrologických skupin jako ``(A)B``, ``A(B)``, ``AB`` a podobně by
-bylo vhodné sjednotit.  K tomu použijeme editační mód a atributové
-dotazy. V hlavní liště anebo v liště atributové tabulky zvolíme volbu
-|select-attr| :sup:`Vybrat prvky pomocí vzorce` pomocí které vybereme
-elementární plochy s hydrologickou skupinou ``(A)B`` a ``A(B)``, potom
-zapneme editační režim, spustíme |kalk| :sup:`Kalkulačka polí` a
-aktualizujeme existujíce atributy :dbcolumn:`hydrsk` vybraných prvků
-(:numref:`kalk-ab`). Obdobně postupujeme pro další kódy. Výsledek je
-prezentován na :numref:`hydrsk-ok`.
+   Při pohledu na legendu na :numref:`hydrsk-map` je možno si všimnout,
+   že kódy hydrologických skupin jako ``(A)B``, ``A(B)``, ``AB`` a
+   podobně by bylo vhodné sjednotit.  K tomu použijeme editační mód a
+   atributové dotazy. V hlavní liště anebo v liště atributové tabulky
+   zvolíme volbu |mIconExpressionSelect| :sup:`Vybrat prvky pomocí
+   vzorce` pomocí které vybereme elementární plochy s hydrologickou
+   skupinou ``(A)B`` a ``A(B)``, potom zapneme editační režim, spustíme
+   |kalk| :sup:`Kalkulačka polí` a aktualizujeme existujíce atributy
+   :dbcolumn:`hydrsk` vybraných prvků (:numref:`kalk-ab`). Obdobně
+   postupujeme pro další kódy. Výsledek je prezentován na
+   :numref:`hydrsk-ok`.
 
-.. _kalk-ab:
+   .. _kalk-ab:
 
-.. figure:: images/kalk_AB.png
-   :class: middle
+   .. figure:: images/kalk_AB.png
+      :class: middle
         
-   Sjednocení hodnot atributů pomocí kalkulátoru polí.
+      Sjednocení hodnot atributů pomocí kalkulátoru polí.
 
-.. note:: Pro sjednocení hodnot je možno použít také výraz *CASE*:
+   .. note:: Pro sjednocení hodnot je možno použít také výraz *CASE*:
 
    .. code-block:: bash
 
@@ -192,15 +180,29 @@ prezentován na :numref:`hydrsk-ok`.
         
    Sjednocené hydrologické skupiny elementárních ploch v zájmovém území.
 
+.. _kr3:
+
+Krok 3
+------
+
+*Průnik vrstvy hydrologických skupin s vrstvou využití území*
+
 Do této fáze je možné používat QGIS relativně bez problémů. Dále však
 budeme přidávat informace o využití území pro každou elementární
 plochu pomocí operace průniku. *Při větších objemech dat mohou být
 nástroje geoprocessingu časově náročné a nestabilní.* Pro další řešení
-tedy použijeme výpočetně stabilnější nástroje systému GRASS GIS.
+tedy použijeme výpočetně stabilnější nástroje systému GRASS GIS. Více
+o systému GRASS v rámci školení :skoleni:`GRASS GIS pro začátečníky
+<grass-gis-zacatecnik>`.
 
-.. tip:: Více o systému GRASS v rámci školení :skoleni:`GRASS GIS pro
-         začátečníky <grass-gis-zacatecnik>`.
-         
+Výpočetní nástroje systému GRASS lze spouštět buď přímo z
+:doc:`../geoprocessing/index` anebo pomocí :doc:`zásuvného modulu
+GRASS <../grass/index>`.
+
+.. figure:: images/processing-grass-v-overlay.png
+
+   Příklad spuštění nástroje :grasscmd:`v.overlay` z nástrojů zpracování.
+
 Vytvoření lokace a mapsetu
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -236,13 +238,6 @@ QGIS pomocí `Select the extent by dragging on canvas`
         
    Vytvoření lokace a mapsetu, nastavení výpočetní oblasti a
    prostorového rozlišení.
-
-.. _kr3:
-
-Krok 3
-------
-
-*Průnik vrstvy hydrologických skupin s vrstvou využití území*
 
 .. _import-qgrass:
 
