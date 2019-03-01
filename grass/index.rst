@@ -9,35 +9,22 @@ Zásuvný modul GRASS
 GRASS především využití nástrojů systému GRASS při zpracování a
 analýze geografických dat.
 
-.. important:: Tato kapitola vyžaduje alespoň základní znalosti
-               systému GRASS. Více ve školení :skoleni:`GRASS GIS pro
-               začátečníky <grass-gis-zacatecnik>`.
+.. important:: Výpočetní nástroje systému GRASS GIS lze v prostředí
+   QGIS také volat z :doc:`../geoprocessing/index`. Hlavní rozdíl je
+   především v tom, že *Nástroje zpracování* vytváří na pozadí
+   přechodné GRASS projekty, tzv. lokace (viz školení GRASS GIS pro
+   začátečníky - :skoleni:`koncept lokací a mapsetů
+   <grass-gis-zacatecnik/intro/struktura-dat.html>`), vstupní data do
+   nich importuje nebo připojuje. Provede výpočet, výsledná data
+   vyexportuje zpravidla do GeoTIFF nebo OGC GeoPackage a přechodnou
+   lokaci smaže. GRASS plugin naopak umožňuje spravovat vlastní lokace
+   a data v nich udržovat. Z tohoto pohledu v podstatě QGIS slouží
+   jako grafický front-end pro výpočetní nástroje systému GRASS GIS.
 
-Tento nástroj doporučujeme používat až od verze QGIS 2.14.
-               
-.. note:: Zásuvný modul GRASS byl součástí i starších verzi QGISu,
-          nicméně podporoval pouze zastaralou verzi systému GRASS
-          6.4. Vzhledem k tomu, že nebyl svými tvůrci dostatečně
-          udržován, tak byl v LTR verzi QGIS 2.8 odstraněn. V roce
-          2015 proběhla `crowdfundingová kampaň
-          <http://www.gissula.eu/qgis-grass-plugin-crowdfunding/>`_ s
-          cílem zásuvný modul GRASS znovu do QGISu začlenit a přidat
-          podporu pro aktuální verzi systému GRASS 7.x. Nově se tedy
-          vrátil tento zásuvný modul do verze QGIS 2.10 a plně
-          funkčním poté ve verzi QGIS 2.12.
-
-.. tip:: Volat nástroje systému GRASS lze také z
-         :doc:`../geoprocessing/index`. Hlavní rozdíl je především v
-         tom, že druhý jmenovaný nástroj vytváří přechodné GRASS
-         projekty, tzv. lokace (viz školení GRASS GIS pro
-         začátečníky - :skoleni:`koncept lokací a mapsetů
-         <grass-gis-zacatecnik/intro/struktura-dat.html>`), vstupní
-         data do nich importuje nebo připojuje. Provede výpočet,
-         výsledná data vyexportuje zpravidla do GeoTIFF nebo Esri
-         Shapefile a přechodnou lokaci smaže. GRASS plugin naopak
-         umožňuje spravovat vlastní lokace a data v nich udržovat. V
-         tomto případě v podstatě QGIS slouží jako grafický front-end
-         pro GRASS GIS.
+   Nástroje zpracování tak na uživatele nekladou žádné zásadní
+   znalostní požadavky. Zásuvný modul GRASS naopak vyžaduje alespoň
+   základní znalosti systému GRASS GIS. Více ve školení
+   :skoleni:`GRASS GIS pro začátečníky <grass-gis-zacatecnik>`.
 
 Zásuvný modul GRASS je výchozí součástí QGISu, je potřeba jej pouze
 aktivovat v :menuselection:`Zásuvné moduly --> Instalovat a spravovat
@@ -47,19 +34,26 @@ zásuvné moduly`.
    
    Aktivace zásuvného modulu GRASS.
 
-Po aktivaci se objeví panel nástrojů tohoto zásuvného modulu. Tento
-panel lze otevřít  i z menu :menuselection:`Zásuvné moduly --> GRASS
---> Otevřít GRASS nástroje` nebo pomocí ikonky |mActionGrassTools|.
+.. important:: Pro možnost aktivace zásuvného modulu GRASS pod MS
+   Windows je třeba spustit QGIS pomocí volby **QGIS Desktop with
+   GRASS**.
+
+   .. figure:: images/grass-plugin-windows.png
+      :class: small
+               
+Po aktivaci se objeví panel nástrojů zásuvného modulu. Tento panel lze
+otevřít i z menu :menuselection:`Zásuvné moduly --> GRASS --> Otevřít
+GRASS nástroje` nebo pomocí ikonky |mActionGrassTools|.
 
 .. figure:: images/grass-plugin-tools.png
    
    Panel nástrojů zásuvného modulu GRASS.
 
 Proto, abychom mohli nástroje systému GRASS používat, je potřeba
-definovat tzv. **mapset**, se kterým chceme pracovat. Mapset je kromě
-tzv. *databázový adresář* a *lokace* základními stavebními kameny
-struktury dat, kterou GRASS pro svůj běh vyžaduje. Podrobný popis této
-struktury naleznete ve školení GRASS GIS pro začátečníky v kapitole
+definovat tzv. **mapset**, se kterým chceme pracovat. Mapset je
+společně s *adresářem* a *lokací* základními stavebními kameny datové
+struktury, kterou GRASS pro svůj běh vyžaduje. Podrobný popis
+naleznete ve školení GRASS GIS pro začátečníky v kapitole
 :skoleni:`struktura dat - koncept lokací a mapsetů
 <grass-gis-zacatecnik/intro/struktura-dat.html>` ve školení GRASS GIS
 pro začátečníky.
@@ -79,8 +73,8 @@ GRASS bude pracovat.
         
    Zadání databázové adresáře systému GRASS.
 
-Dále máme možnost otevřít existující lokaci v rámci databázového
-adresáře či vytvořit lokaci novou.
+Dále máme možnost otevřít existující lokaci v rámci vybraného
+databázového adresáře či vytvořit lokaci novou.
    
 .. figure:: images/new-mapset-1.png
    :class: small
@@ -94,11 +88,12 @@ adresáře či vytvořit lokaci novou.
 
 V případě, že vytváříme novou lokaci je po nás vyžadováno zadání
 souřadnicového systému, který bude k lokaci přiřazen. To je podstatná
-vlastnost GRASS lokace, všechna data v ni spravovaná budou ve stejném
-souřadnicovém systému. 
+vlastnost GRASS lokace. *Všechna data v ni spravovaná budou uložena ve
+stejném souřadnicovém systému.*
    
 .. figure:: images/new-mapset-5.png
-
+   :class: small
+           
    Definice souřadnicového systému pro nově vytvořenou lokaci.
 
 Dále můžeme definovat výchozí *výpočení region*, viz školení 
@@ -130,8 +125,8 @@ moduly --> GRASS --> Otevřít mapset`. Po dokončení práce můžeme mapset
 zavřít z menu :menuselection:`Zásuvné moduly --> GRASS --> Zavřít
 mapset`.
 
-Spouštění nástrojů systému GRASS
-================================
+Spouštění výpočetních nástrojů systému GRASS
+============================================
 
 Nástroje systému GRASS je možno spouštět až po otevření
 mapsetu. Následuje příklad vytvoření vektorové vrstvy obalových zón
@@ -170,7 +165,8 @@ GRASS Shell
 ===========
 
 Spouštět příkazy systému GRASS je možno také z příkazové řádky
-pluginu, tzv. GRASS Shellu.
+pluginu, tzv. *GRASS shellu*. Tento postup lze doporučit pouze
+pokročilejším uživatelům.
 
 .. figure:: images/grass-shell-launch.png
 
