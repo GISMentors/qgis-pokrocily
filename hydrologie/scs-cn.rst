@@ -60,8 +60,9 @@ vstupní data - vektorová data ve formátu Esri Shapefile
 Následně sjednotíme vrstvu hlavních půdních jednotek (:map:`hpj`) a
 komplexního průzkumu půd (:map:`kpp`). Využijeme nástroj
 geoprocessingu |mAlgorithmUnion| :sup:`Sjednotit`, který najdeme v
-záložce :menuselection:`Vektor --> Nástroje geoprocessingu`.  Vznikne
-nová vektorová vrstva :map:`hpj_kpp`.
+záložce :menuselection:`Vektor --> Nástroje geoprocessingu` anebo v
+:doc:`../geoprocessing/index`.  Vznikne nová vektorová vrstva
+:map:`hpj_kpp`.
 
 .. _kr2:
 
@@ -112,8 +113,8 @@ skupinách (:numref:`tab-pripojene`).
 .. _novy-atribut:
 
 Poté otevřeme atributovou tabulku :map:`hpj_kpp`, zapneme editační mód
-ikonkou |mIconEditable| :sup:`Přepnout editaci` a pomocí kalkulačky
-polí |mActionCalculateField| :sup:`Otevřít kalkulačku polí` vytvoříme
+ikonkou |mIconEditable| :sup:`Přepnout editaci` a pomocí kalkulátoru
+polí |mActionCalculateField| :sup:`Otevřít kalkulátoru polí` vytvoříme
 nový atribut. Použijeme připojené atributy o hydrologické skupině
 (:dbcolumn:`hpj_HydrSk` z hlavních půdních jednotek a
 :dbcolumn:`kpp_HydrSk` z komplexního průzkumu půd). Primárně použijeme
@@ -134,45 +135,6 @@ dosupná - hodnota :dbcolumn:`NULL`, tam použijeme
    Vytvoření atributu s informacemi o hydrologické skupině pro
    elementární plochy.
 
-..
-   .. _hydrsk-map:
-
-   .. figure:: images/hydrsk.png
-   :class: small
-        
-   Hydrologické skupiny elementárních ploch v zájmovém území.
-
-   Při pohledu na legendu na :numref:`hydrsk-map` je možno si všimnout,
-   že kódy hydrologických skupin jako ``(A)B``, ``A(B)``, ``AB`` a
-   podobně by bylo vhodné sjednotit.  K tomu použijeme editační mód a
-   atributové dotazy. V hlavní liště anebo v liště atributové tabulky
-   zvolíme volbu |mIconExpressionSelect| :sup:`Vybrat prvky pomocí
-   vzorce` pomocí které vybereme elementární plochy s hydrologickou
-   skupinou ``(A)B`` a ``A(B)``, potom zapneme editační režim, spustíme
-   |kalk| :sup:`Kalkulačka polí` a aktualizujeme existujíce atributy
-   :dbcolumn:`hydrsk` vybraných prvků (:numref:`kalk-ab`). Obdobně
-   postupujeme pro další kódy. Výsledek je prezentován na
-   :numref:`hydrsk-ok`.
-
-   .. _kalk-ab:
-
-   .. figure:: images/kalk_AB.png
-      :class: middle
-        
-      Sjednocení hodnot atributů pomocí kalkulátoru polí.
-
-   .. note:: Pro sjednocení hodnot je možno použít také výraz *CASE*:
-
-   .. code-block:: bash
-
-      CASE WHEN "hydrsk"  =  'B(C)' THEN replace("hydrsk",'B(C)','BC') ELSE "hydrsk" END
-
-   a 
-	  
-   .. code-block:: bash
-
-      CASE WHEN "hydrsk"  =  'C(D)' THEN replace("hydrsk",'C(D)','CD') ELSE "hydrsk" END
-
 .. _hydrsk-ok:
 
 .. figure:: images/hydrsk_ok.png
@@ -187,131 +149,16 @@ Krok 3
 
 *Průnik vrstvy hydrologických skupin s vrstvou využití území*
 
-Do této fáze je možné používat QGIS relativně bez problémů. Dále však
-budeme přidávat informace o využití území pro každou elementární
-plochu pomocí operace průniku. *Při větších objemech dat mohou být
-nástroje geoprocessingu časově náročné a nestabilní.* Pro další řešení
-tedy použijeme výpočetně stabilnější nástroje systému GRASS GIS. Více
-o systému GRASS v rámci školení :skoleni:`GRASS GIS pro začátečníky
-<grass-gis-zacatecnik>`.
+Využijeme nástroj geoprocessingu |mAlgorithmIntersect|
+:sup:`Protnutí`. Výslednou vrstvu průniku nazveme
+:map:`hpj_kpp_landuse`.
 
-Výpočetní nástroje systému GRASS lze spouštět buď přímo z
-:doc:`../geoprocessing/index` anebo pomocí :doc:`zásuvného modulu
-GRASS <../grass/index>`.
-
-.. figure:: images/processing-grass-v-overlay.png
-
-   Příklad spuštění nástroje :grasscmd:`v.overlay` z nástrojů zpracování.
-
-Vytvoření lokace a mapsetu
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Data, ke kterým GRASS přistupuje, udržuje v pevné 3-úrovňové struktuře
-(databáze, lokace a mapset), viz :skoleni:`Struktura dat - koncept
-lokací a mapsetů <grass-gis-zacatecnik/intro/struktura-dat.html>` ze
-školení *GRASS GIS pro začátečníky*. Z hlavní lišty menu vybereme
-:menuselection:`Zásuvné moduly --> GRASS --> Nový mapset`.
-
-.. _hydrsk:
-
-.. figure:: images/menu_mapset.png
-
-   Zásuvný modul GRASS - vytvoření nového mapsetu.
-
-V dialogovém okně se objeví předvolená cesta k hlavnímu adresáři
-databáze GRASS (obvykle adresář s názvem `grassdata`). V případě, že
-tento adresář obsahuje již nějaké lokace, vybereme tu, ve které chceme
-pracovat anebo si vytvoříme novou. Nastavíme souřadnicový systém a
-výpočetní region (viz :skoleni:`školení GRASS GIS pro začátečníky
-<grass-gis-zacatecnik/intro/region.html>`). Kromě mapsetu `PERMANENT`,
-který se vytvoří automaticky, je vhodné zadat i název nového mapsetu,
-ve kterém budou probíhat výpočty. Mapset se automaticky otevře jako
-aktuální mapset. V záložce *Region* dialogového okna nástrojů
-GRASS je možné měnit rozsah výpočetní oblasti výběrem v mapovém okně
-QGIS pomocí `Select the extent by dragging on canvas`
-(:numref:`n-mapset`). Zároveň je zde možno nastavit prostorové rozlišení.
-
-.. _n-mapset:
-
-.. figure:: images/n_mapset.png
-   :class: large
-        
-   Vytvoření lokace a mapsetu, nastavení výpočetní oblasti a
-   prostorového rozlišení.
-
-.. _import-qgrass:
-
-Zájmové území potřebujeme rozdělit na více elementárních
-ploch. Vrstvy :map:`hpj_kpp` a :map:`landuse`, pro které vytvoříme
-průnik, musíme nejprve naimportovat do mapsetu. Import dat zajišťuje
-více nástrojů, tzv. modulů (:numref:`import`). Použijeme například modul
-`v.in.ogr.qgis`, který umožňuje načítat vrstvy (jakoby) z
-prostředí QGIS. Názvy vrstev zachováme stejné.
-
-.. _import:
-
-.. figure:: images/v_in_ogr_qgis.png
-   :class: middle
-        
-   Možnosti importu vektorových vrstev do GRASS mapsetu v prostředí QGIS.
-
-.. tip:: Pokud chceme oveřit, zda se zadané vrstvy po importu v mapsetu
-         nacházejí, použijeme *shell*.  Kliknutím na |grass_shell| :sup:`GRASS
-         shell` spustíme příkazový řádek. Obsah konkrétního mapsetu vypiše
-         modul :grasscmd:`g.list`. Pro výpis vektorových vrstev v aktuálním
-         mapsetu zadáme :code:`g.list vector`. Parametry nástroje lze zadat i
-         interaktivně v grafickém dialogu nástroje, který se vyvolá pomocí
-         přepínače ``--ui``, např. :code:`g.list --ui`.
-         
-         Dokumentaci a povinné parametry každého modulu lze zobrazit
-	 zadáním příkazu *man* před název modulu, například
-	 :code:`man g.list`.
-
-Operaci překrytí, resp. určení průniku vektorových vrstev,
-zajišťuje modul |v.overlay.and| :sup:`v.overlay.and`, který spustíme z
-:menuselection:`Vektor --> Prostorová analýza --> Překrytí`
-(:numref:`v-overlay-and`).  Výslednou vrstvu průniku nazveme
-:map:`hpj_kpp_landuse`. 
-
-.. note:: Počet záznamů v atributové tabulce se průnikem prvků výrazně
-	  zvýší. Což je zapříčiněno hlavně tím, že QGIS zobrazuje
-	  záznamy pro multiprvky jako duplicitní.
-
-.. _v-overlay-and:
-
-.. figure:: images/v_overlay_and.png
-        
-   Modul pro určení průniku dvou vektorových vrstev.
-
-.. tip:: V příkazovém řádku můžeme vypsat například:
-
-   * seznam tabulek v aktuálním mapsetu, resp. jejich názvy: :code:`db.tables`
-   * seznam atributů konkrétní tabulky: :code:`db.columns table=NAZEVTABULKY` 
-   * počet záznamů v tabulce: :code:`db.select sql='select count(*) from NAZEVTABULKY'`
-     
-   Příklad použití `GRASS shell` je znázorněn na
-   :numref:`gshell-db-columns`. Modul |v.db.select| :sup:`v.db.select`
-   vypíšeme hodnoty atributů, modulem |v.db.select|
-   :sup:`v.db.select.where` je možné zadat i podmínku.
-
-   .. _gshell-db-columns:
-
-   .. figure:: images/gshell_db_columns.png
-      :class: small
-        
-      Zobrazení tabulek a záznamů v příkazovém řádku.
-
-   Modul :grasscmd:`v.out.ogr` umožňuje exportovat atributovou tabulku do
-   různých formátů a dále s ni pracovat. Na :numref:`db-export` je
-   znázorněn export do bežného formátu :wikipedia:`CSV`.
-
-   .. _db-export:
-
-   .. figure:: images/db_export.png
-      :class: middle
-        
-      Export atributů do formátu CSV.
-
+.. note:: V tomto případě má bohužel QGIS problém uložit výsledné
+          prvky do výchozího formátu OGC Geopackage. Funkční náhradou
+          je např. ESRI Shapefile. Uložení výsledku do formátu ESRI
+          Shapefile je navíc často i rychlejší v porovnání s výchozím
+          formátem OGC Geopackage.
+          
 .. _kr4:
 
 Krok 4
@@ -323,57 +170,20 @@ V dalším kroku je potřeba vytvořit atribut, který bude obsahovat údaje
 o využití území a o hydrologické skupině půdy dané elementární plochy
 ve tvaru *VyužitíÚzemí_HydrologickáSkupina*.
 
-Vytvoříme nový atribut pomocí modulu |v.db.addcolumn|
-:sup:`v.db.add.column`, který nazveme :dbcolumn:`landuse_hydrsk`
-(:numref:`v-db-add-column`). Poté doplníme hodnoty atributu s využitím
-modulu |v.db.update| :sup:`v.db.update_op` jako výsledek operace v
-rámci jedné atributové tabulky.  Hodnotu zadáme ve tvaru
-``b_LandUse||'_'||a_hydrsk``.
+Pomocí kalkulátoru polí |mActionCalculateField| :sup:`Otevřít
+kalkulátor polí` vytvoříme nový atribut a nazveme jej
+:dbcolumn:`lu_hydrsk` (datový typ nastavíme na řetězec). Hodnota
+atributu bude ve tvaru ``LandUse||'_'||hydrsk``.
 
-.. _v-db-add-column:
+Ve vlastnostech vrstvy |join| :sup:`Připojení` připojíme tabulku
+:file:`lu_hydrsk_cn.csv`. Tímto krokem získáme pro každou elementární
+plochu odpovídající hodnotu `CN`.
 
-.. figure:: images/v_db_addcolumn.png
-   :class: middle
-        
-   Přidání atributu do atributové tabulky s datovým typem *text*.
-
-.. note:: Výsledek můžeme zkontrolovat v příkazovém řádku zadaním
-
-   .. code-block:: bash
-	
-      v.db.select map=hpj_kpp_landuse columns=cat,b_LandUse,a_hydrsk,landuse_hydrsk where=cat=1
-
-      cat|b_LandUse|a_hydrsk|landuse_hydrsk
-      1|OP|B|OP_B
-
-Dále do mapsetu modulem :grasscmd:`db.in.ogr` importujeme tabulku s
-hodnotami `CN`. Nazveme ji :map:`lu_hydrsk_cn`.
-
-Následně použijeme modul |v.db.join| :sup:`v.db.join`, pomocí kterého
-připojíme importovanou tabulku k vektorové vrstvě
-:map:`hpj_kpp_landuse` a to kvůli přiřazení hodnot `CN` ke každé
-elementární ploše řešeného území, viz. :numref:`v-dbjoin`. Obsah
-výsledné tabulky je možno oveřit v příkazovém řádku pomocí
-:code:`v.db.select map=hpj_kpp_landuse where=cat=1`.
-
-.. important:: Jednotlivé atributy v tabulkách, které spojujeme, nesmí
-   obsahovat stejné názvy atributů. Tento problém lze vyřešit
-   zavoláním modulu :grasscmd:`v.db.join` z GUI systému GRASS a volbou
-   :option:`subset_columns`, která ale v dialogu GRASS pluginu
-   chybí. Tento problém lze obejít nativním dialogem nástroje
-   vyvolaného příkazem :code:`v.db.join --ui`.
-
-.. _v-dbjoin:
-
-.. figure:: images/v_db_join.png
-   :class: large
-        
-   Připojení tabulky k existující atributové tabulce vektorové vrstvy.
-
-.. note:: Tento způsob spojení atributových dat je alternativou k
-	  operaci záložky |join| :sup:`Připojení` ve vlastnostech
-	  vektorové vrstvy, viz :ref:`kr2`.
-
+.. figure:: images/join_cn.png
+   :class: small
+           
+   Připojení hodnot CN k elementárním plochám.
+      
 .. _kr5:
 
 Krok 5
@@ -381,72 +191,82 @@ Krok 5
 
 *Sjednocení průniku vrstvy hydrologických skupin a využití území s vrstvou povodí*
 
+Do této fáze je možné používat QGIS relativně bez problémů. Při
+větších objemech dat mohou být ale nativní nástroje QGISu časově
+náročné a nestabilní.
 
 Hodnoty návrhových srážek s různou dobou opakovaní do vrstvy přidáme
-pomocí modulu |v.overlay.or| :sup:`v.overlay.or`. Sjednocení předchází
-import vrstvy povodí s informacemi o srážkách do mapsetu, přičemž
-postup je obdobný jako při :ref:`importu vektorových vrstev v
-úvodní části <import-qgrass>`.
+pomocí operace |mAlgorithmUnion| :sup:`Sjednotit`.
 
-Ukázka záznamu (vybrané atributy) atributové tabulky nově vytvořené
-vektorové vrstvy :map:`hpj_kpp_lu_pov` pro 2-letý úhrn srážek v *mm* s
-dobou trvaní srážky *120 min*:
+Tato operace bohužel končí topologickou chybou
 
-.. code-block:: bash
+::
+      
+   TopologyException: Input geom 0 is invalid: Hole lies outside shell at or near point ...
+
+V nastavení :menuselection:`Nastavení --> Možnosti --> Zpracování -->
+Obecné --> Filtrování neplatných prvků` nastavíme `Ignorovat prvky s
+neplatnými geometriemi` a výpočet spustíme znovu. Nové nastavení
+výrazně výpočet zpomalí, nicméně ani to nepomůže. Výpočet končí
+chybou.
+
+::
+
+      TopologyException: found non-noded intersection between LINESTRING (...) and LINESTRING (...) at ...
+
+Pro další řešení tedy použijeme výpočetně stabilnější nástroje systému
+GRASS GIS. Více o systému GRASS v rámci školení :skoleni:`GRASS GIS
+pro začátečníky <grass-gis-zacatecnik>`. Překryvné operace jako
+protnutí či spojení má v systému GRASS na starost nástroj
+:grasscmd:`v.overlay.`
+
+Výpočetní nástroje systému GRASS lze spouštět buď přímo z
+:doc:`../geoprocessing/index` anebo pomocí :doc:`zásuvného modulu
+GRASS <../grass/index>`. Druhý způsob by vyžadoval vytvořit GRASS
+lokaci, naimportovat do ní vstupní data. Tento postup byl výhodný
+především, pokud bychom chtěli zbytek výpočtu již provést v systému
+GRASS celý. Jelikož chceme provést mimo nativní nástroje QGIS pouze
+jeden výpočet, tak zvolíme možnost spuštění nástroje GRASS přímo z
+nástroje zpracovaní.
+
+.. tip:: Postup postavený na zásuvnému modulu GRASS je k dohledání ve
+         :skoleni:`starších materiálech
+         <qgis-pokrocily/2.18/hydrologie/scs-cn.html>` školení pro verzi
+         QGIS 2.18.
+
+Bohužel externí nástroje spuštěné z nástrojů zpracování ignorují
+připojené tabulky ke vstupní vrstvě. Abychom tedy nepřišli o připojené
+hodnoty CN, musíme nejprve vstupní vrstvu zapsat do nového souboru.
+
+.. figure:: images/save_join.png
+   :class: small
+
+   Uložení vrstvy do nového souboru. V případě použití formátu OGC
+   Geopackage vynecháme atribut ``fid``, který je tímto formátem
+   vytvořen automaticky. V opačném případě by export prvků skončil
+   chybou.
+         
+.. figure:: images/processing-grass-v-overlay.png
    
-   v.db.select map=hpj_kpp_lu_pov columns=cat,a_CN,b_H_002_120 where="cat=1"
+   Spuštění nástroje :grasscmd:`v.overlay` z prostředí nástrojů
+   zpracovaní. Kromě operátoru ``or`` pro operaci sjednocení je vhodné
+   nastavit rozumnou hodnotu pro přichycení hranic. Předpokládáme
+   totiž na vstupu topologicky nekorektní data. V našem případě jsme
+   zvolili 1cm, což je hluboko pod přesností vstupních dat.
 
-   cat|a_CN|b_H_002_120
-   1|80|21.6804582207
+Je důležité si uvědomit, že nástroj :grasscmd:`v.overlay` přidává k
+názvům atributu prefix ``a_`` a ``b_``. To podle toho z jakého vstupní
+vrstvy atributy pocházejí.
 
-Přehled o tom, jak se změnil počet plošných prvků ve vrstvě
-:map:`hpj_kpp_landuse` po sjednocení s vrstvou povodí, dostaneme jako
-výstup modulu :grasscmd:`v.info`, viz.  :menuselection:`Vektor -->
-Zprávy a statistiky`. Standardní zobrazení informací je uvedeno
-:numref:`v-info`.
-
-.. _v-info:
-
-.. figure:: images/v_info.png
-   :class: large
-        
-   Výpis základních informací o vektorové vrstvě pomocí modulu
-   *v.info*.
-
-.. tip:: Z příkazového řádku je možno spustit nativní grafické
-	 uživatelké rozhraní systému GRASS příkazem
-	 :grasscmd:`g.gui`. Taktéž je možné zapnout mapové okno
-	 (příkaz :grasscmd:`d.mon`), vykreslit v něm konkrétní
-	 rastrovou (:grasscmd:`d.rast`) anebo vektorovou
-	 (:grasscmd:`d.vect`) vrstvu, přidat měřítko
-	 (:grasscmd:`d.barscale`) či legendu
-	 (:grasscmd:`d.legend`). Příkazem :grasscmd:`d.rast.leg`
-	 vykreslíme rastrovou vrstvu i s legendou.
+.. figure:: images/v-overlay-prefixes.png
+   :class: middle
+   
+   Názvy atributů po operaci spojení obsahují prefix.
 
 Dále budeme pracovat především s hodnotami `CN`. Pro další operace je
 potřeba, aby typ tohoto atributu byl číselný, na což použijeme funkci
 ``cast()``. Vytvoříme tedy nový atribut :dbcolumn:`CN` s datovým typem
 *integer*.
-
-.. note:: 
-   
-   Vektorovou vrstvu :map:`hpj_kpp_landuse` je možno převést na
-   rastrovou vrstvu s hodnotami `CN` a zobrazit v mapovém okně systému
-   GRASS. Začneme vytvořením nového atributu typu *integer* (modul
-   :grasscmd:`v.db.addcolumn`), pokračujeme jeho editací
-   :grasscmd:`v.db.update_op` a následně spustíme modul
-   |v.to.rast.attr| :sup:`v.to.rast.attr`,
-   viz. :numref:`v-to-rast-cn`. Pomocí příkazů ``d.mon wx0``,
-   ``d.rast.leg cn``, ``d.barscale`` a ``d.vect povodi type=boundary``
-   zobrazíme mapu s `CN` včetně měřítka legendy v překrytí s
-   vektorovou vrstvou povodí.
-   
-   .. _v-to-rast-cn:
-
-   .. figure:: images/v_to_rast_cn.png
-      :class: large
-      
-      Konverze vektorové mapy na rastrovou na základě atributu.
 
 .. _kr6:
 
