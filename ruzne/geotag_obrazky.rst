@@ -1,13 +1,3 @@
-.. |mIconEditable| image:: ../images/icon/mIconEditable.png
-   :width: 1.5em
-.. |mActionIdentify| image:: ../images/icon/mActionIdentify.png
-   :width: 1.5em
-.. |mActionCalculateField| image:: ../images/icon/mActionCalculateField.png
-   :width: 1.5em
-.. |mIconDataDefine| image:: ../images/icon/mIconDataDefine.png
-   :width: 1.5em
-
-
 Obrazová data jako součást vektorů (práce s geotagovanými fotografiemi)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -33,9 +23,9 @@ zobrazování daného obrázku jako atributu. Kompletní postup je rozepsán ní
 1. Vstupní obrazová data
 ========================
 
-Pro práci s geotagovanými fotkami je nutné mít nainstalovaný
+Pokud chceme vidět data připojená k obrázku typu fotka, mlžeme použít nástroj
 `ExifTool <http://www.sno.phy.queensu.ca/~phil/exiftool/>`_, který nám umožňuje 
-s nimi pracovat.
+tato data číst. Tento nástroj pro tento úkol není potřebný.
 
 .. note:: Instalace na operačním systému *Linux* je možná pomocí
           instalačního balíčku. Pro instalaci na *Windows* je nutné stáhnout
@@ -73,57 +63,17 @@ s nimi pracovat.
       ...
   
 
-
-2. Instalace pluginu
-====================
-
-Pro možnost tvorby vektorové vrstvy z geotagovaných fotek využijeme plugin
-`Geotag and import photos <https://hub.qgis.org/projects/geotagphotos/wiki>`_.
-Tento nainstalujeme standardní cestou přes :menuselection:`Zásuvné moduly -->
-Spravovat a instalovat zásuvné moduly...`. Potřebný modul je pouze
-experimentální, proto musíte být povolené zobrazování experimentálních modulů.
-
-Po instalaci se modul nachází v :menuselection:`Vektor --> Geotag and import
-photos` (:numref:`menu-geotag`).
-
-.. _menu-geotag:
-
-.. figure:: images/geotag_menu.png
-
-   Umístění nástrojů přidaného pluginu v menu QGIS.
-
-.. note::
-   
-   Pro práci v OS Windows je nutné nastavit cestu k složce :item:`ExifTool`,
-   ve které se nachází `exiftool.exe` (:numref:`exif-win`).
-   Nastavení se nachází v :menuselection:`Vektor --> Geotag and import photos 
-   --> Settings`. 
-   Na OS Linux toto není potřebné.
-
-   .. _exif-win:
-
-   .. figure:: images/exif_win.png
-      :class: small
-
-      Okno pro nastavení cesty k `exiftool.exe`. 
-
 .. _import:
 
-3. Import fotek do vektorové vrstvy
+2. Import fotek do vektorové vrstvy
 ===================================
 
 Pro vytvoření bodové vrstvy z jednotlivých fotografií použijeme funkci
-pluginu :item:`Import photos`.  Prvním krokem je zadání adresáře, ve
-kterém se nacházejí požadované fotky.  Po zadání adresáře s fotkami se
-do pole `EXIF tags` vypíšou nalezené kategorie hodnot.  Pro základní
-zpracování dále toto pole nemusíme používat. Pokud bychom označili
-některý z nalezených tagů, tak by se po importu uložil jako další
-atribut.  Hodnoty se mohou lišit podle toho, jaké údaje dané zařízení
-pořizuje.  Pomocí volby :item:`Recurse subdirectories` můžeme povolit
-prohledávání i podadresářů námi vybrané složky.  Druhým krokem je
-zadání výstupního souboru ve formátu Esri Shapefile. Pokud bychom
-chtěli jenom doplnit již existující vektorovou vrstvu, tak použijeme
-volbu :item:`Append to existing file`.
+pluginu :item:`Import geotagged photos`.  
+Prvním vstupem je zadání adresáře, ve kterém se nacházejí požadované fotky.
+Pomocí volby :item:`Scan recursively` můžeme povolit
+prohledávání i podadresářů námi vybrané složky.
+Druhým krokem je zadání výstupního souboru v požadovaném formátu.
 
 .. figure:: images/import_photos.png
 
@@ -135,81 +85,74 @@ pracuje se souřadnicemi v systému *WGS - 84*. Výsledná vrstva má tudíž te
 souřadnicový systém (:epsg:`4326`).
 
 Pokud si otevřeme atributovou tabulku (:numref:`attribute-tab`), tak se
-tam standardně nachází 2 atributy.  Prvním je `filepath` - absolutní
-cesta k obrázku v čase vytvoření a `filename` - název souboru.
+tam nacházejí různé atributy. První atributy definují umístění fotky na disku.
+Další definují geometrii tak, jak ji detekovalo dané zařízení. 
 
 .. _attribute-tab:
 
-.. figure:: images/attr_table.png
+.. figure:: images/geotag_attr_table.png
+   :class: large
 
    Ukázka atributové tabulky po importu geotagovaných fotografií.
 
-4. Vykreslování obrázku v detailu prvku
+3. Vykreslování obrázku v detailu prvku
 =======================================
 
 Pokud má vrstva jako atribut zapsanou cestu k obrázku (nebo přímo název
 souboru), tak je možné zobrazovat tento obrázek při zobrazení detailu prvku.
 
-Ve vlastnostech vrstvy si otevřeme záložku :item:`Pole`, kde se nachází přehled
-o vlastnostech dané vrstvy. V tomto případě vidíme stále původní vlastnosti a
-vidíme taky, že mají obě nastaveno :item:`Úprava textu`. (Jde tedy o klasické
-vlastnosti s textem, které můžeme upravovat přepisováním.)
+Ve vlastnostech vrstvy si otevřeme záložku :item:`Formulář atributů`, kde se
+nachází přehled a nastavení všech atributů.
+Při kliknutí na položku atributu, která obsahuje cestu k originální fotce se
+otevře menu pro nastavení této položky. V našem případě se jedná o atribut
+`photo`. Klíčové je zejména nastavení v části  :item:`Typ widgetu`, kde zvolíme
+typ :item:`Příloha` a nastavíme další dodateční parametry pro jeho
+vykreslování.
 
-Prvním krokem je zapnutí editace pomocí ikony |mIconEditable|
-:sup:`Přepnout na režim editace`.  Atribut `filepath` použijeme jako
-zdroj pro vykreslení obrázku.  Kliknutím na tlačítko s textem
-:item:`Úprava textu` se dostaneme do možností nastavení této
-vlastnosti.  V postranním menu vybereme :item:`Foto`. V detailnějším
-nastavení je pak možné zakázat možnost editace, nebo nastavení
-popisku. Dále je pak možné nastavit velikost obrázku pro
-vykreslování. Pokud velikost nebude nastavena tak se odhadne optimum.
-
-Potvrzením tohoto nastavení se dostaneme do předchozího okna. Zde je už vidět,
-že vlastnost `filepath` má změněné nastavení.
 
 Při identifikaci prvku v mapovém okně pomocí |mActionIdentify|
 :sup:`Identifikovat prvky` se otevře detail prvku, kde je vykreslen požadovaný
 obrázek.
 
-.. figure:: images/set_image.png
+.. figure:: images/geotag_set_image.png
    :class: large
    
-   Jednotlivé kroky nastavení pro vykreslování obrázku.
+   Nastavení pro vykreslování obrázku.
 
 
 .. tip::
    Pokud chceme data předávat dál, tak je dobré myslet na používání relativních
    cest. V příkladě jsme použili absolutní cestu k obrázku pro jeho vykreslení.
    Pokud bychom chtěli předat složku i se všemi daty dál, tak je ideální využít
-   relativní cestu. 
+   relativní cestu. Pro toto nastavení jsou v  menu samostatná nastavení.
 
-   Celý projekt je uložen ve složce s názvem `vektor_obrázky`. Přímo v
+   Celý projekt je uložen ve složce s názvem `import_fotek`. Přímo v
    této složce je pak Shapefile, který vznikl importem geotagovaných
    fotek, projekt a pak samotná složka s názvem `fotky`.
 
-   .. figure:: images/files.png
+   .. figure:: images/geotag_files.png
       :class: small
 
       Struktura uložení fotek, projektu a souboru ve formátu Shapefile.
 
-   Pomocí :item:`Field calculatoru` si přidáme nový atribut, který bude složen z
+   Pomocí :item:`Kalkulačky polí` si přidáme nový atribut, který bude složen z
    názvu složky, ve které jsou uloženy fotky (fotky), lomítka a hodnoty atributu
    `filename`. Vytvoření nové hodnoty bude tedy definováno výrazem 
-   ``concat('fotky/',"filename")``.
+   ``concat('foto/',"filename")``.
 
-   .. figure:: images/field_calc.png
+   .. figure:: images/geotag_field_calc.png
       :class: small
 
       Vytvoření atributu s relativní cestou k obrázku.
 
-   Pak je nutné znovu nastavit nový atribut pro zobrazování fotky. (Informace o
-   používání relativních cest je uložena v nastavení projektu, proto je nutné
-   pracovat v projektu)
+   Pak je nutné znovu nastavit nový atribut pro zobrazování fotky. 
+   Pokud je vrstva v režimu editace, tak je možné zobrazovat fotku i přímo
+   v atributové tabulce po kliknutí do její položky.
 
-   .. figure:: images/rel_path.png
+   .. figure:: images/geotag_rel_path.png
       :class: large
 
-      Ukázka nastavení vlastností a následné identifikace prvku.
+      Detail prvku ri nastavení relativné cesty a přímo v atributové tabulce.
 
    V rámci změny OS může dojít k problému se značením cesty. Pokud je stále k
    dispozici název fotografie u daného prvku, tak si cestu můžete vyskládat
