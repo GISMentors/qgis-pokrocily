@@ -263,11 +263,20 @@ vrstvy atributy pocházejí.
    
    Názvy atributů po operaci spojení obsahují prefix.
 
-Dále budeme pracovat především s hodnotami `CN`. Pro další operace je
-potřeba, aby typ tohoto atributu byl číselný, na což použijeme funkci
-``cast()``. Vytvoříme tedy nový atribut :dbcolumn:`CN` s datovým typem
-*integer*.
+.. note:: V případě, že jste soubor :file:`lu_hydrsk_cn.csv` vložili
+   do projektu přímo z panelu prohlížeče, tak nebyly koretně nastaveny
+   datové typy sloupečků. Všechny atributy jsou uloženy jako řetězce.
+          
+   Vzhledem k tomu, že budeme dále pracovat především s hodnotami
+   `CN`, je třeba pro další operace, aby typ tohoto atributu byl
+   číselný, na což použijeme funkci ``to_int()``. Vytvoříme tedy nový
+   atribut :dbcolumn:`CN` s datovým typem *integer*.
 
+   .. figure:: images/cn_to_int.png
+      :class: middle
+
+      Vytvoření nového celočísleného atributu pro hodnoty CN.
+      
 .. _kr6:
 
 Krok 6
@@ -286,41 +295,24 @@ Pro každou elementární plochu vypočítame její výměru, parametr
 
    I_a = 0.2 \times A
 
-Do atributové tabulky :dbtable:`hpj_kpp_lu_pov` přidáme nové atributy typu
-*double*, konkrétně :dbcolumn:`vymera`, :dbcolumn:`A`,
-:dbcolumn:`I_a`. Poté vypočítame jejich příslušné hodnoty. Postupujeme
-obdobně jako při :ref:`tvorbě atributu <novy-atribut>` s hodnotami o
-využití území a hydrologické skupině (:dbcolumn:`landuse_hydrsk`),
-přičemž pro jejich výpočet použijeme matematické operáce jako sčítaní,
-odčítaní, násobení a podobně (:numref:`add-columns` a
-:numref:`area-a`). Pro určení plochy každé elementární plochy využijeme
-modul z kategorie :menuselection:`Vektor --> Zprávy a statistiky`,
-modul |v.to.db| :sup:`v.to.db`.
+Do atributové tabulky :dbtable:`hpj_kpp_lu_pov` přidáme nové atributy
+:dbcolumn:`vymera`, :dbcolumn:`A`, :dbcolumn:`I_a`, a to s datovým
+typem *desetinné číslo*. Jejich příslušné hodnoty vypočítáme obdobně
+jako při :ref:`tvorbě atributu <novy-atribut>` s hodnotami o využití
+území a hydrologické skupině. Pro určení výměry každé elementární
+plochy využijeme proměnnou ``$area``.
 
-.. _add-columns:
+::
+   
+   vymera = $area
+   A = 24.5 * (1000 / CN - 10)
+   I_a = 0.2 * A
 
-.. figure:: images/add_columns.png
-        
-   Vytvoření více atributů najednou s využitím *v.db.addcolumn*.
-
-.. _area-a:
-
-.. figure:: images/area_A.png
-   :class: large
-        
-   Výpočet výměry modulem *v.to.db* a parametru *A* modulem *v.db.update_op*.
-
-.. noteadvanced::
-
-   V příkazovém řádku by tyto kroky vypadaly následovně:
-
-   .. code-block:: bash
-
-      v.db.addcolumn map=hpj_kpp_lu_pov columns="vymera double,A double,Ia double"
-      v.to.db map=hpj_kpp_lu_pov option=area columns=vymera
-      v.db.update map=hpj_kpp_lu_pov column=A value="24.5 * (1000 / CN - 10)"
-      v.db.update map=hpj_kpp_lu_pov column=I_a value="0.2 * A"
-
+.. figure:: images/area_attrib.png
+   :class: middle
+           
+   Přídání nového atributu s výměrou.
+   
 .. _kr7:
 
 Krok 7
@@ -360,42 +352,22 @@ postup obdobný.
    je záporný, výška přímého odtoku je rovná nule. Pomůžeme si novým
    atributem v atributové tabulce, který nazveme :dbcolumn:`HOklad`.
 
-Postupujeme obdobně jako na :numref:`add-columns` a :numref:`area-a` anebo
-pomocí příkazového řádku.
-
-.. code-block:: bash
-
-   v.db.addcolumn map=hpj_kpp_lu_pov columns="HOklad double, HO double, OP double" 
-   v.db.update map=hpj_kpp_lu_pov column=HOklad value="(32 - (0.2 * A))"
-
-Záporným hodnotám :dbcolumn:`HOklad` přiřadíme konstantu `0` modulem
-|v.db.update| :sup:`v.db.update_query`
-(:numref:`v-db-update-query`). Atributy :dbcolumn:`HO` a :dbcolumn:`OP`
-vyplníme modulem |v.db.update| :sup:`v.db.update_op`.
-
-.. code-block:: bash
-
-   v.db.update map=hpj_kpp_lu_pov column=HO value='(HOklad * HOklad)/(32 + (0.8 * A))'
-   v.db.update map=hpj_kpp_lu_pov column=OP value="vymera * (HO / 1000)" 
-
-.. _v-db-update-query:
-
-.. figure:: images/v_db_update_query.png
-        
-   Přiřazení konstatní hodnoty atributu v případě splnění podmínky
-   dotazu modulem *v.db.update_query*.
-
-.. tip:: 
+::
    
-   Přiřazení konstanty `0` pro záporné :dbcolumn:`HOklad` je možno
-   zkontrolovat tak jako je prezentovano na :numref:`ho-klad`.
+   HOklad = 32 - (0.2 * A)
 
-   .. _ho-klad:
 
-   .. figure:: images/ho_klad.png
-      :class: middle
-        
-      Kontrola editace záporných hodnot v příkazovém řádku.
+.. figure:: images/HOklad_update.png
+   :class: middle
+           
+   Záporné hodnoty :dbcolumn:`HOklad` nejprve vybereme
+   |mIconExpressionSelect| :sup:`Vybrat prvky pomocí vzorce` a poté
+   jim přiřadíme konstantu `0`.
+   
+::
+
+   HO = (HOklad * HOklad) / (32 + (0.8 * A))
+   OP = vymera * (HO / 1000)
 
 .. _kr8:
 
@@ -404,14 +376,25 @@ Krok 8
 
 *Vytvoření rastrových vrstev výšky a objemu přímého odtoku*
 
-Modulem |v.to.rast.attr| :sup:`v.to.rast.attr` vytvoříme z vektorové
-vrstvy :map:`hpj_kpp_lu_pov` rastrové vrstvy :map:`ho` a
-:map:`op`. Výsledky vizualizované v prostředí QGIS jsou uvedeny na
-:numref:`ho-op`.
+QGIS nabízí dva externí nástroje umožňující převést vektorovou vrstvu
+na rastr. První pochází z knihovny GDAL, druhý ze systému GRASS GIS, a
+to :grasscmd:`v.to.rast`.
 
-.. important:: Před samotnou rasterizací je nutné korektně nastavit
-   :skoleni:`výpočetní region
-   <grass-gis-zacatecnik/intro/region.html>`.
+.. figure:: images/rasterization_tools.png
+   :class: small
+           
+   Vyhledání nástroje rasterizace.
+
+.. figure:: images/v-to-rast-ho.png
+
+   Zadání parametrů nástroje :grasscmd:`v.to.rast`. Kromě vstupní
+   vrstvy (Input vector layer) a atributu pro rasterizaci (Name of
+   column for 'attr' parameter) nesmíme zapomenout definovat
+   požadované prostorové rozlišení výsledného rastru (Velikost buňky
+   regionu).
+   
+Výsledky vizualizované v prostředí QGIS jsou uvedeny na
+:numref:`ho-op`.
 
 .. _ho-op:
 
@@ -429,19 +412,21 @@ Krok 9
 *Výpočet průměrných hodnot výšky a objemu přímého odtoku pro povodí*
 
 V dalším kroku vypočítáme průměrné hodnoty přímého odtoku pro každé
-povodí v řešeném území. Modul |v.rast.stats| :sup:`v.rast.stats`
-počítá základní statistické informace rastrové vrstvy na základě
-vektorové vrstvy a ty ukladá do nových atributů v atributové
-tabulce. Dialogové okno je uvedeno na :numref:`v-rast-stats`.
+povodí v řešeném území. Použijeme GRASS nástroj
+:grasscmd:`v.rast.stats`, který počítá základní statistické informace
+rastrové vrstvy na základě vektorové vrstvy a ty ukladá do nových
+atributů v atributové tabulce. Dialogové okno je uvedeno na
+:numref:`v-rast-stats`.
 
 .. _v-rast-stats:
 
 .. figure:: images/v_rast_stats.png
-        
-   Dialogové okno modulu *v.rast.stats*.
+   :class: middle
+          
+   Dialogové okno modulu v.rast.stats.
 
-Vektorovou vrstvu povodí potom převedeme do podoby rastrové vrstvy,
-přičem jako klíčový atribut použijeme :dbcolumn:`ho_average`,
+Vektorovou vrstvu povodí potom můžeme převést do podoby rastrové
+vrstvy, přičem jako klíčový atribut použijeme :dbcolumn:`ho_average`,
 resp. :dbcolumn:`op_average`. Výstup zobrazený v prostředí QGIS je na
 :numref:`ho-op-avg`.
 
