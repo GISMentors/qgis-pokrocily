@@ -1,18 +1,3 @@
-.. |mActionAddRasterLayer| image:: ../images/icon/mActionAddRasterLayer.png
-   :width: 1.5em
-.. |mActionTransformSettings| image:: ../images/icon/mActionTransformSettings.png
-   :width: 1.5em
-.. |mActionAddGCPPoint| image:: ../images/icon/mActionAddGCPPoint.png 
-   :width: 1.5em
-.. |mActionDeleteGCPPoint| image:: ../images/icon/mActionDeleteGCPPoint.png 
-   :width: 1.5em
-.. |mActionMoveGCPPoint| image:: ../images/icon/mActionMoveGCPPoint.png 
-   :width: 1.5em
-.. |mActionStartGeoref| image:: ../images/icon/mActionStartGeoref.png 
-   :width: 1.5em
-   
-
-
 Georeferencování obrazových dat 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -50,7 +35,7 @@ Postup
 Nástroj pro georeferencování je možné nainstalovat přes Správce zásuvných
 modulů menu :menuselection:`Zásuvné moduly --> Spravovat a instalovat
 zásuvné moduly`. Plugin se jmenuje :item:`Georeferencovač GDAL` a je možné
-jej najít v :menuselection:`Rastr --> Georeferencování --> Georeferencér` 
+jej najít v :menuselection:`Rastr --> Georeferencér` 
 (:numref:`georeferencer-menu`).
 V pluginu se nachází 2 oddělená okna. V prvním se zobrazí zpracovávaný
 rastr a v druhém tabulka tzv. `GCP bodů - identických bodů`.
@@ -149,9 +134,11 @@ Postup je zobrazen na :numref:`add-gcp-point`.
        
       Vykreslení mřížky a souřadnic v mapovém okně.
 
-   Další možností je využití pluginu :item:`ZoomToCoordinates`. Zadáním
+   Další možností je využití pluginu :item:`Lat Lon Tools`. Zadáním
    žádaných souřadnic do vyhledávacích políček je možné přiblížit na hledanou
-   polohu. Nástroj funguje s souřadnicovém systému projektu.
+   polohu. Nástroj je ve výchozím nastavení určený na lokalizaci pomocí
+   zeměpisné šířky a délky. Pro nastavení například S-JTSK je nutné nejdřív
+   otevřít nastavení tohoto pluginu.
 
 Body je možné odstraňovat |mActionDeleteGCPPoint| :sup:`Smazat bod` anebo změnit
 polohu bodu ve zpracovávaném obrázku nebo mapovém okně |mActionMoveGCPPoint|
@@ -305,7 +292,8 @@ Toto nastavení je dostupné přímo ve vlastnostech rastrové vrstvy, v zálož
 :item:`Pyramidy`. Na :numref:`pyramids` je vidět i text popisující funkčnost 
 pyramid, varování, že bude upravován přímo zdrojový rastr a paramtery pro tvorbu
 pyramid (levely, formát náhledu a metoda převzorkování). Pyramidy je také možné 
-vytvořit pomocí :menuselection:`Rastr -->Různé --> Vytvořit prehledy (pyramidy)`,
+vytvořit pomocí :menuselection:`Rastr --> Miscellaneous --> Vytvořit přehledy
+(pyramidy)`,
 kde je také nutné nastavit stejné parametry, ale je také možné spustit funkci
 v dávkovém režimu pro celý adresář. 
 
