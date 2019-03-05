@@ -7,11 +7,10 @@ Orientace v nástrojích
 Aktivace Nástrojů zpracování
 ----------------------------
 
-Panel *sady nástrojů* |alg| lze aktivovat v hlavním menu
+Panel *Nástroje zpracování* lze aktivovat pomocí tlačítka |alg|:sup:`Sada nástrojů` v liště nástrojů, v hlavním menu
 :menuselection:`Zpracování --> Sada nástrojů`, použitím klávesové
 zkratky :kbd:`Ctrl+Alt+T`, nebo stejně jako u vypínání a zapínání
-ostatních panelů, nástrojových lišt a oken - pravým kliknutím na panel
-a výběrem z nabídky.
+ostatních panelů, nástrojových lišt a oken - pravým kliknutím na panel a výběrem z nabídky.
 
 .. figure:: images/geoproc_menu.png
    :scale: 70%
@@ -22,9 +21,10 @@ a výběrem z nabídky.
 
 
 .. note:: Pokud nemáte možnost aktivovat panel sady nástrojů, je
-          možné, že máte deaktivovaný plugin :item:`Processing`, který
-          tento panel poskytuje. Aktivovat ho lze ve správci zásuvných
-          modulů, viz :skoleni:`školení pro začátečníky
+          možné, že máte deaktivovaný vestavěný plugin
+          :item:`Processing`, který tento panel poskytuje. Aktivovat ho
+          lze ve správci zásuvných modulů, viz :skoleni:`školení pro
+          začátečníky
           <qgis-zacatecnik/ruzne/qgis_pluginy.html#spravce-zasuvnych-modulu>`.
 
 
@@ -44,29 +44,28 @@ použité funkce.
 
    Ukázka orientace v panelu podle stromové struktury.
 
-
-V horní části panelu je filtr pro rychlé vyhledání funkce. Výhodou
-tohoto filtru je, že vyhledává i v neaktivních algoritmech a v případě
-shody se zadaným řetězcem se ukáže ve spodní části upozornění s
-možností prohlížení a rychlé aktivace algoritmů.
+V horní části panelu je filtr pro rychlé vyhledání funkce.
+.. Výhodou
+    tohoto filtru je, že vyhledává i v neaktivních algoritmech a v případě
+    shody se zadaným řetězcem se ukáže ve spodní části upozornění s
+    možností prohlížení a rychlé aktivace algoritmů.
 
 .. figure:: images/geoproc_filter.png
    :scale: 70%
    :scale-latex: 40 
 
-   Použití filtru a upozornění na výsledky v neaktivních algoritmech.
+   Použití filtru a upozornění.
 
-.. tip:: Filtr vyhledává jak české tak anglické názvy, také prohledává popisky 
-		 funkcí.
+.. tip:: Filtr vyhledává jak české tak anglické názvy
 
-Po kliknutí na odkaz na konci upozornění (:guilabel:`to view item`) se
-ukáže struktura s výsledky od neaktivních poskytovatelů (šedá barva
-textu). Po kliknutí na tlačítko :guilabel:`Activate` se nám
-poskytovatel aktivuje.
+.. Po kliknutí na odkaz na konci upozornění (:guilabel:`to view item`) se
+    ukáže struktura s výsledky od neaktivních poskytovatelů (šedá barva
+    textu). Po kliknutí na tlačítko :guilabel:`Activate` se nám
+    poskytovatel aktivuje.
 
-.. figure:: images/geoproc_filter_disa.png
-   :scale: 70%
-   :scale-latex: 40 
+    .. figure:: images/geoproc_filter_disa.png
+       :scale: 70%
+       :scale-latex: 40 
 
-   Zobrazení výsledků neaktivních algoritmů s možností aktivace.
-   
+       Zobrazení výsledků neaktivních algoritmů s možností aktivace.
+       

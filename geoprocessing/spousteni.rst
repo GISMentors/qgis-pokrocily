@@ -25,9 +25,8 @@ Dialogové okno
 Dialogové okno se skládá z několika záložek. Na hlavní záložce 
 :guilabel:`Parametry` zadáváme vstupní parametry (a výstupní soubor) algoritmu. 
 Další záložkou je :guilabel:`Záznam`, kde vidíme výpis operací,	které probíhájí 
-při spuštění algoritmu. U některých algoritmů (např. u GRASS) je i záložka 
-:guilabel:`Nápověda`, kde nalezneme online nápovědu k funkci. U některých 
-funkcí (např. GDAL/OGR) se v pravé části okna zobrazí krátký popisek funkce. U 
+při spuštění algoritmu. U některých 
+funkcí (např. GRASS) se v pravé části okna zobrazí krátký popisek funkce. U 
 algoritmů GDAL/OGR vidíme také ve spodní části okna výsledný příkaz podle 
 námi zadaných parametrů. I když je každý algoritmus jiný a potřebuje 
 specifické vstupy a nastavení, základní struktura dialogového okna se nemění. 
@@ -99,9 +98,9 @@ nevyplníme, automaticky se použije minimální rozsah vrstvy.
 ^^^^^^^^^^^^^^^^
 Číselné hodnoty se mohou objevovat ve dvou formátech - celé číslo (int) a číslo 
 s desetinnou čárkou (float). Zadat je lze ručně nebo pomocí tlačítek 
-|selectnumber|. Pomocí tlačítka :item:`...` lze také použít jednoduchý 
-kalkulátor, ve kterém můžeme vybírat i z nabídky odvozených hodnot z vlastností 
-vrstev (rozsah, statistiky rastrových vrstev atd.).
+|selectnumber|. Pomocí tlačítka :sup:`Daty definované přepsání` lze také
+použít hodnoty z atributů prvků nebo pomocí položky `Upravit...` otevřít 
+kalkulátor, ve kterém můžeme vytvořit vzorec pro výpočet hodnoty.
 
 .. figure:: images/geoproc_vstup_cis.png 
    :class: small 
@@ -134,11 +133,11 @@ checkboxů a rolovacích nabídek. V některých případech vstupují do algori
 tabulky nebo je nutné zadat parametr výstupního SRS (EPSG). To probíhá 
 standardně ze seznamu SRS.
 
-.. tip:: Pomocí položky :item:`Create preconfigured algorithm` v kontextovém
-         menu algoritmu (pravý klik na algoritmus v seznamu), můžeme vytvářet 
-         přednastavené algoritmy pro rychlé spouštění. Pro přednastavené
-         algoritmy se vytváří samostatné spouštěče v položce `Preconfigured
-         algorithms`. Zde se dále dělí podle zvolených kategorií.
+.. .. tip:: Pomocí položky :item:`Create preconfigured algorithm` v kontextovém
+             menu algoritmu (pravý klik na algoritmus v seznamu), můžeme vytvářet 
+             přednastavené algoritmy pro rychlé spouštění. Pro přednastavené
+             algoritmy se vytváří samostatné spouštěče v položce `Preconfigured
+             algorithms`. Zde se dále dělí podle zvolených kategorií.
 
 Praktická ukázka
 ----------------

@@ -15,7 +15,7 @@ Nástroje zpracování jsou stěžejní součástí aplikačního rámce `Zpraco
 (Processing framework), a jejich použití má hned několik výhod. V jednom okně
 najdeme funkce z knihovny GDAL, algoritmy poskytované pluginy a další
 funkce dostupných externích nástrojů jako jsou například GRASS GIS,
-SAGA nebo R.
+SAGA.
 
 .. note:: Více o knihovně GDAL ve školení :skoleni:`GeoPython pro
           pokročilé <geopython-pokrocily>`. Nástroj GRASS GIS je podrobně
