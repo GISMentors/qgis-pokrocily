@@ -2,10 +2,6 @@
    :width: 1.5em
 .. |raster-info| image:: ../images/icon/raster-info.png
    :width: 1.5em
-.. |basic_statistics| image:: ../images/icon/basic_statistics.png
-   :width: 1.5em
-.. |r_logo| image:: ../images/r_logo.png
-   :width: 1.5em
 
 .. _nastaveni:
 
@@ -15,13 +11,15 @@ Nastavení, historie, prohlížení výsledků
 Nastavení
 ---------
 
-Nastavení sady nástrojů nalezneme v hlavním menu
-:menuselection:`Zpracování --> Možnosti...` (:kbd:`Ctrl+Alt+C`). Zde
-můžeme procházet, aktivovat a deaktivovat poskytovatele algoritmů,
-uživatelské skripty a modely, dále lze přidat jednotlivé funkce do hlavního menu
-a lišty, nastavit obecné chování při spouštění algoritmů případně nastavit
-chování konkrétních poskytovatelů. Pro prohledávání nastavení lze využít filtr
-v horní části okna.
+Nastavení sady nástrojů nalezneme v hlavním nastavení QGIS v menu
+:menuselection:`Nastavení --> Možnosti...` v záložce
+|processingAlgorithm| `Zpracování`, nebo přímo z panelu nástrojů
+zpracování pomocí tlačítka |iconSettingsConsole| Zde můžeme procházet,
+aktivovat a deaktivovat poskytovatele algoritmů, uživatelské skripty a
+modely, dále lze přidat jednotlivé funkce do hlavního menu a lišty,
+nastavit obecné chování při spouštění algoritmů případně nastavit
+chování konkrétních poskytovatelů. Pro prohledávání nastavení lze využít
+filtr v horní části okna.
 
 .. figure:: images/geoproc_conf.png 
    :class: small
@@ -41,6 +39,13 @@ V obecném nastavení lze nastavit globální chování všech algoritmů
    
 Vybraná nastavení:
 
+	- :guilabel:`Filtrování neplatných prvků` - nastavení chování z
+          hlediska platnosti geometrie
+
+            - Do not Filter (better performence)
+            - Ignorovat prvky s neplatnými geometriemi
+            - Stop algorithm execution when a geometry is invalid
+        
 	- :guilabel:`Použít název souboru pro název vrstvy` - pokud je
           neaktivní, tak výstupní vrstva nese automaticky vygenerovaný
           název, většinou související s danou funkcí (např. funkce
@@ -51,16 +56,14 @@ Vybraná nastavení:
           ukládáme výstup do dočasných souborů, bude vrstva přebírat
           název tohoto souboru (např. :guilabel:`OUTPUTLAYER.shp` nebo
           jiný, komplikovaný název).
-	- :guilabel:`Použít pouze pro vybrané prvky` - výpočet se
-          provede jen nad prvky ve výběru.
 	- :guilabel:`Post(Pre)-execution script` - možnost nastavit
           cestu ke skriptům, které se budou automaticky spouštět před
           nebo po spuštění algoritmů.
 	- :guilabel:`Styl pro ... vrstvy` - možnost nastavení
           uživatelských stylů (symbologie) u různých typů výstupů. Je
           nutné nastavit cestu k souboru s uloženým stylem.
-	- :guilabel:`Varovat před spuštěním pokud nesouhlasí SRS
-          vrstev` - upozorní pokud chceme provádět analýzy nad daty v
+	- :guilabel:`Warn before executing if parameter CRS's do not match`
+          - upozorní pokud chceme provádět analýzy nad daty v
           různých souřadnicových systémech, nutné např. u překryvných
           analýz.
 	- :guilabel:`Výstupní složka` - nastavení defaultní výstupní
@@ -78,9 +81,7 @@ Nastavení poskytovatelů, modeleru aj.
 V nastavení poskytovatelů procesů se hlavně setkáme z možností
 aktivace a deaktivace poskytovatelů (:guilabel:`Activate`
 |checkbox|). U jednotlivých poskytovatelů potom mohou být další
-možnosti nastavení, jako v případě uživatelských R skriptů |r_logo|
-:item:`R scripts`, kde můžeme nastavit cestu k našim uživatelským
-skriptům.
+možnosti nastavení.
 
 .. figure:: images/geoproc_poskyt.png 
    :class: small
@@ -89,15 +90,16 @@ skriptům.
    
 Přidání tlačítka do nástrojové lišty a hlavního menu
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-V okně nastavení zpracování máme také možnost vytvořit pro jednotlivé algoritmy
-položku v hlavním menu, přičemž se nám na liště vytvoří tlačítko pro rychlé
-spouštění. To je vhodné pokud používáme k práci opakovaně několik algoritmů,
-zejména pak u vytvořených vlastních nástrojů (skripty, modely). K tlačítku v
-jde nastavit vlastní ikonka.
+V okně nastavení zpracování máme také možnost vytvořit pro jednotlivé
+algoritmy položku v hlavním menu, přičemž se nám na liště vytvoří
+tlačítko pro rychlé spouštění. To je vhodné pokud používáme k práci
+opakovaně několik algoritmů, zejména pak u vytvořených vlastních
+nástrojů (skripty, modely). K tlačítku v jde nastavit vlastní ikonka.
+Pro zobrazení nové položky v menu a ikonky v liště je nutné QGIS
+vypnout a znovu spustit
 
 .. figure:: images/geoproc_menu_add.png 
    :class: small 
-
 
    Přidání tlačítka do nástrojové lišty a hlavního menu
  
@@ -112,29 +114,33 @@ Historie
 --------
 
 V okně historie můžeme procházet historii použitých procesů. Okno lze
-spustit z menu :menuselection:`Zpracování --> Historie...`, nebo
+spustit z menu :menuselection:`Zpracování --> Historie...` nebo přímo z
+panelu nástrojů zpracování pomocí tlačítka
+|mIconHistory|:sup:`Historie...` nebo
 použitím klávesové zkratky :kbd:`Ctrl+Alt+H`. Ve složce
 :item:`ALGORITHM` najdeme seznam spuštěných procesů s vypsaným Python
-kódem ve spodní části okna. Tyto procesy lze znovu spustit dvojitým
-klikem anebo pomocí Python kódu. V okně se mohou objevit i další
-složky: :item:`INFO`, :item:`ERROR`, :item:`WARNINGS`, ve kterých
+kódem ve spodní části okna. Poklikáním na konkrétní proces se otevře
+okno algoritmu s předvyplněnými parametry. Proces tedy můžeme znovu
+spustit, popř. změnit parametry a spustit. V okně se mohou objevit i
+další složky: :item:`INFO`, :item:`ERROR`, :item:`WARNINGS`, ve kterých
 najdeme další informace nebo chyby ve spouštěných procesech.
-
 
 .. figure:: images/geoproc_histor.png 
 
    Okno historie spuštěných algoritmů.
    
-
 Prohlížeč výsledků
 ------------------
 
 Některé algoritmy generují jako výstup HTML soubor. Pokud takový
 algoritmus spouštíme na konci záznamu, tak se nám vypíše text
-:guilabel:`HTML output has been generated by this algorithm`
-(:numref:`htmlfig`). Okno výsledků slouží k prohlížení tabulek a HTML
-výstupů. Otevřeme ho z menu :menuselection:`Zpracování --> Prohlížeč
-výsledků...` nebo použitím klávesové zkratky :kbd:`Ctrl+Alt+R`.
+:guilabel:`Tento algoritmus vytvořil HTML výstup`
+(:numref:`htmlfig`). Pro otevření výsledků slouží panel `Prohlížeč
+Výsledků`. Otevřeme ho z menu :menuselection:`Zpracování --> Prohlížeč
+výsledků...` nebo z panelu nástrojů zpracování tlačítkem ||:sup:`Prohlížeč
+výsledků` popř. použitím klávesové zkratky :kbd:`Ctrl+Alt+R`. V panelu
+zvolíme výsledek, který chceme zobrazit a klikneme na odkaz ve spodní
+části.
 
 .. _htmlfig:
 
@@ -146,17 +152,16 @@ výsledků...` nebo použitím klávesové zkratky :kbd:`Ctrl+Alt+R`.
 .. figure:: images/geoproc_vysled.png 
    :class: small
 
-   Ukázka výsledku z funkce :guilabel:`Základní statistiky pro
-   numerická pole`.
+   Ukázka výsledku z funkce :guilabel:`Základní statistiky pro pole`.
    
 Ukázky algoritmů generující HTML výstupy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Základní statistiky pro numerická pole (vektor)
-...............................................
+Základní statistiky pro  pole (vektor)
+......................................
 
-Pomocí funkce |basic_statistics| :guilabel:`Základní statistiky pro numerická
-pole` zjistíme základní statistiky týkající se rozlohy *velkoplošných
+Pomocí funkce |mAlgorithmBasicStatistics| :guilabel:`Základní statistiky pro pole`
+zjistíme základní statistiky týkající se rozlohy *velkoplošných
 chráněných území*. Spustíme funkci vybereme požadovanou vrstvu a
 parametr podle kterého se budou údaje počítat. Výsledek potom
 zkontrolujeme v prohlížeči výsledků :menuselection:`Zpracování -->
@@ -165,10 +170,11 @@ Prohlížeč výsledků...`.
 .. figure:: images/geoproc_pract_3.png 
    :class: middle 
 
-   Funkce |basic_statistics| :guilabel:`Základní statistiky pro numerická pole`.
+   Funkce |mAlgorithmBasicStatistics| :guilabel:`Základní statistiky
+   pro pole`.
 
-Informace (rastr)
-.................
+Rastrové informace (rastr)
+..........................
 
 Pomocí funkce |raster-info| :guilabel:`Informace` (spouští příkaz 
 :guilabel:`gdalinfo`) zjistíme základní informace o rastru. Výsledek potom 

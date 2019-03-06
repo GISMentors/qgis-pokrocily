@@ -7,7 +7,7 @@ Orientace v nástrojích
 Aktivace Nástrojů zpracování
 ----------------------------
 
-Panel *Nástroje zpracování* lze aktivovat pomocí tlačítka |alg|:sup:`Sada nástrojů` v liště nástrojů, v hlavním menu
+Panel *Nástroje zpracování* lze aktivovat pomocí tlačítka |processingAlgorithm|:sup:`Sada nástrojů` v liště nástrojů, v hlavním menu
 :menuselection:`Zpracování --> Sada nástrojů`, použitím klávesové
 zkratky :kbd:`Ctrl+Alt+T`, nebo stejně jako u vypínání a zapínání
 ostatních panelů, nástrojových lišt a oken - pravým kliknutím na panel a výběrem z nabídky.

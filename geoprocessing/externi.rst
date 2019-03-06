@@ -2,17 +2,20 @@
    :width: 1.5em
 .. |saga| image:: ../images/icon/custom_saga.png
    :width: 1.5em
+.. |r| image:: ../images/icon/custom_saga.png
+   :width: 1.5em
 
 .. _externi:
 
-Externí geoalgoritmy (GRASS GIS, SAGA, R)
-=========================================
+Externí geoalgoritmy
+====================
 
 Jak již bylo zmíněno, pomocí nástrojů zpracování lze spouštět algoritmy 
 externích poskytovatelů. Tímto způsobem lze spouštět algoritmy např. ze 
-softwarů GRASS GIS, SAGA či R. Dále je možné spouštět funkce některých pluginů.
-Požadované poskytovatele je nejdříve nutné aktivovat (viz. 
-kapitola :ref:`nastaveni`).
+softwarů GRASS GIS, SAGA. Dále je možné
+spouštět funkce nebo algoritmy některých zásuvných modulů, které byly
+napsány pro nástroje zpracování. Požadované poskytovatele je nejdříve
+nutné aktivovat (viz. kapitola :ref:`nastaveni`).
 
 GRASS
 -----
@@ -60,16 +63,15 @@ využít pokud potřebujeme rastr s hodnotami od 0 do 1 (např. pro
 klasifikaci vhodnosti podmínek při výpočtu krajiného potenciálu pro
 výskyt konkrétního organismu).
 
-.. tip:: Pro další možnosti zápisu reklasifikace přejděte v okně
-         nástroje na záložku nápověda nebo otevřete nápovědu přímo v
-         manuálu GRASS GIS :grasscmd:`r.reclass`.
+.. tip:: Pro další možnosti zápisu reklasifikace otevřete nápovědu
+         pomocí tlačítka `Nápověda` v levém dolním rohu manuálu GRASS
+         GIS :grasscmd:`r.reclass`.
 
 SAGA
 ----
 
 Slope, aspect, curvature
 ^^^^^^^^^^^^^^^^^^^^^^^^
-
 Tento algoritmus nám umožní vytvořit z digitálního modelu terénu (dmt) vrstvu 
 sklonů, orientace svahů a různých typů zakřivení. Výhodou je možnost výběru 
 metody, ale především výstupních jednotek u svahů a orientací 

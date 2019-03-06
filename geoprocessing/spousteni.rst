@@ -59,7 +59,7 @@ používají pouze vybrané prvky (pokud nějaký výběr máme).
 
 .. figure:: images/geoproc_vstup_vrst.png 
 
-   Příklad vstupní zdrojové vrstvy (Distance to nearest hub).
+   Příklad vstupní zdrojové vrstvy.
 
 Vícenásobný výběr vrstev
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -85,15 +85,18 @@ nevyplníme, automaticky se použije minimální rozsah vrstvy.
    Možnosti při výběru rozsahu.
    
    
-.. figure:: images/geoproc_vstup_ext2.png 
-   :class: tiny 
+..   .. figure:: images/geoproc_vstup_ext2.png 
+       :class: tiny 
 
-   Použití rozsahu vrstvy/mapového okna.
+       Použití rozsahu vrstvy/mapového okna.
 
 .. figure:: images/geoproc_vstup_ext3.png 
 
    Zvolení rozsahu v mapovém okně.
    
+.. note:: Kopírování rozsahu vrstvy z projektu nelze kvůli chybě v
+          současné LTR verzi QGIS použít
+
 
 Číselené hodnoty
 ^^^^^^^^^^^^^^^^
@@ -121,8 +124,7 @@ předdefinované složky (výchozí nastavení je složka s aktuálním
 profilem, viz :menuselection:`Nastavení --> Možnosti --> Zoracování
 --> Obecné --> Výstupní složka`). Pomocí tlačítka :item:`...` lze
 zvolit další možnosti uložení. Výstup je možné uložit do souboru,
-databáze Spatialite nebo PostGIS, případně lze zadání výstupu upravit
-pomocí vzorce (`Use expression...`). Chování tvorby výstupního souboru
+GeoPackage nebo PostGIS. Chování tvorby výstupního souboru
 jde změnit v nastavení (viz. kapitola :ref:`nastaveni`).
 
 .. tip:: Pomocí položky :item:`Upravit vykreslovací styly pro výstupy`
