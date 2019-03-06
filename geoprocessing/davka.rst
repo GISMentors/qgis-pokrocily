@@ -1,11 +1,3 @@
-.. |symbologyAdd| image:: ../images/icon/symbologyAdd.png
-   :width: 1.5em
-.. |symbologyRemove| image:: ../images/icon/symbologyRemove.png
-   :width: 1.5em
-.. |mActionFileSave| image:: ../images/icon/mActionFileSave.png
-   :width: 1.5em
-.. |mActionFileOpen| image:: ../images/icon/mActionFileOpen.png
-   :width: 1.5em
 .. |alg| image:: ../images/icon/alg.png
    :width: 1.5em
 .. |qgis| image:: ../images/qgis_logo_old.png
@@ -25,10 +17,10 @@ Dávkové zpracování
 ==================
 
 Dávkové zpracování nám umožní spustit jeden algoritmus vícekrát najednou s 
-různými parametry. Spustit dávkový preces lze přímo z okna nástrohů zpracování 
+různými parametry. Spustit dávkový proces lze přímo z okna nástrohů zpracování 
 vyvoláním kontextové nabídky pravým kliknutím na požadovaný algoritmus a 
 výběrem :guilabel:`Spustit dávkový proces` (:numref:`batch`). Další možnost jak 
-dávkový proces spustit je přío z okna algoritmu, kde se nám v horní liště 
+dávkový proces spustit je přímo z okna algoritmu, kde se nám v horní liště 
 ukáže tlačítko :item:`Spustit jako dávkový proces` (:numref:`batch2`).
 
 .. _batch:
@@ -49,8 +41,8 @@ Popis okna
 V okně dávkového zpracování máme opět záložky :guilabel:`Parametry` a
 :guilabel:`Záznam`. V záložce :guilabel:`Parametry` se nám zobrazí
 všechny vstupní parametry vybraného algoritmu v jednom řádku, každý
-řádek potom odopovídá samostatnému procesu. Řádky lze přidávat a
-odebírat pomíc tlačítek |symbologyAdd| a |symbologyRemove|. Dále lze
+řádek potom odpovídá samostatnému procesu. Řádky lze přidávat a
+odebírat pomocí tlačítek |symbologyAdd| a |symbologyRemove|. Dále lze
 nakonfigurovaný dávkový proces uložit |mActionFileSave| do souboru ve
 formátu :wikipedia:`JSON` nebo tento typ souboru nahrát
 |mActionFileOpen|. U algoritmů, kde je možná volba pokročilého
@@ -141,11 +133,11 @@ zpracování.
 Tvorba vícenásobné obalové zóny
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-V případě, že potřebujeme kolem nějakého území vytvořít větší počet
+V případě, že potřebujeme kolem nějakého území vytvořit větší počet
 různě velkých obalových zón, je možné využít funkci
-|qgis|:guilabel:`Obalová zóna dle pevné vzdálenosti` v režimu
-dávkového procesu. Z vrstvy velkoplošných chráněných území vybereme
-jedno území a vytvoříme tři obalové zóny (1, 5 a 10 km).
+|qgis|:guilabel:`Obalová zóna` v režimu dávkového procesu. Z vrstvy
+velkoplošných chráněných území vybereme jedno území a vytvoříme tři
+obalové zóny (1, 5 a 10 km).
 
 Spustíme dávkový proces algoritmu, nastavíme vstupní vrstvu s vybraným prvkem 
 do tří řádků (pro každý proces) a požadované hodnoty vzdáleností obalové zóny 
@@ -157,12 +149,12 @@ v metrech (1000, 5000, 10000).
 
 Vybereme výstupní soubor a nastavíme automatickou výpň na základě parametru 
 :guilabel:`Vzdálenost` a spustíme dávkový proces tlačítkem :item:`Run`, 
-zkontrolujeme záznama a zavřeme okno.
+zkontrolujeme záznamy a zavřeme okno.
 
 .. figure:: images/geoproc_batch_pract1_2.png 
    :class: tiny
 
-   Nastavení automatického vyplnění na základě paraetru - Vzdálenost.
+   Nastavení automatického vyplnění na základě parametru - Vzdálenost.
 
 .. figure:: images/geoproc_batch_pract1_3.png 
    :class: small 
@@ -181,7 +173,7 @@ Ořezání více rastrových vrstev
 K tomuto úkolu si nejdříve vytvoříme z digitálního modelu terénu (dmt) 
 vybraného velkoplošného chráněného území vrstvu sklonu svahů (Slope) a 
 orientace svahů (Aspect). K vytvoření vrstvy sklonu a orientace svahů jsme nyní 
-schopni využít mnoho funkcí, mimo vestavěné funkce to jsou  např. GDAL 
+schopni využít více funkcí, mimo vestavěné funkce QGISu to jsou  např. GDAL 
 |gdal|:guilabel:`Sklon` a |gdal|:guilabel:`Aspekt` nebo využít externí 
 |grass|:grasscmd:`r.slope.aspect` nebo |saga|:guilabel:`Slope, aspect, 
 curvature`.
@@ -198,7 +190,7 @@ jako dávkový proces na všechny rastrové vrstvy najednou.
 Jako vstupní vrstvy vybereme rastrové vrstvy, které chceme ořezat (dmt, aspect, 
 slope), a zvolíme rozsah ořezu v mapovém okně, hodnotu rozsahu potom 
 nakopírujeme do dalších řádků (:numref:`batchclip`). Výstupním souborům necháme 
-přidělit příponu podle paraetru :guilabel:`Vstupní vrstva` a spustíme proces.
+přidělit příponu podle parametru :guilabel:`Vstupní vrstva` a spustíme proces.
 
 
 .. _batchclip:

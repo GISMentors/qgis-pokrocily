@@ -27,7 +27,7 @@ Dialogové okno se skládá z několika záložek. Na hlavní záložce
 Další záložkou je :guilabel:`Záznam`, kde vidíme výpis operací,	které probíhájí 
 při spuštění algoritmu. U některých 
 funkcí (např. GRASS) se v pravé části okna zobrazí krátký popisek funkce. U 
-algoritmů GDAL/OGR vidíme také ve spodní části okna výsledný příkaz podle 
+algoritmů GDAL vidíme také ve spodní části okna výsledný příkaz podle 
 námi zadaných parametrů. I když je každý algoritmus jiný a potřebuje 
 specifické vstupy a nastavení, základní struktura dialogového okna se nemění. 
 
@@ -45,16 +45,17 @@ Nejčastější parametry
 Vstupní vrstva
 ^^^^^^^^^^^^^^
 
-Lze vybrat pomocí rolovací nabídky, kde se nám vypíšou vrstvy nahrané v 
-projektu, v nabídce se nám zobrazí pouze ty vrstvy, které mohou do algoritmu 
-vstoupit (je-li potřeba rastr, vektorové vrstvy se zde vypisovat nebudou a 
-naopak). Za názvem vrstvy je v hranatých závorkách uveden EPSG vrstvy např. 
-:item:`[EPSG:5514]`. Pokud požadovanou vrstvu v projektu nemáme, můžeme použít 
-tlačítko :item:`...` a vybrat odpovídající vrstvu uloženou na disku. U 
-vektorových vrstev se můžeme setkat s tlačítkem |iterate|, které slouží ke 
-spouštění iterace nad vrstvou. V takovém případě se algoritmus bude spouštět 
-pro každý prvek ve vrstvě zvlášť. Při iteraci se ve výchozím nastavení 
-processingu používají pouze vybrané prvky (pokud nějaký výběr máme).
+Lze vybrat pomocí rolovací nabídky, kde se nám vypíšou vrstvy nahrané
+v projektu. V nabídce se nám zobrazí pouze ty vrstvy, které mohou do
+algoritmu vstoupit (je-li potřeba rastr, vektorové vrstvy se zde
+vypisovat nebudou a naopak). Za názvem vrstvy je v hranatých závorkách
+uveden EPSG kód vrstvy např. :item:`[EPSG:5514]`. Pokud požadovanou
+vrstvu v projektu nemáme, můžeme použít tlačítko :item:`...` a vybrat
+odpovídající vrstvu uloženou na disku. U vektorových vrstev se můžeme
+setkat s tlačítkem |iterate|, které slouží ke spouštění iterace nad
+vrstvou. V takovém případě se algoritmus bude spouštět pro každý prvek
+ve vrstvě zvlášť. Při iteraci se ve výchozím nastavení processingu
+používají pouze vybrané prvky (pokud nějaký výběr máme).
 
 .. figure:: images/geoproc_vstup_vrst.png 
 
@@ -112,14 +113,17 @@ kalkulátor, ve kterém můžeme vytvořit vzorec pro výpočet hodnoty.
 
 Výstupní soubor
 ^^^^^^^^^^^^^^^
-Pokud nenastavíme cestu nebo název souboru, výstup se nám automaticky
-uloží na disk do dočasných souborů. Pokud zadáme do pole název, vrstva se 
-nám uloží do předdefinované složky (výchozí nastavení 
-:file:`.qgis2/processing/outputs`). Pomocí tlačítka :item:`...` lze zvolit
-další možnosti uložení. Výstup je možné uložit do souboru, databáze Spatialite
-nebo PostGIS, případně lze zadání výstupu upravit pomocí vzorce
-(`Use expression...`). Chování tvorby výstupního souboru jde změnit v
-nastavení (viz. kapitola :ref:`nastaveni`).
+
+Pokud nenastavíme cestu nebo název
+souboru, výstup se nám automaticky uloží na disk do dočasných
+souborů. Pokud zadáme do pole název, vrstva se nám uloží do
+předdefinované složky (výchozí nastavení je složka s aktuálním
+profilem, viz :menuselection:`Nastavení --> Možnosti --> Zoracování
+--> Obecné --> Výstupní složka`). Pomocí tlačítka :item:`...` lze
+zvolit další možnosti uložení. Výstup je možné uložit do souboru,
+databáze Spatialite nebo PostGIS, případně lze zadání výstupu upravit
+pomocí vzorce (`Use expression...`). Chování tvorby výstupního souboru
+jde změnit v nastavení (viz. kapitola :ref:`nastaveni`).
 
 .. tip:: Pomocí položky :item:`Upravit vykreslovací styly pro výstupy`
          v kontextovém menu algoritmu (pravý klik na algoritmus v
