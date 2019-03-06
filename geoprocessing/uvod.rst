@@ -45,18 +45,24 @@ použité funkce.
    Ukázka orientace v panelu podle stromové struktury.
 
 V horní části panelu je filtr pro rychlé vyhledání funkce.
-.. Výhodou
-    tohoto filtru je, že vyhledává i v neaktivních algoritmech a v případě
-    shody se zadaným řetězcem se ukáže ve spodní části upozornění s
-    možností prohlížení a rychlé aktivace algoritmů.
+
+..
+    Výhodou tohoto filtru je, že vyhledává i v neaktivních algoritmech
+    a v případě shody se zadaným řetězcem se ukáže ve spodní části
+    upozornění s možností prohlížení a rychlé aktivace algoritmů.
+
+.. _geoproc_filter:
 
 .. figure:: images/geoproc_filter.png
    :scale: 70%
    :scale-latex: 40 
 
-   Použití filtru a upozornění.
+   Použití filtru a upozornění. 
 
-.. tip:: Filtr vyhledává jak české tak anglické názvy
+.. note:: Filtr vyhledává jak české tak anglické názvy. Je ale obecně
+   výhodnější použít anglické názvy. Někteří poskytovatelé (jako
+   např. GRASS GIS) nemusí mít načtenou lokalizaci. Namísto "obal"
+   zkuste na :numref:`geoproc_filter` zadat "buffer".
 
 .. Po kliknutí na odkaz na konci upozornění (:guilabel:`to view item`) se
     ukáže struktura s výsledky od neaktivních poskytovatelů (šedá barva

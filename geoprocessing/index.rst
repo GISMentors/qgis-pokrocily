@@ -17,10 +17,10 @@ najdeme funkce z knihovny GDAL, algoritmy poskytované pluginy a další
 funkce dostupných externích nástrojů jako jsou například GRASS GIS,
 SAGA.
 
-.. note:: Více o knihovně GDAL ve školení :skoleni:`GeoPython pro
-          pokročilé <geopython-pokrocily>`. Nástroj GRASS GIS je podrobně
-          popsán ve školení :skoleni:`GRASS GIS pro začátečníky
-          <grass-gis-zacatecnik>`.
+.. note:: Více o knihovně GDAL ve školení :skoleni:`Úvod do open
+   source GIS <open-source-gis/knihovny/gdal.html>`. Systém GRASS GIS je podrobně popsán
+   ve školení :skoleni:`GRASS GIS pro začátečníky
+   <grass-gis-zacatecnik>`.
 
 Jednotlivé funkce lze rychle vyhledávat pomocí filtru v horní části
 okna. Snadno lze spouštět dávkové zpracování dat, a v neposlední řadě
@@ -34,6 +34,7 @@ Algoritmy mohou generovat různe typy výstupů:
 	- tabulky
 	- HTML soubory (textové a grafické výstupy) 
 	- výběr prvků ve vektorové vrstvě
+        - ...
 
 .. toctree::
    :maxdepth: 2
