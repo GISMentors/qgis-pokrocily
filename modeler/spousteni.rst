@@ -9,7 +9,7 @@ algoritmy. Lze jej také spustit jako dávkový proces. Při tvorbě modelu jej
 lze také přímo spouštět z okna modeláře pomocí ikonky.
 
 .. figure:: images/modeler_spust.png 
-   :class: middle 
+   :class: large
 
    Dialogové okno ukázkového modelu.
 

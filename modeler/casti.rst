@@ -11,11 +11,13 @@
    
 Části modelu
 ============
+
 Název a skupina
 ---------------
-Před samotnou tvorbou modelu je vhodné zadat název a skupinu modelu (num část 
-3) a uložit jej |mActionFileSave|. Potom můžeme model při jeho tvorbě průběžně 
-ukládat.
+
+Před samotnou tvorbou modelu je vhodné zadat název a skupinu modelu
+(:numref:`modeler_casti` část 3) a uložit jej |mActionFileSave|. Potom
+můžeme model při jeho tvorbě průběžně ukládat.
 
 .. figure:: images/modeler_name.png 
 
@@ -53,7 +55,7 @@ křížek (:numref:`vstupdia`).
    Dialogové okno při vložení číselného parametru.
 
 - do našeho modelu přidáme vstupy :item:`Extent` a :item:`Number`. Pojmenujeme 
-  např. :guilabel:`Rozsah` a :guilabel:`Počet bodů`, pozděj můžeme podle potřeby 
+  např. :guilabel:`Rozsah` a :guilabel:`Počet bodů`, později můžeme podle potřeby 
   změnit.
 
 Algoritmy
@@ -80,10 +82,11 @@ možnost nastavit výchozí hodnoty parametrů algoritmu, se kterými se bude
 počítat při spuštění modelu. Jesltiže chceme mít parametry při spouštění modelu 
 volitelné je třeba nakonfigurovat odpovídající vstupy (:numref:`algorrand2`).
 
-- vložíme algoritmus |random_points|:guilabel:`Random points in extent` a jako
-  vstupní rozsah zadáme náš vstupní parametr :item:`Rozsah`. Jako počet bodů
-  zvolíme vstupní parametr :item:`Počet bodů` . Minimální vzdálenost a výstupní
-  soubor měnit prozatím nebudeme, potvrdíme parametry tlačítkem :item:`OK`. 
+- vložíme algoritmus |random_points|:guilabel:`Náhodné body v rozsahu
+  / Random points in extent` a jako vstupní rozsah zadáme náš vstupní
+  parametr :item:`Rozsah`. Jako počet bodů zvolíme vstupní parametr
+  :item:`Počet bodů` . Minimální vzdálenost a výstupní soubor měnit
+  prozatím nebudeme, potvrdíme parametry tlačítkem :item:`OK`.
 
 .. _algorrand:
 .. figure:: images/modeler_algor_rand.png 
@@ -111,9 +114,10 @@ Jednotlivé algoritmy lze na sebe dále navazovat - to co je výstupem z jednoho
 algoritmu může nějakým způsobem vstupovat do algoritmu druhého 
 (:numref:`algorrand4`).
 
-- Vložíme do modelu algoritmus |buffer|:guilabel:`Obalová zóna dle pevné
-  vzdálenosti`. Jako vstupní vrstvu nastavíme :guilabel:`'Náhodné body' z
-  algoritmu 'Random points in extent'` a dále nastavíme libovolnou fixní vzdálenost v metrech.
+- Vložíme do modelu algoritmus |buffer|:guilabel:`Obalová zóna
+  vzdálenosti`. Jako vstupní vrstvu nastavíme :guilabel:`'Náhodné
+  body' z algoritmu 'Random points in extent'` a dále nastavíme
+  libovolnou fixní vzdálenost v metrech.
 
 .. _algorrand4:
 .. figure:: images/modeler_algor_rand4.png 
@@ -164,7 +168,7 @@ dat nebo co nám data sdělují.
 
    Dialogové okno algoritmu - pole pro zadání názvu výstupu.
 
-- Otevřeme (editace) algoritmus |buffer|:guilabel:`Fixed distance buffer` 
+- Otevřeme (editace) algoritmus |buffer|:guilabel:`Obalová zóna`
   zadáme libovolný název finálního výstupu (např. :item:`Výstup`).
 
 Zadáním jména do textového pole pro výstup, nastavíme model, aby vytvořil 
@@ -175,7 +179,7 @@ Výsledek algoritmu však může dále sloužit jako vstup pro jiné algoritmy.
 .. figure:: images/modeler_out_model.png 
    :class: middle 
 
-   Model, ve kterém bude výstup vrstva obalových zón.
+   Model, ve kterém bude výstupem vrstva obalových zón.
 
 .. figure:: images/modeler_out_model2.png 
    :class: middle 

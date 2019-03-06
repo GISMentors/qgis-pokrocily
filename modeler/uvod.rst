@@ -14,8 +14,10 @@
    :width: 1.5em  
 .. |mActionSaveMapAsImage| image:: ../images/icon/mActionSaveMapAsImage.png
    :width: 1.5em    
-Úvod
+
+           Úvod
 ====
+
 Spuštění grafického modeláře
 ----------------------------
 Okno grafického modeláře můžeme otevřít z menu :menuselection:`Zpracování --> 
@@ -39,6 +41,8 @@ přidávat modely ze souboru (.model) nebo z online kolekce.
 Popis okna
 ----------
 
+.. _modeler_casti:
+
 .. figure:: images/modeler.png 
    :class: middle 
 
@@ -60,5 +64,5 @@ Popis jednotlivých částí okna:
    (záložka :guilabel:`Vstupy`) a Algoritmů (záložka :guilabel:`Algoritmy`).
 3. Dvě textové pole složí k zadání názvu a skupiny, do které se model zařadí v 
    rámci nástrojů zpracování (před uložením nutné vyplnit).
-4. Hlavní okno modeláře. Zde se skládají, configurují a propojují jednotlivé 
-   části modelu.
+4. Hlavní okno modeláře. Zde se skládají, konfigurují a propojují
+   jednotlivé části modelu.

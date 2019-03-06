@@ -13,7 +13,7 @@ Model pro analýzu terénu
 ------------------------
 
 Na tomto příkladu si ukážeme jak vytvořit model, který nám z výřezu digitálního 
-modelu terénu vytvoří vrstvy sklonu svahů, orientace svahů a index drsnoti 
+modelu terénu vytvoří vrstvy sklonu svahů, orientace svahů a index drsnosti 
 terénu (TRI).
 
 Základní model

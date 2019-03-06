@@ -17,7 +17,7 @@ Tvorba nápovědy
 
 Nápověda modelu, slouží jednak k popisu jednotlivých operací, vstupů a
 výstupů tak i k doprovodným informacím jako je autor nebo verze
-modelu. Editaci nápovědy spustíme s okna modeláře pomocí ikony
+modelu. Editaci nápovědy spustíme z okna modeláře pomocí ikony
 |help|. Takto vytvořená nápověda se potom bude zobrazovat při spuštění
 odelu v záložce :guilabel:`Nápověda` (:numref:`modelerhelp`)
 
