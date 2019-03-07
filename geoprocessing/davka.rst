@@ -26,7 +26,7 @@ v levém dolním rohu (:numref:`batch2`).
 
 .. _batch:
 .. figure:: images/geoproc_batch.png 
-   :class: small
+   :class: middle
 
    Spuštění dávkového procesu z okna nástrojů zpracování.
 
@@ -53,6 +53,7 @@ výsledné vrstvy načíst do projektu, je nutné zaškrtnout políčko
 :guilabel:`Načíst vrstvy po dokončení`.
 
 .. figure:: images/geoproc_batch_win.png 
+   :class: middle
 
    Okno dávkového zpracování.
    
@@ -75,13 +76,13 @@ vrstev. Pokud se jedná o algoritmus se vstupem jedné vrstvy, při výběru  v�
 vrstev se jednotlivé vrstvy přiřadí k vlastním procesům procesům.
 
 .. figure:: images/geoproc_batch_lay.png 
-   :class: tiny
+   :class: middle
 
    Možnosti výběru vrstev.
    
 .. _batchlay:
 .. figure:: images/geoproc_batch_lay2.png 
-   :class: tiny
+   :class: small
 
    Výběr více vrstev v projektu.
    

@@ -22,7 +22,7 @@ chování konkrétních poskytovatelů. Pro prohledávání nastavení lze využ
 filtr v horní části okna.
 
 .. figure:: images/geoproc_conf.png 
-   :class: small
+   :class: middle
         
    Okno nastavení sady nástrojů.
 
@@ -33,7 +33,7 @@ V obecném nastavení lze nastavit globální chování všech algoritmů
 (nezávisle na poskytovateli).
 
 .. figure:: images/geoproc_obec.png 
-   :class: small
+   :class: middle
    
    Obecné nastavení zpracování.
    
@@ -84,7 +84,7 @@ aktivace a deaktivace poskytovatelů (:guilabel:`Activate`
 možnosti nastavení.
 
 .. figure:: images/geoproc_poskyt.png 
-   :class: small
+   :class: middle
         
    Nastavení uživatelských skriptů.
    
@@ -99,13 +99,12 @@ Pro zobrazení nové položky v menu a ikonky v liště je nutné QGIS
 vypnout a znovu spustit
 
 .. figure:: images/geoproc_menu_add.png 
-   :class: small 
+   :class: middle 
 
    Přidání tlačítka do nástrojové lišty a hlavního menu
  
 .. figure:: images/geoproc_menu_add2.png 
-   :class: small 
-
+   :class: middle 
 
    Vzled položky v menu a ikonka v nástrojové liště
  
@@ -126,7 +125,8 @@ další složky: :item:`INFO`, :item:`ERROR`, :item:`WARNINGS`, ve kterých
 najdeme další informace nebo chyby ve spouštěných procesech.
 
 .. figure:: images/geoproc_histor.png 
-
+   :class: middle
+   
    Okno historie spuštěných algoritmů.
    
 Prohlížeč výsledků

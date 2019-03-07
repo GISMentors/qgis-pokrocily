@@ -77,11 +77,11 @@ počítat při spuštění modelu. Jesltiže chceme mít parametry při spoušt�
 volitelné je třeba nakonfigurovat odpovídající vstupy (:numref:`algorrand2`).
 U číselných hodnot lze kromě pevě nastavené hodnoty a hodnoty vstupu,
 požít také předpočítanou hodnoty pomocí vzorce nebo hodnotu z výstupu
-jiného algoritmu (:num:`algornum`).
+jiného algoritmu (:numref:`algornum`).
 
 .. _algornum:
 .. figure:: images/modeler_algor_num.png 
-   :class: tiny 
+   :class: middle 
 
    Možnosti vstupu hodnot u číselných parametrů.
 
@@ -102,7 +102,7 @@ jiného algoritmu (:num:`algornum`).
 
 .. _algorrand2:
 .. figure:: images/modeler_algor_rand2.png 
-   :class: large 
+   :class: middle 
 
    Nastavení parametrů na základě vstupů do modelu.
 
@@ -112,7 +112,8 @@ použít tlačítek ``+`` a ``-`` pro náhled propojení vstupů a výstupů.
 
 .. _algorrand3:
 .. figure:: images/modeler_algor_rand3.png 
-
+   :class: meduim 
+   
    Nastavení volitelných parametrů algoritmu
    |mAlgorithmRandomPointsWithinExtent|:guilabel:`Random points in
    extent` při spouštění modelu.
@@ -140,7 +141,7 @@ ve kterém můžeme algoritmus vymazat, deaktivovat nebo spustit jeho editaci
 
 .. _algkont:
 .. figure:: images/modeler_algor_kont.png 
-   :class: small 
+   :class: middle 
 
    Kontextové menu algoritmu v modelu.
 
@@ -174,7 +175,7 @@ dat nebo co nám data sdělují.
    
 .. _modeloutname:
 .. figure:: images/modeler_out_name.png 
-   :class: middle
+   :class: small
 
    Dialogové okno algoritmu - pole pro zadání názvu výstupu.
 
