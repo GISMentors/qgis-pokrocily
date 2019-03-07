@@ -205,7 +205,7 @@ Prvním krokem je přidání evidovaných atributů.
 * ``poradi`` (celé číslo, výchozí hodnota 1 - v případě více tabulí
   na jedné kotvě se hodnota upraví)  
 
-.. figure:: images/znaceni_add_attribute.png
+.. figure:: images/geotag_add_attribute.png
    :class: large
 
    Přidání jednotlivých atributů (id_kotvy, kod, poradi) a jejich definování.
@@ -220,7 +220,7 @@ výchozího a upraveného stavu je na :numref:`copy-feature`.
 
 .. _copy-feature:
 
-.. figure:: images/znaceni_editace.png
+.. figure:: images/geotag_edit_attr.png
    :class: large
 
    Původní a upravené prvky definující dopravní tabule umístěné na jedné kotvě.
@@ -234,7 +234,10 @@ identifikátor umístění, pořadí a kód dopravní tabule.
 
 Jednotlivé prvky budeme vykreslovat SVG znakem. Názvy jednotlivých
 symbolů odpovídají kódům tabulí a jsou uloženy v jedné složce. Tuto
-složku pak umístíme do složky `.qgis/svg/`.
+složku pak umístíme do složky `.local/share/QGIS/QGIS3/profiles/default/svg`.
+Pokud složka neexistuje, tak ji vytvoříme.
+U operačního systému Windows se tato složka nachází  
+`USER\AppData\Roaming\QGIS\QGIS3\profiles\default\svg`.
 
 .. note:: V případě budoucí publikace služby přes QGIS Server je vhodné použít
           pro umístění složky s ikonkami systémový adresář 
@@ -257,7 +260,7 @@ Jednotlivé symboly však chceme vykreslit značkou, která je umístěná ve sl
 `dop_znaceni` a má příponu `.svg`. Vytvoříme tedy nový atribut s hodnotou
 relativní cesty symbolu.
 
-.. figure:: images/icon_path.png
+.. figure:: images/geotag_icon_path.png
    :class: small
 
    Určení relativní cesty k ikoně podle určeného kódu dopravní tabule.
@@ -267,7 +270,7 @@ Podstatné je vybrat typ symbolu :item:`SVG značka` a pomocí ikony
 |mIconDataDefine| z menu vybereme pole `icon_path`. V tomto případě je vhodné
 používat ikonky s velikostí 6 milimetrů.
 
-.. figure:: images/set_icon.png
+.. figure:: images/geotag_set_icon.png
    :class: large
    
    Nastavení stylování podle atributu s umístěním svg symbolu a ukázka výsledku.
@@ -287,7 +290,7 @@ záporná čísla -10 = 350).
 Po vyplnění atributu u všech prvků nastavíme položku Rotace pomocí
 |mIconDataDefine| na atribut `rotace`.
 
-.. figure:: images/icon_rotation.png
+.. figure:: images/geotag_icon_rotation.png
    :class: large
 
    Nastavení rotace symbolu podle hodnoty atributu a ukázka výsledku.
@@ -306,9 +309,8 @@ Po vyplnění atributu u všech prvků nastavíme položku Rotace pomocí
      GPS Img Direction               : 32.52336904
       ...
 
-   Tyto údaje můžeme pak rovnou využít a při zpracování je nechat vepsat do 
-   atributové tabulky (při :ref:`importu<import>` si zaškrtneme požadovaný tag,
-   který se pak přidá jako atribut i s hodnotami).
 
    Dále je pak možné rotaci symbolů nastavit přímo z toho atributu.
+   
+
 
