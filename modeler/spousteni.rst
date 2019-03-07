@@ -6,7 +6,7 @@ Spouštění modelu
 
 Model se spouští z okna nástrojů zpracování stejným způsobem jako ostatní 
 algoritmy. Lze jej také spustit jako dávkový proces. Při tvorbě modelu jej 
-lze také přímo spouštět z okna modeláře pomocí ikonky.
+lze také přímo spouštět z okna modeláře pomocí ikonky |mTaskRunning|.
 
 .. figure:: images/modeler_spust.png 
    :class: large

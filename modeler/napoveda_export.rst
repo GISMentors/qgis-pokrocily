@@ -1,9 +1,6 @@
-.. |iconSaveAsConsole| image:: ../images/icon/iconSaveAsConsole.png
-   :width: 1.5em
-.. |help| image:: ../images/icon/custom_modelerhelp.png
-   :width: 1.5em
-.. |mActionSaveMapAsImage| image:: ../images/icon/mActionSaveMapAsImage.png
-   :width: 1.5em 
+.. .. |iconSaveAsConsole| image:: ../images/icon/iconSaveAsConsole.png
+      :width: 1.5em
+
    
 Tvorba nápovědy a export modelu
 ===============================
@@ -40,8 +37,7 @@ Export modelu
 -------------
 
 Kromě uložení modelu do souboru :file:`.model` můžeme pomocí ikony
-|mActionSaveMapAsImage| exportovat model jako obrázek ve formátu PNG a
-nebo jako Python skript |iconSaveAsConsole|.
+|mActionSaveMapAsImage| exportovat model jako obrázek ve formátu PNG.
 
 .. figure:: images/modeler_exportpng.png 
    :class: middle 
@@ -49,7 +45,6 @@ nebo jako Python skript |iconSaveAsConsole|.
 
    Model exportovaný do souboru ve formátu PNG.
 
-.. figure:: images/modeler_exportpy.png 
-   :class: middle 
-
-   Model exportovaný jako Python skript.
+.. note:: V současné LTR verzi nelze exportovat model jako Python skript
+          ,tak jak tomu bylo ve starších verzích, nicméně tato funkce
+          bude v dalších verzích zpět implementována

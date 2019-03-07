@@ -14,6 +14,7 @@ Před samotnou tvorbou modelu je vhodné zadat název a skupinu modelu
 můžeme model při jeho tvorbě průběžně ukládat.
 
 .. figure:: images/modeler_name.png 
+   :class: tiny 
 
    Zadání jména a skupiny modelu.
 
@@ -33,7 +34,7 @@ požadováno vyplnění vložených vstupních parametrů. Tyto parametry potom
 budou vstupovat do konkrétních algoritmů v modelu.
 
 .. figure:: images/modeler_vstup.png 
-   :class: small 
+   :class: tiny 
 
    Možné vstupní parametry.
    
@@ -44,7 +45,7 @@ měnit kliknutím na symbol tří teček, nebo lze parametry odstranit kliknutí
 křížek (:numref:`vstupdia`).
 
 .. figure:: images/modeler_vstup_num.png 
-   :class: small 
+   :class: tiny 
 
    Dialogové okno při vložení číselného parametru.
 
@@ -65,7 +66,7 @@ jsou v okně nástrojů zpracování.
 
 .. _algor:
 .. figure:: images/modeler_algor.png 
-   :class: small 
+   :class: tiny 
 
    Možné vstupní algoritmy.
    
@@ -74,19 +75,30 @@ otevře dialogové okno konkrétního algoritmu (:numref:`algorrand`). Zde máme
 možnost nastavit výchozí hodnoty parametrů algoritmu, se kterými se bude 
 počítat při spuštění modelu. Jesltiže chceme mít parametry při spouštění modelu 
 volitelné je třeba nakonfigurovat odpovídající vstupy (:numref:`algorrand2`).
+U číselných hodnot lze kromě pevě nastavené hodnoty a hodnoty vstupu,
+požít také předpočítanou hodnoty pomocí vzorce nebo hodnotu z výstupu
+jiného algoritmu (:num:`algornum`).
 
-- vložíme algoritmus
-  |mAlgorithmRandomPointsWithinExtent|:guilabel:`Náhodné body v rozsahu`
-  a jako vstupní rozsah zadáme náš vstupní
-  parametr :item:`Rozsah`. Jako počet bodů zvolíme vstupní parametr
-  :item:`Počet bodů`. Minimální vzdálenost a výstupní soubor měnit
-  prozatím nebudeme, potvrdíme parametry tlačítkem :item:`OK`.
+.. _algornum:
+.. figure:: images/modeler_algor_num.png 
+   :class: tiny 
+
+   Možnosti vstupu hodnot u číselných parametrů.
 
 .. _algorrand:
 .. figure:: images/modeler_algor_rand.png 
    :class: medium 
 
    Dialogové okno algoritmu s pevně stanovenými parametry.
+
+- vložíme algoritmus
+  |mAlgorithmRandomPointsWithinExtent|:guilabel:`Náhodné body v rozsahu`
+  a jako vstupní rozsah zadáme náš vstupní
+  parametr :item:`Rozsah`. U počet bodů nastavíme hodnotu pomocí 
+  :guilabel:`Model Input` a vybereme vstupní parametr 
+  :item:`Počet bodů`. Minimální vzdálenost a výstupní soubor měnit
+  prozatím nebudeme, potvrdíme parametry tlačítkem :item:`OK`.
+
 
 .. _algorrand2:
 .. figure:: images/modeler_algor_rand2.png 
@@ -95,37 +107,36 @@ volitelné je třeba nakonfigurovat odpovídající vstupy (:numref:`algorrand2`
    Nastavení parametrů na základě vstupů do modelu.
 
 Nastavení algoritmů v modelu lze průběžně editovat kliknutím na symbol
-tužky nebo lze algotritmy odstranit kliknutím na křížek. Také lze
-použít tlačítek ``+`` a ``-`` lze měnit vstupy a výstupy algoritmu.
+tří teček nebo lze algotritmy odstranit kliknutím na křížek. Také lze
+použít tlačítek ``+`` a ``-`` pro náhled propojení vstupů a výstupů.
 
 .. _algorrand3:
 .. figure:: images/modeler_algor_rand3.png 
 
-   Nastavení volitelných parametrů algoritmu |random_points|:guilabel:`Random
-   points in extent` při spouštění modelu.
+   Nastavení volitelných parametrů algoritmu
+   |mAlgorithmRandomPointsWithinExtent|:guilabel:`Random points in
+   extent` při spouštění modelu.
 
 Jednotlivé algoritmy lze na sebe dále navazovat - to co je výstupem z jednoho 
 algoritmu může nějakým způsobem vstupovat do algoritmu druhého 
 (:numref:`algorrand4`).
 
-- Vložíme do modelu algoritmus |buffer|:guilabel:`Obalová zóna
-  vzdálenosti`. Jako vstupní vrstvu nastavíme :guilabel:`'Náhodné
-  body' z algoritmu 'Random points in extent'` a dále nastavíme
+- Vložíme do modelu algoritmus |buffer|:guilabel:`Obalová zóna`.
+  Jako vstupní vrstvu nastavíme :guilabel:`'Náhodné body' from
+  algorithm 'Náhodné body v rozsahu'` a dále nastavíme
   libovolnou fixní vzdálenost v metrech.
 
 .. _algorrand4:
 .. figure:: images/modeler_algor_rand4.png 
    :class: middle 
 
-   Náhodné body vygenerované |random_points|:guilabel:`Random points in extent`
-   použité jako vstup pro vytvoření obalových zón.
+   Náhodné body vygenerované
+   |mAlgorithmRandomPointsWithinExtent|:guilabel:`Random points in
+   extent` použité jako vstup pro vytvoření obalových zón.
 
 Pravým kliknutím na algoritmus v modelu můžeme vyvolat kontextové menu, 
 ve kterém můžeme algoritmus vymazat, deaktivovat nebo spustit jeho editaci 
-(:numref:`algkont`). Ve spodní části dialogového okna každého algoritmu je 
-parametr :guilabel:`Rodičovské algoritmy`, pomocí kterého lze nastavit 
-nadřazené algoritmy. Takto vybrané algoritmy se budou vždy spouštět před 
-tímto algoritmem (:numref:`algpar`).
+(:numref:`algkont`).
 
 .. _algkont:
 .. figure:: images/modeler_algor_kont.png 
@@ -133,12 +144,17 @@ tímto algoritmem (:numref:`algpar`).
 
    Kontextové menu algoritmu v modelu.
 
-.. _algpar:
-.. figure:: images/modeler_algor_parent.png 
-   :class: middle 
+.. tip:: Ve spodní části dialogového okna každého algoritmu je 
+        parametr :guilabel:`Rodičovské algoritmy`, pomocí kterého lze nastavit 
+        nadřazené algoritmy. Takto vybrané algoritmy se budou vždy spouštět před 
+        tímto algoritmem (:numref:`algpar`).
 
-   Nastavení rodičovských algoritmů.
+    .. _algpar:
+    .. figure:: images/modeler_algor_parent.png 
+       :class: middle 
 
+       Nastavení rodičovských algoritmů.
+       
 Výstupy
 -------
 

@@ -54,7 +54,7 @@ V horní části okna máme *lištu nástrojů* pro základní operace
 ..    - |iconSaveAsConsole| - export modelu jako Python skript :file:`.py`
 
 	- |mActionEditHelpContent| - editace informací o modelu a nápovědy k modelu 
-	- |mTaskRunning| - spustí model
+	- |mTaskRunning| - spustí model přímo z okna grafického modeláře
 	
 Panel *Vlastnosti modelu* tvoří dvě textové pole, které slouží k zadání
 názvu a skupiny, do které se model zařadí v rámci nástrojů zpracování
