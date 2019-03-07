@@ -111,7 +111,6 @@ použít hodnoty z atributů prvků nebo pomocí položky `Upravit...` otevřít
 kalkulátor, ve kterém můžeme vytvořit vzorec pro výpočet hodnoty.
 
 .. figure:: images/geoproc_vstup_cis.png 
-   :class: small 
 
    Zadání čísla pomocí vzorce nebo odvozených hodnot.
 
