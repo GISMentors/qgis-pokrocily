@@ -258,12 +258,23 @@ U operačního systému Windows se tato složka nachází
 Dalším krokem je zobrazení prvků podle atributu s kódem dopravní značky.
 Jednotlivé symboly však chceme vykreslit značkou, která je umístěná ve složce
 `dop_znaceni` a má příponu `.svg`. Vytvoříme tedy nový atribut s hodnotou
-relativní cesty symbolu.
+relativní cesty symbolu - `concat('/dopr_znaceni/',kod,'.svg')`.
 
 .. figure:: images/geotag_icon_path.png
    :class: small
 
    Určení relativní cesty k ikoně podle určeného kódu dopravní tabule.
+   
+.. tip:: Použití kalkulačky polí funguje jednorázově. Pro takovýto případ je
+         výhodné použít nástroj, který automaticky vygeneruje požadovaný
+         složený text při každé změně.
+         Ve vlastnostech vrstvy, záložce :item:`Formulář atributů`, kde označíme
+         vlastnost `icon_path`.
+         
+         .. figure:: images/geotag_auto_update.png
+            :class: large
+   
+            Automatické generování hodnoty při změně hodnoty podle předpisu.
 
 Pak ve vlastnostech vrstvy upravíme stylování. 
 Podstatné je vybrat typ symbolu :item:`SVG značka` a pomocí ikony
