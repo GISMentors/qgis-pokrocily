@@ -53,8 +53,13 @@ nastavení služeb, jako je uvedeno níže.
 Výchozí nastavení QGIS projektu umožňuje jeho přímou publikaci jako
 jednoduché WMS služby, bez jakéhokoli dalšího nastavení.  Přidáme
 novou službu WMS z URL
-*http://server:91/cgi-bin/qgis_mapserv.fcgi?service=WMS&REQUEST=GetCapabilities&MAP=user/diagram1.qgs*,
+``http://server:91/cgi-bin/qgis_mapserv.fcgi?service=WMS&REQUEST=GetCapabilities&MAP=user/diagram1.qgs``,
 kde pomocí parametru MAP definujeme cestu k projektu.
+
+.. note:: QGIS verze 3 umožňuje projekt uložit kromě tradičního
+   souboru s příponou ``.qgs`` také nově i v komprimovaném formátu s
+   příponou ``.qgz``. V tomto případě bude výše uvedená URL končit na
+   ``diagram1.qgz``.
 
 .. figure:: images/qgis_server_wms.png
    :class: large
