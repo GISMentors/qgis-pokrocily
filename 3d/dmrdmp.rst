@@ -1,6 +1,3 @@
-.. |mActionAddDelimitedTextLayer| image:: ../images/icon/mActionAddDelimitedTextLayer.png
-   :width: 1.5em
-   
 .. _dmrdmp:
 
 ********************
@@ -17,7 +14,7 @@ povrchu s poměrne vysokou přesností (střední chyba výšky v odkrytém ter�
 0,18 m, v zalesněném terénu 0,3 m).
 
 Pro účel testování je přímo na stránkách poskytovatele odkaz na `testovací sadu
-<geoportal.cuzk.cz/UKAZKOVA_DATA/VYSKOPIS.zip>`_.
+<http://geoportal.cuzk.cz/UKAZKOVA_DATA/VYSKOPIS.zip>`_.
 V principu se jedná o **mračno bodů**, které mají určené souřadnice **x, y a z**.
 Data jsou poskytovány ve 2 základních formátech:
  * XYZ (textový formát, kde každý řádek zachycuje 1 bod)
