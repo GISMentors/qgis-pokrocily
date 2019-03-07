@@ -19,7 +19,6 @@
 .. |add_attributes| image:: ../images/icon/grass_edit_attributes.png
    :width: 1.5em  
    
-   
 Tvorba atlasu
 =============
 
@@ -27,19 +26,24 @@ Kromě tvorby samostatných výstupů lze pomocí tvůrce mapy vytvořit
 sérii mapových výstupů, neboli *atlas*. Principem vytvoření takového
 hromadného výstupu je využití tzv. *vrstvy pokrytí*. Pro každý prvek v
 této vrstvě bude vytvořen vlastní mapový výstup, přičemž výřez
-mapového okna bude přesunut vždy na polohu daného prvku.
+mapového okna bude přesunut vždy na polohu daného prvku. Zadání vrstvy
+pokrytí můžeme využít různými způsoby. Kromě zaměření mapových listů na
+jedotlivé prvky můžeme např. vytvořit polygonovou vrstvu kde polygony
+budou udávat mapové listy atlasu. Pro tento případ můžeme vrstvu pokrytí
+skrýt.
 
-Podrobnější informace o přidávání jednotlivých prvků a jejich
-nastaveních najdete ve školení :skoleni:`QGIS pro
-začátečníky<qgis-zacatecnik>` v kapitole :skoleni:`Tvorba mapového
+V této kapitole se věnujeme pouze principu tvorby atlasu. Podrobnější
+informace o přidávání jednotlivých prvků a jejich nastaveních najdete
+ve školení :skoleni:`QGIS pro začátečníky<qgis-zacatecnik>` v kapitole
+:skoleni:`Tvorba mapového
 výstupu<qgis-zacatecnik/mapovy_vystup/index.html>`.
 
 Aktivace funkce atlasu
 ----------------------
 
-Funkci atlasu lze aktivovat v záložce :guilabel:`Vytvoření atlasu`
-zaškrtnutím položky |checkbox|:item:`Vytvořit atlas`. V této záložce
-dále najdeme základní nastavení vrstvy pokrytí a výstupního souboru.
+Funkci atlasu lze aktivovat v záložce :guilabel:`Atlas` zaškrtnutím
+položky |checkbox|:item:`Vytvořit atlas`. V této záložce dále najdeme
+základní nastavení vrstvy pokrytí a výstupního souboru.
 
 .. figure:: images/atlas_enable.png 
    :class: small 
@@ -53,7 +57,8 @@ Nastavení
 - :item:`Vrstva pokrytí` |selectstring| - vybereme vrstvu pokrytí
 - :item:`Skrytá vrstva pokrytí` |checkbox| - vrstva pokrytí může být
   součástí mapového výstupu (např. hranice zájmového území, zobrazení
-  konkrétních prvků, ...) nebo může být skryta
+  konkrétních prvků, ...) nebo může být skryta (např. hranice mapového
+  listu)
 - :item:`Název strany` |combobox| - lze zadat název pro strany atlasu
   pro lepší orientaci při náhledu. Lze vybrat stávající atribut, nebo
   vytvořit název na základě výrazu (např. id prvku, název, ...)
@@ -65,11 +70,12 @@ Nastavení
 Výstup
 ^^^^^^
 
-- :item:`Výraz pro název výstupního souboru` - zadání formátování
-  názvu výstupních souborů
+- :item:`Výraz pro název výstupního souboru` - formátování názvu
+  výstupních souborů
 - |checkbox| :item:`Export do jednoho souboru, pokud to lze` -
   např. při importu do jednoho souboru PDF
-
+- :item:`Formát exportu obrázku` |selectstring| - lze vybrat z několika
+  formátů
 
 Příprava atlasu
 ---------------
@@ -92,12 +98,12 @@ Mapové okno
 
 V první řadě přidáme na list mapové okno pomocí ikony |add_map|
 :sup:`Přidat novou mapu` a ve vlastnostech položky přidané mapy
-aktivujeme možnost |checkbox|:item:`Ovládáno atlasem`. Zde je také 
+aktivujeme možnost |checkbox|:item:`Ovládáno Atlas`. Zde je také 
 možné nastavit generování měřítka.
 
 .. figure:: images/atlas_control.png 
    :class: small
-   :scale-latex: 40 
+   :scale-latex: 40
 
    Aktivace ovládání mapové položky atlasem.
    
@@ -121,7 +127,6 @@ Generování měřítka
 
 Náhled atlasu
 ^^^^^^^^^^^^^
-
 Nyní můžeme pomocí šipek nebo rolovací nabídky v panelu *Atlas*
 procházet jednotlivé položky atlasu.
 
@@ -160,15 +165,15 @@ vypadat takto:
 
 Funkčnost výrazu si můžeme překontrolovat pomocí tlačítka
 :item:`Test`. Po spuštění testu se nám objeví okno s počtem prvků,
-které odpovídají výrazu ( v našem případě 1). Nastavíme pro prvek
+které odpovídají výrazu (v našem případě 1). Nastavíme pro prvek
 požadovaný symbol a potvrdíme tlačítkem :item:`OK`. Pro účely našeho
 příklad si prozatím vystačíme pouze s tímto jedním pravidlem, potvrďte
 tedy změny provedené v symbologii vrstvy a přesuňte se opět do okna
 tvorby mapových výstupů.
 
 .. figure:: images/atlas_priklad_styl.png 
-   :class: middle 
-   :scale-latex: 40 
+   :class: middle
+   :scale-latex: 40
 
    Příklad tvorby atlasu krajů - nastylovaná vrstva.
 
@@ -180,7 +185,7 @@ Nyní doplníme ostatní kompoziční prvky do mapového listu.
 Textové pole
 ^^^^^^^^^^^^
 
-Pomocí ikonky |add_label| :sup:`Přidat nový popisek` přidáme textové
+Pomocí ikonky |add_label| :sup:`Přidat nový popisek do rozložení` přidáme textové
 pole a přejdeme na záložku :item:`Vlastnosti položky`.
 
 Nyní můžeme využít vložení výrazu do textového pole, což nám umožní
@@ -212,8 +217,8 @@ Pokud chceme vložit název vytvořený na základě více atributů
 Měřítko
 ^^^^^^^
 
-Měřítko lze přidat pomocí ikony |add_scale|:sup:`Přidat nové grafické
-měřítko`. Pokud chceme při tvorbě atlasu použít grafické měřítko, je
+Měřítko lze přidat pomocí ikony |add_scale|:sup:`Přidá nový Měřítko do
+rozložení`. Pokud chceme při tvorbě atlasu použít grafické měřítko, je
 třeba nastavit vhodný referenční bod, na základě kterého se nám bude
 velikost grafického měřítka roztahovat v jednotlivých listech
 atlasu. Nastavení referenčního bodu najdeme v záložce
@@ -224,22 +229,20 @@ referenční bod, který je uprostřed.
 Atributová tabulka
 ^^^^^^^^^^^^^^^^^^
 
-Pomocí tlačítka |add_attributes|:sup:`Přidat atributovou tabulku`
-můžeme do výstupu přidat atributovou tabulku. Po vložení a nastavení
-atributové tabulky (zobrazené atributy, formátování atd.), je pro
-správné fungování v atlasu nutné nastavit filtrování prvků. V našem
-případě chceme zobrazit pouze atributy prvku na daném mapovém listu.
-Do políčka |checkbox|:item:`Filtrovat s` tedy opět použijeme výraz:
-
-.. code-block:: sql
-
-    $id  =  @atlas_featureid
+Pomocí tlačítka |add_attributes|:sup:`Přidat Nový Attributová tabulka
+do rozložení` můžeme do výstupu přidat atributovou tabulku. V našem
+případě chceme zobrazit pouze atributy prvku na daném mapovém
+listu, Takže v hlavních vlastnostech u položky :guilabel:`Zdroj`
+vybereme možnost `Prvek aktuálního atlasu`. Poté nastavíme vzhled
+atributové tabulky (zobrazené atributy, formátování atd.). Dále je
+možné využít `Filtrování prvků`, kde kromě základních možností, lze
+filtrovat prvky pomocí vzorce - políčko |checkbox|:item:`Filtrovat s`.
 
 .. figure:: images/atlas_table_filter.png 
    :class: small 
    :scale-latex: 40 
 
-   Nastavení filtru atributové tabulky.
+   Nastavení atributové tabulky.
 
 .. tip:: Jako alternativní možnost vložení atributu a jeho hodnot je
          možné využít běžné textové pole s využitím formátování HTML.
@@ -248,10 +251,10 @@ Do políčka |checkbox|:item:`Filtrovat s` tedy opět použijeme výraz:
 Tiráž a doplňující informace
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Pomocí speciálních proměnných lze do textového pole vkládat výrazy,
+Pomocí proměnných lze do textového pole vkládat výrazy,
 které se mohou odkazovat např. na pořadové číslo listu, autora, verzi
-QGIS, název a cestu projektu, rozlišení DPI, šířku a výšku papíru,
-...).
+QGIS, název a cestu projektu, rozlišení DPI, šířku a výšku papíru a
+mnoho dalších parametrů).
 
 .. figure:: images/atlas_variables.png 
    :class: middle 
@@ -283,9 +286,9 @@ nebo přímo z panelu *Atlas*. Pokud exportujeme do jednoho souboru
 (jako např. PDF) při spuštění exportu zadáme standardně název souboru
 a cestu kam chceme soubor uložit. V případě, že ukládáme atlas ve formě
 jednotlivých výstupů (samostatné soubory) vybíráme v okně exportu
-složku, do které se atlas bude generovat.  Jak byl v úvodu zmíněno,
-základní nastavení pro export najdeme na kartě :item:`Vytvoření
-atlasu` u položky *Výstup*.
+složku, do které se atlas bude generovat. Jak byl v úvodu zmíněno,
+základní nastavení pro export najdeme na kartě :item:`Atlas` u položky
+`Výstup`.
 
 .. figure:: images/atlas_export.png 
    :class: small 
