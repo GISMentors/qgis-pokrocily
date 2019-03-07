@@ -23,13 +23,15 @@ Dialogové okno
 --------------
 
 Dialogové okno se skládá z několika záložek. Na hlavní záložce 
-:guilabel:`Parametry` zadáváme vstupní parametry (a výstupní soubor) algoritmu. 
-Další záložkou je :guilabel:`Záznam`, kde vidíme výpis operací,	které probíhájí 
-při spuštění algoritmu. U některých 
-funkcí (např. GRASS) se v pravé části okna zobrazí krátký popisek funkce. U 
-algoritmů GDAL vidíme také ve spodní části okna výsledný příkaz podle 
-námi zadaných parametrů. I když je každý algoritmus jiný a potřebuje 
-specifické vstupy a nastavení, základní struktura dialogového okna se nemění. 
+:guilabel:`Parametry` zadáváme vstupní parametry (a výstupní soubor)
+algoritmu. Další záložkou je :guilabel:`Záznam`, kde vidíme výpis
+operací, které probíhájí při spuštění algoritmu. Ve spodní části okna
+najdeme tlačítka :guilabel:`Nápověda` a :guilabel:`Spustit jako dávkový
+proces`. U některých funkcí (např. GRASS) se v pravé části okna zobrazí
+krátký popisek funkce. U algoritmů GDAL vidíme také ve spodní části
+okna výsledný příkaz podle námi zadaných parametrů. I když je každý
+algoritmus jiný a potřebuje specifické vstupy a nastavení, základní
+struktura dialogového okna se nemění. 
 
 .. figure:: images/geoproc_wind.png 
 
@@ -53,9 +55,11 @@ uveden EPSG kód vrstvy např. :item:`[EPSG:5514]`. Pokud požadovanou
 vrstvu v projektu nemáme, můžeme použít tlačítko :item:`...` a vybrat
 odpovídající vrstvu uloženou na disku. U vektorových vrstev se můžeme
 setkat s tlačítkem |iterate|, které slouží ke spouštění iterace nad
-vrstvou. V takovém případě se algoritmus bude spouštět pro každý prvek
-ve vrstvě zvlášť. Při iteraci se ve výchozím nastavení processingu
-používají pouze vybrané prvky (pokud nějaký výběr máme).
+vrstvou. Při použití iterace se provede výpočet pro každý prvek
+vektorové vrstvy zlášť. Dále je zde možnost omezit vstupní vrstvu na
+pouze vybrané prvky. V takovém případě se algoritmus bude spouštět pro
+každý prvek ve vrstvě zvlášť. Při iteraci se ve výchozím nastavení
+processingu používají pouze vybrané prvky (pokud nějaký výběr máme).
 
 .. figure:: images/geoproc_vstup_vrst.png 
 
@@ -165,9 +169,10 @@ Využití iterace
 ^^^^^^^^^^^^^^^
 Pomocí funkce GDAL |gdal| :guilabel:`Oříznout rastr podle vrstvy masky` 
 ořežeme rastrovou vrstvu EU-DEM pomocí masky *velkoplošných chráněných území*. 
-Pro ořezání rastru jen pro naše vybraná území využijeme možnosti iterace. Jak 
-jsme již zmínili výše, při iteraci se ve výchozím nastavení processingu 
-používají pouze vybrané prvky.
+Pro ořezání rastru jen pro naše vybraná území zaškrtneme u vstupní
+vrstvy možnost :guilabel:`Pouze vybrané prvky`. Aktivujeme iteraci a
+spustíme. Výsledkem bude nová rastrová vrstva ořezu jednotlivých prvků
+vektorové vrstvy.
 
 .. figure:: images/geoproc_pract_2.png 
    :class: large 
@@ -181,6 +186,3 @@ používají pouze vybrané prvky.
    :scale-latex: 40 
 
    Výsledek výřezu vybraných prvků.
-
-
-		

@@ -16,12 +16,13 @@
 Dávkové zpracování
 ==================
 
-Dávkové zpracování nám umožní spustit jeden algoritmus vícekrát najednou s 
-různými parametry. Spustit dávkový proces lze přímo z okna nástrohů zpracování 
-vyvoláním kontextové nabídky pravým kliknutím na požadovaný algoritmus a 
-výběrem :guilabel:`Spustit dávkový proces` (:numref:`batch`). Další možnost jak 
-dávkový proces spustit je přímo z okna algoritmu, kde se nám v horní liště 
-ukáže tlačítko :item:`Spustit jako dávkový proces` (:numref:`batch2`).
+Dávkové zpracování nám umožní spustit jeden algoritmus vícekrát najednou
+s různými parametry. Spustit dávkový proces lze přímo z okna nástrojů
+zpracování vyvoláním kontextové nabídky pravým kliknutím na požadovaný
+algoritmus a výběrem :guilabel:`Spustit dávkový proces`
+(:numref:`batch`). Další možnost jak dávkový proces spustit je přímo
+z okna algoritmu, pomocí tlačítka :item:`Spustit jako dávkový proces`
+v levém dolním rohu (:numref:`batch2`).
 
 .. _batch:
 .. figure:: images/geoproc_batch.png 
@@ -47,7 +48,9 @@ nakonfigurovaný dávkový proces uložit |mActionFileSave| do souboru ve
 formátu :wikipedia:`JSON` nebo tento typ souboru nahrát
 |mActionFileOpen|. U algoritmů, kde je možná volba pokročilého
 nastavení se pro aktivaci těchto parametrů ukáže ikonka |alg|. Záložka
-záznam má totožnou funkci jako u samostatného procesu.
+záznam má totožnou funkci jako u samostatného procesu. Pokud chceme
+výsledné vrstvy načíst do projektu, je nutné zaškrtnout políčko
+:guilabel:`Načíst vrstvy po dokončení`.
 
 .. figure:: images/geoproc_batch_win.png 
 
@@ -57,11 +60,11 @@ záznam má totožnou funkci jako u samostatného procesu.
    
 Zadávání parametrů
 ------------------
-Zadávání parametrů funguje, až na malé odchylky, stejně jako u samostatného 
-procesu. Některá specifika si popíšeme níže.
+Zadávání parametrů funguje, až na malé odchylky, stejně jako u
+samostatného procesu. Některá specifika si popíšeme níže.
 
-.. tip:: Poklikáním na název sloupce/parametru, se automaticky vyplní hodnoty
-        prvního řádku do ostatních řádků.
+.. tip:: Poklikáním na název sloupce/parametru, se automaticky vyplní
+         hodnoty prvního řádku do ostatních řádků.
 
 Výběr vrstev
 ^^^^^^^^^^^^
@@ -90,7 +93,6 @@ vrstev se jednotlivé vrstvy přiřadí k vlastním procesům procesům.
    
 Výstupní soubor
 ^^^^^^^^^^^^^^^
-
 Zde je, oproti samostatnému procesu, nutné zadat cestu k výstupnímu souboru 
 pomocí tlačítka :item:`...`. Stačí však zadat uložení prvního výstupního 
 souboru a objeví se nám okno pro automatické doplnění výstupních souborů 
@@ -116,13 +118,8 @@ příponou pořadového čísla nebo na základě vybraného vstupního parametr
    
    Možnosti automatického vytvoření přípon výstupního souboru.
 
-.. note:: U vektorových dat vstupují pouze vybrané prvky (v závislosti na 
-	  obecném nastavení).
-
-Ostatní vstupy
-^^^^^^^^^^^^^^
-Ostatní vstupy nelze vyplnit pro všechny procesy hromadně. U číselných vstupů 
-nelze zadávat hodnoty pomocí kalkulátoru tak jako u samostatného procesu.
+.. note:: U vektorových dat nelze v současné verzi nastavit spuštění
+          pouze vybrané prvky.
 
 Praktická ukázka
 ----------------
@@ -135,12 +132,12 @@ Tvorba vícenásobné obalové zóny
 
 V případě, že potřebujeme kolem nějakého území vytvořit větší počet
 různě velkých obalových zón, je možné využít funkci
-|qgis|:guilabel:`Obalová zóna` v režimu dávkového procesu. Z vrstvy
-velkoplošných chráněných území vybereme jedno území a vytvoříme tři
+|qgis|:guilabel:`Obalová zóna` v režimu dávkového procesu. V našem
+příkladu vytvoříme z vrstvy velkoplošných chráněných území tři
 obalové zóny (1, 5 a 10 km).
 
-Spustíme dávkový proces algoritmu, nastavíme vstupní vrstvu s vybraným prvkem 
-do tří řádků (pro každý proces) a požadované hodnoty vzdáleností obalové zóny 
+Spustíme dávkový proces algoritmu, nastavíme vstupní vrstvu s do tří
+řádků (pro každý proces) a požadované hodnoty vzdáleností obalové zóny 
 v metrech (1000, 5000, 10000). 
 
 .. figure:: images/geoproc_batch_pract1.png 
@@ -149,7 +146,10 @@ v metrech (1000, 5000, 10000).
 
 Vybereme výstupní soubor a nastavíme automatickou výpň na základě parametru 
 :guilabel:`Vzdálenost` a spustíme dávkový proces tlačítkem :item:`Run`, 
-zkontrolujeme záznamy a zavřeme okno.
+zkontrolujeme záznamy a zavřeme okno. V tomto případě se nám do názvu
+souboru vloží i znak čárky (jedná se o číslo s desetinnou čárkou) což
+není zrovna ideální. Název můžeme opravit ručně přímo v okně, nebo
+v případě potřeby potom soubory hromadně přejmenovat.
 
 .. figure:: images/geoproc_batch_pract1_2.png 
    :class: tiny
@@ -170,8 +170,8 @@ zkontrolujeme záznamy a zavřeme okno.
 
 Ořezání více rastrových vrstev 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-K tomuto úkolu si nejdříve vytvoříme z digitálního modelu terénu (dmt) 
-vybraného velkoplošného chráněného území vrstvu sklonu svahů (Slope) a 
+K tomuto úkolu budeme potřebovat více rastrových vrstev, pokud nemáme,
+vytvoříme z digitálního modelu terénu (dmt) vrstvu sklonu svahů (Slope) a 
 orientace svahů (Aspect). K vytvoření vrstvy sklonu a orientace svahů jsme nyní 
 schopni využít více funkcí, mimo vestavěné funkce QGISu to jsou  např. GDAL 
 |gdal|:guilabel:`Sklon` a |gdal|:guilabel:`Aspekt` nebo využít externí 
@@ -180,12 +180,11 @@ curvature`.
 
 .. figure:: images/geoproc_batch_pract2.png 
 
-   Vybrané území.
+   Rastrové vrstvy.
    
-Vytvořili jsme tedy 2 nové rastrové vrstvy pro dané území. Potřebujeme
-také výstup z vybrané části území. V tomto případě využijeme opět
-funkce |raster-clip| :guilabel:`Oříznout rastr podle rozsahu`, ale tentokrát
-jako dávkový proces na všechny rastrové vrstvy najednou.
+Vytvořili jsme tedy 2 nové rastrové vrstvy. Nyní opět využijeme 
+funkci |raster-clip| :guilabel:`Oříznout rastr podle rozsahu`, ale
+tentokrát jako dávkový proces na všechny rastrové vrstvy najednou.
   
 Jako vstupní vrstvy vybereme rastrové vrstvy, které chceme ořezat (dmt, aspect, 
 slope), a zvolíme rozsah ořezu v mapovém okně, hodnotu rozsahu potom 

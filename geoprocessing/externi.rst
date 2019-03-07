@@ -32,13 +32,13 @@ uložit do textového souboru a zadat v okně jen cestu k tomuto souboru:
 
 ::
 
-	0 thru 45 = 1 sever
-	45 thru 135 = 2 vyhod
-	135 thru 225 = 3 jih
-	225 thru 315 = 4 zapad
-	315 thru 360 = 1 sever
-	0 = 5 rovina
-	
+    0 thru 45 = 1 sever
+    45 thru 135 = 2 vyhod
+    135 thru 225 = 3 jih
+    225 thru 315 = 4 zapad
+    315 thru 360 = 1 sever
+    0 = 5 rovina
+    
 
 Po té spustíme algoritmus |grass| :grasscmd:`r.reclass` a zadáme vstupní 
 vrstvu (sklony svahů) a vytvořený textový soubor. Po vytvoření výstupu, 
