@@ -285,7 +285,30 @@ používat ikonky s velikostí 6 milimetrů.
    :class: large
    
    Nastavení stylování podle atributu s umístěním svg symbolu a ukázka výsledku.
+   
+   
+Parametry jako je pozice, nebo rotace, je možné v rámci projektu ukládat i
+mimo primární atributové tabulky. Pokud například chceme pracovat s rotací
+popisků individuálně, ale nechceme aby byly řídící hodnoty součástí atrbutů,
+tak nastavíme jejich ukládání do souborové databázy projektu jako tzv. 
+pomocná data` (auxiliary).
+Jako příklad použijeme rotaci číseldné hodnoty pořadí značky na kotvě. Ve
+vlastnostech vrstvy u položky umístění, zaškrtneme v menu položku *Store Data
+in the Project*. Následně se otevře dialogové okno, ve které zvolíme atribut
+pomocí kterého se vrstvy budou dát navázat (primární klíč, identifikátor). 
 
+
+.. figure:: images/geotag_temp_rotation.png
+   :class: large
+   
+   Výběr nastavení rotace napojené na databázi projektu a výběk klíče.
+   
+Pak je možné použít nástroj na manuální rotaci prvnků, hodnoty se budou aktualizovat přímo v databázi projektu. 
+
+.. todo::  Ukázat náhled na db projektu a ukázat asistenta pro zadání
+   dalších možností
+   
+   
 
 4. Určení rotace
 ----------------
