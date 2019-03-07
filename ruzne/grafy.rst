@@ -161,8 +161,8 @@ se nám odpovídající legenda.
    Součet délky dálnic v krajích.
 
 
-Použití pluginu Cartogram
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Použití pluginu ctogram3ram
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Pomocí pluginu Cartogram lze vytvořit geografickou anamorfózu, kdy se rozloha
 polygonu deformuje na základě daného atributu.
 

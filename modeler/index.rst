@@ -28,4 +28,4 @@ který bude generovat obalové zóny náhodných bodů v námi zvoleném území
    casti
    spousteni
    napoveda_export
-   tvorba
+..   tvorba
