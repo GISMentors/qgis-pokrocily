@@ -15,28 +15,14 @@ Výměnný formát katastru (VFK)
 
 Výměnný formát (VF) je určen k vzájemnému předávání dat mezi systémem
 ISKN a jinými systémy zpracování dat, viz `dokumentace formátu
-<http://www.cuzk.cz/Katastr-nemovitosti/Poskytovani-udaju-z-KN/Vymenny-format-KN/Vymenny-format-ISKN-v-textovem-tvaru/Popis_VF_ISKN-v5_1-1-%281%29.aspx>`_.
+<https://www.cuzk.cz/Katastr-nemovitosti/Poskytovani-udaju-z-KN/Vymenny-format-KN/Vymenny-format-NVF.aspx>`_.
 
-.. note::
-   
-   Formát VFK podporuje knihovna GDAL (tuto knihovnu používá QGIS pro
-   čtení řady datových formátu včetně formátu VFK) od verze 1.7. Více
-   o podpoře formátu VFK v knihovně GDAL `na portálu FreeGIS
-   <http://freegis.fsv.cvut.cz/gwiki/VFK_/_GDAL>`_. Pro práci nicméně
-   doporučujeme minimálně verzi knihovny GDAL 1.11, ideálně potom GDAL
-   2.0 (GDAL 1.11 `nepodporuje křivky
-   <http://freegis.fsv.cvut.cz/gwiki/VFK_/_GDAL#K.C5.99ivky.2C_kru.C5.BEnice.2C_kruhov.C3.A9_oblouky>`_,
-   což je vzhledem k tomu, že hranice parcel mohou být tvořeny
-   kružnicemi či kruhovými oblouky problém. Verzi knihovny GDAL můžete
-   zjistit z menu :menuselection:`Nápověda --> O programu`.
-
-   .. figure:: images/vfk-qgis-verze.png
-
-Data ve formátu VFK můžete načíst jako každá jiná vektorová souborová
-data. Po načtení dat se objeví dialog pro výběr vrstev, které
-odpovídají jednotlivým datovým blokům VFK. Některé mají definovánu
-geometrii (např. BUD, PAR, HP a další), jiné obsahují pouze popisné
-informace.
+Díky tomu, že je formát VFK podporován `knihovnou GDAL
+<https://www.gdal.org/drv_vfk.html>`__, tak je můžete v prostředí
+QGISu načíst jako každá jiná vektorová souborová data. Po načtení dat
+se objeví dialog pro výběr vrstev, které odpovídají jednotlivým
+datovým blokům VFK. Některé mají definovánu geometrii (např. BUD, PAR,
+HP a další), jiné obsahují pouze popisné informace.
 
 .. _vfk-vrstvy:
 
@@ -54,9 +40,12 @@ informace.
                což vede k mnohonásobnému zrychlení přístupu k datům.
 
 Po načtení můžeme v QGISu jednotlivé vrstvy s geometrií a popisnými
-informace spojovat. To nicméně vyžaduje znalosti vnitřní struktury
-formátu VFK. Proto vznikl specializovaný zásuvný modul tzv. **VFK
-plugin**, který  pro práci s katastrálními daty výrazně usnadňuje.
+informace propojovat pomocí standardního |join| :sup:`Připojení`, viz
+:skoleni:`QGIS pro začátečníky
+<qgis-zacatecnik/vektorova_data/join.html>`. To nicméně vyžaduje
+znalosti vnitřní struktury formátu VFK. Proto vznikl specializovaný
+zásuvný modul tzv. **VFK plugin**, který pro práci s katastrálními
+daty výrazně usnadňuje.
 
 .. figure:: images/vfk-join.png
    :class: small
@@ -68,7 +57,8 @@ Po připojení popisných informací můžeme provádět dotazy typu vyhledání
 parcel podle druhu pozemku.
    
 .. figure:: images/vfk-join-query.png
-
+   :class: middle
+   
    Nalezení parcel, které mají druh pozemku chmelnice.
 
 VFK plugin
@@ -77,15 +67,21 @@ VFK plugin
 Mnohem větší komfort při práci s daty ve formátu VFK umožňuje v QGISu
 specializovaný **VFK plugin**.
 
-.. note:: Tento zásuvný modul byl vyvinut v roce 2011 studenty oboru
-          Geoinformatika na ČVUT v Praze, fakulty stavební. Kód byl
-          napsán v programovacím jazyku C++, což výrazně stěžovalo
-          instalaci pluginu, která nebyla možná standardní
-          cestou. Proto byl v roce 2015 a 2016 kód zásuvného modulu
-          přepsán do jazyka Python a v něj je i dále vyvíjen. Více
-          informací o zásuvném modulu najdete na stránkách `portálu
-          FreeGIS
-          <http://freegis.fsv.cvut.cz/gwiki/VFK_/_QGIS_plugin>`_.
+.. note:: Tento zásuvný modul byl vyvinut v roce 2011 a posléze
+   významně aktualizován v letech 2015 a 2016 studenty oboru Geomatika
+   na ČVUT v Praze, fakulty stavební. Více informací o zásuvném modulu
+   najdete na stránkách `portálu FreeGIS
+   <http://freegis.fsv.cvut.cz/gwiki/VFK_/_QGIS_plugin>`__ anebo v
+   jeho `dokumentaci
+   <https://ctu-geoforall-lab.github.io/qgis-vfk-plugin/>`__.
+
+.. warning:: **V současné době je plugin dostupný pouze pro verzi
+   QGIS 2.**
+
+   Bohužel kvůli změně distribuovaní informací o vlastnických
+   vztazích, ke které byl ČÚZK donucen v rámci aplikace GDPR, neumí v
+   současné době VFK plugin tyto informace získávat. Jeho
+   funkcionalita je tím poměrně výzmnamně omezena.
 
 .. _geoforall-instalace:
           
@@ -95,30 +91,12 @@ Instalace
 V současné době není VFK plugin součástí oficiálního repositáře
 QGISu. Pro jeho instalaci je nutné do QGISu zaregistrovat nový
 repositář, který je dostupný na adrese
-*http://geo.fsv.cvut.cz/geoforall/qgis-plugins.xml*.
+*http://geo.fsv.cvut.cz/geoforall/qgis-plugins.xml*. Postup instalace
+je podrobně popsán v `dokumentaci pluginu
+<https://ctu-geoforall-lab.github.io/qgis-vfk-plugin/instalace.html>`__.
 
-V dialogu :menuselection:`Zásuvné moduly --> Spravovat a instalovat
-zásuvné moduly` přidáme nový repositář.
-
-.. figure:: images/vfk-repo-pridat.png
-
-   Pro instalaci VFK pluginu je nutné přidat nový repositář.
-
-.. figure:: images/vfk-repo.png
-   :class: small
-        
-   V dialogu definujeme název a URL 
-   http://geo.fsv.cvut.cz/geoforall/qgis-plugins.xml.
-
-.. figure:: images/vfk-repo-instalace.png
-
-   Poté se již VFK plugin zobrazí v seznamu zásuvných modulů a můžeme
-   jej nainstalovat.
-
-Po instalaci se přidá do menu :menuselection:`Zásuvné moduly --> VFK`
-a do nástrojové lišty ikonka |vfkPlugin|. Zásuvný modul otevřeme
-pomocí této ikonky anebo z menu :menuselection:`Zásuvné moduly --> VFK
---> Otevřít prohlížeč VFK`.
+Zásuvný modul otevřeme pomocí ikonky |vfkPlugin anebo z menu
+:menuselection:`Zásuvné moduly --> VFK --> Otevřít prohlížeč VFK`.
 
 Práce se zásuvným modulem
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -138,7 +116,7 @@ vrstvy parcel (PAR) a budov (BUD). Pomocí nástroje může v datech
 vyhledávat, postupovat podle listů vlastnictví a mnoho dalších funkcí.
 
 .. figure:: images/vfk-plugin.png
-   :class: middle
+   :class: large
    
    Ukázka využití VFK pluginu pro nalezení parcel s druhem pozemku
    zahrada.
@@ -156,52 +134,41 @@ nemovitost a další. Více informací najdete na stránkách `ruian.cz
 
 Data jsou poskytována ve *výměnném formátu RÚIAN* (VFR) službou
 `Veřejného dálkového přístupu <http://vdp.cuzk.cz>`_. Datový formát
-VFR je podporován knihovnou GDAL od verze 1.11. Vzhledem k tomu je
-můžeme načíst do QGISu jako každá jiná vektorová souborová data.
+VFR je podporován knihovnou GDAL. Vzhledem k tomu je můžeme načíst do
+QGISu jako každá jiná vektorová souborová data.
 
 .. important:: Formát VFR definuje více geometrických reprezentací na
-               prvek, typicky definiční bod, originální a
-               generalizovanou hranici. QGIS je v současnosti (2.18)
-               schopen zobrazit pouze první geometrii (tj. většinou
-               pouze definiční bod), přestože je knihovna GDAL schopná
-               tyto data číst korektně. Viz porovnání dotazu na data
-               pomocí konzolového nástroje *ogrinfo* a QGISu.
+   prvek, typicky definiční bod, originální a
+   generalizovanou hranici. QGIS je v současnosti (3.4)
+   schopen zobrazit **pouze první geometrii** (tj. většinou
+   pouze definiční bod), přestože je knihovna GDAL schopná
+   tyto data číst korektně.
+   
+   .. figure:: images/vfr-vrstvy.png
 
-               .. code-block:: bash
-                   
-                  ogrinfo 20160331_OB_564567_UKSH.xml.gz Parcely -so
-
-                  ...
-                  Layer name: Parcely
-                  Geometry (DefinicniBod): Point
-                  Geometry (OriginalniHranice): Polygon
-                  ...
-
-               .. figure:: images/vfr-vrstvy.png
-
-                  Seznam vrstev při načtení v QGISu. U parcel je možné
-                  načíst pouze definiční body.
+      Seznam vrstev při načtení v QGISu. U parcel je možné
+      načíst pouze definiční body.
 
 Limit QGISu je možné obejít pomocí konverze dat VFR do vhodného
 formátu a výběru preferované geometrie. Takto k problému přístupuje i
 **RUIAN plugin**, který podporuje uložení dat do formátů SQLite, OGC
-GeoPackage a Esri Shapefile. Plugin lze :ref:`nainstalovat
-<geoforall-instalace>` obdobným způsobem jako VFK plugin, viz
-`dokumentace pluginu
-<https://ctu-geoforall-lab.github.io/qgis-ruian-plugin>`__.
+GeoPackage a Esri Shapefile. Postup instalace je popsán v `dokumentaci
+pluginu
+<https://ctu-geoforall-lab.github.io/qgis-ruian-plugin/instalace.html>`__.
+
+.. note:: Tento plugin podporuje verzi QGIS 3.
 
 .. figure:: images/ruian-plugin.png
-   :class: middle
+   :class: large
 
    Ukázka použití pluginu pro práci s daty RÚIAN.
 
 .. noteadvanced:: Konverzi můžeme provést konzolovými konverzními
-   nástroji *vfr2ogr*. Výhoda těchto nástrojů je, že kromě jednotlivých
-   vstupních VFR souborů můžeme použít seznam linků stažitelný z `VDP
-   <http://vdp.cuzk.cz>`_. V tomto případě budou VFR data nástrojem
-   *vfr2ogr* automaticky stažena a naimportována do cílového
-   formátu. Jako cílový formát doporučujeme :wikipedia-en:`SpatiaLite`
-   anebo :wikipedia:`PostGIS`.
+   nástroji *vfr2ogr*. Výhoda těchto nástrojů je v tom, že kromě
+   jednotlivých vstupních VFR souborů můžeme použít seznam linků
+   stažitelný z `VDP <http://vdp.cuzk.cz>`_. V tomto případě budou VFR
+   data nástrojem *vfr2ogr* automaticky stažena a naimportována do
+   cílového formátu. 
 
    Konverzní nástroje *vfr2ogr* najdete na serveru GitHub, viz
    `stránka s verzemi
@@ -223,7 +190,7 @@ GeoPackage a Esri Shapefile. Plugin lze :ref:`nainstalovat
 
    .. code-block:: bash
 
-      grep '20160131' seznamlinku.txt > seznamlinku-aktualni.txt
+      grep '20190301' seznamlinku.txt > seznamlinku-aktualni.txt
           
    .. code-block:: bash
 
@@ -234,7 +201,7 @@ GeoPackage a Esri Shapefile. Plugin lze :ref:`nainstalovat
 
    .. code-block:: bash
       
-      vfr2ogr --file data/20160131_OB_530506_UKSH.xml.gz --format SQLite --dsn ruian_obec.db --geom OriginalniHranice 
+      vfr2ogr --file data/20190301_OB_530506_UKSH.xml.zip --format SQLite --dsn ruian_obec.db --geom OriginalniHranice 
                 
    Výsledná databáze potom obsahuje data za celou zvolenou ORP:
 
