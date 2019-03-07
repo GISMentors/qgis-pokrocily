@@ -1,12 +1,6 @@
 .. |qgis| image:: ../images/qgis_logo.png
    :width: 1.5em
-.. |mActionFileSave| image:: ../images/icon/mActionFileSave.png
-   :width: 1.5em
-.. |random_points| image:: ../images/icon/random_points.png
-   :width: 1.5em
 .. |buffer| image:: ../images/icon/buffer.png
-   :width: 1.5em
-.. |model| image:: ../images/icon/model.png
    :width: 1.5em
    
 Části modelu
@@ -16,7 +10,7 @@ Název a skupina
 ---------------
 
 Před samotnou tvorbou modelu je vhodné zadat název a skupinu modelu
-(:numref:`modeler_casti` část 3) a uložit jej |mActionFileSave|. Potom
+(:numref:`modeler_casti`) a uložit jej |mActionFileSave|. Potom
 můžeme model při jeho tvorbě průběžně ukládat.
 
 .. figure:: images/modeler_name.png 
@@ -35,8 +29,8 @@ Vstupní parametry
 Prvním krokem při tvorbě modelu je vložení vstupních parametrů. Tyto parametry 
 jsou stejné jako u běžných algoritmů - vrstva, rozsah vrstvy, číslo, text, 
 boolean (formou checkboxu) atd. Při spouštění vytvořeného modelu bude 
-požadováno vyplnění vložených vstupních parametrů. Tyto parametry jsou 
-navázany na konkrétní algoritmy v modelu.
+požadováno vyplnění vložených vstupních parametrů. Tyto parametry potom
+budou vstupovat do konkrétních algoritmů v modelu.
 
 .. figure:: images/modeler_vstup.png 
    :class: small 
@@ -46,7 +40,7 @@ navázany na konkrétní algoritmy v modelu.
 Jednotlivé parametry lze do modelu přidat tažením nebo poklikáním. Po přídání 
 se objeví dialogové okno, které je u většiny parametrů jednoduché. Základní 
 položkou je zde název parametru. Nastavení parametrů v modelu lze průběžně 
-měnit kliknutím na symbol tužky, nebo lze parametry odstranit kliknutím na 
+měnit kliknutím na symbol tří teček, nebo lze parametry odstranit kliknutím na 
 křížek (:numref:`vstupdia`).
 
 .. figure:: images/modeler_vstup_num.png 
@@ -54,9 +48,9 @@ křížek (:numref:`vstupdia`).
 
    Dialogové okno při vložení číselného parametru.
 
-- do našeho modelu přidáme vstupy :item:`Extent` a :item:`Number`. Pojmenujeme 
-  např. :guilabel:`Rozsah` a :guilabel:`Počet bodů`, později můžeme podle potřeby 
-  změnit.
+- do našeho modelu přidáme vstupy :item:`Rozsah` a :item:`Číslo`.
+  Pojmenujeme např. :guilabel:`Rozsah` a :guilabel:`Počet bodů`,
+  později můžeme podle potřeby změnit.
 
 Algoritmy
 ---------
@@ -67,8 +61,7 @@ Algoritmy
    Značení algoritmu v modelu.
    
 Hlavní součástí modelů jsou algoritmy. Nalezneme zde většinu algoritmů, které 
-jsou v okně nástrojů zpracování. Kromě těchto funkcí jsou zde speciální 
-|model|:guilabel:`Nástroje jen pro modely` (:numref:`algor`).
+jsou v okně nástrojů zpracování.
 
 .. _algor:
 .. figure:: images/modeler_algor.png 
@@ -77,15 +70,16 @@ jsou v okně nástrojů zpracování. Kromě těchto funkcí jsou zde speciáln�
    Možné vstupní algoritmy.
    
 Algoritmy se přidávají do modelu opět tažením nebo poklikáním. Po přidání se 
-ukáže běžné dialogové okno konkrétního algoritmu (:numref:`algorrand`). Zde máme 
+otevře dialogové okno konkrétního algoritmu (:numref:`algorrand`). Zde máme 
 možnost nastavit výchozí hodnoty parametrů algoritmu, se kterými se bude 
 počítat při spuštění modelu. Jesltiže chceme mít parametry při spouštění modelu 
 volitelné je třeba nakonfigurovat odpovídající vstupy (:numref:`algorrand2`).
 
-- vložíme algoritmus |random_points|:guilabel:`Náhodné body v rozsahu
-  / Random points in extent` a jako vstupní rozsah zadáme náš vstupní
+- vložíme algoritmus
+  |mAlgorithmRandomPointsWithinExtent|:guilabel:`Náhodné body v rozsahu`
+  a jako vstupní rozsah zadáme náš vstupní
   parametr :item:`Rozsah`. Jako počet bodů zvolíme vstupní parametr
-  :item:`Počet bodů` . Minimální vzdálenost a výstupní soubor měnit
+  :item:`Počet bodů`. Minimální vzdálenost a výstupní soubor měnit
   prozatím nebudeme, potvrdíme parametry tlačítkem :item:`OK`.
 
 .. _algorrand:
