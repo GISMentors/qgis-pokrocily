@@ -41,5 +41,3 @@ využijeme také některé nástroje systému GRASS GIS.
    :maxdepth: 1
 
    scs-cn
-   usle
-
