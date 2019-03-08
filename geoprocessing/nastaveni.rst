@@ -47,15 +47,13 @@ Vybraná nastavení:
             - Stop algorithm execution when a geometry is invalid
         
 	- :guilabel:`Použít název souboru pro název vrstvy` - pokud je
-          neaktivní, tak výstupní vrstva nese automaticky vygenerovaný
-          název, většinou související s danou funkcí (např. funkce
-          :guilabel:`Obalová vrstva vekt. vrstvy` ``->`` vrstva
-          :guilabel:`Obalová zóna`). V opačném případě se název vrstvy
-          generuje z vytvořeného výstupního souboru, to je vhodné
-          pokud ručně zadáváme název souboru. Pokud v tomto případě
-          ukládáme výstup do dočasných souborů, bude vrstva přebírat
-          název tohoto souboru (např. :guilabel:`OUTPUTLAYER.shp` nebo
-          jiný, komplikovaný název).
+          neaktivní, tak výstupní vrstva nese vždy automaticky
+          vygenerovaný název související s danou funkcí (např. funkce
+          :guilabel:`Obalová zóna` ``->`` vrstva
+          :guilabel:`S obalovou zónou`). Pokud je aktivní, název vrstvy
+          se generuje z vytvořeného výstupního souboru, a v případě kdy
+          ukládáme výstup do dočasných souborů, tak se vrstva pojmenuje
+          opět automaticky.
 	- :guilabel:`Post(Pre)-execution script` - možnost nastavit
           cestu ke skriptům, které se budou automaticky spouštět před
           nebo po spuštění algoritmů.
