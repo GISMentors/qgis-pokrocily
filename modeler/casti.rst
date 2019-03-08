@@ -1,8 +1,3 @@
-.. |qgis| image:: ../images/qgis_logo.png
-   :width: 1.5em
-.. |buffer| image:: ../images/icon/buffer.png
-   :width: 1.5em
-   
 Části modelu
 ============
 
@@ -122,7 +117,7 @@ Jednotlivé algoritmy lze na sebe dále navazovat - to co je výstupem z jednoho
 algoritmu může nějakým způsobem vstupovat do algoritmu druhého 
 (:numref:`algorrand4`).
 
-- Vložíme do modelu algoritmus |buffer|:guilabel:`Obalová zóna`.
+- Vložíme do modelu algoritmus |mAlgorithmBuffer|:guilabel:`Obalová zóna`.
   Jako vstupní vrstvu nastavíme :guilabel:`'Náhodné body' from
   algorithm 'Náhodné body v rozsahu'` a dále nastavíme
   libovolnou fixní vzdálenost v metrech.
@@ -179,7 +174,7 @@ dat nebo co nám data sdělují.
 
    Dialogové okno algoritmu - pole pro zadání názvu výstupu.
 
-- Otevřeme (editace) algoritmus |buffer|:guilabel:`Obalová zóna`
+- Otevřeme (editace) algoritmus |mAlgorithmBuffer|:guilabel:`Obalová zóna`
   zadáme libovolný název finálního výstupu (např. :item:`Výstup`).
 
 Zadáním jména do textového pole pro výstup, nastavíme model, aby vytvořil 
@@ -193,6 +188,6 @@ Výsledek algoritmu však může dále sloužit jako vstup pro jiné algoritmy.
    Model, ve kterém bude výstupem vrstva obalových zón.
 
 .. figure:: images/modeler_out_model2.png 
-   :class: middle 
+   :class: middle
 
    Ukázka modelu z více výstupy.

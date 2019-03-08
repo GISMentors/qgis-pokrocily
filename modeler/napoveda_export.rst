@@ -1,7 +1,3 @@
-.. .. |iconSaveAsConsole| image:: ../images/icon/iconSaveAsConsole.png
-      :width: 1.5em
-
-   
 Tvorba nápovědy a export modelu
 ===============================
 
@@ -15,8 +11,9 @@ Tvorba nápovědy
 Nápověda modelu, slouží jednak k popisu jednotlivých operací, vstupů a
 výstupů tak i k doprovodným informacím jako je autor nebo verze
 modelu. Editaci nápovědy spustíme z okna modeláře pomocí ikony
-|help|. Takto vytvořená nápověda se potom bude zobrazovat při spuštění
-odelu v záložce :guilabel:`Nápověda` (:numref:`modelerhelp`)
+|mActionEditHelpContent|. Takto vytvořená nápověda se potom bude
+zobrazovat při spuštění odelu v záložce :guilabel:`Nápověda`
+(:numref:`modelerhelp`)
 
 .. figure:: images/modeler_help.png 
 

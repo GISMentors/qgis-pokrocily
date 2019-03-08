@@ -2,8 +2,6 @@
    :width: 1.5em
 .. |iterate| image:: ../images/icon/custom_iterate.png
    :width: 1.5em
-.. |gdal| image:: ../images/icon/gdal.png
-   :width: 1.5em
 
 Spouštění geoalgoritmů
 ======================
@@ -106,7 +104,7 @@ nevyplníme, automaticky se použije minimální rozsah vrstvy.
 ^^^^^^^^^^^^^^^^
 Číselné hodnoty se mohou objevovat ve dvou formátech - celé číslo (int) a číslo 
 s desetinnou čárkou (float). Zadat je lze ručně nebo pomocí tlačítek 
-|selectnumber|. Pomocí tlačítka :sup:`Daty definované přepsání` lze také
+|selectnumber|. Pomocí tlačítka |mIconDataDefine|:sup:`Daty definované přepsání` lze také
 použít hodnoty z atributů prvků nebo pomocí položky `Upravit...` otevřít 
 kalkulátor, ve kterém můžeme vytvořit vzorec pro výpočet hodnoty.
 
@@ -154,7 +152,7 @@ Praktická ukázka
 Ořez rastru
 ^^^^^^^^^^^
 
-Pomocí funkce GDAL |gdal| :guilabel:`Oříznout rastr podle rozsahu` vytvoříme 
+Pomocí funkce GDAL |providerGdal| :guilabel:`Oříznout rastr podle rozsahu` vytvoříme 
 výřez rastru EU-DEM pomocí rozsahu vybraným v mapovém okně. Výstupní soubor 
 necháme uložit do dočasných souborů.
 
@@ -162,11 +160,11 @@ necháme uložit do dočasných souborů.
    :class: large 
    :scale-latex: 40 
 
-   Ořezání rastru pomocí funkce |gdal| :guilabel:`Oříznout rastr podle rozsahu`. 
+   Ořezání rastru pomocí funkce |providerGdal| :guilabel:`Oříznout rastr podle rozsahu`. 
 
 Využití iterace
 ^^^^^^^^^^^^^^^
-Pomocí funkce GDAL |gdal| :guilabel:`Oříznout rastr podle vrstvy masky` 
+Pomocí funkce GDAL |providerGdal| :guilabel:`Oříznout rastr podle vrstvy masky` 
 ořežeme rastrovou vrstvu EU-DEM pomocí masky *velkoplošných chráněných území*. 
 Pro ořezání rastru jen pro naše vybraná území zaškrtneme u vstupní
 vrstvy možnost :guilabel:`Pouze vybrané prvky`. Aktivujeme iteraci a
@@ -177,7 +175,7 @@ vektorové vrstvy.
    :class: large 
    :scale-latex: 40 
 
-   Ořezání rastru vybranými prvky vrstvy pomocí funkce |gdal| 
+   Ořezání rastru vybranými prvky vrstvy pomocí funkce |providerGdal| 
    :guilabel:`Oříznout rastr podle vrstvy masky`. 
    
 .. figure:: images/geoproc_pract_2_2.png 

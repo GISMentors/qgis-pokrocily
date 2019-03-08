@@ -1,13 +1,3 @@
-.. |alg| image:: ../images/icon/alg.png
-   :width: 1.5em
-.. |qgis| image:: ../images/qgis_logo_old.png
-   :width: 1.5em
-.. |grass| image:: ../images/icon/grasslogo.png
-   :width: 1.5em
-.. |saga| image:: ../images/icon/custom_saga.png
-   :width: 1.5em
-.. |gdal| image:: ../images/icon/gdal.png
-   :width: 1.5em
 .. |raster-clip| image:: ../images/icon/raster-clip.png
    :width: 1.5em
    
@@ -47,10 +37,10 @@ odebírat pomocí tlačítek |symbologyAdd| a |symbologyRemove|. Dále lze
 nakonfigurovaný dávkový proces uložit |mActionFileSave| do souboru ve
 formátu :wikipedia:`JSON` nebo tento typ souboru nahrát
 |mActionFileOpen|. U algoritmů, kde je možná volba pokročilého
-nastavení se pro aktivaci těchto parametrů ukáže ikonka |alg|. Záložka
-záznam má totožnou funkci jako u samostatného procesu. Pokud chceme
-výsledné vrstvy načíst do projektu, je nutné zaškrtnout políčko
-:guilabel:`Načíst vrstvy po dokončení`.
+nastavení se pro aktivaci těchto parametrů ukáže ikonka
+|processingAlgorithm|. Záložka záznam má totožnou funkci jako u
+samostatného procesu. Pokud chceme výsledné vrstvy načíst do projektu,
+je nutné zaškrtnout políčko :guilabel:`Načíst vrstvy po dokončení`.
 
 .. figure:: images/geoproc_batch_win.png 
    :class: middle
@@ -102,7 +92,7 @@ příponou pořadového čísla nebo na základě vybraného vstupního parametr
 (název vrstvy, velikost bufferu atd., viz :numref:`batchout2`).
 
 .. warning:: Pokud v obecném nastavení možností zpracování neaktivujeme 
-	     |alg|:guilabel:`Použít název souboru pro název vrstvy` budou 
+	     |processingAlgorithm|:guilabel:`Použít název souboru pro název vrstvy` budou 
 	     výsledné vrstvy v panelu vrstev pojmenovávány podle algoritmu (viz. 
 	     :ref:`nastaveni` ). Samotné soubory však budou pojmenované podle naší 
 	     konfigurace výstupu.
@@ -133,7 +123,7 @@ Tvorba vícenásobné obalové zóny
 
 V případě, že potřebujeme kolem nějakého území vytvořit větší počet
 různě velkých obalových zón, je možné využít funkci
-|qgis|:guilabel:`Obalová zóna` v režimu dávkového procesu. V našem
+|mAlgorithmBuffer|:guilabel:`Obalová zóna` v režimu dávkového procesu. V našem
 příkladu vytvoříme z vrstvy velkoplošných chráněných území tři
 obalové zóny (1, 5 a 10 km).
 
@@ -175,8 +165,8 @@ K tomuto úkolu budeme potřebovat více rastrových vrstev, pokud nemáme,
 vytvoříme z digitálního modelu terénu (dmt) vrstvu sklonu svahů (Slope) a 
 orientace svahů (Aspect). K vytvoření vrstvy sklonu a orientace svahů jsme nyní 
 schopni využít více funkcí, mimo vestavěné funkce QGISu to jsou  např. GDAL 
-|gdal|:guilabel:`Sklon` a |gdal|:guilabel:`Aspekt` nebo využít externí 
-|grass|:grasscmd:`r.slope.aspect` nebo |saga|:guilabel:`Slope, aspect, 
+|providerGdal|:guilabel:`Sklon` a |providerGdal|:guilabel:`Aspekt` nebo využít externí 
+|providerGrass|:grasscmd:`r.slope.aspect` nebo |providerSaga|:guilabel:`Slope, aspect, 
 curvature`.
 
 .. figure:: images/geoproc_batch_pract2.png 
