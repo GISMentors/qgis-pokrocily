@@ -10,3 +10,4 @@ Různé
    vfk-ruian
    qgisserver
    atlas
+   vazby
