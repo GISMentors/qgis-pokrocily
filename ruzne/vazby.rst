@@ -127,5 +127,84 @@ ORP. Je nutné přidat novou položku vztahu.
    :class: medium
 
    Nastavení relace z ORP na požární stanici.
+   
+
+Vazební tabulka
+===============
+           
+Další možností jak vazby nastavit je využití samostatné tabulky pro párování
+prvků. Na ukázku tohoto provázání budeme používat data uložená v databázi.
+Jedná se opět o :file:`ORP` a :file:`vodni_plochy` z dibavodu (pouze ty co mají
+vložený název).
+Na obrázku je vidět, že každá vrstva má vlastní identifikátor.
+
+.. figure:: images/relation_db_id.png
+   :class: large
+
+   Identifikátory u obou vrstev uložených v databázi.
+   
+Nevýhodou použití samostatné vazební tabulky je fakt, že jedna vazba mezi
+prvkem ORP a vodní plochy se skládá z vazby z OPR na vazební tabulku, a z
+vazby z vazebn tabulky na vodní plochy. 
+Samotné zobrazení v detailu prvku se taky zkládá ze dvou částí.  
+   
+Vazebná tabulka znamená, že vznikne samostatná tabulka, která obsahuje
+dva atributy. Jeden je identifikátor :file:`ORP` a druhý je identifikátor 
+:file:`vodni_plochy`. Každý řádek reprezentuje jednu vazbu mezi dvěma prvky.
+V našem případě bychom potřebovali takovouto tabulku vytvořit na základě
+geometrického vztahu mezi jednotlivými prvky. 
+
+Nejjednodušší způsob jak takovouto tabulku vygenerovat je použít jednoduchý
+příkaz. Jedná se o způsob, který umožňuje vazby pouze zobrazovat a ne je
+editovat.
+
+Ukázka jednoduchého příkazu pro vygenerování vazební tabulky.
+
+.. code-block:: sql
+
+   CREATE TABLE vazby.vazebni_tabulka1 AS
+       SELECT orp.id AS orp_id
+              ,vn.id AS vn_id 
+             FROM vazby.orp orp
+             JOIN vazby.vodni_nadrze  vn
+		       ON ST_INTERSECTS(orp.geom, vn.geom)
+		      
+Takto vytvořenou tabulku spolu s :file:`ORP` :file:`vodni_plochy` přidáme
+do mapového okna. V případě vazební tabulky se jedná o vrstvu bez geometrie,
+tudíž se zobrazuje pouze jako tabulka.
+
+Pro nastavení vazby z ORP na vodní plochu musíme přidat záznamy do nastavení
+projektu.
+
+1. přidáme vazbu z ORP (id) na vazební tabulku (orp_id)
+2. přidáme vazbu z vazební tabulky (vn_id) na vodní nádrže (id)
+
+
+.. figure:: images/relation_mn_settings1.png
+   :class: large
+
+   Nastavení vazby M ku N  přes vazební tabulku.
+   
+V detailu prvku je ale vidět, že první část vazby není vypovídající, protože
+obsahuje pouze identifikátory. Každá položka se v detailu vykreslí samostatně.
+Tento způsob nemusí být vhodný pro všechny účely. 
+
+Jedním z řešení by mohlo být doplnit vybraný atribut přímo do vazební tabulky. 
+
+ 
+.. figure:: images/relation_feature_detail2.png
+   :class: medium
+
+   Detail prvku s vnořenou vazbou.
+   
+Pro dokončení by bylo vhodné doplnit vazbu i z vodní nádrže na ORP.
+
+
+Při ukládání dat v DB je výhodné používat různé nástroje, které ulehčí správu
+a automatizaci při správě údajů zabezpečujících vazby.
+
+
+   
+
 
 
