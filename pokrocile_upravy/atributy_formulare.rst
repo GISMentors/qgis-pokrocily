@@ -60,10 +60,6 @@ zobrazení).
    Obecné nastavení atributu a zobrazení v detailu prvku.
 
 
-Typy widgetů
-============
-
-
 Omezení
 =======
 
@@ -121,6 +117,45 @@ Tato část nastavení je velmi důležitá, protože dokáže zastoupit velké 
 práce.
    
    
+Typy widgetů
+============
+
+Pro různé datové typy lze nastavit různé widgety. Jedná se o specifický
+formulář s určitým chováním a vzhledem. Jejich škála pokrývá sirokou škálu
+od jednoduchých až po pokročilé varianty.
+
+- **Úprava textu**
+   Jedná se o základní typ editačního okna pro text. Jedinou volbou je možnost
+   používat víceřádkovou variantu. Pak je možné nastavit i obsah jako \"HTML\"
+- **Skrytý**
+   Název a ani obsah atributu nebude v detailu prvku zobrazen.
+- **Zaškrtávací pole**
+   Tento typ zobrazení vyžaduje definovat hodnotu, která bude zobrazovaná jako
+   zaškrtnutý stav a pak stav opačný. V atributová tabulce tedy budou nadále
+   zapisovány tyto hodnoty. Zaškrtávací pole bude zobrazeno v detailu prvku.
+- **Jedinečné hodnoty**
+   Z aktálních hodnot je vygenerován obsah rolovacího menu. Při editaci je pak
+   možné vybrat pouze z konkrétních hodnot. Pokud použijeme nastavení
+   |mActionCreateTable| :sup:`Editovatelný`, tak se atribut bude zobrazovat
+   jako editovatelný text a při vyplňování se bude doplňovat text podle
+   vygenerovaných možností. 
+- **Rozsah**
+   U čísledných atributů je možné stanovit minimální a maximální hodnotu spolu
+   s krokem. Graficky lze zvolit mezi kalsickým editovatelným oknem, nebo
+   grafickými nástroji.
+- **Datum/čas**
+   Pro atributy obsahující datum a/nebo čas je možné namapovat záznam podle
+   jeho formátu. Pro formát času je připojena rozsáhlá nápověda.
+   SOučástí je možnost použít vyskakovací kalendář. 
+- **Příloha**
+   Pokud atribut obsahuje validní cestu k souboru, nebo url, je možné ji pomocí
+   tohoto nastavení rovnou otevřít. Detailnější ukázka je v samostatné kapitole.
+   Je důležité, že lze pracovat, jak s relativními, tak s absolutními cestami.
+   V zobrazení je možné použít hyperlink. Pro obrázky a webové rozhraí je možné
+   nastavit přímo náhled.
+
+
+ 
 
 
 
