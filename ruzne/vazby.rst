@@ -155,6 +155,8 @@ odstranit. Další nástroje slouží na vytváření a mazání prvků s vazbou
    Vytvoří nový prvek v dcerinné tabulce a vytvoří rovnou vazbu. Pozor,
    nemá vlyv na ostatní atributy.
    
+Pozor, všechny úpravy vyžadují editační mód a je nutné změny uložit.
+   
 
 Vazební tabulka
 ===============

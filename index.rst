@@ -93,6 +93,7 @@ dlouhodobého plánování a hlavně z požadavků uživatelů.
    grass/index
    hydrologie/index
    3d/index
+   pokrocile_upravy/index
    ruzne/index
 
 *******
