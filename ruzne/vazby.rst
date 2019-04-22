@@ -128,6 +128,33 @@ ORP. Je nutné přidat novou položku vztahu.
 
    Nastavení relace z ORP na požární stanici.
    
+Editace vazeb
+=============
+
+Podobně jako klasické atributy, tak i vazby lze editovat.
+Nástroje pro editaci vazeb jsou zařazeny přímo v detailu prvku, ve vazebním
+atributu. 
+Základní nástroj editace je přidat vazbu na existující prvek, nebo ji naopak
+odstranit. Další nástroje slouží na vytváření a mazání prvků s vazbou.
+
+- |mActionLink| :sup:`Linkovat existující dceřinný prvek` 
+   Otevře dialog pro výběr prvků z dceřinné vrstvy, kde je možné označit
+   všechny prvky, které mají být propojeny vazbou. Po potvrzení ze všechny nové
+   vazby připíšou k exisutjícím.
+- |mActionUnlink| :sup:`Zrušit link na dceřinný prvek` 
+   Mezi všemi vezbními prvky je možné označit vybrané vaazební prvky. Po
+   nastavení výběru se aktivuje ikonka nástroje pro zrušení vazby. Prvky již
+   nebudou navázané, ale nevymažou se z vrstvy.
+- |mActionDeleteSelected| :sup:`Smazat dceřinný prvek` 
+   Funguje podobně jako předchozí nástroj s tím rozdílem, že nejenom zruší
+   vazby, ale i smaže prvek.
+- |mActionDuplicateFeature| :sup:`Duplikovat dceřinný prvek`    
+   Zduplikuje vybrané vazební prvky včetně vazby. Pozor na doplikování
+   identifikátoru.
+- |mActionCreateTable| :sup:`Přidat dceřinný prvek` 
+   Vytvoří nový prvek v dcerinné tabulce a vytvoří rovnou vazbu. Pozor,
+   nemá vlyv na ostatní atributy.
+   
 
 Vazební tabulka
 ===============
