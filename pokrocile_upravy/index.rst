@@ -1,6 +1,6 @@
-****************   
-Pokročilé úpravy
-****************
+**************************
+Pokročilé úpravy prostředí
+**************************
 
 QGIS umožňuje připůsobení na různých úrovních. V jednotlivých částech této
 kapitoly budou uvedeny různé okruhy úprav, které jsou možné.
