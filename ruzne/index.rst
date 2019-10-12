@@ -7,7 +7,7 @@ Různé
       
    geotag_obrazky
    grafy
-   vfk-ruian
    qgisserver
    atlas
    vazby
+   data-cuzk
