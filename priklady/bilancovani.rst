@@ -127,9 +127,27 @@ případě uložen do GPKG.
 Pro každou ZSJ je teď možné spočíst plochu ze všech dílčích plošek a nasčítat
 celkovou plochu pro všechny skupiny v ní zastoupené.
 
-3. sumarizace podle skupin v ZSJ
-================================
+3. sumarizace podle skupin v ZSJ v procentech
+=============================================
+Pomocí funkce **Rozpustit** (dissolve) je možné sloučit všechny plochy v rámci
+každé ZSJ spadající do stejné kategorie. Klíčové atributy jsou v tomto případě 
+dva - identifikace ZSJ a identifikace skupiny - `kod_zsj`,`kody_skupina`.
 
+.. figure:: images/b_dissolve_groups.png
+   :class: large
+   
+   Plochy v zájmovém území před a po sloučení, výběr atributů při použití
+   nástroje.
+
+Dalším krokem je výpočet procentuálního zastoupení dané skupiny. Přidá se nový
+atribut `podil`, který má datový typ `desetinné číslo` a požadovaný počet
+desetinných míst. Pomocí výrazu :item:`$area/"vymera_vypocet"*100` je možné
+spočítat procentuální podíl dané skupiny ploch na ploše ZSJ.
+
+.. figure:: images/b_fieldcalc_percent.png
+   :class: medium
+   
+   Výpočet nového atributu s podílem dané skupiny v procentech.
 
 4. přehledné zobrazení výsledků
 ===============================
