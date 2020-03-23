@@ -95,6 +95,7 @@ dlouhodobého plánování a hlavně z požadavků uživatelů.
    3d/index
    pokrocile_upravy/index
    ruzne/index
+   priklady/index
 
 *******
 Dodatky
