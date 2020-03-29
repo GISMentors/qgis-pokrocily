@@ -1,5 +1,5 @@
-Příklad - bilancování území
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Bilancování využití území
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Jednou z typických GIS úloh je tvorba bilancí vybrané datové sady za území.
 V tomto případě jde o ukázku bilancování dat tzv. současného stavu využití území
@@ -39,9 +39,9 @@ samostatnou tabulku a grafy.
 Příprava dat
 ============
 
-1. stáhnout data z rozhraní IPR Praha (nebo jsou předpřipravena v balíku dat)
+1. stáhnout data :file:`vyuziti_uzemi` z rozhraní IPR Praha (nebo jsou předpřipravena v balíku dat)
 2. územní členění Prahy (jsou součástí balíku dat, nebo stáhnout z RÚIAN)
-3. tabulka kódů a jejich členění (převedeno do :file:`kody.csv` souboru)
+3. tabulka kódů a jejich členění (převedeno do tabulky :file:`kody`, součást balíku dat)
 
 Před samotným provedením analýzy je potřeba udělat kontrolu geometrie pomocí
 nástroje **Zkontrolovat Platnost**. 
@@ -75,9 +75,9 @@ tak by se mohlo stát, že by součty jednolivých částí přesně neodpovída
 =================================
 
 Jednotlivý plochy  využití mají vždy určen atribut :item:`Kód`. 
-Rozdělení kódů do skupin  obsahuje soubor :file:`kody.csv`. Ten se do projektu
-přidá jako `textový soubor s oddělovači`. Po načtení se zobrazí jako tabulka
-bez geometrie. Obsahuje tři sloupečky - kód, textový popis kódu a skupinu, do
+Rozdělení kódů do skupin  obsahuje tabulka :file:`kody`. Ta je součástí `GPKG`.
+Po načtení se zobrazí jako tabulka
+bez geometrie. Obsahuje čtyři sloupečky - fid, kód, textový popis kódu a skupinu, do
 které je kód zařazen.
 Tyto hodnoty musí být přiřazeny ke geometrické vrstvě využití území.
 Ve vlastnostech vrstvy `vyuziti_uzemi` v sekci `Připojení` se vytvoří nové
@@ -152,6 +152,48 @@ spočítat procentuální podíl dané skupiny ploch na ploše ZSJ.
 4. přehledné zobrazení výsledků
 ===============================
    
+Pro pěhledné zobrazení statistiky za každou ZSJ je vhodné tabulku upravit.
+Jedná se o tzv. pivotování. Kdy se vytvoří slopce pro hodnoty z vybraných
+sloupců.
+Na tento úkol se použije zásuvný modul `Group Stats`, který se přidá
+standardním způsobem. Plugin rovnou spustíme.
+
+Jako první je nutné vybrat vrstvu, se kterou chceme pracovat. V tomto případě
+se jedné o výsledek z minulého kroku  - výsledek po rozpůštění s nově přidaným
+sloupcem. Celý proces nastavení záleží na požadavcích a je možné použít i jiný
+postup.
+
+Postupně je nutné zadat sloupce, které se zachovají - sekce `Rows`.
+Zde vybereme základní sloupce pro identifikaci `ZSJ` (`nazev, kod_2, vymera`).
+
+Druhý požadavkem je zadání sloupců, ze kterých hodnot se vygenerují nové
+samostatné sloupce. V tomto případě chceme sloupce za každou `skupinu`.
+Do sekce `Columns` proto vybereme `kody_SKUPINA`.
+
+Předpis pro výpočet se zadává do sekce `Value`. Pro tento příklad chceme,
+zby se spočetl podíl za každou skupinu. Vložíme tedy hodnoty `podil` a `sum`.
+V tomto případě je `podil` atribut  spočtený v předchozím korku a `sum` je
+řídící funkce použitá pro  přepočet - jednotlivé položky se budou sčítat.
+
+Po zadání všech potřebných parametrů se aktivuje tlačítko :item:`Calculate`,
+které pro zadané parametry spočítá požadovaný výsledek.
+
+.. figure:: images/b_group_stats.png
+   :class: large
+   
+   Pivotování tabulky pomocí nástroje Group Stats.
+   
+V náhledu je vidět zachované sloupce, ty nově vytvořené z hodnot v sloupci
+`kody_SKUPINA` a dopočtené hodnoty.
+   
+Data zle zkopírovat, nebo uložit jako `CSV`. V tabulkovém editoru je pak možné
+dále upravovat dle potřeby.
+
+
+.. tip:: Pro přehledné zobrazení je možné tabulku zpátky navázat na ZSJ a
+         například pomocí kartodiagramu symbolizovat jednotlivé poměry
+         zastoupení.
+
 
 
 

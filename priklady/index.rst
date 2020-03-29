@@ -6,4 +6,4 @@ Příklady
    :maxdepth: 2
       
 
-   bilancovani
+   bilancovani_uzemi
