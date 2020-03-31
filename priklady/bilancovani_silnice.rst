@@ -129,6 +129,41 @@ Je proto nutné udělat postupný ořez dle hierarchie jednotlivých tříd.
 Postupně se vždy vezmou dvě kategorie nejvyšších tříd. Ta nižší z nich se
 ořeže tou vyšší. Následně se pak spojí. Iterace se opakuje až po nejnižší
 třídu.
+
+První krok je tedy mezi kategorií 2 a 3. Použije se nástroj **Rozdíl**
+(difference).
+
+.. figure:: images/b_difference.png
+   :class: large
+   
+   Původní překrývající se vrstvy se pomocí nástroje upraví na hierarchicky ořezané.
+   
+   
+Takto upravené vrstvy se sloučí pomocí nástroje **Sloučit vektorové vrstvy** (merge).
+
+Zpracování pak postupuje na zpracování následující nižší třídy.
+Výsledkem je sloučená vrstva všech hierarchicky ořezaných vrstev s OP.
+
+
+.. figure:: images/b_merged.png
+   :class: medium
+   
+   Zobrazení výseldné vrstvy za pomoci částečné průhlednosti zobrazuje
+   nepřekrývající se prvky.
+
+
+5. statistika na požadované jednotky
+====================================
+
+Posledním krokem je vyhodnocení ploch za požadované jednotky.
+V tomto případě se jedná o `ZSJ`. Postup je stejný jako v předchozím
+příkladě, proto tady nebude popsaný.
+
+.. figure:: images/b_group_stats_roads.png
+   :class: medium
+   
+   Zobrazení tabulkového přehledu.
+
    
 
 
