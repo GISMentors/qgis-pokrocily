@@ -76,8 +76,6 @@ dlouhodobého plánování a hlavně z požadavků uživatelů.
    <http://training.gismentors.eu/geodata/qgis/data.zip>`__ (614
    MB).
 
-.. warning:: :red:`Toto je pracovní verze školení, která je aktuálně ve vývoji!`
-
 .. only:: html
              
    #####   
