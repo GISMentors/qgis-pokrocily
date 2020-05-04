@@ -65,7 +65,8 @@ dlouhodobého plánování a hlavně z požadavků uživatelů.
    :menuselection:`Možnosti --> Obecné`. Obsahově navazuje na školení
    :skoleni:`QGIS pro začátečníky <qgis-zacatecnik>`. K dispozici jsou
    i historické školící materiály k verzím QGIS :skoleni:`2.14
-   <qgis-pokrocily/2.14>` a :skoleni:`2.18 <qgis-pokrocily/2.18>`.
+   <qgis-pokrocily/2.14>`, :skoleni:`2.18 <qgis-pokrocily/2.18>` a
+   :skoleni:`3.4 <qgis-pokrocily/3.4>`.
 
 .. index::
    pair: datové sady; ke stažení
@@ -75,8 +76,6 @@ dlouhodobého plánování a hlavně z požadavků uživatelů.
    *Data ke školení* jsou stažitelná jako `zip archiv
    <http://training.gismentors.eu/geodata/qgis/data.zip>`__ (614
    MB).
-
-.. warning:: :red:`Toto je pracovní verze školení, která je aktuálně ve vývoji!`
 
 .. only:: html
              
