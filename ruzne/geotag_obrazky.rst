@@ -237,7 +237,7 @@ symbolů odpovídají kódům tabulí a jsou uloženy v jedné složce. Tuto
 složku pak umístíme do složky `.local/share/QGIS/QGIS3/profiles/default/svg`.
 Pokud složka neexistuje, tak ji vytvoříme.
 U operačního systému Windows se tato složka nachází  
-`USER\AppData\Roaming\QGIS\QGIS3\profiles\default\svg`.
+`USER\\AppData\\Roaming\\QGIS\\QGIS3\\profiles\\default\\svg`.
 
 .. note:: V případě budoucí publikace služby přes QGIS Server je vhodné použít
           pro umístění složky s ikonkami systémový adresář 
