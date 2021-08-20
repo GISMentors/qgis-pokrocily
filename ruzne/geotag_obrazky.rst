@@ -279,7 +279,7 @@ relativní cesty symbolu - `concat('/dopr_znaceni/',kod,'.svg')`.
 Pak ve vlastnostech vrstvy upravíme stylování. 
 Podstatné je vybrat typ symbolu :item:`SVG značka` a pomocí ikony
 |mIconDataDefine| z menu vybereme pole `icon_path`. V tomto případě je vhodné
-používat ikonky s velikostí 6 milimetrů.
+používat ikonky s velikostí 8 milimetrů.
 
 .. figure:: images/geotag_set_icon.png
    :class: large
