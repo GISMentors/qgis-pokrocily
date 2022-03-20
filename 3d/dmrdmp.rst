@@ -51,7 +51,8 @@ Pro import těchto dat  použijeme nástroj |mActionAddDelimitedTextLayer|
    příponou :file:`.txt`, je proto nutné v spodní pravé části změnit nastavení na
    :item:`Všechny soubory`.
 
-Pro nastavení použijeme vlastní oddělovač :item:`mezera`, **X** nastavíme jako sloupec :item:`field_1` a **Y** nastavíme jako :item:`field_2`. V rolovacím menu
+Pro nastavení použijeme vlastní oddělovač :item:`mezera`, **X** nastavíme jako sloupec :item:`field_1`, **Y** nastavíme jako :item:`field_2`
+a **Z** nastavíme jako :item:`field_3`. V rolovacím menu
 vybereme souřadnicový systém :item:`S-JTSK (EPSG:5514)`. 
 Jelikož soubor neobsahuje žádnou hlavičku a první řádek obsahuje přímo bod, tak musíme odstranit zatrhnutou možnost :item:`První záznam obsahuje názvy polí`.
 Po vizuální kontrole náhledu  můžeme pomocí tlačítka :item:`Přidat` načíst obsah souboru jako novou bodovou vrstvu. 
