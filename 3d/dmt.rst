@@ -79,15 +79,6 @@ Výstup z této analýzy je opět rastrový formát, dle nastavení použitého 
    možností je nastavení průhlednosti celé vrstvě konstantní hodnotou, např.
    Nastavením neprůhlednosti na 35% (ve vlastnostech vrstvy).
 
-   Další možností je nastavit různým intervalům  postupně klesající průhlednost.
-   (doplit proklik).
-   
-Na obrázku je vidět histogram hodnot a pak následně nastavené kategorie s
-průhledností. Na obrázku je vidět, že u intervalů hodnota 100 se nazývá
-průhledností a  znamená, že tato kategorie se nebude vykreslovat vůbec
-(nastavení průhlednosti nahoře funguje s opačnými hodnotami - nastavuje
-se tam neprůhlednost).
-
 
 
 
