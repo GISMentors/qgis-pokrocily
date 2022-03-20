@@ -59,8 +59,8 @@ dlouhodobého plánování a hlavně z požadavků uživatelů.
 
 .. only:: html
 
-.. important:: Školení je zaměřeno na aktuální LTR verzi **QGIS 3.4
-   Madeira**. V jiných verzích není zaručena funkčnost uvedených
+.. important:: Školení je zaměřeno na aktuální LTR verzi **QGIS 3.22
+   Białowieża**. V jiných verzích není zaručena funkčnost uvedených
    příkladů. Dále předpokládáme zapnutou *českou lokalizaci*,
    :menuselection:`Možnosti --> Obecné`. Obsahově navazuje na školení
    :skoleni:`QGIS pro začátečníky <qgis-zacatecnik>`. K dispozici jsou
@@ -122,6 +122,7 @@ Za `GISMentors <http://www.gismentors.cz/>`_:
 * `Ľudmila Furtkevičová <http://www.gismentors.cz/mentors/furtkevicova/>`_
 * `Oto Kaláb <http://www.gismentors.cz/mentors/kalab/>`_ 
 * `Martin Landa <http://www.gismentors.cz/mentors/landa>`_
+* `Jan Růžička <http://www.gismentors.cz/mentors/ruzicka>`_
 
 Text dokumentu
 --------------

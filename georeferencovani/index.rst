@@ -29,15 +29,13 @@ daty jako s prostorovými, musíme využít nástroj pro georeferencování.
 Postup
 ======
 
-1. Instalace pluginu
+1. Spuštění nástroje
 --------------------
 
-Nástroj pro georeferencování je možné nainstalovat přes Správce zásuvných
-modulů menu :menuselection:`Zásuvné moduly --> Spravovat a instalovat
-zásuvné moduly`. Plugin se jmenuje :item:`Georeferencovač GDAL` a je možné
-jej najít v :menuselection:`Rastr --> Georeferencér` 
+Nástroj pro georeferencování je součástí základního vybavení a najdeme
+jej v :menuselection:`Rastr --> Georeferencér`
 (:numref:`georeferencer-menu`).
-V pluginu se nachází 2 oddělená okna. V prvním se zobrazí zpracovávaný
+Nástroj obsahuje dvě části. V první se zobrazí zpracovávaný
 rastr a v druhém tabulka tzv. `GCP bodů - identických bodů`.
 
 .. _georeferencer-menu:
@@ -50,7 +48,7 @@ rastr a v druhém tabulka tzv. `GCP bodů - identických bodů`.
 2. Přidání zvoleného obrázku
 ----------------------------
 
-Prvním krokem po spuštění pluginu je přidání zvoleného rastru do
+Prvním krokem po spuštění je přidání zvoleného rastru do
 nástroje.  Pomocí tlačítka |mActionAddRasterLayer| :sup:`Otevřít
 rastr` zvolit požadovaný vstupní rastr.
 
