@@ -69,15 +69,14 @@ tato data číst. Tento nástroj pro tento úkol není potřebný.
 ===================================
 
 Pro vytvoření bodové vrstvy z jednotlivých fotografií použijeme funkci
-pluginu :item:`Import geotagged photos`.  
+pluginu :item:`Import photos`.
 Prvním vstupem je zadání adresáře, ve kterém se nacházejí požadované fotky.
-Pomocí volby :item:`Scan recursively` můžeme povolit
-prohledávání i podadresářů námi vybrané složky.
-Druhým krokem je zadání výstupního souboru v požadovaném formátu.
+Druhým krokem je zadání výstupního souboru ve formátu GPKG (řípadn ějiném formátu).
+Volitelně můžeme nastavit styly, kterými budou body vykresleny.
 
 .. figure:: images/import_photos.png
 
-   Nastavení pro zpracování geotagovaných fotografii do Shapefile vrstvy.
+   Nastavení pro zpracování geotagovaných fotografii do GPKG vrstvy.
 
 Po dokončení procesu se nová bodová vrstva přidá do mapového okna. 
 Naprostá většina zařízení, která dokáže dělat takto zpracovatelné fotografie
@@ -85,8 +84,8 @@ pracuje se souřadnicemi v systému *WGS - 84*. Výsledná vrstva má tudíž te
 souřadnicový systém (:epsg:`4326`).
 
 Pokud si otevřeme atributovou tabulku (:numref:`attribute-tab`), tak se
-tam nacházejí různé atributy. První atributy definují umístění fotky na disku.
-Další definují geometrii tak, jak ji detekovalo dané zařízení. 
+tam nacházejí různé atributy. Atributy definují geometrii, čas pořízení
+a umístění fotky na disku.
 
 .. _attribute-tab:
 
@@ -118,45 +117,6 @@ obrázek.
    :class: large
    
    Nastavení pro vykreslování obrázku.
-
-
-.. tip::
-   Pokud chceme data předávat dál, tak je dobré myslet na používání relativních
-   cest. V příkladě jsme použili absolutní cestu k obrázku pro jeho vykreslení.
-   Pokud bychom chtěli předat složku i se všemi daty dál, tak je ideální využít
-   relativní cestu. Pro toto nastavení jsou v  menu samostatná nastavení.
-
-   Celý projekt je uložen ve složce s názvem `import_fotek`. Přímo v
-   této složce je pak Shapefile, který vznikl importem geotagovaných
-   fotek, projekt a pak samotná složka s názvem `fotky`.
-
-   .. figure:: images/geotag_files.png
-      :class: small
-
-      Struktura uložení fotek, projektu a souboru ve formátu Shapefile.
-
-   Pomocí :item:`Kalkulačky polí` si přidáme nový atribut, který bude složen z
-   názvu složky, ve které jsou uloženy fotky (fotky), lomítka a hodnoty atributu
-   `filename`. Vytvoření nové hodnoty bude tedy definováno výrazem 
-   ``concat('foto/',"filename")``.
-
-   .. figure:: images/geotag_field_calc.png
-      :class: small
-
-      Vytvoření atributu s relativní cestou k obrázku.
-
-   Pak je nutné znovu nastavit nový atribut pro zobrazování fotky. 
-   Pokud je vrstva v režimu editace, tak je možné zobrazovat fotku i přímo
-   v atributové tabulce po kliknutí do její položky.
-
-   .. figure:: images/geotag_rel_path.png
-      :class: large
-
-      Detail prvku ri nastavení relativné cesty a přímo v atributové tabulce.
-
-   V rámci změny OS může dojít k problému se značením cesty. Pokud je stále k
-   dispozici název fotografie u daného prvku, tak si cestu můžete vyskládat
-   kdykoli znova.
 
 .. note::
 
