@@ -49,6 +49,22 @@ což znamená, že v průběhu výpočtu je možné provádět jiné úkony v QG
 Modelované objekty
 ------------------
 
-přidat ukázku zobrazení objektu z 3D polygonz (ukázka WKT, metadata, vizualizace)
+Pro zobrazení objektů na terénu je možné také využít jednoduché tvary, jako je
+koule, válec nebo krychle nebo jejich kombinace.
 
+Orientace os v 3d pohledu je kupodivu jiná než bychom očekávali, tedy pokud chceme posunout
+objekt nad terén, např. korunu stormu musíme tak učinit v ose Y.
 
+.. figure:: images/tvary.png
+   :class: middle
+
+.. figure:: images/vsb.png
+   :class: middle
+
+Jinou možností je vykreslení existujícího modelu. Pro vzykoušení můžeme stáhnout
+`jednoduchý model <https://free3d.com/3d-model/low_poly_tree-816203.html>`_. nebo
+si vytovřit vlastní v nějakém modelovacím nástroji jako je např.
+`Blender <http://blender.org>`_.
+
+.. figure:: images/simple_tree_model.png
+   :class: middle
