@@ -122,7 +122,7 @@ Pokud nenastavíme cestu nebo název
 souboru, výstup se nám automaticky uloží na disk do dočasných
 souborů. Pokud zadáme do pole název, vrstva se nám uloží do
 předdefinované složky (výchozí nastavení je složka s aktuálním
-profilem, viz :menuselection:`Nastavení --> Možnosti --> Zoracování
+profilem, viz :menuselection:`Nastavení --> Možnosti --> Zpracování
 --> Obecné --> Výstupní složka`). Pomocí tlačítka :item:`...` lze
 zvolit další možnosti uložení. Výstup je možné uložit do souboru,
 GeoPackage nebo PostGIS. Chování tvorby výstupního souboru
