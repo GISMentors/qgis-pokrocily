@@ -44,7 +44,3 @@ Python skriptu.
    :scale-latex: 40 
 
    Model exportovaný do souboru ve formátu PNG.
-
-#.. note:: V současné LTR verzi nelze exportovat model jako Python skript
-#          ,tak jak tomu bylo ve starších verzích, nicméně tato funkce
-#          bude v dalších verzích zpět implementována
