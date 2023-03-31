@@ -141,7 +141,7 @@ ve kterém můžeme algoritmus vymazat, deaktivovat nebo spustit jeho editaci
    Kontextové menu algoritmu v modelu.
 
 .. tip:: Ve spodní části dialogového okna každého algoritmu je 
-        parametr :guilabel:`Rodičovské algoritmy`, pomocí kterého lze nastavit 
+        parametr :guilabel:`Dependencies`, pomocí kterého lze nastavit 
         nadřazené algoritmy. Takto vybrané algoritmy se budou vždy spouštět před 
         tímto algoritmem (:numref:`algpar`).
 

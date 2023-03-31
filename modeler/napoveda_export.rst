@@ -35,6 +35,9 @@ Export modelu
 
 Kromě uložení modelu do souboru :file:`.model` můžeme pomocí ikony
 |mActionSaveMapAsImage| exportovat model jako obrázek ve formátu PNG.
+Ikona |mActionSaveasSVG| umožňuje export do formátu SVG. Do formátu PDF
+slouží k exportu ikona |mActionSaveAsPDF|. Ikona |mActionSaveAsScript| umožňuje export do 
+Python skriptu.
 
 .. figure:: images/modeler_exportpng.png 
    :class: middle 
@@ -42,6 +45,6 @@ Kromě uložení modelu do souboru :file:`.model` můžeme pomocí ikony
 
    Model exportovaný do souboru ve formátu PNG.
 
-.. note:: V současné LTR verzi nelze exportovat model jako Python skript
-          ,tak jak tomu bylo ve starších verzích, nicméně tato funkce
-          bude v dalších verzích zpět implementována
+#.. note:: V současné LTR verzi nelze exportovat model jako Python skript
+#          ,tak jak tomu bylo ve starších verzích, nicméně tato funkce
+#          bude v dalších verzích zpět implementována
