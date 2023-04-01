@@ -22,6 +22,7 @@ typů:
 - |pie-chart| :sup:`Koláčový graf`
 - |text| :sup:`Textový diagram`
 - |histogram| :sup:`Histogram`
+- |pruhovy| :sup:`Skládané pruhy`
 
 Poté je nutné pomocí tlačítek |mActionSignPlus| a |mActionSignMinus| vybrat ze
 seznamu jeden či více atributů, které chceme do diagramů přiřadit resp.

@@ -23,7 +23,7 @@ zobrazování daného obrázku jako atributu. Kompletní postup je rozepsán ní
 1. Vstupní obrazová data
 ========================
 
-Pokud chceme vidět data připojená k obrázku typu fotka, mlžeme použít nástroj
+Pokud chceme vidět data připojená k obrázku typu fotka, můžeme použít nástroj
 `ExifTool <http://www.sno.phy.queensu.ca/~phil/exiftool/>`_, který nám umožňuje 
 tato data číst. Tento nástroj pro tento úkol není potřebný.
 
@@ -71,7 +71,7 @@ tato data číst. Tento nástroj pro tento úkol není potřebný.
 Pro vytvoření bodové vrstvy z jednotlivých fotografií použijeme funkci
 pluginu :item:`Import photos`.
 Prvním vstupem je zadání adresáře, ve kterém se nacházejí požadované fotky.
-Druhým krokem je zadání výstupního souboru ve formátu GPKG (řípadn ějiném formátu).
+Druhým krokem je zadání výstupního souboru ve formátu GPKG (případně jiném formátu).
 Volitelně můžeme nastavit styly, kterými budou body vykresleny.
 
 .. figure:: images/import_photos.png
