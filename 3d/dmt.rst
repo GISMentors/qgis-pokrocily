@@ -33,8 +33,8 @@ Pomocí tlačítka |mActionSignPlus| přidáme  nastavení interpolované hodnot
 Další nastavení je metoda interpolace s volbou **lineární** nebo 
 **kubické** metody výpočtu. 
 
-Velikost a podrobnost výstupního rastru ovlivňují 2 základní nastavení. Prvním je :item:`rozsah` cílové vrstvy a druhým je :item:`velikost buňky`. Velikost buněk je dána počtem sloupců a řádek pokrývajících cílový rozsah vrstvy. Toto nastavení je nutno provést dle hustoty zdrojové vrstvy.
-V našem případě se jedná o body v mřížce 2,5 x 2 km. Pro naše potřeby budeme generovat DMT v rozlišení 0,5m. Rozsah zvolíme podle rozsahu vstupní vrstvy (načteme přes tlačítko :item:`...` a zvolíme vstupní vrstvu). Výstup uložíme ve formátu
+Velikost a podrobnost výstupního rastru ovlivňují 2 základní nastavení. Prvním je :item:`rozsah` cílové vrstvy a druhým je :item:`velikost výstupního rastru`. Velikost buněk je dána počtem sloupců a řádek pokrývajících cílový rozsah vrstvy. Toto nastavení je nutno provést dle hustoty zdrojové vrstvy.
+V našem případě se jedná o body v mřížce 2,5 x 2 km. Pro naše potřeby budeme generovat DMT v rozlišení 0,5 m. Rozsah zvolíme podle rozsahu vstupní vrstvy (načteme přes tlačítko :item:`...` a zvolíme vstupní vrstvu). Výstup uložíme ve formátu
 :file:`.tif` .
 
 
@@ -49,7 +49,7 @@ Výpočet stínovaného reliéfu
 
 Dle postupu z kurzu `QGIS pro začátečníky <http://training.gismentors.eu/qgis-zacatecnik/rastrova_data/rastr_terenni_analyzy.html#stinovany-relief-hillshade>`_ 
 vypočteme z DMT stínovaný reliéf ve formátu :file:`.tif`, kterému nastavíme ve
-vlastnostech průhlednost na 35%. Již při tomto zobrazení  působí území plasticky.
+vlastnostech průhlednost na 35 %. Již při tomto zobrazení  působí území plasticky.
 
 
 Drsnost terénu
@@ -77,7 +77,7 @@ Výstup z této analýzy je opět rastrový formát, dle nastavení použitého 
    Tento typ výstupu patří do skupiny, kde je nutné najít vhodné nastavení
    symbologie vrstvy, aby její zobrazení  mělo správný efekt. Nejjednodušší
    možností je nastavení průhlednosti celé vrstvě konstantní hodnotou, např.
-   Nastavením neprůhlednosti na 35% (ve vlastnostech vrstvy).
+   Nastavením neprůhlednosti na 35 % (ve vlastnostech vrstvy).
 
 
 

@@ -51,17 +51,9 @@ detailu prvku.
 - |checkbox| **Popisek navrch** 
    Zaškrtávací políčko, které zabezpečí, že v detailu prvku se název atributu a
    jeho obsah bude zobrazovat na dvou oddělených řádcích.  
-  
-Na obrázku je vidět ukázku nastavení spolu s tím jak se nastavení projeví v
-detailu prvku. V detailu se projevuje i fakt, že není povolená editace (jiné
-zobrazení).
-
-.. figure:: images/base_settings.png
-   :class: large
-
-   Obecné nastavení atributu a zobrazení v detailu prvku.
-
-
+- |checkbox| **Reuse last entered value**
+   Do názvu atributu se propíše poslední požutá hodnota
+      
 Omezení
 =======
 
@@ -75,12 +67,12 @@ V této sekci je možné ovlivnit obsah atributů
    Bez ohledu na symbol je možné prvek uložit. 
    Pokud je nutné zamezit tomu, aby bylo možné prázdnou hodnotu vložit, tak je
    potřebné zašktrnout ješťě nově aktivovanou možnost nastavení -  |checkbox|
-   :sup:`Enforce not null constraint`. 
+   :sup:`Vynutit nenulové omezení`. 
 - |checkbox| **Unikátní** 
    Kontroluje unikátnost záznamu při jeho editaci. Kontrola funguje na stejném
    principu jako u předchozího nastavení - pomocí barevných statusů.
    Pro zamezení editace proti tomuto pravidlu je zapotřebí použít ještě
-   dodatečné nastavení |checkbox| :sup:`Enforce unique constraint`.
+   dodatečné nastavení |checkbox| :sup:`Vynutit nenulové omezení`.
 - **Výraz**
    Pro zadávané hodnoty je možné nastavit kontrolu formou výrazu. Například
    na délku vkládané hodnoty, obsah pouze nečíselných znaků a mnoho jiných.
@@ -88,7 +80,7 @@ V této sekci je možné ovlivnit obsah atributů
    Slouží pro popsání zadaného výrazu tak, aby bylo možné ho pak lehce zobrazit
    jako poznámku. Zobrazí se v detailu prvku po najetí myši na symbol statusu
    na konci řádku.
-- |checkbox| Enforce expression constraint
+- |checkbox| Vynutit omezení výrazů
    Jako u ostatních kontrol v této sekci slouží pro vynucení dodržení kontroly
    výrazem u vkládaného atributu. 
 
@@ -110,7 +102,7 @@ Tato nastavení je možné provést v sekci "Výchozí" pomocí následujících
    Výraz je možné složit v klasickém okně **Expression dialog**.
    Výchozí hodnota se objeví v detailu prvku hned po zadání nového prvku.
    Náhled hodnoty je vidět v řádku přímo pod nastavením.
-- |checkbox| Apply default value on update
+- |checkbox| Použít výchozí hodnotu pro aktualizaci
    Pokud se jedná o atribut, který se mění v návaznosti na geometrii, tak je
    výhodné použít toto nastavení. Zabezpečí, že se hodnota bude generovat znova
    při každé změně (jak geometrické, tak atributové).
@@ -126,6 +118,12 @@ Pro různé datové typy lze nastavit různé widgety. Jedná se o specifický
 formulář s určitým chováním a vzhledem. Jejich škála pokrývá širokou škálu
 od jednoduchých až po pokročilé varianty.
 
+- **Binární (BLOB)**
+   Slouží ke vložení obrázku do hodnoty atributu.
+- **JSON View**
+   Hodnota atributu je zapsána jako formát JSON.
+- **Číselník**
+   Hodnoty atributů jsou omezeny na předem vymezený rozsah hodnot.
 - **Úprava textu**
    Jedná se o základní typ editačního okna pro text. Jedinou volbou je možnost
    používat víceřádkovou variantu. Pak je možné nastavit i obsah jako "HTML".
@@ -173,7 +171,7 @@ od jednoduchých až po pokročilé varianty.
    
 Speciální typy:  
 
-- **Vztah**
+- **Reference vztahů**
    Pokud je vrstva součástí nastavené relace, tak je v přehledu vidět
    atribut typu vztah. Nastaven je typ vazby.
 - **Seznam**
