@@ -1,0 +1,406 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Obrazová data jako součást vektorů (práce s geotagovanými fotografiemi) &#8212; Školení QGIS pro pokročilé</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Tvorba kartodiagramů" href="grafy.html" />
+    <link rel="prev" title="Různé" href="index.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení QGIS pro pokročilé</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="index.html" title="Různé"
+             accesskey="P">předchozí</a> |
+          <a href="grafy.html" title="Tvorba kartodiagramů"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="obrazova-data-jako-soucast-vektoru-prace-s-geotagovanymi-fotografiemi">
+<h1>Obrazová data jako součást vektorů (práce s geotagovanými fotografiemi)<a class="headerlink" href="#obrazova-data-jako-soucast-vektoru-prace-s-geotagovanymi-fotografiemi" title="Permalink to this heading">¶</a></h1>
+<p>Možnost různě kombinovat různorodá data je čím dál víc dostupná. Jedním z běžných
+požadavků se stává možnost přiřadit obrázek k vektorovým datům jako jakýkoli
+jiný atribut. Způsobů jak naložit s takovým požadavkem je vícero. Jednou z
+možností je mít atribut, ve kterém je zapsán název souboru, který k jednotlivým
+záznamům patří. To umožňuje jednoznačné přiřazení obrázku k záznamu. Pokud je ale
+obrázek zdrojem informací a chceme ho vidět, tak ho pak musíme otevřít
+samostatně v prohlížeči obrázků.
+QGIS však nabízí možnost zobrazit přímo v detailu daného prvku. Jednotlivé
+kroky pro nastavení jsou popsány níže.</p>
+<section id="vyuziti">
+<h2>Využití<a class="headerlink" href="#vyuziti" title="Permalink to this heading">¶</a></h2>
+<p>Příkladem využití je pořizování geotagovaných fotografií (fotografie s určeným místem
+jejího pořízení). V současné době je možné dělat takovéto záznamy i s běžnými
+mobilními telefony (je však nutné brát v potaz přesnost určení polohy).
+Proces zpracování pak pozůstává z načtení dat jako vektorové vrstvy a nastavení
+zobrazování daného obrázku jako atributu. Kompletní postup je rozepsán níže.</p>
+</section>
+<section id="vstupni-obrazova-data">
+<h2>1. Vstupní obrazová data<a class="headerlink" href="#vstupni-obrazova-data" title="Permalink to this heading">¶</a></h2>
+<p>Pokud chceme vidět data připojená k obrázku typu fotka, můžeme použít nástroj
+<a class="reference external" href="http://www.sno.phy.queensu.ca/~phil/exiftool/">ExifTool</a>, který nám umožňuje
+tato data číst. Tento nástroj pro tento úkol není potřebný.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Instalace na operačním systému <em>Linux</em> je možná pomocí
+instalačního balíčku. Pro instalaci na <em>Windows</em> je nutné stáhnout
+příslušnou složku (spouští se pomocí <cite>.exe</cite> souboru).</p>
+<div class="notecmd admonition">
+<p class="admonition-title">Instalace ExifTool z příkazové řádky</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>exiftool
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Pokud si chcete prohlédnout informace vztažené k danému
+obrázku, tak obrázek jednoduše otevřete v <em>ExifTool</em>.  Ve <em>Windows</em>
+tak uděláte pomocí drag-and-drop, v Linuxu například pomocí příkazu
+<code class="docutils literal notranslate"><span class="pre">exiftool</span> <span class="pre">nazev_obrazku.jpg</span></code>.  Výpis obsahuje informace od
+definice zařízení, parametry snímku, definici polohy až po detailní
+parametry z času tvorby snímku.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>exiftool nazev_obrazku.jpg
+
+======== WP_20160403_13_48_24_Pro.jpg
+ExifTool Version Number         : 9.46
+File Name                       : WP_20160403_13_48_24_Pro.jpg
+Image Width                     : 1840
+Image Height                    : 3264
+
+...
+
+GPS Latitude                    : 50 deg 7&#39; 37.74&quot; N
+GPS Longitude                   : 14 deg 27&#39; 11.27&quot; E
+GPS Position                    : 50 deg 7&#39; 37.74&quot; N, 14 deg 27&#39; 11.27&quot; E
+
+...
+</pre></div>
+</div>
+</div>
+</section>
+<section id="import-fotek-do-vektorove-vrstvy">
+<span id="import"></span><h2>2. Import fotek do vektorové vrstvy<a class="headerlink" href="#import-fotek-do-vektorove-vrstvy" title="Permalink to this heading">¶</a></h2>
+<p>Pro vytvoření bodové vrstvy z jednotlivých fotografií použijeme funkci
+pluginu <span class="item">Import photos</span>.
+Prvním vstupem je zadání adresáře, ve kterém se nacházejí požadované fotky.
+Druhým krokem je zadání výstupního souboru ve formátu GPKG (případně jiném formátu).
+Volitelně můžeme nastavit styly, kterými budou body vykresleny.</p>
+<figure class="align-center" id="id2">
+<img alt="../_images/import_photos.png" src="../_images/import_photos.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 135 </span><span class="caption-text">Nastavení pro zpracování geotagovaných fotografii do GPKG vrstvy.</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Po dokončení procesu se nová bodová vrstva přidá do mapového okna.
+Naprostá většina zařízení, která dokáže dělat takto zpracovatelné fotografie
+pracuje se souřadnicemi v systému <em>WGS - 84</em>. Výsledná vrstva má tudíž ten samý
+souřadnicový systém (<a class="reference external" href="http://epsg.io/4326">EPSG:4326</a>).</p>
+<p>Pokud si otevřeme atributovou tabulku (<a class="reference internal" href="#attribute-tab"><span class="std std-numref">Obr. 136</span></a>), tak se
+tam nacházejí různé atributy. Atributy definují geometrii, čas pořízení
+a umístění fotky na disku.</p>
+<figure class="align-center" id="id3">
+<span id="attribute-tab"></span><img alt="../_images/geotag_attr_table.png" class="large" src="../_images/geotag_attr_table.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 136 </span><span class="caption-text">Ukázka atributové tabulky po importu geotagovaných fotografií.</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="vykreslovani-obrazku-v-detailu-prvku">
+<h2>3. Vykreslování obrázku v detailu prvku<a class="headerlink" href="#vykreslovani-obrazku-v-detailu-prvku" title="Permalink to this heading">¶</a></h2>
+<p>Pokud má vrstva jako atribut zapsanou cestu k obrázku (nebo přímo název
+souboru), tak je možné zobrazovat tento obrázek při zobrazení detailu prvku.</p>
+<p>Ve vlastnostech vrstvy si otevřeme záložku <span class="item">Formulář atributů</span>, kde se
+nachází přehled a nastavení všech atributů.
+Při kliknutí na položku atributu, která obsahuje cestu k originální fotce se
+otevře menu pro nastavení této položky. V našem případě se jedná o atribut
+<cite>photo</cite>. Klíčové je zejména nastavení v části  <span class="item">Typ widgetu</span>, kde zvolíme
+typ <span class="item">Příloha</span> a nastavíme další dodateční parametry pro jeho
+vykreslování.</p>
+<p>Při identifikaci prvku v mapovém okně pomocí <a class="reference internal" href="../_images/mActionIdentify.png"><img alt="mActionIdentify" src="../_images/mActionIdentify.png" style="width: 1.5em;" /></a>
+<sup>Identifikovat prvky</sup> se otevře detail prvku, kde je vykreslen požadovaný
+obrázek.</p>
+<figure class="align-center" id="id4">
+<img alt="../_images/geotag_set_image.png" class="large" src="../_images/geotag_set_image.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 137 </span><span class="caption-text">Nastavení pro vykreslování obrázku.</span><a class="headerlink" href="#id4" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Po úspěšném importu geotagovaných fotografií do souboru ve formátu
+Shapefile je možné s nimi pracovat jako s běžnými vektorovými daty.
+Například je možné je připojit na základě prostorové analýzy k
+jiným datům.  Příkladem z praxe může být pořízení fotek technických
+objektů, o kterých již máme atributové záznamy ve vektorové vrstvě.
+Postupem popsaným v této části školení z nich dostaneme vektorová
+data, kterých atributy je možno například pomocí <span class="item">Připojit
+atributy podle umístění</span> připojit k původním datům.</p>
+</div>
+</section>
+<section id="dalsi-zpracovani">
+<h2>Další zpracování<a class="headerlink" href="#dalsi-zpracovani" title="Permalink to this heading">¶</a></h2>
+<p>Tvorba vektorových dat pomocí pořizování geotagovaných fotografií může mít různé
+možnosti využití.
+Jednou z nich může být mapování prvků za účelem tvorby evidence. Ve výše
+uvedeném příkladu jsme z pořízených fotografií udělali  bodovou vektorovou
+vrstvu, kde je možné každý prvek vidět na fotografii.
+Obrázek zachycuje velké množství informací, které se běžně evidují formou
+atributů. Z obrázku je možné tyto atributy jednoduše určit a vytvořit tak
+běžnou evidenci.</p>
+<p>U dopravného značení se určují víceré parametry (kód tabule, ukotvení,
+provedení a další). Většinou slouží k vytvoření mapového výstupu a přehledné
+tabulky s určenými atributy.
+Vytvoření jednoduchého mapového výstupu je popsáno v dalších krocích.</p>
+<section id="definice-dopravni-tabulky">
+<h3>1. Definice dopravní tabulky<a class="headerlink" href="#definice-dopravni-tabulky" title="Permalink to this heading">¶</a></h3>
+<p>Prvním krokem pro znázornění dopravního značení je nutnost identifikovat
+jednotlivé značky v místě jejich výskytu.
+V případě, že by na jednom místě byla maximálně jedna dopravní tabule, tak by
+stačilo přidat atribut pro její kód.
+Protože je ale běžné, že se na jednom místě nachází vyšší počet dopravních
+tabulí, tak je nutné tuto situaci ošetřit.</p>
+<p>Prvním krokem je přidání evidovaných atributů.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id_kotvy</span></code> (celé číslo, výchozí hodnota nastavena pomocí proměnné
+<code class="docutils literal notranslate"><span class="pre">&#64;row_number</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kod</span></code> (text - bez vyplnění, je nutno jej určit z obrázku)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">poradi</span></code> (celé číslo, výchozí hodnota 1 - v případě více tabulí
+na jedné kotvě se hodnota upraví)</p></li>
+</ul>
+<figure class="align-center" id="id5">
+<img alt="../_images/geotag_add_attribute.png" class="large" src="../_images/geotag_add_attribute.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 138 </span><span class="caption-text">Přidání jednotlivých atributů (id_kotvy, kod, poradi) a jejich definování.</span><a class="headerlink" href="#id5" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Druhým krokem je určování kódu jednotlivým prvkům. Pokud se na jedné
+kotvě nachází vícero tabulí, tak musíme vytvořit adekvátní počet prvků
+zkopírováním původního. Jednotlivé prvky se budou vykreslovat
+<a class="reference external" href="http://cs.wikipedia.org/wiki/SVG">SVG</a> značkou podle atributu kódu. Proto musíme prvky
+uspořádat dle jejich skutečného pořadí ze shora dolů a toto i zapsat
+jako atribut (rozestup záleží na velikosti ikon a měřítku.)  Příklad
+výchozího a upraveného stavu je na <a class="reference internal" href="#copy-feature"><span class="std std-numref">Obr. 139</span></a>.</p>
+<figure class="align-center" id="id6">
+<span id="copy-feature"></span><img alt="../_images/geotag_edit_attr.png" class="large" src="../_images/geotag_edit_attr.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 139 </span><span class="caption-text">Původní a upravené prvky definující dopravní tabule umístěné na jedné kotvě.</span><a class="headerlink" href="#id6" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Výsledkem jsou záznamy pro každou dopravní tabuli, které mají určený
+identifikátor umístění, pořadí a kód dopravní tabule.</p>
+</section>
+<section id="ulozeni-svg-symbolu">
+<h3>2. Uložení SVG symbolů<a class="headerlink" href="#ulozeni-svg-symbolu" title="Permalink to this heading">¶</a></h3>
+<p>Jednotlivé prvky budeme vykreslovat SVG znakem. Názvy jednotlivých
+symbolů odpovídají kódům tabulí a jsou uloženy v jedné složce. Tuto
+složku pak umístíme do složky <cite>.local/share/QGIS/QGIS3/profiles/default/svg</cite>.
+Pokud složka neexistuje, tak ji vytvoříme.
+U operačního systému Windows se tato složka nachází
+<cite>USER\AppData\Roaming\QGIS\QGIS3\profiles\default\svg</cite>.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>V případě budoucí publikace služby přes QGIS Server je vhodné použít
+pro umístění složky s ikonkami systémový adresář
+<cite>/usr/share/qgis/svg/</cite>. Stejný obsah by měl být nakopírován i na
+server. Projekt se pak bude chovat nezávisle na jeho umístění a vždy
+bude používat systémové ikony (základní nebo rozšířené).
+Pro kopírování do systémového adresáře musíme použít práva
+superuživatele <cite>root</cite>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>cp<span class="w"> </span>-a<span class="w"> </span>/source/.<span class="w"> </span>/usr/share/qgis/svg/dopr_znaceni/
+</pre></div>
+</div>
+</div>
+</section>
+<section id="nastaveni-stylovani-objektu">
+<h3>3. Nastavení stylování objektů<a class="headerlink" href="#nastaveni-stylovani-objektu" title="Permalink to this heading">¶</a></h3>
+<p>Dalším krokem je zobrazení prvků podle atributu s kódem dopravní značky.
+Jednotlivé symboly však chceme vykreslit značkou, která je umístěná ve složce
+<cite>dop_znaceni</cite> a má příponu <cite>.svg</cite>. Vytvoříme tedy nový atribut s hodnotou
+relativní cesty symbolu - <cite>concat(‚/dopr_znaceni/‘,kod,‘.svg‘)</cite>.</p>
+<figure class="align-center" id="id7">
+<img alt="../_images/geotag_icon_path.png" class="small" src="../_images/geotag_icon_path.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 140 </span><span class="caption-text">Určení relativní cesty k ikoně podle určeného kódu dopravní tabule.</span><a class="headerlink" href="#id7" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Použití kalkulačky polí funguje jednorázově. Pro takovýto případ je
+výhodné použít nástroj, který automaticky vygeneruje požadovaný
+složený text při každé změně.
+Ve vlastnostech vrstvy, záložce <span class="item">Formulář atributů</span>, kde označíme
+vlastnost <cite>icon_path</cite>.</p>
+<figure class="align-center" id="id8">
+<img alt="../_images/geotag_auto_update.png" class="large" src="../_images/geotag_auto_update.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 141 </span><span class="caption-text">Automatické generování hodnoty při změně hodnoty podle předpisu.</span><a class="headerlink" href="#id8" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</div>
+<p>Pak ve vlastnostech vrstvy upravíme stylování.
+Podstatné je vybrat typ symbolu <span class="item">SVG značka</span> a pomocí ikony
+<a class="reference internal" href="../_images/mIconDataDefine.png"><img alt="mIconDataDefine" src="../_images/mIconDataDefine.png" style="width: 1.5em;" /></a> z menu vybereme pole <cite>icon_path</cite>. V tomto případě je vhodné
+používat ikonky s velikostí 8 milimetrů.</p>
+<figure class="align-center" id="id9">
+<img alt="../_images/geotag_set_icon.png" class="large" src="../_images/geotag_set_icon.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 142 </span><span class="caption-text">Nastavení stylování podle atributu s umístěním svg symbolu a ukázka výsledku.</span><a class="headerlink" href="#id9" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Parametry jako je pozice, nebo rotace, je možné v rámci projektu ukládat i
+mimo primární atributové tabulky. Pokud například chceme pracovat s rotací
+popisků individuálně, ale nechceme aby byly řídící hodnoty součástí atrbutů,
+tak nastavíme jejich ukládání do souborové databázy projektu jako tzv.
+pomocná data` (auxiliary).
+Jako příklad použijeme rotaci číseldné hodnoty pořadí značky na kotvě. Ve
+vlastnostech vrstvy u položky umístění, zaškrtneme v menu položku <em>Store Data
+in the Project</em>. Následně se otevře dialogové okno, ve které zvolíme atribut
+pomocí kterého se vrstvy budou dát navázat (primární klíč, identifikátor).</p>
+<figure class="align-center" id="id10">
+<img alt="../_images/geotag_temp_rotation.png" class="large" src="../_images/geotag_temp_rotation.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 143 </span><span class="caption-text">Výběr nastavení rotace napojené na databázi projektu a výběk klíče.</span><a class="headerlink" href="#id10" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Pak je možné použít nástroj na manuální rotaci prvnků, hodnoty se budou aktualizovat přímo v databázi projektu.</p>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>Ukázat náhled na db projektu a ukázat asistenta pro zadání
+dalších možností</p>
+</div>
+</section>
+<section id="urceni-rotace">
+<h3>4. Určení rotace<a class="headerlink" href="#urceni-rotace" title="Permalink to this heading">¶</a></h3>
+<p>Posledním krokem je rotování ikon. Jednotlivé ikony by se měli rotovat podle
+reálného umístění v terénu.
+Takovéto natočení lze uplatnit i pro vykreslování v mapovém okně. Rotaci lze
+určit hromadně, ale v tomto případě to není dostačující.
+Ideální je přidat atribut rotace, kde se definuje celočíselná hodnota pootočení
+požadovaného směru vůči směru na sever (jde o hodnotu azimutu, kde lze zadávat i
+záporná čísla -10 = 350).</p>
+<p>Po vyplnění atributu u všech prvků nastavíme položku Rotace pomocí
+<a class="reference internal" href="../_images/mIconDataDefine.png"><img alt="mIconDataDefine" src="../_images/mIconDataDefine.png" style="width: 1.5em;" /></a> na atribut <cite>rotace</cite>.</p>
+<figure class="align-center" id="id11">
+<img alt="../_images/geotag_icon_rotation.png" class="large" src="../_images/geotag_icon_rotation.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 144 </span><span class="caption-text">Nastavení rotace symbolu podle hodnoty atributu a ukázka výsledku.</span><a class="headerlink" href="#id11" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Některá zařízení jsou schopna určovat a i ukládat informace o orientaci
+přístoje.
+U takovýchto přístrojů se tedy v exif datech objeví takováto položka:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>...
+
+GPS<span class="w"> </span>Img<span class="w"> </span>Direction<span class="w"> </span>Ref<span class="w">           </span>:<span class="w"> </span>True<span class="w"> </span>North
+GPS<span class="w"> </span>Img<span class="w"> </span>Direction<span class="w">               </span>:<span class="w"> </span><span class="m">32</span>.52336904
+<span class="w"> </span>...
+</pre></div>
+</div>
+<p>Dále je pak možné rotaci symbolů nastavit přímo z toho atributu.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../georeferencovani/index.html">Georeferencování obrazových dat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geoprocessing/index.html">Nástroje zpracování</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeler/index.html">Grafický modelář</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grass/index.html">Zásuvný modul GRASS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hydrologie/index.html">Ukázka analýzy - hydrologie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3d/index.html">Práce s 3D daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pokrocile_upravy/index.html">Pokročilé úpravy prostředí</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Různé</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Obrazová data jako součást vektorů (práce s geotagovanými fotografiemi)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grafy.html">Tvorba kartodiagramů</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qgisserver.html">QGIS Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="atlas.html">Tvorba atlasu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vazby.html">Vazby mezi vrstvami</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-cuzk.html">Práce s daty ČÚZK (RÚIAN, VFK, …)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../priklady/index.html">Příklady</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="index.html" title="Různé"
+              >předchozí</a> |
+            <a href="grafy.html" title="Tvorba kartodiagramů"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>3D geometrie &#8212; Školení QGIS pro pokročilé</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Profil terénu" href="profiles.html" />
+    <link rel="prev" title="Vizualizace ve 3D" href="3d_map_view.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení QGIS pro pokročilé</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="3d_map_view.html" title="Vizualizace ve 3D"
+             accesskey="P">předchozí</a> |
+          <a href="profiles.html" title="Profil terénu"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="d-geometrie">
+<span id="dgeometry"></span><h1>3D geometrie<a class="headerlink" href="#d-geometrie" title="Permalink to this heading">¶</a></h1>
+<p>Postup pomocí kterého jsme vytvořili DMT je postup, který nepracuje s objekty,
+které by měli geometrii ve 3D. Pouze obsahují atribut s výškou.</p>
+<p>Pomocí importu je možné nastavit geometrii pouze jako <strong>X</strong> a <strong>Y</strong> i když
+soubor obsahuje Z-ovou souřadnici. Proto je nutné tuto souřadnici dodatečně
+přidat z existujícího atributového pole.
+V processingovém menu buď vyhledáme nástroj podle názvu, nebo jeho části
+<strong>Nastavit Z hodnotu</strong> (Set Z value). Nástroj se nachází ve skupině nástrojů QGIS ve složce “Vektorová geometrie”.</p>
+<section id="vytvoreni-3d-geometrie-z-2d">
+<h2>Vytvoření 3D geometrie z 2D<a class="headerlink" href="#vytvoreni-3d-geometrie-z-2d" title="Permalink to this heading">¶</a></h2>
+<p>Nastavení vyžaduje výběr správné vrstvy v rolovacím menu v první části a
+následně pravidlo pro přiřazení Z-ové hodnoty. První volbou je možnost zadání konstantní hodnoty, což není pro naše potřeby vhodné. Pro přiřazení hodnoty
+atributového pole je nutné použít nastavení dostupné přes ikonku <span class="item">Daty definované přepsání</span>. Pod položkou menu <span class="item">Typ pole:int, double, řetězec</span>
+jsou v nabídce všechny atributová pole, které je možné použít pro nastavení
+Z-ové hodnoty.
+Po úspěšném nastavení změní původní ikona svou barvu na žlutou.
+Jako výsledek je vygenerován nový výstupní soubor, dle zadání v parametru
+<span class="item">Z přidáno</span>.Při nastavení nástroje s parametrem <span class="item">Otevřít výstupní
+soubor po doběhnutí algoritmu</span> se výsledek po skončení výpočtu přidá do panelu
+vrstev jako nová položka. Nástroj se spustí pomocí <span class="item">Spustit na pozadí</span>,
+což znamená, že v průběhu výpočtu je možné provádět jiné úkony v QGISu.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Ověřit si, zda je geometrie opravdu nastavená včetně Z-ové souřadnice je
+možné ve vlastnostech dané vrstvy v záložce “Informace” v sekci
+“Informace od poskytovatele”. Jak je vidět na obrázku položka
+“Geometrie” má vypsanou hodnotu <strong>Point(Point25D)</strong>, co je jednen z formátů
+zápisu 3D geometrie.</p>
+<figure class="align-center">
+<img alt="../_images/geometry_3d.png" class="small" src="../_images/geometry_3d.png" />
+</figure>
+<p>Zápis typu geometrie ve vlastnostech vrstvy.</p>
+</div>
+</section>
+<section id="modelovane-objekty">
+<h2>Modelované objekty<a class="headerlink" href="#modelovane-objekty" title="Permalink to this heading">¶</a></h2>
+<p>Pro zobrazení objektů na terénu je možné také využít jednoduché tvary, jako je
+koule, válec nebo krychle nebo jejich kombinace.</p>
+<p>Orientace os v 3d pohledu je kupodivu jiná než bychom očekávali, tedy pokud chceme posunout
+objekt nad terén, např. korunu stormu musíme tak učinit v ose Y.</p>
+<figure class="align-center">
+<img alt="../_images/tvary.png" class="middle" src="../_images/tvary.png" />
+</figure>
+<figure class="align-center">
+<img alt="../_images/vsb.png" class="middle" src="../_images/vsb.png" />
+</figure>
+<p>Jinou možností je vykreslení existujícího modelu. Pro vzykoušení můžeme stáhnout
+<a class="reference external" href="https://free3d.com/3d-model/low_poly_tree-816203.html">jednoduchý model</a>. nebo
+si vytovřit vlastní v nějakém modelovacím nástroji jako je např.
+<a class="reference external" href="http://blender.org">Blender</a>.</p>
+<figure class="align-center">
+<img alt="../_images/simple_tree_model.png" class="middle" src="../_images/simple_tree_model.png" />
+</figure>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../georeferencovani/index.html">Georeferencování obrazových dat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geoprocessing/index.html">Nástroje zpracování</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeler/index.html">Grafický modelář</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grass/index.html">Zásuvný modul GRASS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hydrologie/index.html">Ukázka analýzy - hydrologie</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Práce s 3D daty</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dmrdmp.html">Zpracování DMR a DMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dmt.html">Tvorba DMT a teréní analýzy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3d_map_view.html">Vizualizace ve 3D</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3D geometrie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiles.html">Profil terénu</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pokrocile_upravy/index.html">Pokročilé úpravy prostředí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/index.html">Různé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../priklady/index.html">Příklady</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="3d_map_view.html" title="Vizualizace ve 3D"
+              >předchozí</a> |
+            <a href="profiles.html" title="Profil terénu"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

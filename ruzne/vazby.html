@@ -1,0 +1,348 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Vazby mezi vrstvami &#8212; Školení QGIS pro pokročilé</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Práce s daty ČÚZK (RÚIAN, VFK, …)" href="data-cuzk.html" />
+    <link rel="prev" title="Tvorba atlasu" href="atlas.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení QGIS pro pokročilé</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="atlas.html" title="Tvorba atlasu"
+             accesskey="P">předchozí</a> |
+          <a href="data-cuzk.html" title="Práce s daty ČÚZK (RÚIAN, VFK, …)"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="vazby-mezi-vrstvami">
+<h1>Vazby mezi vrstvami<a class="headerlink" href="#vazby-mezi-vrstvami" title="Permalink to this heading">¶</a></h1>
+<p>Závislosti mezi datasety často závisí na tom, jak je zřejmá a jak je
+důležité tuto závislost zdůraznit.  Výhodou geodat je možnost zjevné
+vztahy ponechat zobrazené pouze vykreslením.  Pokud to však není
+dostatečné, tak je možné využít pokročilejší nástroje, které umožní
+prvky mezi sebou provázat a tyto vztahy i jasně vizualizovat.  V
+prostředí QGIS se za účelem propojování prvků mezi různými datasety
+používá nástroj s názvem <strong>Vztahy</strong> (anglicky Relations).</p>
+<p>Důležité je uvědomit si, že tento nástroj  provede nastavení na základě dat a
+zapíše ho do projeku.</p>
+<p>Vazby lze implementovat i na data bez geometrie.</p>
+<section id="typy-vazeb">
+<h2>Typy vazeb<a class="headerlink" href="#typy-vazeb" title="Permalink to this heading">¶</a></h2>
+<p>U vazeb se rozlišují 3 základní typu vazeb:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>1 k 1</dt><dd><p>Jde o vazbu, kdy jeden prvek může být navázán právě na jeden prvek z
+druhého datasetu. Příkladem může být vztah mezi státem a hlavními
+městy. Každý stát má právě jedno hlavní město a naopak.
+Jedná se o nejjednodušší typ vazby.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>1 k N</dt><dd><p>Jeden prvek může být navázán na víc prvků z druhého datasetu. Jedná se o
+nejčastěji používaný typ vazby. Příkladem je kraj a města. Na území jednoho
+kraje se nachází vícero měst. Jedno město je pouze na území jednoho kraje.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>M ku N</dt><dd><p>Jedná se o nejsložitější typ vazeb, kdy se jeden prvek váže na více prvků
+v jednom směru, ale násobná vazba platí i v opačném směru. Jedna řeka
+protéká vícero okresy. Jedním okresem protéká vícero řek.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="priprava-dat">
+<h2>Příprava dat<a class="headerlink" href="#priprava-dat" title="Permalink to this heading">¶</a></h2>
+<p>Implementace vazeb mezi datasety ja založená na principu propojování prvků
+pomocí vlastního identifikátoru s identifikátorem z vázaného datasetu.
+Jako příklad použijeme datasety <span class="map">orp</span> a <span class="map">pozarni_stanice</span>.</p>
+<figure class="align-center" id="id1">
+<img alt="../_images/relation_vizualization1.png" class="large" src="../_images/relation_vizualization1.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 180 </span><span class="caption-text">Zobrazení vybraných datasetů.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Na obrázku je vidět vzájemné rozložení obou datasetů. Opticky je možné určit
+příslušnost požárních stanic k jednotlivým ORP. Požadovaným stavem ale je, aby
+po identifikaci libovolného ORP byly vypsány všechny požární stanice, které se
+nachází na jeho území.</p>
+<p>V atributové tabulce vrstvy je každý prvek označen jednoznačným
+identifikátorem.</p>
+<figure class="align-center" id="id2">
+<img alt="../_images/relation_attribute_tables.png" class="large" src="../_images/relation_attribute_tables.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 181 </span><span class="caption-text">Atributové tabulky obou datasetů a jejich identifikátory.</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Klíčovým pro propojení je, aby v jedné z tabulek k vlastnímu
+identifikátoru přibyl identifikátor vázaného prvku. V tomto případě zvolíme
+možnost, kdy do vrstvy <span class="map">pozarni_stanice</span> přidáme nový atribut. Ten bude
+obsahovat identifikátor toho ORP, ve kterém daná požární stanice leží.
+Tento krok lze provést různými způsoby - od ruční editace až po využití
+některého z existujících nástrojů.</p>
+<p>Jako nejjednodušší postup zvolíme nástroj <a class="reference internal" href="../_images/processingAlgorithm.png"><img alt="processingAlgorithm" src="../_images/processingAlgorithm.png" style="width: 1.5em;" /></a><sup>Připojit
+atributy podle umístění…</sup>.
+Pomocí tohoto nástroje vygenerujeme novou vrstvu z původní vrstvy
+<span class="map">pozarni_stanice</span>. Do její atributové tabulky se připojí atributy z
+vrstvy ORP na základě použitého geometrického predikátu.
+V tomto případě postačuje připojení atributu s identifikátorem orp, další
+atributy nejsou potřebné. Vybraným atributům je možné přidat prefix, aby bylo
+možné připojené atributy jasně rozeznat.
+Další nastavení umožňuje vybrat typ připojení podle typu vazby.
+Některé prvky můžou zůstat bez připojení - nemají požadovaný prostorový vztah.
+Takovéto prvky můžou být odstraněny.
+Přesné nastavení pro ukázkový příklad je na <a class="reference internal" href="#add-attribute"><span class="std std-numref">Obr. 182</span></a>.</p>
+<figure class="align-center" id="id3">
+<span id="add-attribute"></span><img alt="../_images/relation_add_attribute.png" class="large" src="../_images/relation_add_attribute.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 182 </span><span class="caption-text">Připojení atributů na základě umístění a atributová tabulka výsledné vrstvy.</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="nastaveni-vazby">
+<h2>Nastavení vazby<a class="headerlink" href="#nastaveni-vazby" title="Permalink to this heading">¶</a></h2>
+<p>Samotné nastavení vazby je součástí nastavení projektu
+<span class="menuselection">Projekt ‣ Vlastnosti…</span> záložka <span class="item">Vztahy</span>.
+Sem je nutné zapsat nastavení relace mezi jednotlivými vrstvami. Je
+důležité, že jeden záznam v tabulce představuje jeden vazební atribut.</p>
+<p>Nejdříve přidáme proklik z požární stanice na příslušné ORP. Pomocí tlačítka
+<a class="reference internal" href="../_images/symbologyAdd.png"><img alt="symbologyAdd" src="../_images/symbologyAdd.png" style="width: 1.5em;" /></a> <sup>Přidat vztah</sup> se otevře dialog pro přidání jednoho
+vazebního atributu.</p>
+<figure class="align-center" id="id4">
+<img alt="../_images/relation_create.png" class="large" src="../_images/relation_create.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 183 </span><span class="caption-text">Nastavení relace z požární stanice na ORP v dialogu a pak ve vlastnostech.</span><a class="headerlink" href="#id4" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Pokud použijeme nástroj identifikace na požární stanici, tak se otevře
+detail prvku spolu s vazbou na ORP. Přidaný vazební atribut se zobrazuje na
+poslední pozici (lze změnit) a je možné ho vizualizovat jako formulář nebo jako
+klasickou atributovou tabulku.</p>
+<figure class="align-center" id="id5">
+<img alt="../_images/relation_feature_detail.png" class="large" src="../_images/relation_feature_detail.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 184 </span><span class="caption-text">Detail prvku s vazebním atributem v obou možných variantách.</span><a class="headerlink" href="#id5" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>V zobrazení je vidět, že jsou k dispozici i nástroje pro editaci vazeb.</p>
+<p>Aktuální nastavení ale neumožňuje zobrazení všech požárních stanic u každého
+ORP. Je nutné přidat novou položku vztahu.</p>
+<figure class="align-center" id="id6">
+<img alt="../_images/relation_create2.png" class="medium" src="../_images/relation_create2.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 185 </span><span class="caption-text">Nastavení relace z ORP na požární stanici.</span><a class="headerlink" href="#id6" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="editace-vazeb">
+<h2>Editace vazeb<a class="headerlink" href="#editace-vazeb" title="Permalink to this heading">¶</a></h2>
+<p>Vazby lze editovat podobně jako klasické atributy.
+Nástroje pro editaci vazeb jsou zařazeny přímo v detailu prvku, ve vazebním
+atributu.
+Základní nástroj editace je přidat vazbu na existující prvek, nebo ji naopak
+odstranit. Další nástroje slouží na vytváření a mazání prvků s vazbou.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><a class="reference internal" href="../_images/mActionLink.png"><img alt="mActionLink" src="../_images/mActionLink.png" style="width: 1.5em;" /></a> <sup>Linkovat existující dceřinný prvek</sup></dt><dd><p>Otevře dialog pro výběr prvků z dceřinné vrstvy, kde je možné označit
+všechny prvky, které mají být propojeny vazbou. Po potvrzení ze všechny nové
+vazby připíšou k existujícím.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="../_images/mActionUnlink.png"><img alt="mActionUnlink" src="../_images/mActionUnlink.png" style="width: 1.5em;" /></a> <sup>Zrušit link na dceřinný prvek</sup></dt><dd><p>Mezi všemi vazebními prvky je možné označit vybrané vazební prvky. Po
+nastavení výběru se aktivuje ikonka nástroje pro zrušení vazby. Prvky již
+nebudou navázané, ale nevymažou se z vrstvy.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="../_images/mActionDeleteSelected.png"><img alt="mActionDeleteSelected" src="../_images/mActionDeleteSelected.png" style="width: 1.5em;" /></a> <sup>Smazat dceřinný prvek</sup></dt><dd><p>Funguje podobně jako předchozí nástroj s tím rozdílem, že nejenom zruší
+vazby, ale i smaže prvek.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="../_images/mActionDuplicateFeature.png"><img alt="mActionDuplicateFeature" src="../_images/mActionDuplicateFeature.png" style="width: 1.5em;" /></a> <sup>Duplikovat dceřinný prvek</sup></dt><dd><p>Zduplikuje vybrané vazební prvky včetně vazby. Pozor na duplikování
+identifikátoru.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="../_images/mActionCreateTable.png"><img alt="mActionCreateTable" src="../_images/mActionCreateTable.png" style="width: 1.5em;" /></a> <sup>Přidat dceřinný prvek</sup></dt><dd><p>Vytvoří nový prvek v dcerinné tabulce a vytvoří rovnou vazbu. Pozor,
+nemá vliv na ostatní atributy.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Pozor, všechny úpravy vyžadují editační mód a je nutné změny uložit.</p>
+</section>
+<section id="vazebni-tabulka">
+<h2>Vazební tabulka<a class="headerlink" href="#vazebni-tabulka" title="Permalink to this heading">¶</a></h2>
+<p>Další možností, jak vazby nastavit, je využití samostatné tabulky pro párování
+prvků. Na ukázku tohoto provázání budeme používat data uložená v databázi.
+Jedná se opět o <span class="map">ORP</span> a <span class="map">vodni_plochy</span> (pouze ty co mají
+vložený název).
+Na obrázku je vidět, že každá vrstva má vlastní identifikátor.</p>
+<figure class="align-center" id="id7">
+<img alt="../_images/relation_db_id.png" class="large" src="../_images/relation_db_id.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 186 </span><span class="caption-text">Identifikátory u obou vrstev uložených v databázi.</span><a class="headerlink" href="#id7" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Nevýhodou použití samostatné vazební tabulky je fakt, že jedna vazba mezi
+prvkem ORP a vodní plochy se skládá z vazby z OPR na vazební tabulku, a z
+vazby z vazební tabulky na vodní plochy.
+Samotné zobrazení v detailu prvku se taky skládá ze dvou částí.</p>
+<p>Vazebná tabulka znamená, že vznikne samostatná tabulka, která obsahuje
+dva atributy. Jeden je identifikátor <span class="map">ORP</span> a druhý je identifikátor
+<span class="map">vodni_plochy</span>. Každý řádek reprezentuje jednu vazbu mezi dvěma prvky.
+V našem případě bychom potřebovali takovouto tabulku vytvořit na základě
+geometrického vztahu mezi jednotlivými prvky.</p>
+<p>Nejjednodušší způsob, jak takovouto tabulku vygenerovat, je použít jednoduchý
+příkaz. Jedná se o způsob, který umožňuje vazby pouze zobrazovat a ne je
+editovat.</p>
+<p>Ukázka jednoduchého příkazu pro vygenerování vazební tabulky.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">vazby</span><span class="p">.</span><span class="n">vazebni_tabulka1</span><span class="w"> </span><span class="k">AS</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">orp</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">orp_id</span>
+<span class="w">           </span><span class="p">,</span><span class="w"> </span><span class="n">vn</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">vn_id</span>
+<span class="w">          </span><span class="k">FROM</span><span class="w"> </span><span class="n">vazby</span><span class="p">.</span><span class="n">orp</span><span class="w"> </span><span class="n">orp</span>
+<span class="w">          </span><span class="k">JOIN</span><span class="w"> </span><span class="n">vazby</span><span class="p">.</span><span class="n">vodni_nadrze</span><span class="w">  </span><span class="n">vn</span>
+<span class="w">          </span><span class="k">ON</span><span class="w"> </span><span class="n">ST_Intersects</span><span class="p">(</span><span class="n">orp</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">vn</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Takto vytvořenou tabulku spolu s <span class="map">ORP</span> <span class="map">vodni_plochy</span>
+přidáme do mapového okna. V případě vazební tabulky se jedná o vrstvu
+bez geometrie, tudíž se zobrazuje pouze jako tabulka.</p>
+<p>Pro nastavení vazby z ORP na vodní plochu musíme přidat záznamy do nastavení
+projektu.</p>
+<ol class="arabic simple">
+<li><p>přidáme vazbu z ORP (<span class="dbcolumn">id</span>) na vazební tabulku (<span class="dbcolumn">orp_id</span>)</p></li>
+<li><p>přidáme vazbu z vazební tabulky (<span class="dbcolumn">vn_id</span>) na vodní nádrže (<span class="dbcolumn">id</span>)</p></li>
+</ol>
+<figure class="align-center" id="id8">
+<img alt="../_images/relation_mn_settings1.png" class="large" src="../_images/relation_mn_settings1.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 187 </span><span class="caption-text">Nastavení vazby M ku N  přes vazební tabulku.</span><a class="headerlink" href="#id8" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>V detailu prvku je ale vidět, že první část vazby není vypovídající, protože
+obsahuje pouze identifikátory. Každá položka se v detailu vykreslí samostatně.
+Tento způsob nemusí být vhodný pro všechny účely.</p>
+<p>Jedním z řešení by mohlo být doplnit vybraný atribut přímo do vazební tabulky.</p>
+<figure class="align-center" id="id9">
+<img alt="../_images/relation_feature_detail2.png" class="medium" src="../_images/relation_feature_detail2.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 188 </span><span class="caption-text">Detail prvku s vnořenou vazbou.</span><a class="headerlink" href="#id9" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Pro dokončení by bylo vhodné doplnit vazbu i z vodní nádrže na ORP.</p>
+<p>Při ukládání dat v DB je výhodné používat různé nástroje, které ulehčí správu
+a automatizaci při správě údajů zabezpečujících vazby.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../georeferencovani/index.html">Georeferencování obrazových dat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geoprocessing/index.html">Nástroje zpracování</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeler/index.html">Grafický modelář</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grass/index.html">Zásuvný modul GRASS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hydrologie/index.html">Ukázka analýzy - hydrologie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3d/index.html">Práce s 3D daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pokrocile_upravy/index.html">Pokročilé úpravy prostředí</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Různé</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="geotag_obrazky.html">Obrazová data jako součást vektorů (práce s geotagovanými fotografiemi)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grafy.html">Tvorba kartodiagramů</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qgisserver.html">QGIS Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="atlas.html">Tvorba atlasu</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Vazby mezi vrstvami</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-cuzk.html">Práce s daty ČÚZK (RÚIAN, VFK, …)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../priklady/index.html">Příklady</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="atlas.html" title="Tvorba atlasu"
+              >předchozí</a> |
+            <a href="data-cuzk.html" title="Práce s daty ČÚZK (RÚIAN, VFK, …)"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

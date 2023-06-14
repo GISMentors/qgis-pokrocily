@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Spouštění geoalgoritmů &#8212; Školení QGIS pro pokročilé</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Nastavení, historie, prohlížení výsledků" href="nastaveni.html" />
+    <link rel="prev" title="Orientace v nástrojích" href="uvod.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení QGIS pro pokročilé</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="uvod.html" title="Orientace v nástrojích"
+             accesskey="P">předchozí</a> |
+          <a href="nastaveni.html" title="Nastavení, historie, prohlížení výsledků"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="spousteni-geoalgoritmu">
+<h1>Spouštění geoalgoritmů<a class="headerlink" href="#spousteni-geoalgoritmu" title="Permalink to this heading">¶</a></h1>
+<p>Jednotlivé algoritmy se spouštějí z okna nástrojů zpracování a to
+dvojitým kliknutím, nebo vyvoláním kontextového menu kliknutím pravým
+tlačítkem s výběrem možnosti <span class="guilabel">Spustit</span>. V kontextovém menu
+je také možnost <span class="guilabel">Spustit jako dávkový proces</span>, kterou si
+popíšeme v části <a class="reference internal" href="davka.html#davka"><span class="std std-ref">Dávkové zpracování</span></a>.</p>
+<figure class="align-center" id="id1">
+<img alt="../_images/geoproc_spu.png" src="../_images/geoproc_spu.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 16 </span><span class="caption-text">Spouštění geoalgoritmů.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<section id="dialogove-okno">
+<h2>Dialogové okno<a class="headerlink" href="#dialogove-okno" title="Permalink to this heading">¶</a></h2>
+<p>Dialogové okno se skládá z několika záložek. Na hlavní záložce
+<span class="guilabel">Parametry</span> zadáváme vstupní parametry (a výstupní soubor)
+algoritmu. Další záložkou je <span class="guilabel">Záznam</span>, kde vidíme výpis
+operací, které probíhájí při spuštění algoritmu. Ve spodní části okna
+najdeme tlačítka <span class="guilabel">Nápověda</span> a <span class="guilabel">Spustit jako dávkový
+proces</span>. U některých funkcí (např. GRASS) se v pravé části okna zobrazí
+krátký popisek funkce. U algoritmů GDAL vidíme také ve spodní části
+okna výsledný příkaz podle námi zadaných parametrů. I když je každý
+algoritmus jiný a potřebuje specifické vstupy a nastavení, základní
+struktura dialogového okna se nemění.</p>
+<figure class="align-center" id="id2">
+<img alt="../_images/geoproc_wind.png" src="../_images/geoproc_wind.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 17 </span><span class="caption-text">Dialogové okno algoritmu (GDAL - Oříznout rastr podle rozsahu).</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id3">
+<img alt="../_images/geoproc_zaznam.png" src="../_images/geoproc_zaznam.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 18 </span><span class="caption-text">Záznam průběhu algoritmu (GDAL - Sklon).</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="nejcastejsi-parametry">
+<h2>Nejčastější parametry<a class="headerlink" href="#nejcastejsi-parametry" title="Permalink to this heading">¶</a></h2>
+<section id="vstupni-vrstva">
+<h3>Vstupní vrstva<a class="headerlink" href="#vstupni-vrstva" title="Permalink to this heading">¶</a></h3>
+<p>Lze vybrat pomocí rolovací nabídky, kde se nám vypíšou vrstvy nahrané
+v projektu. V nabídce se nám zobrazí pouze ty vrstvy, které mohou do
+algoritmu vstoupit (je-li potřeba rastr, vektorové vrstvy se zde
+vypisovat nebudou a naopak). Za názvem vrstvy je v hranatých závorkách
+uveden EPSG kód vrstvy např. <span class="item">[EPSG:5514]</span>. Pokud požadovanou
+vrstvu v projektu nemáme, můžeme použít tlačítko <span class="item">…</span> a vybrat
+odpovídající vrstvu uloženou na disku. U vektorových vrstev se můžeme
+setkat s tlačítkem <a class="reference internal" href="../_images/custom_iterate.png"><img alt="iterate" src="../_images/custom_iterate.png" style="width: 1.5em;" /></a>, které slouží ke spouštění iterace nad
+vrstvou. Při použití iterace se provede výpočet pro každý prvek
+vektorové vrstvy zlášť. Dále je zde možnost omezit vstupní vrstvu na
+pouze vybrané prvky. V takovém případě se algoritmus bude spouštět pro
+každý prvek ve vrstvě zvlášť. Při iteraci se ve výchozím nastavení
+processingu používají pouze vybrané prvky (pokud nějaký výběr máme).</p>
+<figure class="align-center" id="id4">
+<img alt="../_images/geoproc_vstup_vrst.png" src="../_images/geoproc_vstup_vrst.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 19 </span><span class="caption-text">Příklad vstupní zdrojové vrstvy.</span><a class="headerlink" href="#id4" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="vicenasobny-vyber-vrstev">
+<h3>Vícenásobný výběr vrstev<a class="headerlink" href="#vicenasobny-vyber-vrstev" title="Permalink to this heading">¶</a></h3>
+<p>U některých algoritmů je možné (nebo nutné) vybrat jako vstup nebo parametr
+více vrstev. Pomocí tlačítka <span class="item">…</span> se nám otevře okno výběru vrstev.</p>
+<figure class="align-center" id="id5">
+<img alt="../_images/geoproc_vstup_multi.png" src="../_images/geoproc_vstup_multi.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 20 </span><span class="caption-text">Příklad algoritmu kde vstupuje více vrstev (GDAL - Sloučit).</span><a class="headerlink" href="#id5" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="rozsah">
+<h3>Rozsah<a class="headerlink" href="#rozsah" title="Permalink to this heading">¶</a></h3>
+<p>Rozsah se zadává v souřadnicích xmin, xmax, ymin, ymax. Tento parametr lze
+zadat ručně, pomocí tlačítka <span class="item">…</span> můžeme vybrat rozsah tažením
+v mapovém okně anebo zvolit rozsah daný jinou vrstvou či současným zobrazením
+v mapovém okně. V případě že se jedná o rozsah vstupní vrstvy a pole
+nevyplníme, automaticky se použije minimální rozsah vrstvy.</p>
+<figure class="align-center" id="id6">
+<img alt="../_images/geoproc_vstup_ext.png" src="../_images/geoproc_vstup_ext.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 21 </span><span class="caption-text">Možnosti při výběru rozsahu.</span><a class="headerlink" href="#id6" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id7">
+<img alt="../_images/geoproc_vstup_ext3.png" src="../_images/geoproc_vstup_ext3.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 22 </span><span class="caption-text">Zvolení rozsahu v mapovém okně.</span><a class="headerlink" href="#id7" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Kopírování rozsahu vrstvy z projektu nelze kvůli chybě v
+současné LTR verzi QGIS použít</p>
+</div>
+</section>
+<section id="ciselene-hodnoty">
+<h3>Číselené hodnoty<a class="headerlink" href="#ciselene-hodnoty" title="Permalink to this heading">¶</a></h3>
+<p>Číselné hodnoty se mohou objevovat ve dvou formátech - celé číslo (int) a číslo
+s desetinnou čárkou (float). Zadat je lze ručně nebo pomocí tlačítek
+<a class="reference internal" href="../_images/selectnumber1.png"><img alt="selectnumber" src="../_images/selectnumber1.png" style="width: 1.5em;" /></a>. Pomocí tlačítka <a class="reference internal" href="../_images/mIconDataDefine.png"><img alt="mIconDataDefine" src="../_images/mIconDataDefine.png" style="width: 1.5em;" /></a><sup>Daty definované přepsání</sup> lze také
+použít hodnoty z atributů prvků nebo pomocí položky <cite>Upravit…</cite> otevřít
+kalkulátor, ve kterém můžeme vytvořit vzorec pro výpočet hodnoty.</p>
+<figure class="align-center" id="id8">
+<img alt="../_images/geoproc_vstup_cis.png" src="../_images/geoproc_vstup_cis.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 23 </span><span class="caption-text">Zadání čísla pomocí vzorce nebo odvozených hodnot.</span><a class="headerlink" href="#id8" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>V případě, že parametr vyžaduje celé číslo, desetinné hodnoty z
+kalkulátoru se zaokrouhlují.</p>
+</div>
+</section>
+<section id="vystupni-soubor">
+<h3>Výstupní soubor<a class="headerlink" href="#vystupni-soubor" title="Permalink to this heading">¶</a></h3>
+<p>Pokud nenastavíme cestu nebo název
+souboru, výstup se nám automaticky uloží na disk do dočasných
+souborů. Pokud zadáme do pole název, vrstva se nám uloží do
+předdefinované složky (výchozí nastavení je složka s aktuálním
+profilem, viz <span class="menuselection">Nastavení ‣ Možnosti ‣ Zpracování
+‣ Obecné ‣ Výstupní složka</span>). Pomocí tlačítka <span class="item">…</span> lze
+zvolit další možnosti uložení. Výstup je možné uložit do souboru,
+GeoPackage nebo PostGIS. Chování tvorby výstupního souboru
+jde změnit v nastavení (viz. kapitola <a class="reference internal" href="nastaveni.html#nastaveni"><span class="std std-ref">Nastavení, historie, prohlížení výsledků</span></a>).</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Pomocí položky <span class="item">Upravit vykreslovací styly pro výstupy</span>
+v kontextovém menu algoritmu (pravý klik na algoritmus v
+seznamu), lze změnit výchozí styly jednotlivých výstupů
+použitím uložených stylů.</p>
+</div>
+</section>
+<section id="dalsi-parametry">
+<h3>Další parametry<a class="headerlink" href="#dalsi-parametry" title="Permalink to this heading">¶</a></h3>
+<p>Dále se často můžeme setkat s výběrem nebo zadáváním různých parametrů pomocí
+checkboxů a rolovacích nabídek. V některých případech vstupují do algoritmu
+tabulky nebo je nutné zadat parametr výstupního SRS (EPSG). To probíhá
+standardně ze seznamu SRS.</p>
+</section>
+</section>
+<section id="prakticka-ukazka">
+<h2>Praktická ukázka<a class="headerlink" href="#prakticka-ukazka" title="Permalink to this heading">¶</a></h2>
+<section id="orez-rastru">
+<h3>Ořez rastru<a class="headerlink" href="#orez-rastru" title="Permalink to this heading">¶</a></h3>
+<p>Pomocí funkce GDAL <a class="reference internal" href="../_images/providerGdal.png"><img alt="providerGdal" src="../_images/providerGdal.png" style="width: 1.5em;" /></a> <span class="guilabel">Oříznout rastr podle rozsahu</span> vytvoříme
+výřez rastru EU-DEM pomocí rozsahu vybraným v mapovém okně. Výstupní soubor
+necháme uložit do dočasných souborů.</p>
+<figure class="align-center" id="id9">
+<img alt="../_images/geoproc_pract_1.png" class="large" src="../_images/geoproc_pract_1.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 24 </span><span class="caption-text">Ořezání rastru pomocí funkce <a class="reference internal" href="../_images/providerGdal.png"><img alt="providerGdal" src="../_images/providerGdal.png" style="width: 1.5em;" /></a> <span class="guilabel">Oříznout rastr podle rozsahu</span>.</span><a class="headerlink" href="#id9" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="vyuziti-iterace">
+<h3>Využití iterace<a class="headerlink" href="#vyuziti-iterace" title="Permalink to this heading">¶</a></h3>
+<p>Pomocí funkce GDAL <a class="reference internal" href="../_images/providerGdal.png"><img alt="providerGdal" src="../_images/providerGdal.png" style="width: 1.5em;" /></a> <span class="guilabel">Oříznout rastr podle vrstvy masky</span>
+ořežeme rastrovou vrstvu EU-DEM pomocí masky <em>velkoplošných chráněných území</em>.
+Pro ořezání rastru jen pro naše vybraná území zaškrtneme u vstupní
+vrstvy možnost <span class="guilabel">Pouze vybrané prvky</span>. Aktivujeme iteraci a
+spustíme. Výsledkem bude nová rastrová vrstva ořezu jednotlivých prvků
+vektorové vrstvy.</p>
+<figure class="align-center" id="id10">
+<img alt="../_images/geoproc_pract_2.png" class="large" src="../_images/geoproc_pract_2.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 25 </span><span class="caption-text">Ořezání rastru vybranými prvky vrstvy pomocí funkce <a class="reference internal" href="../_images/providerGdal.png"><img alt="providerGdal" src="../_images/providerGdal.png" style="width: 1.5em;" /></a>
+<span class="guilabel">Oříznout rastr podle vrstvy masky</span>.</span><a class="headerlink" href="#id10" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id11">
+<img alt="../_images/geoproc_pract_2_2.png" class="middle" src="../_images/geoproc_pract_2_2.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 26 </span><span class="caption-text">Výsledek výřezu vybraných prvků.</span><a class="headerlink" href="#id11" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../georeferencovani/index.html">Georeferencování obrazových dat</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Nástroje zpracování</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="uvod.html">Orientace v nástrojích</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Spouštění geoalgoritmů</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nastaveni.html">Nastavení, historie, prohlížení výsledků</a></li>
+<li class="toctree-l2"><a class="reference internal" href="externi.html">Externí geoalgoritmy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="davka.html">Dávkové zpracování</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modeler/index.html">Grafický modelář</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grass/index.html">Zásuvný modul GRASS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hydrologie/index.html">Ukázka analýzy - hydrologie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3d/index.html">Práce s 3D daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pokrocile_upravy/index.html">Pokročilé úpravy prostředí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/index.html">Různé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../priklady/index.html">Příklady</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="uvod.html" title="Orientace v nástrojích"
+              >předchozí</a> |
+            <a href="nastaveni.html" title="Nastavení, historie, prohlížení výsledků"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

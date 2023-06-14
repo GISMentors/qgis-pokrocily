@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Ukázka analýzy - hydrologie &#8212; Školení QGIS pro pokročilé</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Metoda SCS CN" href="scs-cn.html" />
+    <link rel="prev" title="Zásuvný modul GRASS" href="../grass/index.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení QGIS pro pokročilé</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="../grass/index.html" title="Zásuvný modul GRASS"
+             accesskey="P">předchozí</a> |
+          <a href="scs-cn.html" title="Metoda SCS CN"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="ukazka-analyzy-hydrologie">
+<h1>Ukázka analýzy - hydrologie<a class="headerlink" href="#ukazka-analyzy-hydrologie" title="Permalink to this heading">¶</a></h1>
+<p>Globalizace, urbanizace, klimatické změny, extrémní počasí - to jsou
+složité problémy, kterým v současné době čelíme. Cílem řady odborníků
+je hledat nástroje pro společné plánování a projektovaní, metody pro
+nalezení konstruktivních řešení, které pomohou zlepšit život a životní
+prostředí.</p>
+<p>Geografické informační systémy mohou být užitečným a důležitým
+nástrojem také v oblasti hydrologie. Mohou pomoci hydrologům ve
+vědeckém výzkumu stejně jako při hospodaření s vodními zdroji. Změna
+klimatických poměrů a větší nároky na vodní zdroje vyžadují podrobné
+znalosti související s jedním z našich najdůležitějších přírodních
+zdrojů.</p>
+<p>Geografický informačný systém GRASS GIS nabízí celou řadu nástrojů pro
+hydrologické modelovaní či výpočet eroze.  V této časti si ukážeme,
+jak je možné užitečné nástroje systému GRASS využívat při
+hydrologických analýzách v prostředí QGIS. Zaměříme se na odtokové
+poměry. Stav rešeného území z hlediska srážkoodtokových vztahů a
+ztráty půdy erozí budeme hodnotit pomocí metod <a class="reference external" href="http://cs.wikipedia.org/wiki/Metoda CN křivek">SCS CN</a> a <a class="reference external" href="http://cs.wikipedia.org/wiki/USLE">USLE</a>, přičem při samotném řešení
+využijeme také některé nástroje systému GRASS GIS.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Problematice řešení těchto úloh čistě v systému GRASS se
+věnuje část <a class="reference external" href="http://training.gismentors.eu/grass-gis-pokrocily/hydrologie">školení GRASS GIS pokročilé</a>, ze které také následující
+návody vycházejí.</p>
+</div>
+<figure class="align-center" id="id1">
+<img alt="../_images/hmmoduly.png" class="middle" src="../_images/hmmoduly.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 101 </span><span class="caption-text">Nástroje pro hydrologické modelovaní v prostředí zásuvného modulu GRASS.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p class="secnotoc rubric">Témata</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="scs-cn.html">Metoda SCS CN</a></li>
+</ul>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../georeferencovani/index.html">Georeferencování obrazových dat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geoprocessing/index.html">Nástroje zpracování</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeler/index.html">Grafický modelář</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grass/index.html">Zásuvný modul GRASS</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Ukázka analýzy - hydrologie</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scs-cn.html">Metoda SCS CN</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../3d/index.html">Práce s 3D daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pokrocile_upravy/index.html">Pokročilé úpravy prostředí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/index.html">Různé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../priklady/index.html">Příklady</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="../grass/index.html" title="Zásuvný modul GRASS"
+              >předchozí</a> |
+            <a href="scs-cn.html" title="Metoda SCS CN"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

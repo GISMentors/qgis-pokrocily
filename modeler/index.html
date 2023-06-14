@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Grafický modelář &#8212; Školení QGIS pro pokročilé</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Úvod" href="uvod.html" />
+    <link rel="prev" title="Dávkové zpracování" href="../geoprocessing/davka.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení QGIS pro pokročilé</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="../geoprocessing/davka.html" title="Dávkové zpracování"
+             accesskey="P">předchozí</a> |
+          <a href="uvod.html" title="Úvod"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="graficky-modelar">
+<span id="modeler"></span><h1>Grafický modelář<a class="headerlink" href="#graficky-modelar" title="Permalink to this heading">¶</a></h1>
+<p><strong>Grafický modelář</strong> (Graphical modeler) nám umožňuje vytvářet
+složitější řetězce algoritmů v poměrně jednoduchém grafickém
+užitelském rozhraní. Snadno si tedy můžeme poskládat posloupnost
+funkcí, které později můžeme spouštět jako jeden algoritmus nad
+různýmy daty, a tak si zjednodušit, ale především zrychlit pracovní
+postup. Modely se mohou ukládat přímo do projektu nebo do samostatného
+souboru (.model), který je snadno přenositelný. Vytvořené modely jsou
+součástí nástrojů zpracování. V této kapitole si popíšeme princip
+tvorby modelů na jednoduchém ukázkovém příkladu, kdy vytvoříme model,
+který bude generovat obalové zóny náhodných bodů v námi zvoleném území.</p>
+<figure class="align-center" id="id1">
+<img alt="../_images/modeler_sample.png" class="middle" src="../_images/modeler_sample.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 59 </span><span class="caption-text">Náhled na vytvořený model.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="uvod.html">Úvod</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="uvod.html#spusteni-grafickeho-modelare">Spuštění grafického modeláře</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uvod.html#popis-okna">Popis okna</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="casti.html">Části modelu</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="casti.html#nazev-a-skupina">Název a skupina</a></li>
+<li class="toctree-l2"><a class="reference internal" href="casti.html#vstupni-parametry">Vstupní parametry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="casti.html#algoritmy">Algoritmy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="casti.html#vystupy">Výstupy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spousteni.html">Spouštění a editace modelu</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="spousteni.html#spousteni-modelu">Spouštění modelu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spousteni.html#editace-smazani-modelu">Editace, smazání modelu</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="napoveda_export.html">Tvorba nápovědy a export modelu</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="napoveda_export.html#tvorba-napovedy">Tvorba nápovědy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="napoveda_export.html#export-modelu">Export modelu</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../georeferencovani/index.html">Georeferencování obrazových dat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geoprocessing/index.html">Nástroje zpracování</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Grafický modelář</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="uvod.html">Úvod</a></li>
+<li class="toctree-l2"><a class="reference internal" href="casti.html">Části modelu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spousteni.html">Spouštění a editace modelu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="napoveda_export.html">Tvorba nápovědy a export modelu</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../grass/index.html">Zásuvný modul GRASS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hydrologie/index.html">Ukázka analýzy - hydrologie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3d/index.html">Práce s 3D daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pokrocile_upravy/index.html">Pokročilé úpravy prostředí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/index.html">Různé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../priklady/index.html">Příklady</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="../geoprocessing/davka.html" title="Dávkové zpracování"
+              >předchozí</a> |
+            <a href="uvod.html" title="Úvod"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

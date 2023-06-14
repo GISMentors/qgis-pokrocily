@@ -1,0 +1,436 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Atributové formuláře &#8212; Školení QGIS pro pokročilé</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Různé" href="../ruzne/index.html" />
+    <link rel="prev" title="Pokročilé úpravy prostředí" href="index.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení QGIS pro pokročilé</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="index.html" title="Pokročilé úpravy prostředí"
+             accesskey="P">předchozí</a> |
+          <a href="../ruzne/index.html" title="Různé"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="atributove-formulare">
+<h1>Atributové formuláře<a class="headerlink" href="#atributove-formulare" title="Permalink to this heading">¶</a></h1>
+<p>Při načtení běžné datové sady do QGISu (například shapefile vrstva) je
+běžné, že se data zobrazí stejně v atributové tabulce i v detailu
+vektorového prvku.</p>
+<p>Očekávané chování je, že se jednotlivé atributy budou chovat různě, podle toho
+jestli mají číselný, textový nebo jiný formát, nebo jestli při editaci
+nejsou překračovaný limity.
+Dostupné datové typy se liší podle zdroje dat. Jiné typy nabízí Esri Shapefile, jiné
+například databázové vrstvy a další. Od toho se odvíjí také možnosti dalšího
+nastavení.
+Přehled datových typů je dostupný ve vlastnostech každé vrstvy v záložce
+<span class="item">Zdrojová pole</span>.</p>
+<p>Aktuální nastavení jak pro zobrazování, tak pro další možnosti je dostupné v
+záložce <span class="item">Formulář atributů</span>.
+Každý atribut lze nastavit samostatně. V pravé části je vždy část pro nastavení
+jednotlivých sekcí. Ty jsou detailněji popsány níže.</p>
+<figure class="align-center" id="id1">
+<img alt="../_images/attribute_form_general.png" class="medium" src="../_images/attribute_form_general.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 131 </span><span class="caption-text">Menu pro práci s nastavením jednotlivých atributů.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Nastavení lze pro různé formátů definovat samostatně.  Výhodou
+nastavení v QGIS projektu má tu výhodu, že při editaci rozhraní
+komunikuje s uživatelem a poskytuje uživateli informaci o tom jaké
+hodnoty a jak zadávat.</p>
+<section id="obecne-nastaveni-atributu">
+<h2>Obecné nastavení atributů<a class="headerlink" href="#obecne-nastaveni-atributu" title="Permalink to this heading">¶</a></h2>
+<p>Bez ohledu na typ atributu se dají nastavit základní parametry pro zobrazování
+atributu. Jedná se zejména o změny projevující se v atributové tabulce a
+detailu prvku.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Alias</strong></dt><dd><p>Titulek pro atribut, který může obsahovat diakritiku a mezery, čímž se ulehčí
+možnost lépe popsat atributy. Zobrazí se v atributové tabulce a v detailu
+prvku. Alias lze používat i ve výrazech. Uvádí se ve dvojitých uvozovkách.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Komentář</strong></dt><dd><p>Popisek zobrazovaný v detailu prvku při ponechání kurzoru myši na názvu
+atributu.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="../_images/checkbox.png"><img alt="checkbox" src="../_images/checkbox.png" style="width: 1.5em;" /></a> <strong>Editovatelný</strong></dt><dd><p>Pomocí tohoto nastavení lze atribut uzamkout pro inline úpravy. Pokud je
+zaškrtávací políčko nezatrhnuté, tak se zobrazuje jako needitovatelné jak v
+atributové tabulce, tak v detailu prvku. Na jiné formy editace, jako
+například kalkulačka polí, nemá vliv. Výchozí nastavení editaci umožňuje.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="../_images/checkbox.png"><img alt="checkbox" src="../_images/checkbox.png" style="width: 1.5em;" /></a> <strong>Popisek navrch</strong></dt><dd><p>Zaškrtávací políčko, které zabezpečí, že v detailu prvku se název atributu a
+jeho obsah bude zobrazovat na dvou oddělených řádcích.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="../_images/checkbox.png"><img alt="checkbox" src="../_images/checkbox.png" style="width: 1.5em;" /></a> <strong>Reuse last entered value</strong></dt><dd><p>Do názvu atributu se propíše poslední požutá hodnota</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="omezeni">
+<h2>Omezení<a class="headerlink" href="#omezeni" title="Permalink to this heading">¶</a></h2>
+<p>V této sekci je možné ovlivnit obsah atributů</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><a class="reference internal" href="../_images/checkbox.png"><img alt="checkbox" src="../_images/checkbox.png" style="width: 1.5em;" /></a> <strong>Není null</strong></dt><dd><p>Atribut musí být vyplněný (nesmí být null). Pokud je toto políčko zaškrtnuté,
+tak se v detailu prvku při editaci kontroluje obsah tohoto atributu. Pokud
+atribut není vyplněný, tak je řádek zvýrazněn oranžovou barvou se symbolem
+křížku na konci řádku. V případě zadání hodnoty se objeví zelený symbol.
+Bez ohledu na symbol je možné prvek uložit.
+Pokud je nutné zamezit tomu, aby bylo možné prázdnou hodnotu vložit, tak je
+potřebné zašktrnout ješťě nově aktivovanou možnost nastavení -  <a class="reference internal" href="../_images/checkbox.png"><img alt="checkbox" src="../_images/checkbox.png" style="width: 1.5em;" /></a>
+<sup>Vynutit nenulové omezení</sup>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="../_images/checkbox.png"><img alt="checkbox" src="../_images/checkbox.png" style="width: 1.5em;" /></a> <strong>Unikátní</strong></dt><dd><p>Kontroluje unikátnost záznamu při jeho editaci. Kontrola funguje na stejném
+principu jako u předchozího nastavení - pomocí barevných statusů.
+Pro zamezení editace proti tomuto pravidlu je zapotřebí použít ještě
+dodatečné nastavení <a class="reference internal" href="../_images/checkbox.png"><img alt="checkbox" src="../_images/checkbox.png" style="width: 1.5em;" /></a> <sup>Vynutit nenulové omezení</sup>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Výraz</strong></dt><dd><p>Pro zadávané hodnoty je možné nastavit kontrolu formou výrazu. Například
+na délku vkládané hodnoty, obsah pouze nečíselných znaků a mnoho jiných.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Popis výrazu</strong></dt><dd><p>Slouží pro popsání zadaného výrazu tak, aby bylo možné ho pak lehce zobrazit
+jako poznámku. Zobrazí se v detailu prvku po najetí myši na symbol statusu
+na konci řádku.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="../_images/checkbox.png"><img alt="checkbox" src="../_images/checkbox.png" style="width: 1.5em;" /></a> Vynutit omezení výrazů</dt><dd><p>Jako u ostatních kontrol v této sekci slouží pro vynucení dodržení kontroly
+výrazem u vkládaného atributu.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="vychozi">
+<h2>Výchozí<a class="headerlink" href="#vychozi" title="Permalink to this heading">¶</a></h2>
+<p>Pokud je zřejmé, že obsah atributu je určován podle určitého pravidla, tak je
+možné toto pravidlo použít pro automatické vyplňování. Typickým použitím je
+například atribut určující vznik atributu - datum a čas. Dalším stupněm je pak
+nastavení obnovy hodnoty při editaci prvku.
+Tato nastavení je možné provést v sekci „Výchozí“ pomocí následujících položek.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Výchozí hodnota</strong></dt><dd><p>Pole pro zadání výrazu pro určení výchozí hodnoty. Například <kbd class="kbd docutils literal notranslate">now()</kbd>
+je výraz, který zapíše aktuání datum a čas. Doplněním výrazu  je možné
+obsah dále upravovat podle potřeby. Obecně je možné pracovat jak s textovými
+a číslenými hodnotami, tak s hodnotami, které jsou určovány z geometrie.
+Například výměra - <kbd class="kbd docutils literal notranslate">$area</kbd>, délka - <kbd class="kbd docutils literal notranslate">$length</kbd> a mnoho dalších.
+Výraz je možné složit v klasickém okně <strong>Expression dialog</strong>.
+Výchozí hodnota se objeví v detailu prvku hned po zadání nového prvku.
+Náhled hodnoty je vidět v řádku přímo pod nastavením.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="../_images/checkbox.png"><img alt="checkbox" src="../_images/checkbox.png" style="width: 1.5em;" /></a> Použít výchozí hodnotu pro aktualizaci</dt><dd><p>Pokud se jedná o atribut, který se mění v návaznosti na geometrii, tak je
+výhodné použít toto nastavení. Zabezpečí, že se hodnota bude generovat znova
+při každé změně (jak geometrické, tak atributové).</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Tato část nastavení je velmi důležitá, protože dokáže zastoupit velké množství
+práce.</p>
+</section>
+<section id="typy-widgetu">
+<h2>Typy widgetů<a class="headerlink" href="#typy-widgetu" title="Permalink to this heading">¶</a></h2>
+<p>Pro různé datové typy lze nastavit různé widgety. Jedná se o specifický
+formulář s určitým chováním a vzhledem. Jejich škála pokrývá širokou škálu
+od jednoduchých až po pokročilé varianty.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Binární (BLOB)</strong></dt><dd><p>Slouží ke vložení obrázku do hodnoty atributu.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>JSON View</strong></dt><dd><p>Hodnota atributu je zapsána jako formát JSON.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Číselník</strong></dt><dd><p>Hodnoty atributů jsou omezeny na předem vymezený rozsah hodnot.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Úprava textu</strong></dt><dd><p>Jedná se o základní typ editačního okna pro text. Jedinou volbou je možnost
+používat víceřádkovou variantu. Pak je možné nastavit i obsah jako „HTML“.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Skrytý</strong></dt><dd><p>Název a ani obsah atributu nebude v detailu prvku zobrazen.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Zaškrtávací pole</strong></dt><dd><p>Tento typ zobrazení vyžaduje definovat hodnotu, která bude zobrazovaná jako
+zaškrtnutý stav a pak stav opačný. V atributová tabulce tedy budou nadále
+zapisovány tyto hodnoty. Zaškrtávací pole bude zobrazeno v detailu prvku.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Jedinečné hodnoty</strong></dt><dd><p>Na základě aktuálních hodnot je vygenerován obsah rolovacího menu. Při editaci je pak
+možné vybrat pouze z konkrétních hodnot. Pokud použijeme nastavení
+<a class="reference internal" href="../_images/checkbox.png"><img alt="checkbox" src="../_images/checkbox.png" style="width: 1.5em;" /></a> <sup>Editovatelný</sup>, tak se atribut bude zobrazovat
+jako editovatelný text a při vyplňování se bude doplňovat text podle
+vygenerovaných možností.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Rozsah</strong></dt><dd><p>U číselných atributů je možné stanovit minimální a maximální hodnotu spolu
+s krokem. Graficky lze zvolit mezi klasickým editovatelným oknem nebo
+grafickými nástroji.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Datum/čas</strong></dt><dd><p>Pro atributy obsahující datum a/nebo čas je možné namapovat záznam podle
+jeho formátu. Pro formát času je připojena rozsáhlá nápověda.
+Součástí je možnost použít vyskakovací kalendář.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Mapa hodnot</strong></dt><dd><p>Editace je realizována formou rolovacího menu. Jednotlivé položky se
+generují přímo v nastavení. Lze použít generování z libovolné připojené
+vrstvy (z konkrétního atributu). Pro definici se používá dvojice
+<kbd class="kbd docutils literal notranslate">hodnota</kbd> a <kbd class="kbd docutils literal notranslate">popis</kbd>. Popis se používá v rolovacím menu a při
+editaci. Položky lze načíst i z CSV souboru.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Příloha</strong></dt><dd><p>Pokud atribut obsahuje validní cestu k souboru nebo URL, je možné ji pomocí
+tohoto nastavení rovnou otevřít. Detailnější ukázka je v samostatné kapitole.
+Je důležité, že lze pracovat, jak s relativními, tak s absolutními cestami.
+V zobrazení je možné použít hyperlink. Pro obrázky a webové rozhraní je možné
+nastavit přímo náhled.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Barva</strong></dt><dd><p>Tento typ umožňuje zobrazit dialog pro výběr barvy (stejný jaký je k
+dispozici u symbologie). Jako hodnota atributu se uloží hex-kód vybrané barvy.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Klasifikace</strong></dt><dd><p>Pokud je vrstva symbolizovaná pomocí kategorizovaného stylu, tak se pomocí
+tohoto nastavení vytvoří rolovací nabídka s výčtem stylů.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>UUID generátor</strong></dt><dd><p>Vytvoří jedinečný identifikátor. Lze použít na textová pole. Atribut je
+vyplňován automaticky, Identifikátor je kombinací písmen a číslic.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Speciální typy:</p>
+<ul>
+<li><dl class="simple">
+<dt><strong>Reference vztahů</strong></dt><dd><p>Pokud je vrstva součástí nastavené relace, tak je v přehledu vidět
+atribut typu vztah. Nastaven je typ vazby.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>Seznam</strong></dt><dd><p>Pokud je vrstva načtena z databáze PostgreSQL a obsahuje atribut typu
+<kbd class="kbd docutils literal notranslate">array</kbd>, tak je možné nastavit tento typ zobrazení.
+Jednotlivé položky z pole budou zobrazovány v řádkové verzi a každou lze
+upravovat samostatně. Přidávání a mazání položek je součástí zobrazení.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tablename</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">test_array</span><span class="w"> </span><span class="nb">integer</span><span class="w"> </span><span class="nb">ARRAY</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>Klíč/hodnota</strong></dt><dd><p>Typ zobrazení, který se dá použít pro PostgreSQL data, konkrétně typ
+<kbd class="kbd docutils literal notranslate">hstore</kbd>. Pozor, potřebuje vlastní extenzi.
+Umožňuje editaci párových hodnot - Klíč a hodnota. Položky lze editovat,
+přidávat nebo mazat.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="n">EXTENSION</span><span class="w"> </span><span class="n">hstore</span><span class="p">;</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tablename</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">test_hstore</span><span class="w">  </span><span class="n">hstore</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>Výčet</strong></dt><dd><p>Rolovací menu s předdefinovanými hodnotami, které jsou nastaveny přímo z
+definice atributu. Jedná se o nastavení odvozené z atributu typu
+<kbd class="kbd docutils literal notranslate">enum</kbd> (opět PostgreSQL).</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TYPE</span><span class="w"> </span><span class="n">test_barva</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ENUM</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;green&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;blue&#39;</span><span class="p">);</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="n">TSBLE</span><span class="w"> </span><span class="n">tablename</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">test_enum</span><span class="w">  </span><span class="n">test_barva</span><span class="p">;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>Vztah hodnoty</strong></dt><dd><p>Pokročilé nastavení, které umožňuje pomocí závislostí automatizovaně
+upravovat výběry.
+Konkrétní příklad ukazuje modifikaci možností v atributu <kbd class="kbd docutils literal notranslate">subtyp</kbd>,
+které je závislé na volbě v atributu <kbd class="kbd docutils literal notranslate">typ</kbd>.
+Je vidět, že tabulka subtypů obsahuje cizí klíč z tabulky typů. Pomocí
+tohoto propojení je možné pracovat se závislostmi.</p>
+<figure class="align-center" id="id2">
+<img alt="../_images/base_settings.png" class="large" src="../_images/base_settings.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 132 </span><span class="caption-text">Obsah a schéma tabulek typů a subtypů.</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>V atributové tabulce vrstvy, která používá typy a subtypy se tyto nastaví
+každý zvlášť.
+U typu se nastaví pouze vlastní čtení z tabulky <kbd class="kbd docutils literal notranslate">typ</kbd>.</p>
+<figure class="align-center" id="id3">
+<img alt="../_images/set_type.png" class="medium" src="../_images/set_type.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 133 </span><span class="caption-text">Nastavení widgety atributu typ.</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Atribut subtyp má složitější nastavení. Jako klíčový sloupec se zvolí ten,
+který obsahuje cizí klíč - propojení na tabulku typů. Hodnoty se nastaví
+na textové pole. Podstatné je zadání filtru, který musí plnit hodnotu
+cizího klíče hodnotou, která je nastavena v atributu typ
+„fk_typ“ = current_value(‚typ‘).</p>
+<figure class="align-center" id="id4">
+<img alt="../_images/set_subtype.png" class="medium" src="../_images/set_subtype.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 134 </span><span class="caption-text">Nastavení widgety atributu subtyp.</span><a class="headerlink" href="#id4" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../georeferencovani/index.html">Georeferencování obrazových dat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geoprocessing/index.html">Nástroje zpracování</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeler/index.html">Grafický modelář</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grass/index.html">Zásuvný modul GRASS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hydrologie/index.html">Ukázka analýzy - hydrologie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3d/index.html">Práce s 3D daty</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Pokročilé úpravy prostředí</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Atributové formuláře</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/index.html">Různé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../priklady/index.html">Příklady</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="index.html" title="Pokročilé úpravy prostředí"
+              >předchozí</a> |
+            <a href="../ruzne/index.html" title="Různé"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

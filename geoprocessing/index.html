@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Nástroje zpracování &#8212; Školení QGIS pro pokročilé</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Orientace v nástrojích" href="uvod.html" />
+    <link rel="prev" title="Georeferencování obrazových dat" href="../georeferencovani/index.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení QGIS pro pokročilé</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="../georeferencovani/index.html" title="Georeferencování obrazových dat"
+             accesskey="P">předchozí</a> |
+          <a href="uvod.html" title="Orientace v nástrojích"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="nastroje-zpracovani">
+<h1>Nástroje zpracování<a class="headerlink" href="#nastroje-zpracovani" title="Permalink to this heading">¶</a></h1>
+<p>Kromě spouštění různých nástrojů a analýz z hlavního menu (položky
+<span class="menuselection">Vektor</span> a <span class="menuselection">Rastr</span>), můžeme stejné (nebo
+obdobné) funkce a mnoho dalších spouštět i z okna <span class="item">Nástroje zpracování</span>.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../_images/geoproc.png"><img alt="../_images/geoproc.png" src="../_images/geoproc.png" style="width: 344.8px; height: 384.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Obr. 12 </span><span class="caption-text">Okno <span class="item">Nástroje zpracování</span>.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Nástroje zpracování jsou stěžejní součástí aplikačního rámce <cite>Zpracování</cite>
+(Processing framework), a jejich použití má hned několik výhod. V jednom okně
+najdeme funkce z knihovny GDAL, algoritmy poskytované pluginy a další
+funkce dostupných externích nástrojů jako jsou například GRASS GIS,
+SAGA.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Více o knihovně GDAL ve školení <a class="reference external" href="http://training.gismentors.eu/open-source-gis/knihovny/gdal.html">Úvod do open
+source GIS</a>. Systém GRASS GIS je podrobně popsán
+ve školení <a class="reference external" href="http://training.gismentors.eu/grass-gis-zacatecnik">GRASS GIS pro začátečníky</a>.</p>
+</div>
+<p>Jednotlivé funkce lze rychle vyhledávat pomocí filtru v horní části
+okna. Snadno lze spouštět dávkové zpracování dat, a v neposlední řadě
+funkce (včetně externích) lze používat v grafickém modeleru
+(viz. kapitola <a class="reference internal" href="../modeler/index.html#modeler"><span class="std std-ref">Grafický modelář</span></a>).</p>
+<p>Algoritmy mohou generovat různe typy výstupů:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>rastrové vrstvy</p></li>
+<li><p>vektorové vrstvy</p></li>
+<li><p>tabulky</p></li>
+<li><p>HTML soubory (textové a grafické výstupy)</p></li>
+<li><p>výběr prvků ve vektorové vrstvě</p></li>
+<li><p>…</p></li>
+</ul>
+</div></blockquote>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="uvod.html">Orientace v nástrojích</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="uvod.html#aktivace-nastroju-zpracovani">Aktivace Nástrojů zpracování</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uvod.html#orientace-v-panelu-nastroje-zpracovani">Orientace v panelu Nástroje zpracování</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spousteni.html">Spouštění geoalgoritmů</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="spousteni.html#dialogove-okno">Dialogové okno</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spousteni.html#nejcastejsi-parametry">Nejčastější parametry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spousteni.html#prakticka-ukazka">Praktická ukázka</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nastaveni.html">Nastavení, historie, prohlížení výsledků</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nastaveni.html#id1">Nastavení</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nastaveni.html#historie">Historie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nastaveni.html#prohlizec-vysledku">Prohlížeč výsledků</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="externi.html">Externí geoalgoritmy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="externi.html#grass">GRASS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="externi.html#saga">SAGA</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="davka.html">Dávkové zpracování</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="davka.html#popis-okna">Popis okna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="davka.html#zadavani-parametru">Zadávání parametrů</a></li>
+<li class="toctree-l2"><a class="reference internal" href="davka.html#prakticka-ukazka">Praktická ukázka</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../georeferencovani/index.html">Georeferencování obrazových dat</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Nástroje zpracování</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="uvod.html">Orientace v nástrojích</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spousteni.html">Spouštění geoalgoritmů</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nastaveni.html">Nastavení, historie, prohlížení výsledků</a></li>
+<li class="toctree-l2"><a class="reference internal" href="externi.html">Externí geoalgoritmy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="davka.html">Dávkové zpracování</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modeler/index.html">Grafický modelář</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grass/index.html">Zásuvný modul GRASS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hydrologie/index.html">Ukázka analýzy - hydrologie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3d/index.html">Práce s 3D daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pokrocile_upravy/index.html">Pokročilé úpravy prostředí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/index.html">Různé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../priklady/index.html">Příklady</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="../georeferencovani/index.html" title="Georeferencování obrazových dat"
+              >předchozí</a> |
+            <a href="uvod.html" title="Orientace v nástrojích"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

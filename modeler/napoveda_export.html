@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Tvorba nápovědy a export modelu &#8212; Školení QGIS pro pokročilé</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Zásuvný modul GRASS" href="../grass/index.html" />
+    <link rel="prev" title="Spouštění a editace modelu" href="spousteni.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení QGIS pro pokročilé</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="spousteni.html" title="Spouštění a editace modelu"
+             accesskey="P">předchozí</a> |
+          <a href="../grass/index.html" title="Zásuvný modul GRASS"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="tvorba-napovedy-a-export-modelu">
+<h1>Tvorba nápovědy a export modelu<a class="headerlink" href="#tvorba-napovedy-a-export-modelu" title="Permalink to this heading">¶</a></h1>
+<p>Nápověda modelu je důležitá jak pro orientaci ostatních uživatelů, se
+kterými chceme model sdílet, ale také pro vlastní orientaci v modelu v
+budoucnu.</p>
+<section id="tvorba-napovedy">
+<h2>Tvorba nápovědy<a class="headerlink" href="#tvorba-napovedy" title="Permalink to this heading">¶</a></h2>
+<p>Nápověda modelu, slouží jednak k popisu jednotlivých operací, vstupů a
+výstupů tak i k doprovodným informacím jako je autor nebo verze
+modelu. Editaci nápovědy spustíme z okna modeláře pomocí ikony
+<a class="reference internal" href="../_images/mActionEditHelpContent.png"><img alt="mActionEditHelpContent" src="../_images/mActionEditHelpContent.png" style="width: 1.5em;" /></a>. Takto vytvořená nápověda se potom bude
+zobrazovat při spuštění odelu v záložce <span class="guilabel">Nápověda</span>
+(<a class="reference internal" href="#modelerhelp"><span class="std std-numref">Obr. 85</span></a>)</p>
+<figure class="align-center" id="id1">
+<img alt="../_images/modeler_help.png" src="../_images/modeler_help.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 83 </span><span class="caption-text">Okno editace nápovědy modelu.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>v okně editace nápovědy doplníme k jednolivým položkám vlastní text</p></li>
+</ul>
+<figure class="align-center" id="id2">
+<img alt="../_images/modeler_help2.png" src="../_images/modeler_help2.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 84 </span><span class="caption-text">Ukázka vyplněné nápovědy.</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id3">
+<span id="modelerhelp"></span><img alt="../_images/modeler_help3.png" src="../_images/modeler_help3.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 85 </span><span class="caption-text">Nápověda v dialogovém okně při spouštění modelu.</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="export-modelu">
+<h2>Export modelu<a class="headerlink" href="#export-modelu" title="Permalink to this heading">¶</a></h2>
+<p>Kromě uložení modelu do souboru <code class="file docutils literal notranslate"><span class="pre">.model</span></code> můžeme pomocí ikony
+<a class="reference internal" href="../_images/mActionSaveMapAsImage.png"><img alt="mActionSaveMapAsImage" src="../_images/mActionSaveMapAsImage.png" style="width: 1.5em;" /></a> exportovat model jako obrázek ve formátu PNG.
+Ikona <a class="reference internal" href="../_images/mActionSaveAsSVG.png"><img alt="mActionSaveAsSVG" src="../_images/mActionSaveAsSVG.png" style="width: 1.5em;" /></a> umožňuje export do formátu SVG. Do formátu PDF
+slouží k exportu ikona <a class="reference internal" href="../_images/mActionSaveAsPDF.png"><img alt="mActionSaveAsPDF" src="../_images/mActionSaveAsPDF.png" style="width: 1.5em;" /></a>. Ikona <a href="#id5"><span class="problematic" id="id6">|mActionSaveAsScript|</span></a> umožňuje export do
+Python skriptu.</p>
+<figure class="align-center" id="id4">
+<img alt="../_images/modeler_exportpng.png" class="middle" src="../_images/modeler_exportpng.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 86 </span><span class="caption-text">Model exportovaný do souboru ve formátu PNG.</span><a class="headerlink" href="#id4" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../georeferencovani/index.html">Georeferencování obrazových dat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geoprocessing/index.html">Nástroje zpracování</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Grafický modelář</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="uvod.html">Úvod</a></li>
+<li class="toctree-l2"><a class="reference internal" href="casti.html">Části modelu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spousteni.html">Spouštění a editace modelu</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tvorba nápovědy a export modelu</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../grass/index.html">Zásuvný modul GRASS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hydrologie/index.html">Ukázka analýzy - hydrologie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3d/index.html">Práce s 3D daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pokrocile_upravy/index.html">Pokročilé úpravy prostředí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/index.html">Různé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../priklady/index.html">Příklady</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="spousteni.html" title="Spouštění a editace modelu"
+              >předchozí</a> |
+            <a href="../grass/index.html" title="Zásuvný modul GRASS"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

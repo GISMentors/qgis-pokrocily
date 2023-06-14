@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Bilancování ochranných pásem silnic &#8212; Školení QGIS pro pokročilé</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="prev" title="Bilancování využití území" href="bilancovani_uzemi.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení QGIS pro pokročilé</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="bilancovani_uzemi.html" title="Bilancování využití území"
+             accesskey="P">předchozí</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="bilancovani-ochrannych-pasem-silnic">
+<h1>Bilancování ochranných pásem silnic<a class="headerlink" href="#bilancovani-ochrannych-pasem-silnic" title="Permalink to this heading">¶</a></h1>
+<p>Na tomto příkladu bilancování bude ukázáno jednak jednorázové zpracování,
+ale i vytvoření modelu pro opakovaný výpočet tohoto typu úlohy.</p>
+<p>Tato úloha bude používat pouze data ze základního balíčku dat pro školení.
+Konkrétně se použije dataset <cite>silnice</cite>. Cilem úkolu je vypočítat plochu
+ochranných pásem (OP) jednotlivých typů silnic ve vybraných <cite>ZSJ</cite>. Důležité je
+zacházení s variabilní šířkou ochranného pásma, ale i způsob řešení
+překryvů jednotlivých typů OP silnic.</p>
+<section id="zadani">
+<h2>Zadání<a class="headerlink" href="#zadani" title="Permalink to this heading">¶</a></h2>
+<p>Pro všechny silnice ve sledovaném území se postupnými kroky vygeneruje
+hierarchický model OP. Tento výpočet bude následně převeden do grafického
+modeleru. Posledním volitelným krokem je pak vizualizace (grafická nebo
+tabulková) přehledných údajů za jednotlivé kategorie pro každou <cite>ZSJ</cite>.</p>
+</section>
+<section id="priprava-dat">
+<h2>Příprava dat<a class="headerlink" href="#priprava-dat" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>silniční síť z OSM (součást balíku dat, enbo stáhnout z OSM)</p></li>
+<li><p>územní členění Prahy (jsou součástí balíku dat, nebo stáhnout z RÚIAN)</p></li>
+</ol>
+<p>Stejně jako v předešlém příkladu platí, že je dobré provést kontrolu geometie
+před samotnou realizací výpočtů. Vrstva <cite>silnice</cite> obsahuje liniové prvky a
+neprovádí se kontrola, která by zaručovala možnost provádět síťovou analýzu.</p>
+</section>
+<section id="orez-dat">
+<h2>1. ořez dat<a class="headerlink" href="#orez-dat" title="Permalink to this heading">¶</a></h2>
+<p>Prvním krokem je výběr dat pouze v zájmovém území.
+Použije se operace <strong>Ořez</strong> (clip).
+Vstupní vrstva je v tomto případě <cite>silnice</cite> a překryvná <cite>ZSJ</cite>.</p>
+<figure class="align-center" id="id1">
+<img alt="../_images/b_clip.png" class="small" src="../_images/b_clip.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 208 </span><span class="caption-text">Ořez vrstvy silnic pomocí vrstvy <cite>ZSJ</cite>.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Výběr správné operace je důležitý pro náseldující kroky.
+V tomto případě se prvky ořežou  překryvnými prvky, ale
+jenom na vnějších okrajích. Jak je vidět na obrázku níže,
+vybraná sinice zůstane na spojnici ZSJ nerozdělená.</p>
+<figure class="align-center" id="id2">
+<img alt="../_images/b_clip_detail.png" class="small" src="../_images/b_clip_detail.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 209 </span><span class="caption-text">Prvek po ořezání zůstává vevnitř nerozdělený.</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="rozdeleni-silnic-podle-tridy">
+<h2>2. rozdělení silnic podle třídy<a class="headerlink" href="#rozdeleni-silnic-podle-tridy" title="Permalink to this heading">¶</a></h2>
+<p>Každý úsek silnice bude mít OP podle toho, do jaké třídy patří.
+Toto rozdělení je uvedeno v atributu <cite>typ</cite> jako číselná hodnota.
+Na obrázku je vidět symbologie podle tohoto atributu ve zpracovávaném území.</p>
+<figure class="align-center" id="id3">
+<img alt="../_images/b_road_class.png" class="medium" src="../_images/b_road_class.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 210 </span><span class="caption-text">Kategorizovaná symbologie pomocí hodnoty atributu <cite>typ</cite>.</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Každá třída nás zajímá jako celek, ne jako samostatné úseky.
+Proto je výhodné prvky sloučit pomocí funkce <strong>Rozpustit</strong> (dissolve).
+V tomto případě se pro rozpuštění použije právě atribut <cite>typ</cite>.
+Výledkem budou 4 multiliniové prvky - 1 pro každou z vyskytující se kategorie.</p>
+<p>Pro další kroky je výhodné rozdělit jednotlivé kategorie do samostatných
+vrstev. Lze využít nástroj <strong>Rozdělit vektorovou vrstvu</strong> (split vector layer),
+kde se použije atribut <cite>typ</cite> pro rozdělení. Nevýhodou tohoto nástroje je, že
+výstup nelze uložit do jednoho GPKG jako více vrstev, ale vytvoří více výstupních
+GPKG souborů.
+Podle potřeby je možné je manuálně nakopírovat do pracovního umístění.</p>
+</section>
+<section id="vytvoreni-variabilniho-op">
+<h2>3. vytvoření variabilního OP<a class="headerlink" href="#vytvoreni-variabilniho-op" title="Permalink to this heading">¶</a></h2>
+<p>Pro každou kategorii se vygeneruje obalová zóna reprezentující OP o požadované
+velikosti.</p>
+<p>typ 2 = 100 m
+typ 3 = 50 m
+typ 4 = 30 m
+typ 5 = 15 m</p>
+<p>Pro vygenerování se použije nístroj <strong>Obalová zóna</strong> (buffer) ze sekce
+<cite>Vektorová geometrie</cite>. Po spuštění tohoto nástroje se přepne pomocí tlačítka
+<span class="item">Spustit jako dávkový proces…</span> do režimu dávkového zpracování.</p>
+<p>Jako vstupní vrstvu vybereme všechny vygenerované typy z předešlého kroku.</p>
+<figure class="align-center" id="id4">
+<img alt="../_images/b_batch_input.png" class="medium" src="../_images/b_batch_input.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 211 </span><span class="caption-text">Hromadný výběr vstupních vrstev pro vytvoření OP.</span><a class="headerlink" href="#id4" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Postupně se pak každé vrstvě vyplní požadovaná velikost OP.</p>
+<figure class="align-center" id="id5">
+<img alt="../_images/b_batch_size.png" class="medium" src="../_images/b_batch_size.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 212 </span><span class="caption-text">Nastavení velikosti OP každé zpracovávané vrstvě.</span><a class="headerlink" href="#id5" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Výstup se nechá vygenerovat automaticky pomocí hodnot parametru vstupu, nebo
+velikosti. Bohužel platí, že u GPKG opět není možné zapsat do jednoho souboru.</p>
+<figure class="align-center" id="id6">
+<img alt="../_images/b_batch_result.png" class="medium" src="../_images/b_batch_result.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 213 </span><span class="caption-text">Zobrazení výsledných OP pro každou kategorii silnic.</span><a class="headerlink" href="#id6" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="hierarchicky-orez">
+<h2>4. hierarchický ořez<a class="headerlink" href="#hierarchicky-orez" title="Permalink to this heading">¶</a></h2>
+<p>Vygenerované OP jednotlivých tříd se v místech křížení překrývají.
+Požadovaným výstupem je ale v místě překryvu zachovat OP vyšší třídy.
+Je proto nutné udělat postupný ořez dle hierarchie jednotlivých tříd.</p>
+<p>Postupně se vždy vezmou dvě kategorie nejvyšších tříd. Ta nižší z nich se
+ořeže tou vyšší. Následně se pak spojí. Iterace se opakuje až po nejnižší
+třídu.</p>
+<p>První krok je tedy mezi kategorií 2 a 3. Použije se nástroj <strong>Rozdíl</strong>
+(difference).</p>
+<figure class="align-center" id="id7">
+<img alt="../_images/b_difference.png" class="large" src="../_images/b_difference.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 214 </span><span class="caption-text">Původní překrývající se vrstvy se pomocí nástroje upraví na hierarchicky ořezané.</span><a class="headerlink" href="#id7" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Takto upravené vrstvy se sloučí pomocí nástroje <strong>Sloučit vektorové vrstvy</strong> (merge).</p>
+<p>Zpracování pak postupuje na zpracování následující nižší třídy.
+Výsledkem je sloučená vrstva všech hierarchicky ořezaných vrstev s OP.</p>
+<figure class="align-center" id="id8">
+<img alt="../_images/b_merged.png" class="medium" src="../_images/b_merged.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 215 </span><span class="caption-text">Zobrazení výseldné vrstvy za pomoci částečné průhlednosti zobrazuje
+nepřekrývající se prvky.</span><a class="headerlink" href="#id8" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="statistika-na-pozadovane-jednotky">
+<h2>5. statistika na požadované jednotky<a class="headerlink" href="#statistika-na-pozadovane-jednotky" title="Permalink to this heading">¶</a></h2>
+<p>Posledním krokem je vyhodnocení ploch za požadované jednotky.
+V tomto případě se jedná o <cite>ZSJ</cite>. Postup je stejný jako v předchozím
+příkladě, proto tady nebude popsaný.</p>
+<figure class="align-center" id="id9">
+<img alt="../_images/b_group_stats_roads.png" class="medium" src="../_images/b_group_stats_roads.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 216 </span><span class="caption-text">Zobrazení tabulkového přehledu.</span><a class="headerlink" href="#id9" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../georeferencovani/index.html">Georeferencování obrazových dat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geoprocessing/index.html">Nástroje zpracování</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeler/index.html">Grafický modelář</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grass/index.html">Zásuvný modul GRASS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hydrologie/index.html">Ukázka analýzy - hydrologie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3d/index.html">Práce s 3D daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pokrocile_upravy/index.html">Pokročilé úpravy prostředí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/index.html">Různé</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Příklady</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="bilancovani_uzemi.html">Bilancování využití území</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Bilancování ochranných pásem silnic</a></li>
+</ul>
+</li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="bilancovani_uzemi.html" title="Bilancování využití území"
+              >předchozí</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

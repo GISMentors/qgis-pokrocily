@@ -1,0 +1,430 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Georeferencování obrazových dat &#8212; Školení QGIS pro pokročilé</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Nástroje zpracování" href="../geoprocessing/index.html" />
+    <link rel="prev" title="Obsah" href="../index.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení QGIS pro pokročilé</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="../index.html" title="Obsah"
+             accesskey="P">předchozí</a> |
+          <a href="../geoprocessing/index.html" title="Nástroje zpracování"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="georeferencovani-obrazovych-dat">
+<h1>Georeferencování obrazových dat<a class="headerlink" href="#georeferencovani-obrazovych-dat" title="Permalink to this heading">¶</a></h1>
+<p>V prostředí QGIS je možné pracovat s obrazovými daty - rastry. Jedná
+se o obrazová data s informací o jejich umístění v prostoru
+(tzv. souřadnicově připojená data).  Existuje však obrovské množství
+obrazových dat, které nejsou prostorově umístěná a jsou to tedy pouze
+„obrázky“.  Existuje však možnost, jak takovýmto datům určit jejich
+umístění v prostoru.  Tento proces se nazývá <em>georeferencování</em>.</p>
+<section id="vyuziti">
+<h2>Využití<a class="headerlink" href="#vyuziti" title="Permalink to this heading">¶</a></h2>
+<p>V současnosti je k dispozici velké množství obrazových dat, které
+nemají prostorovou informaci. Často je však žádané zobrazit si takováto
+data v GISu jako podkladová, nebo je dále využívat pro tvorbu
+vektorových dat.  Typickým příkladem může být územní plán. Ten je
+často vypracován jako přerozdělení prostoru do různých
+kategorií. Výsledný produkt je často ve formátu <cite>PDF</cite> - bez
+prostorových informací.  Abychom měli možnost pracovat s takovýmito
+daty jako s prostorovými, musíme využít nástroj pro georeferencování.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Pokud zvolený rastr obsahuje i jiné části než samotnou polohovou složku dat
+(například legendu, popisek, měřítko a jiné), tak je vhodné zpracovávat
+již ořezaný obrázek.</p>
+</div>
+</section>
+<section id="postup">
+<h2>Postup<a class="headerlink" href="#postup" title="Permalink to this heading">¶</a></h2>
+<section id="spusteni-nastroje">
+<h3>1. Spuštění nástroje<a class="headerlink" href="#spusteni-nastroje" title="Permalink to this heading">¶</a></h3>
+<p>Nástroj pro georeferencování je součástí základního vybavení a najdeme
+jej v <span class="menuselection">Rastr ‣ Georeferencér</span>
+(<a class="reference internal" href="#georeferencer-menu"><span class="std std-numref">Obr. 2</span></a>).
+Nástroj obsahuje dvě části. V první se zobrazí zpracovávaný
+rastr a v druhém tabulka tzv. <cite>GCP bodů - identických bodů</cite>.</p>
+<figure class="align-center" id="id1">
+<span id="georeferencer-menu"></span><img alt="../_images/georeferencer_plain.png" class="middle" src="../_images/georeferencer_plain.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 2 </span><span class="caption-text">Nástroj pro georeferencování.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="pridani-zvoleneho-obrazku">
+<h3>2. Přidání zvoleného obrázku<a class="headerlink" href="#pridani-zvoleneho-obrazku" title="Permalink to this heading">¶</a></h3>
+<p>Prvním krokem po spuštění je přidání zvoleného rastru do
+nástroje.  Pomocí tlačítka <a class="reference internal" href="../_images/mActionAddRasterLayer.png"><img alt="mActionAddRasterLayer" src="../_images/mActionAddRasterLayer.png" style="width: 1.5em;" /></a> <sup>Otevřít
+rastr</sup> zvolit požadovaný vstupní rastr.</p>
+<figure class="align-center" id="id2">
+<span id="add-raster"></span><img alt="../_images/raster_added.png" src="../_images/raster_added.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 3 </span><span class="caption-text">Přidání obrázku pro georeferencování.</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Díky knihovně GDAL je možné georeferencovat velké množství formátů.
+Seznam všech formátů je vypsán v nástroji  pro přidání rastru. Mezi
+podporované formáty patří také <cite>PDF, JPEG, PNG</cite> a mnoho dalších.</p>
+</div>
+<p>Výběrem a potvrzením se zvolený rastr načte do první části okna pluginu,
+kde je připraven na další kroky.</p>
+</section>
+<section id="zadavani-gcp-identickych-bodu">
+<h3>3. Zadávání GCP - identických bodů<a class="headerlink" href="#zadavani-gcp-identickych-bodu" title="Permalink to this heading">¶</a></h3>
+<p>Dalším krokem je zadání tzv. identických bodů (z ang. <cite>ground control
+points</cite>). Jde o identifikaci polohy na zpracovávaném obrázku a následné
+zadání souřadnic bodu v daném souřadnicovém systému (grafickým výběrem
+nebo zadáním souřadnic).
+Postup je zobrazen na <a class="reference internal" href="#add-gcp-point"><span class="std std-numref">Obr. 4</span></a>.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Prvním krokem je výběr nástroje pro přidávání bodů pomocí ikonky
+<a class="reference internal" href="../_images/mActionAddGCPPoint.png"><img alt="mActionAddGCPPoint" src="../_images/mActionAddGCPPoint.png" style="width: 1.5em;" /></a> <sup>Přidat bod</sup>.</p></li>
+<li><p>Pak identifikujeme bod v georeferencovaném obrázku kliknutím na jeho
+polohu. Jak ikonka, tak zadaný bod jsou zvýrazněné v prvním okně.</p></li>
+<li><p>Okamžitě po zadání polohy kliknutím se otevře dialog pro zadání
+mapových souřadnic bodu. Pokud souřadnice známe, tak je můžeme rovnou
+zadat. Pro odečtení souřadnic z mapového okna je tam samostatná volba.</p></li>
+<li><p>V mapovém okně označíme polohu bodu kliknutím a odečtené souřadnice
+se automaticky vloží do dialogu. Souřadnice je možné i ručně upravit.</p></li>
+<li><p>Po potvrzení zadaných souřadnic se bod zapíše do tabulky pod
+georeferencovaný rastr.</p></li>
+<li><p>V posledním okně je vidět číslo bodu, jeho souřadnice v obrázku,
+souřadnice z mapového okna a prozatím prázdné kolonky pro
+odchylky <code class="docutils literal notranslate"><span class="pre">(dX,</span> <span class="pre">dY)</span></code> v pixelech a celkový posun (residual) v pixelech.</p></li>
+</ul>
+</div></blockquote>
+<figure class="align-center" id="id3">
+<span id="add-gcp-point"></span><img alt="../_images/add_gcp_point.png" class="large" src="../_images/add_gcp_point.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 4 </span><span class="caption-text">Přidávaní identických bodů.</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Pro dosažení požadovaného výsledku je nutné použít vícero bodů
+(minimální počet bodů se liší dle dalšího zvoleného nastavení typu
+transformace). Podstatné je také jejich rozmístění, které by mělo
+být takové, aby body pokryly ideálně celou plochu rastru rovnoměrně.
+Pokud pro daný typ zvolené transformace použijete víc než minimální
+potřebný počet bodů, tak se budou spočtené vektory odchylek na jednotlivých
+bodech vykreslovat do georeferencovaného obrázku. Je tak i graficky vidět
+směr a velikost jednotlivých odchylek.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>V určitých případech můžeme georeferencovat obrázek, na kterém jsou
+definované souřadnice (formou křížů se souřadnicemi <a class="reference internal" href="#input-coordinates"><span class="std std-numref">Obr. 5</span></a>,
+mapovým rámem s popisem, nebo zeměpisnou sítí s popiskami).</p>
+<figure class="align-center" id="id4">
+<span id="input-coordinates"></span><img alt="../_images/input-coordinates.png" src="../_images/input-coordinates.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 5 </span><span class="caption-text">Příklad vstupního obrázku s definovanými souřadnicemi.</span><a class="headerlink" href="#id4" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>V takovém případě nemusíme bod zadávat kliknutím v mapovém okně ale přímo
+zadat souřadnice.
+Další možností je zadávání z mapového okna, kde se vykreslí souřadnicová
+mřížka i s popisem. Nastavení mřížky je dostupné z menu
+<span class="menuselection">Zobrazit ‣ Dekorace ‣ Mřížka…</span> (<a class="reference internal" href="#grid"><span class="std std-numref">Obr. 6</span></a>).
+Samostatně se zde nastavuje vykreslování mřížky (symbologie, rozestupy,
+odsazení) a popisků (orientace, font, odsazení, počet desetinných míst).
+Nevýhodou je, že při georeferencování nejde dochytávat (snapovat) na tyto body
+(klasická vektorizace to umožňuje).</p>
+<figure class="align-center" id="id5">
+<span id="grid"></span><img alt="../_images/grid.png" src="../_images/grid.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 6 </span><span class="caption-text">Vykreslení mřížky a souřadnic v mapovém okně.</span><a class="headerlink" href="#id5" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Další možností je využití pluginu <span class="item">Lat Lon Tools</span>. Zadáním
+žádaných souřadnic do vyhledávacích políček je možné přiblížit na hledanou
+polohu. Nástroj je ve výchozím nastavení určený na lokalizaci pomocí
+zeměpisné šířky a délky. Pro nastavení například S-JTSK je nutné nejdřív
+otevřít nastavení tohoto pluginu.</p>
+</div>
+<p>Body je možné odstraňovat <a class="reference internal" href="../_images/mActionDeleteGCPPoint.png"><img alt="mActionDeleteGCPPoint" src="../_images/mActionDeleteGCPPoint.png" style="width: 1.5em;" /></a> <sup>Smazat bod</sup> anebo změnit
+polohu bodu ve zpracovávaném obrázku nebo mapovém okně <a class="reference internal" href="../_images/mActionMoveGCPPoint.png"><img alt="mActionMoveGCPPoint" src="../_images/mActionMoveGCPPoint.png" style="width: 1.5em;" /></a>
+<sup>Přesunout CP bod</sup>.</p>
+<figure class="align-center" id="id6">
+<img alt="../_images/gcp_points.png" src="../_images/gcp_points.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 7 </span><span class="caption-text">Přehled zadaných identických bodů v tabulce.</span><a class="headerlink" href="#id6" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="nastaveni-transformace">
+<h3>4. Nastavení transformace<a class="headerlink" href="#nastaveni-transformace" title="Permalink to this heading">¶</a></h3>
+<p>Po zadání dostatečného množství identických bodů je možné pokračovat
+dalším krokem. Buňky vstupního rastru musí být přepočítány pomocí klíče,
+který je definován identickými body a typem transformace.
+Tlačítko <a class="reference internal" href="../_images/mActionTransformSettings.png"><img alt="mActionTransformSettings" src="../_images/mActionTransformSettings.png" style="width: 1.5em;" /></a> <sup>Nastavení transformace</sup> otevře
+dialogové okno, kde se nastavují následující parametry (<a class="reference internal" href="#transformation"><span class="std std-numref">Obr. 8</span></a>):</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>komprese</p></li>
+<li><p>výstupní rastr</p></li>
+<li><p>souřadnicový systém výstupního rastru</p></li>
+<li><p>vytvoření mapy ve formátu PDF</p></li>
+<li><p>vytvoření zprávy ve formátu PDF</p></li>
+<li><p>cílové rozlišení</p></li>
+<li><p>použít průhlednost</p></li>
+</ul>
+</div></blockquote>
+<figure class="align-center" id="id7">
+<span id="transformation"></span><img alt="../_images/transformation_settings.png" class="small" src="../_images/transformation_settings.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 8 </span><span class="caption-text">Okno pro nastavení transformace.</span><a class="headerlink" href="#id7" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<section id="typ-transformace">
+<h4>Typ transformace<a class="headerlink" href="#typ-transformace" title="Permalink to this heading">¶</a></h4>
+<p>Jak již bylo uvedeno, tak k dispozici je zde více druhů transformací. Výběr
+vhodné transformace záleží na kvalitě vstupního obrázku, jeho deformacích, které
+chceme ve výsledku ovlivnit a na počtu identických bodů.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Lineární - (shodnostní) transformace založená na posunu a rotaci (měřítko se
+nemění), má speciální užití</p></li>
+<li><p>Helmertova - (podobnostní) základní druh transformace založený na změně
+měřítka, rotaci a posunu (tyto hodnoty jsou konstantní pro celý vstupní rastr)</p></li>
+<li><p>Polynomiální (1.-3. stupeň) - transformace deformující zdrojový rastr za účelem
+minimalizování odchylek na identických bodech. Výslední rastr je lokálně
+deformován podle stupně polynomiální transformace. Například 1. stupeň je
+tzv. afinní transformace, kde je různý měřítkový koeficient pro osy X a
+Y. Polynomiální transformace jsou obecně nejčastěji používané pro
+georeferencování skenovaných map, ale je nutné dbát na vhodné rozložení
+identických bodů.</p></li>
+<li><p>Thin Plate Spline - je modernější metoda pro georeferencování na základě
+složitějších vztahů. Využití je podobné jako u polynomiálních.</p></li>
+<li><p>Projektivní - (kolineární) založená na principu středového promítání</p></li>
+</ul>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Typ transformace</p></th>
+<th class="head"><p>Minimální počet identických bodů</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Lineární</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>Helmertova</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>Polynomiální 1. stupně</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>Polynomiální 2. stupně</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p>Polynomiální 3. stupně</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>Thin Plate Spline</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-even"><td><p>Projektivní</p></td>
+<td><p>4</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="metoda-prevzorkovani">
+<h4>Metoda převzorkování<a class="headerlink" href="#metoda-prevzorkovani" title="Permalink to this heading">¶</a></h4>
+<p>Vzhled výsledného rastru lze ovlivnit i pomocí nastavení metody převzorkování.
+Výběr konkrétní metody záleží zejména na požadavcích, zda má být zachována
+původní charakteristika, nebo je spíš požadováno optické vyhlazení.</p>
+<dl class="simple">
+<dt>K dispozici jsou následující metody převzorkování:</dt><dd><ul class="simple">
+<li><p>nejbližší soused</p></li>
+<li><p>lineární</p></li>
+<li><p>kubický</p></li>
+<li><p>kubický spline</p></li>
+<li><p>Lanczos</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="dalsi-nastaveni">
+<h4>Další nastavení<a class="headerlink" href="#dalsi-nastaveni" title="Permalink to this heading">¶</a></h4>
+<p>Komprese - lze vybrat kompresi pro vytvářený rastr</p>
+<p>Výstupní rastr - zadání výstupního rastru</p>
+<p>Cílový CRS - souřadnicový systém výstupního rastru</p>
+<p>Vytvořit PDF mapu - vytvoření výstupního souboru ve formátu PDF</p>
+<p>Vytvořit PDF zprávu - uložení zprávy o parametrech transformace do formátu PDF</p>
+<p>Změnit cílové rozlišení - zadáním rozlišení v obou směrech (v mapových
+jednotkách)</p>
+</section>
+</section>
+<section id="spusteni-georeferencovani">
+<h3>5.Spuštění georeferencování<a class="headerlink" href="#spusteni-georeferencovani" title="Permalink to this heading">¶</a></h3>
+<p>Po nastavení transformace a zadání dostatečného počtu identických bodů je možné
+spustit transformaci (<a class="reference internal" href="/home/runner/work/qgis-pokrocily/sphinx-template/_static/icons/qgis/mActionStartGeoref.png"><img alt="mActionStartGeoref" src="/home/runner/work/qgis-pokrocily/sphinx-template/_static/icons/qgis/mActionStartGeoref.png" style="width: 1.5em;" /></a> <sup>Spustit georeferencování</sup>).
+Délka výpočtu je závislá na velikosti georeferencovaného rastru, ale také na
+parametrech, které jsou nastaveny pro jeho zpracování.</p>
+<p>Pokud pro nastavený typ transformace není zadán dostatečný počet identických
+bodů, tak je to vidět na tabulce GCP (hodnoty odchylek na jednotlivých bodech
+nejsou spočteny a je uvedena pouze „0“ - první část <a class="reference internal" href="#gcp-points"><span class="std std-numref">Obr. 9</span></a> )
+Pokud by jste zkusili spustit georeferencování, tak vás varovná hláška informuje
+o selhání transformace z důvodu neřešitelnosti.
+V druhé části <a class="reference internal" href="#gcp-points"><span class="std std-numref">Obr. 9</span></a> je již do výpočtu zahrnut i bod ID = 2. U
+každého bodu je vidět souřadnice zdroje, cíle, a odchylky v pixelech v
+jednotlivých osách.</p>
+<figure class="align-center" id="id8">
+<span id="gcp-points"></span><img alt="../_images/gcp_points2.png" src="../_images/gcp_points2.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 9 </span><span class="caption-text">Příklad nedostačujícího počtu identických bodů pro zvolenou transformaci.</span><a class="headerlink" href="#id8" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Pokud bychom v tabulce viděli body se značnou odchylkou, tak je tento bod
+dobré zkontrolovat (v mapě i na zpracovávaném obrázku). Polohu bodu můžeme
+opravit, nebo bod vyřadit z řešení anebo ho úplně odstranit.</p>
+<p>Na <a class="reference internal" href="#gcp-mistake"><span class="std std-numref">Obr. 10</span></a> je vidět, že byl zadán bod, který má extrémní odchylky.
+Výstupem georeferencování je pak rastr, který má značnou deformaci. Vektor
+odchylky je pak vykreslen do zpracovávaného obrázku.</p>
+<figure class="align-center" id="id9">
+<span id="gcp-mistake"></span><img alt="../_images/gcp_remove_point.png" src="../_images/gcp_remove_point.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 10 </span><span class="caption-text">Příklad nezahrnutí špatného bodu do výpočtu.</span><a class="headerlink" href="#id9" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</div>
+<p>Výsledný georeferencovaný rastr je pak možné přidat do mapového okna. Pomocí
+transparentnosti jednotlivých vrstev je možné dostatečně zkontrolovat, zda
+dosažená polohová přesnost vyhovuje požadavkům.</p>
+<p>Pokud by velikost výsledního rastru byla příliš velká a jeho vykreslování by
+bylo pomalé, tak je možné vytvořit tzv. pyramidy.
+Toto nastavení je dostupné přímo ve vlastnostech rastrové vrstvy, v záložce
+<span class="item">Pyramidy</span>. Na <a class="reference internal" href="#pyramids"><span class="std std-numref">Obr. 11</span></a> je vidět i text popisující funkčnost
+pyramid, varování, že bude upravován přímo zdrojový rastr a paramtery pro tvorbu
+pyramid (levely, formát náhledu a metoda převzorkování). Pyramidy je také možné
+vytvořit pomocí <span class="menuselection">Rastr ‣ Miscellaneous ‣ Vytvořit přehledy
+(pyramidy)</span>,
+kde je také nutné nastavit stejné parametry, ale je také možné spustit funkci
+v dávkovém režimu pro celý adresář.</p>
+<figure class="align-center" id="id10">
+<span id="pyramids"></span><img alt="../_images/pyramids1.png" class="small" src="../_images/pyramids1.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 11 </span><span class="caption-text">Možnost vytvoření pyramid přes vlastnosti rastrové vrstvy.</span><a class="headerlink" href="#id10" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Pro zpracování jedné lokality na více obrazových vstupech je vhodné
+uložit použité identické body a pak je jenom zkontrolovat. Body lze
+uložit v <span class="menuselection">Soubor ‣ Uložit GCP body jako…</span>
+zadáním názvu výstupního souboru. Body lze znovu načíst pomocí
+<span class="menuselection">Soubor ‣ Načíst GCP body</span>.  Takto uložené body
+lze editovat jednoduše jako textový soubor.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Georeferencování obrazových dat</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#vyuziti">Využití</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#postup">Postup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../geoprocessing/index.html">Nástroje zpracování</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeler/index.html">Grafický modelář</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grass/index.html">Zásuvný modul GRASS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hydrologie/index.html">Ukázka analýzy - hydrologie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3d/index.html">Práce s 3D daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pokrocile_upravy/index.html">Pokročilé úpravy prostředí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/index.html">Různé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../priklady/index.html">Příklady</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="../index.html" title="Obsah"
+              >předchozí</a> |
+            <a href="../geoprocessing/index.html" title="Nástroje zpracování"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

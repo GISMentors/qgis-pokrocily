@@ -1,0 +1,301 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Nastavení, historie, prohlížení výsledků &#8212; Školení QGIS pro pokročilé</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Externí geoalgoritmy" href="externi.html" />
+    <link rel="prev" title="Spouštění geoalgoritmů" href="spousteni.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení QGIS pro pokročilé</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="spousteni.html" title="Spouštění geoalgoritmů"
+             accesskey="P">předchozí</a> |
+          <a href="externi.html" title="Externí geoalgoritmy"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="nastaveni-historie-prohlizeni-vysledku">
+<span id="nastaveni"></span><h1>Nastavení, historie, prohlížení výsledků<a class="headerlink" href="#nastaveni-historie-prohlizeni-vysledku" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2>Nastavení<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>Nastavení sady nástrojů nalezneme v hlavním nastavení QGIS v menu
+<span class="menuselection">Nastavení ‣ Možnosti…</span> v záložce
+<a class="reference internal" href="../_images/processingAlgorithm.png"><img alt="processingAlgorithm" src="../_images/processingAlgorithm.png" style="width: 1.5em;" /></a> <cite>Zpracování</cite>, nebo přímo z panelu nástrojů
+zpracování pomocí tlačítka <a href="#id12"><span class="problematic" id="id13">|iconSettingsConsole|</span></a> Zde můžeme procházet,
+aktivovat a deaktivovat poskytovatele algoritmů, uživatelské skripty a
+modely, dále lze přidat jednotlivé funkce do hlavního menu a lišty,
+nastavit obecné chování při spouštění algoritmů případně nastavit
+chování konkrétních poskytovatelů. Pro prohledávání nastavení lze využít
+filtr v horní části okna.</p>
+<figure class="align-center" id="id2">
+<img alt="../_images/geoproc_conf.png" class="middle" src="../_images/geoproc_conf.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 27 </span><span class="caption-text">Okno nastavení sady nástrojů.</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<section id="obecne-nastaveni">
+<h3>Obecné nastavení<a class="headerlink" href="#obecne-nastaveni" title="Permalink to this heading">¶</a></h3>
+<p>V obecném nastavení lze nastavit globální chování všech algoritmů
+(nezávisle na poskytovateli).</p>
+<figure class="align-center" id="id3">
+<img alt="../_images/geoproc_obec.png" class="middle" src="../_images/geoproc_obec.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 28 </span><span class="caption-text">Obecné nastavení zpracování.</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Vybraná nastavení:</p>
+<blockquote>
+<div><ul>
+<li><p><span class="guilabel">Filtrování neplatných prvků</span> - nastavení chování z
+hlediska platnosti geometrie</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Do not Filter (better performence)</p></li>
+<li><p>Ignorovat prvky s neplatnými geometriemi</p></li>
+<li><p>Stop algorithm execution when a geometry is invalid</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><span class="guilabel">Použít název souboru pro název vrstvy</span> - pokud je
+neaktivní, tak výstupní vrstva nese vždy automaticky
+vygenerovaný název související s danou funkcí (např. funkce
+<span class="guilabel">Obalová zóna</span> <code class="docutils literal notranslate"><span class="pre">-&gt;</span></code> vrstva
+<span class="guilabel">S obalovou zónou</span>). Pokud je aktivní, název vrstvy
+se generuje z vytvořeného výstupního souboru, a v případě kdy
+ukládáme výstup do dočasných souborů, tak se vrstva pojmenuje
+opět automaticky.</p></li>
+<li><p><span class="guilabel">Post(Pre)-execution script</span> - možnost nastavit
+cestu ke skriptům, které se budou automaticky spouštět před
+nebo po spuštění algoritmů.</p></li>
+<li><p><span class="guilabel">Styl pro … vrstvy</span> - možnost nastavení
+uživatelských stylů (symbologie) u různých typů výstupů. Je
+nutné nastavit cestu k souboru s uloženým stylem.</p></li>
+<li><p><span class="guilabel">Warn before executing if parameter CRS’s do not match</span>
+- upozorní pokud chceme provádět analýzy nad daty v
+různých souřadnicových systémech, nutné např. u překryvných
+analýz.</p></li>
+<li><p><span class="guilabel">Výstupní složka</span> - nastavení defaultní výstupní
+složky kam se mohou ukládat výstupy. V případě, že nechceme
+aby se výstup uložil pouze do dočasných souborů, zadáme při
+provádění operace název souboru a ten se uloží do
+přednastavené složky.</p></li>
+<li><p><span class="guilabel">Zobrazit definici SRS vrstvy ve výběrových
+boxech</span> - při výběru vrstev v analýzách uvidíme kromě názvu
+vrstvy i její EPSG kód.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nastaveni-poskytovatelu-modeleru-aj">
+<h3>Nastavení poskytovatelů, modeleru aj.<a class="headerlink" href="#nastaveni-poskytovatelu-modeleru-aj" title="Permalink to this heading">¶</a></h3>
+<p>V nastavení poskytovatelů procesů se hlavně setkáme z možností
+aktivace a deaktivace poskytovatelů (<span class="guilabel">Activate</span>
+<a class="reference internal" href="../_images/checkbox1.png"><img alt="checkbox" src="../_images/checkbox1.png" style="width: 1.5em;" /></a>). U jednotlivých poskytovatelů potom mohou být další
+možnosti nastavení.</p>
+<figure class="align-center" id="id4">
+<img alt="../_images/geoproc_poskyt.png" class="middle" src="../_images/geoproc_poskyt.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 29 </span><span class="caption-text">Nastavení uživatelských skriptů.</span><a class="headerlink" href="#id4" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="pridani-tlacitka-do-nastrojove-listy-a-hlavniho-menu">
+<h3>Přidání tlačítka do nástrojové lišty a hlavního menu<a class="headerlink" href="#pridani-tlacitka-do-nastrojove-listy-a-hlavniho-menu" title="Permalink to this heading">¶</a></h3>
+<p>V okně nastavení zpracování máme také možnost vytvořit pro jednotlivé
+algoritmy položku v hlavním menu, přičemž se nám na liště vytvoří
+tlačítko pro rychlé spouštění. To je vhodné pokud používáme k práci
+opakovaně několik algoritmů, zejména pak u vytvořených vlastních
+nástrojů (skripty, modely). K tlačítku v jde nastavit vlastní ikonka.
+Pro zobrazení nové položky v menu a ikonky v liště je nutné QGIS
+vypnout a znovu spustit</p>
+<figure class="align-center" id="id5">
+<img alt="../_images/geoproc_menu_add.png" class="middle" src="../_images/geoproc_menu_add.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 30 </span><span class="caption-text">Přidání tlačítka do nástrojové lišty a hlavního menu</span><a class="headerlink" href="#id5" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id6">
+<img alt="../_images/geoproc_menu_add2.png" class="middle" src="../_images/geoproc_menu_add2.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 31 </span><span class="caption-text">Vzled položky v menu a ikonka v nástrojové liště</span><a class="headerlink" href="#id6" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="historie">
+<h2>Historie<a class="headerlink" href="#historie" title="Permalink to this heading">¶</a></h2>
+<p>V okně historie můžeme procházet historii použitých procesů. Okno lze
+spustit z menu <span class="menuselection">Zpracování ‣ Historie…</span> nebo přímo z
+panelu nástrojů zpracování pomocí tlačítka
+<a class="reference internal" href="../_images/mIconHistory.png"><img alt="mIconHistory" src="../_images/mIconHistory.png" style="width: 1.5em;" /></a><sup>Historie…</sup> nebo
+použitím klávesové zkratky <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>+<kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">H</kbd></kbd>. Ve složce
+<span class="item">ALGORITHM</span> najdeme seznam spuštěných procesů s vypsaným Python
+kódem ve spodní části okna. Poklikáním na konkrétní proces se otevře
+okno algoritmu s předvyplněnými parametry. Proces tedy můžeme znovu
+spustit, popř. změnit parametry a spustit. V okně se mohou objevit i
+další složky: <span class="item">INFO</span>, <span class="item">ERROR</span>, <span class="item">WARNINGS</span>, ve kterých
+najdeme další informace nebo chyby ve spouštěných procesech.</p>
+<figure class="align-center" id="id7">
+<img alt="../_images/geoproc_histor.png" class="middle" src="../_images/geoproc_histor.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 32 </span><span class="caption-text">Okno historie spuštěných algoritmů.</span><a class="headerlink" href="#id7" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="prohlizec-vysledku">
+<h2>Prohlížeč výsledků<a class="headerlink" href="#prohlizec-vysledku" title="Permalink to this heading">¶</a></h2>
+<p>Některé algoritmy generují jako výstup HTML soubor. Pokud takový
+algoritmus spouštíme na konci záznamu, tak se nám vypíše text
+<span class="guilabel">Tento algoritmus vytvořil HTML výstup</span>
+(<a class="reference internal" href="#htmlfig"><span class="std std-numref">Obr. 33</span></a>). Pro otevření výsledků slouží panel <cite>Prohlížeč
+Výsledků</cite>. Otevřeme ho z menu <span class="menuselection">Zpracování ‣ Prohlížeč
+výsledků…</span> nebo z panelu nástrojů zpracování tlačítkem ||:sup:<cite>Prohlížeč
+výsledků</cite> popř. použitím klávesové zkratky <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>+<kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">R</kbd></kbd>. V panelu
+zvolíme výsledek, který chceme zobrazit a klikneme na odkaz ve spodní
+části.</p>
+<figure class="align-center" id="id8">
+<span id="htmlfig"></span><img alt="../_images/geoproc_html.png" class="tiny" src="../_images/geoproc_html.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 33 </span><span class="caption-text">Informace o vytvoření HTML souboru v záznamu algoritmu.</span><a class="headerlink" href="#id8" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id9">
+<img alt="../_images/geoproc_vysled.png" class="small" src="../_images/geoproc_vysled.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 34 </span><span class="caption-text">Ukázka výsledku z funkce <span class="guilabel">Základní statistiky pro pole</span>.</span><a class="headerlink" href="#id9" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<section id="ukazky-algoritmu-generujici-html-vystupy">
+<h3>Ukázky algoritmů generující HTML výstupy<a class="headerlink" href="#ukazky-algoritmu-generujici-html-vystupy" title="Permalink to this heading">¶</a></h3>
+<section id="zakladni-statistiky-pro-pole-vektor">
+<h4>Základní statistiky pro  pole (vektor)<a class="headerlink" href="#zakladni-statistiky-pro-pole-vektor" title="Permalink to this heading">¶</a></h4>
+<p>Pomocí funkce <a class="reference internal" href="../_images/mAlgorithmBasicStatistics.png"><img alt="mAlgorithmBasicStatistics" src="../_images/mAlgorithmBasicStatistics.png" style="width: 1.5em;" /></a> <span class="guilabel">Základní statistiky pro pole</span>
+zjistíme základní statistiky týkající se rozlohy <em>velkoplošných
+chráněných území</em>. Spustíme funkci vybereme požadovanou vrstvu a
+parametr podle kterého se budou údaje počítat. Výsledek potom
+zkontrolujeme v prohlížeči výsledků <span class="menuselection">Zpracování ‣
+Prohlížeč výsledků…</span>.</p>
+<figure class="align-center" id="id10">
+<img alt="../_images/geoproc_pract_3.png" class="middle" src="../_images/geoproc_pract_3.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 35 </span><span class="caption-text">Funkce <a class="reference internal" href="../_images/mAlgorithmBasicStatistics.png"><img alt="mAlgorithmBasicStatistics" src="../_images/mAlgorithmBasicStatistics.png" style="width: 1.5em;" /></a> <span class="guilabel">Základní statistiky
+pro pole</span>.</span><a class="headerlink" href="#id10" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="rastrove-informace-rastr">
+<h4>Rastrové informace (rastr)<a class="headerlink" href="#rastrove-informace-rastr" title="Permalink to this heading">¶</a></h4>
+<p>Pomocí funkce <a class="reference internal" href="../_images/raster-info.png"><img alt="raster-info" src="../_images/raster-info.png" style="width: 1.5em;" /></a> <span class="guilabel">Informace</span> (spouští příkaz
+<span class="guilabel">gdalinfo</span>) zjistíme základní informace o rastru. Výsledek potom
+zkontrolujeme v prohlížeči výsledků <span class="menuselection">Zpracování ‣ Prohlížeč
+výsledků…</span>.</p>
+<figure class="align-center" id="id11">
+<img alt="../_images/geoproc_pract_4.png" class="middle" src="../_images/geoproc_pract_4.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 36 </span><span class="caption-text">Funkce <a class="reference internal" href="../_images/raster-info.png"><img alt="raster-info" src="../_images/raster-info.png" style="width: 1.5em;" /></a> <span class="guilabel">Informace</span> (spouští příkaz <span class="guilabel">gdalinfo</span>).</span><a class="headerlink" href="#id11" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../georeferencovani/index.html">Georeferencování obrazových dat</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Nástroje zpracování</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="uvod.html">Orientace v nástrojích</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spousteni.html">Spouštění geoalgoritmů</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Nastavení, historie, prohlížení výsledků</a></li>
+<li class="toctree-l2"><a class="reference internal" href="externi.html">Externí geoalgoritmy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="davka.html">Dávkové zpracování</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modeler/index.html">Grafický modelář</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grass/index.html">Zásuvný modul GRASS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hydrologie/index.html">Ukázka analýzy - hydrologie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3d/index.html">Práce s 3D daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pokrocile_upravy/index.html">Pokročilé úpravy prostředí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/index.html">Různé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../priklady/index.html">Příklady</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="spousteni.html" title="Spouštění geoalgoritmů"
+              >předchozí</a> |
+            <a href="externi.html" title="Externí geoalgoritmy"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

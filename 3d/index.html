@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Práce s 3D daty &#8212; Školení QGIS pro pokročilé</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Zpracování DMR a DMP" href="dmrdmp.html" />
+    <link rel="prev" title="Metoda SCS CN" href="../hydrologie/scs-cn.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení QGIS pro pokročilé</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="../hydrologie/scs-cn.html" title="Metoda SCS CN"
+             accesskey="P">předchozí</a> |
+          <a href="dmrdmp.html" title="Zpracování DMR a DMP"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="prace-s-3d-daty">
+<h1>Práce s 3D daty<a class="headerlink" href="#prace-s-3d-daty" title="Permalink to this heading">¶</a></h1>
+<p>Zobrazování 3D dat v QGISu bylo možné už v minulosti a to zejména pomocí pluginů
+(např. <a class="reference external" href="https://plugins.qgis.org/plugins/Qgis2threejs/">Qgis2threejs</a> ).
+Od verze 3.0 je základní součástí QGISu také <a class="reference external" href="https://qgis.org/en/site/forusers/visualchangelog30/index.html#d-features">3D mapové okno</a>,
+které slouží na vizualizaci 3D dat.</p>
+<p>Práce s daty, které mají i Z-ovou souřadnici je na vzestupu i díky postupu v
+technologii, která umožňuje práci s takovýmito daty zpřístupnit i pro běžné
+počítače bez speciálního  vybavení a zvýšených nároků na jejich výkon.</p>
+<figure class="align-center" id="id1">
+<img alt="../_images/3d_example.png" src="../_images/3d_example.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 120 </span><span class="caption-text">Ukázka zobrazení dat v 3D mapovém okně QGIS.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Popis typických dat</strong></p>
+<p>Tak jako u běžných mapových podkladů zobrazujeme zemský povrch a jevy, které se
+na něm nachází, budeme z tohoto předpokladu vycházet i v případě práce se
+zobrazováním ve 3D. Musíme tedy začít tím, že budeme zobrazovat
+<strong>zemský povrch</strong>.</p>
+<p>Jednu formu reprezentace povrchu jsme použili již v <a class="reference external" href="http://training.gismentors.eu/qgis-zacatecnik/rastrova_data/rastr_terenni_analyzy.html">začátečnickém kurzu</a>.
+Jedná se o digitální model terénu, který pokrývá celé území ČR.
+Jeho nevýhodou však je, že jeho prostorové rozlišení není dostačující pro
+řešení úkolů pro jednotlivé části území.
+Pro území ČR <a class="reference external" href="https://www.cuzk.cz/">ČÚZK</a> poskytuje digitální model reliéfu (nejnovější je pátá generace
+<a class="reference external" href="http://geoportal.cuzk.cz/(S(zm3aqx2il4wdjxyk2drf4bn3))/Default.aspx?lng=CZ&amp;mode=TextMeta&amp;side=vyskopis&amp;metadataID=CZ-CUZK-DMR5G-V&amp;mapid=8&amp;menu=302">DMR5G</a>) a digitální model povrchu (jediná verze
+<a class="reference external" href="http://geoportal.cuzk.cz/(S(zm3aqx2il4wdjxyk2drf4bn3))/Default.aspx?lng=CZ&amp;mode=TextMeta&amp;side=vyskopis&amp;metadataID=CZ-CUZK-DMP1G-V&amp;mapid=8&amp;menu=303">DMP1G</a>).</p>
+<p>Na povrchu jsou pak standardně zobrazovány různé další objekty jako např.
+budovy. Možností jak z obyčejné dvoudimenzionální geometrie udělat 3D je
+víc. Jednou z možností je použít atributové pole s výškou objektu a pak
+pomocí nastavení vytáhnou do výšky jako tzv. „boxíky“.
+Další možností je přímé modelování objektů zložených z vícero rovinných
+polygonů (takovéto objekty jsou na obrázku výše). Tvorba a editace
+takovýchto dat je časově náročná a QGIS není vhodným nástrojem pro
+tento typ editace pro produkční proces.</p>
+<p>Při jednodušších objektech, například bodových, je možné vytvořit zjednodušenou
+symbologii a tu používat. Prozatím ale není možné používat natolik pokročilé
+možnosti stylování jako jsme zvyklí u symbologie pro 2D.</p>
+<p><strong>Další kroky</strong></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dmrdmp.html">Zpracování DMR a DMP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dmrdmp.html#popis-datove-sady">Popis datové sady</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dmrdmp.html#import-dat-xyz">Import dat XYZ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dmt.html">Tvorba DMT a teréní analýzy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dmt.html#vytvoreni-dmt">Vytvoření DMT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dmt.html#vypocet-stinovaneho-reliefu">Výpočet stínovaného reliéfu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dmt.html#drsnost-terenu">Drsnost terénu</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="3d_map_view.html">Vizualizace ve 3D</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="3d_map_view.html#mapove-okno">Mapové okno</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3d_map_view.html#ovladani-3d-mapoveho-okna">Ovládání 3D mapového okna</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="3dgeometry.html">3D geometrie</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="3dgeometry.html#vytvoreni-3d-geometrie-z-2d">Vytvoření 3D geometrie z 2D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3dgeometry.html#modelovane-objekty">Modelované objekty</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="profiles.html">Profil terénu</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="profiles.html#standarni-pouziti-vypoctu-profilu">Standarní použití výpočtu profilu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiles.html#zobrazeni-vysledku">Zobrazení výsledků</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiles.html#rezim-vypoctu">Režim výpočtu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiles.html#vystupy">Výstupy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiles.html#vypocet-pro-vrstvu">Výpočet pro vrstvu</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../georeferencovani/index.html">Georeferencování obrazových dat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geoprocessing/index.html">Nástroje zpracování</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeler/index.html">Grafický modelář</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grass/index.html">Zásuvný modul GRASS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hydrologie/index.html">Ukázka analýzy - hydrologie</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Práce s 3D daty</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dmrdmp.html">Zpracování DMR a DMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dmt.html">Tvorba DMT a teréní analýzy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3d_map_view.html">Vizualizace ve 3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3dgeometry.html">3D geometrie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiles.html">Profil terénu</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pokrocile_upravy/index.html">Pokročilé úpravy prostředí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/index.html">Různé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../priklady/index.html">Příklady</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="../hydrologie/scs-cn.html" title="Metoda SCS CN"
+              >předchozí</a> |
+            <a href="dmrdmp.html" title="Zpracování DMR a DMP"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

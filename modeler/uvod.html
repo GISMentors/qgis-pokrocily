@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Úvod &#8212; Školení QGIS pro pokročilé</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Části modelu" href="casti.html" />
+    <link rel="prev" title="Grafický modelář" href="index.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení QGIS pro pokročilé</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="index.html" title="Grafický modelář"
+             accesskey="P">předchozí</a> |
+          <a href="casti.html" title="Části modelu"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="uvod">
+<h1>Úvod<a class="headerlink" href="#uvod" title="Permalink to this heading">¶</a></h1>
+<section id="spusteni-grafickeho-modelare">
+<h2>Spuštění grafického modeláře<a class="headerlink" href="#spusteni-grafickeho-modelare" title="Permalink to this heading">¶</a></h2>
+<p>Okno grafického modeláře můžeme otevřít z menu <span class="menuselection">Zpracování ‣
+Grafický modelář…</span>, klávesovou zkratkou <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>+<kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">M</kbd></kbd> nebo pomocí položky
+<a class="reference internal" href="../_images/processingModel.png"><img alt="processingModel" src="../_images/processingModel.png" style="width: 1.5em;" /></a> v okně nástrojů zpracování, kde zvolíme možnost
+<span class="guilabel">Vytvořit nový model</span>. Pomocí možnosti
+<span class="guilabel">Otevřít existující model…</span> lze otevřít soubor modelu v okně
+grafického modeláře. Položka <span class="guilabel">Přidat model do sad nástrojů</span>
+potom umožňuje importovat model ze souboru přímo do nástrojů zpracování.</p>
+<figure class="align-center" id="id1">
+<img alt="../_images/modeler_menu.png" class="small" src="../_images/modeler_menu.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 60 </span><span class="caption-text">Spouštění okna modeláře z hlahvního menu.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Po vytvoření nebo importování prvního modelu, lze modely nálezt mezi
+ostatními algoritmy v okně nástrojů zpracování. Modely jsou zde
+strukturovány podle zadaných skupin při tvorbě modelu.</p>
+<figure class="align-center" id="id2">
+<img alt="../_images/modeler_panel.png" class="tiny" src="../_images/modeler_panel.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 61 </span><span class="caption-text">Modely jako součást okna nástrojů zpracování.</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="popis-okna">
+<h2>Popis okna<a class="headerlink" href="#popis-okna" title="Permalink to this heading">¶</a></h2>
+<figure class="align-center" id="id3">
+<span id="modeler-casti"></span><img alt="../_images/modeler.png" class="middle" src="../_images/modeler.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 62 </span><span class="caption-text">Okno grafického modeláře.</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Popis jednotlivých částí okna:</p>
+<p>V horní části okna máme <em>lištu nástrojů</em> pro základní operace
+(ukládání, export atd.)</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="../_images/mActionFileOpen.png"><img alt="mActionFileOpen" src="../_images/mActionFileOpen.png" style="width: 1.5em;" /></a>, <a class="reference internal" href="../_images/mActionFileSave.png"><img alt="mActionFileSave" src="../_images/mActionFileSave.png" style="width: 1.5em;" /></a>, <a class="reference internal" href="../_images/mActionFileSaveAs.png"><img alt="mActionFileSaveAs" src="../_images/mActionFileSaveAs.png" style="width: 1.5em;" /></a> - ikony pro
+otevření a uložení souboru <code class="file docutils literal notranslate"><span class="pre">.model</span></code></p></li>
+<li><p><a class="reference internal" href="../_images/mAddToProject.png"><img alt="mAddToProject" src="../_images/mAddToProject.png" style="width: 1.5em;" /></a> - uložení modelu jako součást projektu</p></li>
+<li><p><a class="reference internal" href="../_images/mActionZoomIn.png"><img alt="mActionZoomIn" src="../_images/mActionZoomIn.png" style="width: 1.5em;" /></a>, <a class="reference internal" href="../_images/mActionZoomOut.png"><img alt="mActionZoomOut" src="../_images/mActionZoomOut.png" style="width: 1.5em;" /></a>, <a class="reference internal" href="../_images/mActionZoomActual.png"><img alt="mActionZoomActual" src="../_images/mActionZoomActual.png" style="width: 1.5em;" /></a>,
+<a class="reference internal" href="../_images/mActionZoomFullExtent.png"><img alt="mActionZoomFullExtent" src="../_images/mActionZoomFullExtent.png" style="width: 1.5em;" /></a> - možnosti přiblížení v okně modeláře</p></li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="../_images/mActionSaveMapAsImage.png"><img alt="mActionSaveMapAsImage" src="../_images/mActionSaveMapAsImage.png" style="width: 1.5em;" /></a>, <a class="reference internal" href="../_images/mActionSaveAsPDF.png"><img alt="mActionSaveAsPDF" src="../_images/mActionSaveAsPDF.png" style="width: 1.5em;" /></a>, <a class="reference internal" href="../_images/mActionSaveAsSVG.png"><img alt="mActionSaveAsSVG" src="../_images/mActionSaveAsSVG.png" style="width: 1.5em;" /></a> -</dt><dd><p>export modelu jako obrázku <code class="file docutils literal notranslate"><span class="pre">.PNG</span></code>, pdf dokumentu <code class="file docutils literal notranslate"><span class="pre">PDF</span></code>
+nebo vektorové grafiky <code class="file docutils literal notranslate"><span class="pre">SVG</span></code></p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>Panel <em>Vlastnosti modelu</em> tvoří dvě textové pole, které slouží k zadání
+názvu a skupiny, do které se model zařadí v rámci nástrojů zpracování
+(před uložením je nutné obě položky vyplnit).</p>
+<p>Panely <em>Vstupy</em> a <em>Algoritmy</em> slouží k přidávání prvků do modelu - vstupních parametrů (záložka <span class="guilabel">Vstupy</span>) a Algoritmů
+(záložka <span class="guilabel">Algoritmy</span>).</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../georeferencovani/index.html">Georeferencování obrazových dat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geoprocessing/index.html">Nástroje zpracování</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Grafický modelář</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Úvod</a></li>
+<li class="toctree-l2"><a class="reference internal" href="casti.html">Části modelu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spousteni.html">Spouštění a editace modelu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="napoveda_export.html">Tvorba nápovědy a export modelu</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../grass/index.html">Zásuvný modul GRASS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hydrologie/index.html">Ukázka analýzy - hydrologie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3d/index.html">Práce s 3D daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pokrocile_upravy/index.html">Pokročilé úpravy prostředí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/index.html">Různé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../priklady/index.html">Příklady</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="index.html" title="Grafický modelář"
+              >předchozí</a> |
+            <a href="casti.html" title="Části modelu"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

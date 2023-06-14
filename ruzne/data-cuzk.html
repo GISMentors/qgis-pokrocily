@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Práce s daty ČÚZK (RÚIAN, VFK, …) &#8212; Školení QGIS pro pokročilé</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Příklady" href="../priklady/index.html" />
+    <link rel="prev" title="Vazby mezi vrstvami" href="vazby.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení QGIS pro pokročilé</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="vazby.html" title="Vazby mezi vrstvami"
+             accesskey="P">předchozí</a> |
+          <a href="../priklady/index.html" title="Příklady"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="prace-s-daty-cuzk-ruian-vfk">
+<h1>Práce s daty ČÚZK (RÚIAN, VFK, …)<a class="headerlink" href="#prace-s-daty-cuzk-ruian-vfk" title="Permalink to this heading">¶</a></h1>
+<p>Tato kapitola pojednává o možnosti pracovat s českými výměnnými
+formáty <em>VFR</em> (<a class="reference internal" href="#vfr"><span class="std std-ref">Výměnný formát RÚIAN</span></a>) a <em>VFK</em>
+(<a class="reference internal" href="#vfk"><span class="std std-ref">Výměnný formát katastru</span></a>) v prostředí QGIS.</p>
+<section id="vymenny-format-ruian-vfr">
+<span id="vfr"></span><h2>Výměnný formát RÚIAN (VFR)<a class="headerlink" href="#vymenny-format-ruian-vfr" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference external" href="http://cs.wikipedia.org/wiki/RÚIAN">RÚIAN</a> (<em>Registr Územní Identifikace, Adres a
+Nemovitostí</em>) patří do systému základních registrů. Poskytuje údaje o
+základních územních prvcích jako jsou území státu, katastr, parcela,
+nemovitost a další. Více informací najdete na stránkách <a class="reference external" href="http://www.ruian.cz">ruian.cz</a>.</p>
+<p>Data jsou poskytována ve <em>výměnném formátu RÚIAN</em> (VFR) službou
+<a class="reference external" href="http://vdp.cuzk.cz">Veřejného dálkového přístupu</a>. Datový formát
+VFR je podporován knihovnou GDAL. Vzhledem k tomu je můžeme načíst do
+QGISu jako každá jiná vektorová souborová data.</p>
+<div class="admonition important">
+<p class="admonition-title">Důležité</p>
+<p>Formát VFR definuje více geometrických reprezentací na
+prvek, typicky definiční bod, originální a
+generalizovanou hranici. QGIS je v současnosti (3.4)
+schopen zobrazit <em>pouze první dostupnou geometrii</em> (tj. většinou
+pouze definiční bod), přestože je knihovna GDAL schopná
+tyto data číst korektně.</p>
+<figure class="align-center" id="id3">
+<img alt="../_images/vfr-vrstvy.png" src="../_images/vfr-vrstvy.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 189 </span><span class="caption-text">Seznam vrstev při načtení v QGISu. U parcel je možné
+načíst pouze definiční body.</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</div>
+<p>Limit QGISu je možné obejít pomocí konverze dat VFR do vhodného
+formátu a výběru preferované geometrie. Takto k problému přístupuje i
+<a class="reference external" href="https://ctu-geoforall-lab.github.io/qgis-ruian-plugin/">RUIAN plugin</a>, který
+podporuje uložení dat do formátů SQLite, OGC GeoPackage a Esri
+Shapefile. Plugin lze nainstalovat běžným způsobem z menu
+<span class="menuselection">Zásuvné moduly ‣ Spravovat a instalovat zásuvné
+moduly</span>. Je dostupný pro obě verze QGISu 2 i 3.</p>
+<figure class="align-center" id="id4">
+<img alt="../_images/ruian-plugin.png" class="large" src="../_images/ruian-plugin.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 190 </span><span class="caption-text">Ukázka použití pluginu pro práci s daty RÚIAN.</span><a class="headerlink" href="#id4" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="noteadvanced admonition">
+<p class="admonition-title">Poznámka pro pokročilé</p>
+<p>Konverzi můžeme provést konzolovými konverzními
+nástroji <em>vfr2ogr</em>. Výhoda těchto nástrojů je v tom, že kromě
+jednotlivých vstupních VFR souborů můžeme použít seznam linků
+stažitelný z <a class="reference external" href="http://vdp.cuzk.cz">VDP</a>. V tomto případě budou VFR
+data nástrojem <em>vfr2ogr</em> automaticky stažena a naimportována do
+cílového formátu.</p>
+<p>Konverzní nástroje <em>vfr2ogr</em> najdete na serveru GitHub, viz
+<a class="reference external" href="https://github.com/ctu-geoforall-lab/gdal-vfr/releases">stránka s verzemi</a> ke
+stažení.</p>
+<p>Jako příklad si ukážeme stažení dat pro OPR Litoměřice a konverzi dat
+do databáze SQLite.</p>
+<figure class="align-center" id="id5">
+<img alt="../_images/vfr-vdp-ltm.png" class="middle" src="../_images/vfr-vdp-ltm.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 191 </span><span class="caption-text">Na portálu VDP vybereme ORP Litoměřice a stáhneme seznam linků.</span><a class="headerlink" href="#id5" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Seznam linků z VDP použijeme jako vstup pro nástroj
+<em>vfr2ogr</em>. Seznam z VDP obsahuje data za poslední tři měsíce. Před
+importem vybereme pouze ty nejaktuálnější, např. pomocí unixového
+nástroje <em>grep</em>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep<span class="w"> </span><span class="s1">&#39;20190301&#39;</span><span class="w"> </span>seznamlinku.txt<span class="w"> </span>&gt;<span class="w"> </span>seznamlinku-aktualni.txt
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vfr2ogr<span class="w"> </span>--file<span class="w"> </span>seznamlinku-aktualni.txt<span class="w"> </span>--format<span class="w"> </span>SQLite<span class="w"> </span>--dsn<span class="w"> </span>ruian_ltm.db<span class="w"> </span>--geom<span class="w"> </span>OriginalniHranice
+</pre></div>
+</div>
+<p>Jako vstupní soubor do nástroje můžete použít přímo data ve formátu
+VFR. Potom se provede import pouze zvoleného souboru.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vfr2ogr<span class="w"> </span>--file<span class="w"> </span>data/20190301_OB_530506_UKSH.xml.zip<span class="w"> </span>--format<span class="w"> </span>SQLite<span class="w"> </span>--dsn<span class="w"> </span>ruian_obec.db<span class="w"> </span>--geom<span class="w"> </span>OriginalniHranice
+</pre></div>
+</div>
+<p>Výsledná databáze potom obsahuje data za celou zvolenou ORP:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Layer</span>            <span class="n">obce</span>                 <span class="o">...</span>         <span class="mi">40</span> <span class="n">features</span>
+<span class="n">Layer</span>            <span class="n">spravniobvody</span>        <span class="o">...</span>          <span class="mi">0</span> <span class="n">features</span>
+<span class="n">Layer</span>            <span class="n">mop</span>                  <span class="o">...</span>          <span class="mi">0</span> <span class="n">features</span>
+<span class="n">Layer</span>            <span class="n">momc</span>                 <span class="o">...</span>          <span class="mi">0</span> <span class="n">features</span>
+<span class="n">Layer</span>            <span class="n">castiobci</span>            <span class="o">...</span>        <span class="mi">142</span> <span class="n">features</span>
+<span class="n">Layer</span>            <span class="n">katastralniuzemi</span>     <span class="o">...</span>        <span class="mi">128</span> <span class="n">features</span>
+<span class="n">Layer</span>            <span class="n">zsj</span>                  <span class="o">...</span>        <span class="mi">195</span> <span class="n">features</span>
+<span class="n">Layer</span>            <span class="n">ulice</span>                <span class="o">...</span>        <span class="mi">445</span> <span class="n">features</span>
+<span class="n">Layer</span>            <span class="n">parcely</span>              <span class="o">...</span>     <span class="mi">173825</span> <span class="n">features</span>
+<span class="n">Layer</span>            <span class="n">stavebniobjekty</span>      <span class="o">...</span>      <span class="mi">25727</span> <span class="n">features</span>
+<span class="n">Layer</span>            <span class="n">adresnimista</span>         <span class="o">...</span>      <span class="mi">17513</span> <span class="n">features</span>
+</pre></div>
+</div>
+<p>Výslednou databázi <cite>ruian_ltm.db</cite> můžeme v QGISu načíst jako běžná
+souborová vektorová data.</p>
+<figure class="align-center" id="id6">
+<img alt="../_images/vfr-sqlite-vrstvy.png" src="../_images/vfr-sqlite-vrstvy.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 192 </span><span class="caption-text">Seznam vrstev včetně polygonových vrstev (originální nebo
+generalizované hranice).</span><a class="headerlink" href="#id6" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id7">
+<img alt="../_images/vfr-ltm-vizualizace.png" class="middle" src="../_images/vfr-ltm-vizualizace.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 193 </span><span class="caption-text">Příklad vizualizace parcel v ORP Litoměřice.</span><a class="headerlink" href="#id7" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="vymenny-format-katastru-vfk">
+<span id="vfk"></span><h2>Výměnný formát katastru (VFK)<a class="headerlink" href="#vymenny-format-katastru-vfk" title="Permalink to this heading">¶</a></h2>
+<p>Výměnný formát (VF) je určen k vzájemnému předávání dat mezi systémem
+ISKN a jinými systémy zpracování dat, viz <a class="reference external" href="https://www.cuzk.cz/Katastr-nemovitosti/Poskytovani-udaju-z-KN/Vymenny-format-KN/Vymenny-format-NVF.aspx">dokumentace formátu</a>.</p>
+<p>Díky tomu, že je formát VFK podporován <a class="reference external" href="https://www.gdal.org/drv_vfk.html">knihovnou GDAL</a>, tak je můžete v prostředí
+QGISu načíst jako každá jiná vektorová souborová data. Po načtení dat
+se objeví dialog pro výběr vrstev, které odpovídají jednotlivým
+datovým blokům VFK. Některé mají definovánu geometrii (např. BUD, PAR,
+HP a další), jiné obsahují pouze popisné informace.</p>
+<figure class="align-center" id="id8">
+<span id="vfk-vrstvy"></span><img alt="../_images/vfk-vrstvy.png" src="../_images/vfk-vrstvy.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 194 </span><span class="caption-text">V dialogu vrstev vybereme vrstvy, které chceme přidat do QGISu.</span><a class="headerlink" href="#id8" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition important">
+<p class="admonition-title">Důležité</p>
+<p>Knihovna GDAL při prvním načítání dat vytváří v
+adresáři, ve kterém je umístěn soubor VFK, interní
+<a class="reference external" href="http://cs.wikipedia.org/wiki/SQLite">SQLite</a> databázi. To znamená, že musíte mít
+v tomto adresáři <strong>právo zápisu</strong>. S tím také souvisí
+fakt, že první načtení dat trvá vždy <em>delší dobu</em>,
+neboť dochází k vytvoření interní databáze. Při dalším
+čtení jsou již data načítána přímo z interní databáze,
+což vede k mnohonásobnému zrychlení přístupu k datům.</p>
+</div>
+<p>Po načtení můžeme v QGISu jednotlivé vrstvy s geometrií a popisnými
+informace propojovat pomocí standardního <a class="reference internal" href="../_images/join.png"><img alt="join" src="../_images/join.png" style="width: 1.5em;" /></a> <sup>Připojení</sup>, viz
+<a class="reference external" href="http://training.gismentors.eu/qgis-zacatecnik/vektorova_data/join.html">QGIS pro začátečníky</a>. To nicméně vyžaduje
+znalosti vnitřní struktury formátu VFK. Proto vznikl specializovaný
+zásuvný modul tzv. <strong>VFK plugin</strong>, který pro práci s katastrálními
+daty výrazně usnadňuje.</p>
+<figure class="align-center" id="id9">
+<img alt="../_images/vfk-join.png" class="small" src="../_images/vfk-join.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 195 </span><span class="caption-text">Příklad připojení tabulky druh pozemku (DRUPOZ) k atributové
+tabulce parcel (PAR) ve vlastnostech vrstvy a záložce Připojení.</span><a class="headerlink" href="#id9" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Po připojení popisných informací můžeme provádět dotazy typu vyhledání
+parcel podle druhu pozemku.</p>
+<figure class="align-center" id="id10">
+<img alt="../_images/vfk-join-query.png" class="middle" src="../_images/vfk-join-query.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 196 </span><span class="caption-text">Nalezení parcel, které mají druh pozemku chmelnice.</span><a class="headerlink" href="#id10" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<section id="vfk-plugin">
+<h3>VFK plugin<a class="headerlink" href="#vfk-plugin" title="Permalink to this heading">¶</a></h3>
+<p>Mnohem větší komfort při práci s daty ve formátu VFK umožňuje v QGISu
+specializovaný <strong>VFK plugin</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Tento zásuvný modul byl vyvinut v roce 2011 a posléze
+významně aktualizován v letech 2015 a 2016 studenty oboru Geomatika
+na ČVUT v Praze, fakulty stavební. Více informací o zásuvném modulu
+najdete na stránkách <a class="reference external" href="http://freegis.fsv.cvut.cz/gwiki/VFK_/_QGIS_plugin">portálu FreeGIS</a> anebo v
+jeho <a class="reference external" href="https://ctu-geoforall-lab.github.io/qgis-vfk-plugin/">dokumentaci</a>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Varování</p>
+<p><strong>V současné době je plugin dostupný pouze pro verzi
+QGIS 2.</strong></p>
+<p>Bohužel kvůli změně distribuovaní informací o vlastnických
+vztazích, ke které byl ČÚZK donucen v rámci aplikace GDPR, neumí v
+současné době VFK plugin tyto informace získávat. Jeho
+funkcionalita je tím poměrně výzmnamně omezena.</p>
+</div>
+<section id="instalace">
+<span id="geoforall-instalace"></span><h4>Instalace<a class="headerlink" href="#instalace" title="Permalink to this heading">¶</a></h4>
+<p>V současné době není VFK plugin součástí oficiálního repositáře
+QGISu. Pro jeho instalaci je nutné do QGISu zaregistrovat nový
+repositář, který je dostupný na adrese
+<em>http://geo.fsv.cvut.cz/geoforall/qgis-plugins.xml</em>. Postup instalace
+je podrobně popsán v <a class="reference external" href="https://ctu-geoforall-lab.github.io/qgis-vfk-plugin/instalace.html">dokumentaci pluginu</a>.</p>
+<p>Zásuvný modul otevřeme pomocí ikonky <a href="#id1"><span class="problematic" id="id2">|</span></a>vfkPlugin anebo z menu
+<span class="menuselection">Zásuvné moduly ‣ VFK ‣ Otevřít prohlížeč VFK</span>.</p>
+</section>
+<section id="prace-se-zasuvnym-modulem">
+<h4>Práce se zásuvným modulem<a class="headerlink" href="#prace-se-zasuvnym-modulem" title="Permalink to this heading">¶</a></h4>
+<p>Panel nástroje pro práci s katastrálními daty má 3 části:</p>
+<figure class="align-center" id="id11">
+<img alt="../_images/vfk-panel.png" class="middle" src="../_images/vfk-panel.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 197 </span><span class="caption-text">Panel nástroje a jeho části: část pro vstupní parametry načítání a
+dotazování dat (1), nástrojová lišta (2) a část pro nápovědu a
+výstup dotazů.</span><a class="headerlink" href="#id11" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Nejprve zadáme VFK soubor, který chceme načíst a poté stiskneme
+tlačítko <span class="item">Načíst</span>. Po načtení dat se v mapovém okně objeví
+vrstvy parcel (PAR) a budov (BUD). Pomocí nástroje může v datech
+vyhledávat, postupovat podle listů vlastnictví a mnoho dalších funkcí.</p>
+<figure class="align-center" id="id12">
+<img alt="../_images/vfk-plugin.png" class="large" src="../_images/vfk-plugin.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 198 </span><span class="caption-text">Ukázka využití VFK pluginu pro nalezení parcel s druhem pozemku
+zahrada.</span><a class="headerlink" href="#id12" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../georeferencovani/index.html">Georeferencování obrazových dat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geoprocessing/index.html">Nástroje zpracování</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeler/index.html">Grafický modelář</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grass/index.html">Zásuvný modul GRASS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hydrologie/index.html">Ukázka analýzy - hydrologie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3d/index.html">Práce s 3D daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pokrocile_upravy/index.html">Pokročilé úpravy prostředí</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Různé</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="geotag_obrazky.html">Obrazová data jako součást vektorů (práce s geotagovanými fotografiemi)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grafy.html">Tvorba kartodiagramů</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qgisserver.html">QGIS Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="atlas.html">Tvorba atlasu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vazby.html">Vazby mezi vrstvami</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Práce s daty ČÚZK (RÚIAN, VFK, …)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../priklady/index.html">Příklady</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="vazby.html" title="Vazby mezi vrstvami"
+              >předchozí</a> |
+            <a href="../priklady/index.html" title="Příklady"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

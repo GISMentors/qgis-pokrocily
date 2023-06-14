@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Tvorba kartodiagramů &#8212; Školení QGIS pro pokročilé</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="QGIS Server" href="qgisserver.html" />
+    <link rel="prev" title="Obrazová data jako součást vektorů (práce s geotagovanými fotografiemi)" href="geotag_obrazky.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení QGIS pro pokročilé</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="geotag_obrazky.html" title="Obrazová data jako součást vektorů (práce s geotagovanými fotografiemi)"
+             accesskey="P">předchozí</a> |
+          <a href="qgisserver.html" title="QGIS Server"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="tvorba-kartodiagramu">
+<h1>Tvorba kartodiagramů<a class="headerlink" href="#tvorba-kartodiagramu" title="Permalink to this heading">¶</a></h1>
+<section id="zalozka-diagramdiagramy">
+<h2>Záložka <a class="reference internal" href="../_images/diagram.png"><img alt="diagram" src="../_images/diagram.png" style="width: 1.5em;" /></a><sup>Diagramy</sup><a class="headerlink" href="#zalozka-diagramdiagramy" title="Permalink to this heading">¶</a></h2>
+<p>Kromě přípravy dat pro mapové výstupy pomocí základní symbologie, lze na
+základě hodnot atributů jednotlivých prvků vytvářet také diagramy. K tomu
+slouží záložka <a class="reference internal" href="../_images/diagram.png"><img alt="diagram" src="../_images/diagram.png" style="width: 1.5em;" /></a><sup>Diagramy</sup> ve vlastnostech vektorové vrstvy.</p>
+<figure class="align-center" id="id1">
+<img alt="../_images/diag_okno.png" class="middle" src="../_images/diag_okno.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 145 </span><span class="caption-text">Okno nastavení diagramů.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>V první řadě musíme z rolovací nabídky vybrat typ diagramu. Na výběr máme ze 3
+typů:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../_images/pie-chart.png"><img alt="pie-chart" src="../_images/pie-chart.png" style="width: 1.5em;" /></a> <sup>Koláčový graf</sup></p></li>
+<li><p><a class="reference internal" href="../_images/text.png"><img alt="text" src="../_images/text.png" style="width: 1.5em;" /></a> <sup>Textový diagram</sup></p></li>
+<li><p><a class="reference internal" href="../_images/histogram.png"><img alt="histogram" src="../_images/histogram.png" style="width: 1.5em;" /></a> <sup>Histogram</sup></p></li>
+<li><p><a href="#id16"><span class="problematic" id="id17">|pruhovy|</span></a> <sup>Skládané pruhy</sup></p></li>
+</ul>
+<p>Poté je nutné pomocí tlačítek <a class="reference internal" href="../_images/mActionSignPlus.png"><img alt="mActionSignPlus" src="../_images/mActionSignPlus.png" style="width: 1.5em;" /></a> a <a class="reference internal" href="../_images/mActionSignMinus.png"><img alt="mActionSignMinus" src="../_images/mActionSignMinus.png" style="width: 1.5em;" /></a> vybrat ze
+seznamu jeden či více atributů, které chceme do diagramů přiřadit resp.
+odebrat. Atributy lze hromadně označit pomocí káves <kbd class="kbd docutils literal notranslate">Ctrl</kbd> a <kbd class="kbd docutils literal notranslate">Shift</kbd>
+a také jednotlivě přidávat poklikáním. Pomocí tlačítka <a class="reference internal" href="../_images/mIconExpression.png"><img alt="mIconExpression" src="../_images/mIconExpression.png" style="width: 1.5em;" /></a> je
+možné definovat atribut založený na výrazu. Poklikáním na již přiřazené
+atributy, můžeme editovat jejich požadované vlastnosti – nadefinovat výraz,
+změnit barvu a popisek legendy.</p>
+<figure class="align-center" id="id2">
+<img alt="../_images/diag_okno2.png" class="middle" src="../_images/diag_okno2.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 146 </span><span class="caption-text">Výběr atributů zobrazovaných v diagramech.</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Kromě volby atributů můžeme v dalších záložkách měnit základní parametry
+vzhledu, velikosti, umístění atd. U možností <a class="reference internal" href="../_images/pie-chart.png"><img alt="pie-chart" src="../_images/pie-chart.png" style="width: 1.5em;" /></a> <sup>Koláčový graf</sup>
+a <a class="reference internal" href="../_images/text.png"><img alt="text" src="../_images/text.png" style="width: 1.5em;" /></a> <sup>Textový diagram</sup> můžeme rovnou použít přednastavené hodnoty, při
+použití <a class="reference internal" href="../_images/histogram.png"><img alt="histogram" src="../_images/histogram.png" style="width: 1.5em;" /></a> <sup>Histogram</sup> je nutné nastavit alespoň atribut pro
+výpočet velikosti sloupečků. Ve všech třech případech je však pro lepší vzhled
+a interpretaci dat vhodné vlastnosti poupravit. Práce s nastavením vlastností
+je intuitivní a až na malé odchylky u všech typů stejná.</p>
+<p>Za zmínku stojí záložka <a class="reference internal" href="../_images/transparency.png"><img alt="transparency" src="../_images/transparency.png" style="width: 1.5em;" /></a><sup>Velikost</sup> kde můžeme zvolit buď
+velikost pevnou, nebo velikost diagramu škálovat na základě atributu nebo
+výrazu (pokud potřebujeme stanovit velikostní kategorie, je tento přístup
+trochu komplikovanější). U zobrazení histogramu se škálování týká velikosti
+sloupečků a je nutné ho nastavit.</p>
+<figure class="align-center" id="id3">
+<img alt="../_images/diag_velik.png" class="middle" src="../_images/diag_velik.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 147 </span><span class="caption-text">Nastavení velikosti diagramů.</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Pracovat s umístěním diagramů je možné pomocí nastavení v záložce
+<span class="item">Umístění</span>, které funguje podobně jako umisťování popisků.
+Nejdůležitější však je, že pozice může být upravována manuálně pomocí panelu.
+Nastavení se může ukládat buď do dané vrstvy jako nové atributy, nebo je možné
+je ukládat do souborové databázy daného projektu.</p>
+<figure class="align-center" id="id4">
+<img alt="../_images/diag_position.png" class="middle" src="../_images/diag_position.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 148 </span><span class="caption-text">Nastavení umísťování diagramů.</span><a class="headerlink" href="#id4" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id5">
+<img alt="../_images/diag_move.png" class="small" src="../_images/diag_move.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 149 </span><span class="caption-text">Nástroje pro interaktivní umísťování popisků.</span><a class="headerlink" href="#id5" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Pokud potřebujeme vygenerovat legendu pro diagram, tak je zapotřebí nastavit
+víc detailů. Prvním je nastavení korektních popisků v záložce <span class="item">Atributy</span>.
+To nám zaručí korektní vykreselní barevného symbolu a správného popisku v
+legendě.
+Pokud používáme nastavení velikosti, tak je vhodné do legendy uvést také
+rozměrové symboly pro porovnání se symboly použitými v mapovém okně.
+Toto nastavení je dostupné  v záložce <span class="item">Legenda</span> pod tlačítkem
+<span class="item">Data-defined Size Legend</span>.</p>
+<figure class="align-center" id="id6">
+<img alt="../_images/diag_size_legend.png" class="small" src="../_images/diag_size_legend.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 150 </span><span class="caption-text">Nastavení legendy velikosti symbolů grafu pro mapový výstup.</span><a class="headerlink" href="#id6" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Pro finální mapový výstup je však možné vytvořit sofistikovanější legendu v
+grafickém (Gimp) nebo vektorovém (Inkscape) editoru.</p>
+<figure class="align-center" id="id7">
+<img alt="../_images/diag_legend.png" class="small" src="../_images/diag_legend.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 151 </span><span class="caption-text">Automaticky generovaná legenda s definicí velikosti.</span><a class="headerlink" href="#id7" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<section id="priklady-tvorby-kartodiagramu">
+<h3>Příklady tvorby kartodiagramů<a class="headerlink" href="#priklady-tvorby-kartodiagramu" title="Permalink to this heading">¶</a></h3>
+<section id="pie-chart-kolacovy-graf">
+<h4><a class="reference internal" href="../_images/pie-chart.png"><img alt="pie-chart" src="../_images/pie-chart.png" style="width: 1.5em;" /></a> <sup>Koláčový graf</sup><a class="headerlink" href="#pie-chart-kolacovy-graf" title="Permalink to this heading">¶</a></h4>
+<figure class="align-center" id="id8">
+<img alt="../_images/diag_pie.png" class="middle" src="../_images/diag_pie.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 152 </span><span class="caption-text">Podíl dálnic, silnic I. a II. třídy v krajích.</span><a class="headerlink" href="#id8" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="text-textovy-diagram">
+<h4><a class="reference internal" href="../_images/text.png"><img alt="text" src="../_images/text.png" style="width: 1.5em;" /></a> <sup>Textový diagram</sup><a class="headerlink" href="#text-textovy-diagram" title="Permalink to this heading">¶</a></h4>
+<figure class="align-center" id="id9">
+<img alt="../_images/diag_text.png" class="middle" src="../_images/diag_text.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 153 </span><span class="caption-text">Délka dálnic, silnic I. a II. třídy v krajích.</span><a class="headerlink" href="#id9" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id10">
+<img alt="../_images/diag_text2.png" class="middle" src="../_images/diag_text2.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 154 </span><span class="caption-text">Součet délky dálnic v krajích.</span><a class="headerlink" href="#id10" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id11">
+<img alt="../_images/diag_text3.png" class="middle" src="../_images/diag_text3.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 155 </span><span class="caption-text">Součet délky dálnic v krajích.</span><a class="headerlink" href="#id11" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="histogram-histogram">
+<h4><a class="reference internal" href="../_images/histogram.png"><img alt="histogram" src="../_images/histogram.png" style="width: 1.5em;" /></a> <sup>Histogram</sup><a class="headerlink" href="#histogram-histogram" title="Permalink to this heading">¶</a></h4>
+<figure class="align-center" id="id12">
+<img alt="../_images/diag_hist.png" class="middle" src="../_images/diag_hist.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 156 </span><span class="caption-text">Podíl dálnic, silnic I. a II. třídy v krajích.</span><a class="headerlink" href="#id12" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+<section id="dalsi-priklady-vyuziti-qgis-v-tematicke-kartografii">
+<h2>Další příklady využití QGIS v tematické kartografii<a class="headerlink" href="#dalsi-priklady-vyuziti-qgis-v-tematicke-kartografii" title="Permalink to this heading">¶</a></h2>
+<section id="pouziti-stylu-vrstvy">
+<h3>Použití stylu vrstvy<a class="headerlink" href="#pouziti-stylu-vrstvy" title="Permalink to this heading">¶</a></h3>
+<p>Jednoduché kartogramy se škálováním velikosti podle jednoho atributu lze
+vytvořit pomocí odstupňovaného stylu bodové vrstvy, kde lze zvolit metodu
+odstupňování pro velikost. Takovou vrstvu si můžeme z polygonové vrstvy
+vytvořit například vygenerováním centroidů (<a class="reference internal" href="../_images/mAlgorithmCentroids.png"><img alt="mAlgorithmCentroids" src="../_images/mAlgorithmCentroids.png" style="width: 1.5em;" /></a>
+<sup>Centroidy…</sup>).
+Výhodou je, že můžeme pohodlně definovat jednotlivé kategorie a vygeneruje
+se nám odpovídající legenda.</p>
+<figure class="align-center" id="id13">
+<img alt="../_images/diag_styl_okno.png" class="middle" src="../_images/diag_styl_okno.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 157 </span><span class="caption-text">Nastavení stylu bodové vrstvy.</span><a class="headerlink" href="#id13" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id14">
+<img alt="../_images/diag_styl.png" class="middle" src="../_images/diag_styl.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 158 </span><span class="caption-text">Součet délky dálnic v krajích.</span><a class="headerlink" href="#id14" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="pouziti-pluginu-cartogram3">
+<h3>Použití pluginu cartogram3<a class="headerlink" href="#pouziti-pluginu-cartogram3" title="Permalink to this heading">¶</a></h3>
+<p>Pomocí pluginu Cartogram lze vytvořit geografickou anamorfózu, kdy se rozloha
+polygonu deformuje na základě daného atributu.</p>
+<figure class="align-center" id="id15">
+<img alt="../_images/diag_anamor.png" class="middle" src="../_images/diag_anamor.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 159 </span><span class="caption-text">Anamorfóza na základě celkové kriminality v krajích.</span><a class="headerlink" href="#id15" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="zobrazeni-dat-ve-3d-na-zaklade-charakteristiky">
+<h3>Zobrazení dat ve 3D na základě charakteristiky<a class="headerlink" href="#zobrazeni-dat-ve-3d-na-zaklade-charakteristiky" title="Permalink to this heading">¶</a></h3>
+<p>Vyobrazit kvalitativní nebo kvantitativní charakteristiku pomocí 3D zobrazení
+je častým způsobem vyjádřování. Díky nativnímu zobrazování ve 3D mapovém okně
+se dá toto jednoduše zobrazit.</p>
+<p>Vykreslování prvků ve 3D prozatím není propojené se standardní symbologii a
+prozatím ani nenabízí odpovídající možnosti.
+V záložce <span class="item">3D Pohled</span> je možné nastavit zdroj generování „výšky objektů“,
+tzv. extruze.
+V našem případě využijeme napojení na existující sloupec, který obsahuje
+hodnoty pro jednotlivé prvky dané vrstvy. (vrstva <kbd class="kbd docutils literal notranslate">vusc_krim</kbd>, atribut
+<kbd class="kbd docutils literal notranslate">krim_2015c</kbd>).
+Ostatní nastavení již záleží na požadavcích uživatele.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../georeferencovani/index.html">Georeferencování obrazových dat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geoprocessing/index.html">Nástroje zpracování</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeler/index.html">Grafický modelář</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grass/index.html">Zásuvný modul GRASS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hydrologie/index.html">Ukázka analýzy - hydrologie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3d/index.html">Práce s 3D daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pokrocile_upravy/index.html">Pokročilé úpravy prostředí</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Různé</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="geotag_obrazky.html">Obrazová data jako součást vektorů (práce s geotagovanými fotografiemi)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tvorba kartodiagramů</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qgisserver.html">QGIS Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="atlas.html">Tvorba atlasu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vazby.html">Vazby mezi vrstvami</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-cuzk.html">Práce s daty ČÚZK (RÚIAN, VFK, …)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../priklady/index.html">Příklady</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="geotag_obrazky.html" title="Obrazová data jako součást vektorů (práce s geotagovanými fotografiemi)"
+              >předchozí</a> |
+            <a href="qgisserver.html" title="QGIS Server"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,462 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Metoda SCS CN &#8212; Školení QGIS pro pokročilé</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Práce s 3D daty" href="../3d/index.html" />
+    <link rel="prev" title="Ukázka analýzy - hydrologie" href="index.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení QGIS pro pokročilé</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="index.html" title="Ukázka analýzy - hydrologie"
+             accesskey="P">předchozí</a> |
+          <a href="../3d/index.html" title="Práce s 3D daty"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="metoda-scs-cn">
+<h1>Metoda SCS CN<a class="headerlink" href="#metoda-scs-cn" title="Permalink to this heading">¶</a></h1>
+<p><a class="reference external" href="http://training.gismentors.eu/grass-gis-pokrocily/hydrologie/scs-cn.html#scs-cn-teorie">Teoretický popis metody</a>,
+<a class="reference external" href="http://training.gismentors.eu/grass-gis-pokrocily/hydrologie/scs-cn.html#scs-cn-symboly">základní symboly</a> použité v
+dalším textu, <a class="reference external" href="http://training.gismentors.eu/grass-gis-pokrocily/hydrologie/scs-cn.html#scs-cn-vstupni-data">popis vstupních dat</a> a
+<a class="reference external" href="http://training.gismentors.eu/grass-gis-pokrocily/hydrologie/scs-cn.html#scs-cn-postup">navrhovaný postup</a> je
+součástí školení <em>GRASS GIS pro pokročilé</em>.</p>
+<section id="postup-zpracovani-v-qgis">
+<h2>Postup zpracovaní v QGIS<a class="headerlink" href="#postup-zpracovani-v-qgis" title="Permalink to this heading">¶</a></h2>
+<section id="krok-1">
+<span id="kr1"></span><h3>Krok 1<a class="headerlink" href="#krok-1" title="Permalink to this heading">¶</a></h3>
+<p><em>Sjednocení hlavních půdních jednotek a komplexního průzkumu půd</em></p>
+<p>V prvním kroku založíme projekt a pomocí <a class="reference internal" href="../_images/mActionAddOgrLayer.png"><img alt="mActionAddOgrLayer" src="../_images/mActionAddOgrLayer.png" style="width: 1.5em;" /></a>
+<sup>Přidaní vektorové vrstvy</sup> a <a class="reference internal" href="../_images/mActionAddDelimitedTextLayer.png"><img alt="mActionAddDelimitedTextLayer" src="../_images/mActionAddDelimitedTextLayer.png" style="width: 1.5em;" /></a>
+<sup>Přidat vrstvu s odděleným textem</sup> vložíme do panelu vrstev
+vstupní data - vektorová data ve formátu Esri Shapefile
+<code class="file docutils literal notranslate"><span class="pre">hpj.shp</span></code>, <code class="file docutils literal notranslate"><span class="pre">kpp.shp</span></code>, <code class="file docutils literal notranslate"><span class="pre">landuse.shp</span></code>,
+<code class="file docutils literal notranslate"><span class="pre">povodi.shp</span></code> a soubory s odděleným textem
+<code class="file docutils literal notranslate"><span class="pre">hpj_hydrsk.csv</span></code>, <code class="file docutils literal notranslate"><span class="pre">kpp_hydrsk.csv</span></code>,
+<code class="file docutils literal notranslate"><span class="pre">lu_hydrsk_cn.csv</span></code>, viz školení <a class="reference external" href="http://training.gismentors.eu/qgis-zacatecnik/vektorova_data/import_delim.html">QGIS pro začátečníky</a>.</p>
+<p>Následně sjednotíme vrstvu hlavních půdních jednotek (<span class="map">hpj</span>) a
+komplexního průzkumu půd (<span class="map">kpp</span>). Využijeme nástroj
+geoprocessingu <a class="reference internal" href="../_images/mAlgorithmUnion.png"><img alt="mAlgorithmUnion" src="../_images/mAlgorithmUnion.png" style="width: 1.5em;" /></a> <sup>Sjednotit</sup>, který najdeme v
+záložce <span class="menuselection">Vektor ‣ Nástroje geoprocessingu</span> anebo v
+<a class="reference internal" href="../geoprocessing/index.html"><span class="doc">Nástroje zpracování</span></a>.  Vznikne nová vektorová vrstva
+<span class="map">hpj_kpp</span>.</p>
+</section>
+<section id="krok-2">
+<span id="kr2"></span><h3>Krok 2<a class="headerlink" href="#krok-2" title="Permalink to this heading">¶</a></h3>
+<p><em>Připojení informací o hydrologické skupině</em></p>
+<p>Tabulku <span class="dbtable">hpj_hydrsk</span> můžeme připojit k atributům nové
+vektorové vrstvy <span class="map">hpj_kpp</span> pomocí společného sloupce
+<span class="dbcolumn">HPJ</span> (<a class="reference internal" href="#at-pred-join"><span class="std std-numref">Obr. 102</span></a>).  Pravým tlačítkem myši v
+panelu vrstev u <span class="map">hpj_kpp</span> zvolíme <span class="item">Vlastnosti</span> a v
+dialogovém okně přejdeme do záložky <a class="reference internal" href="../_images/join.png"><img alt="join" src="../_images/join.png" style="width: 1.5em;" /></a> <sup>Připojení</sup>. Kliknutím
+na ikonku <a class="reference internal" href="../_images/mActionSignPlus.png"><img alt="mActionSignPlus" src="../_images/mActionSignPlus.png" style="width: 1.5em;" /></a> spustíme dialogové okno s nastavením pro
+připojení (<a class="reference internal" href="#join"><span class="std std-numref">Obr. 103</span></a>), viz kapitola <a class="reference external" href="http://training.gismentors.eu/qgis-zacatecnik/vektorova_data/join.html">Připojení
+tabulkových dat</a> ve školení
+QGIS pro začátečníky.</p>
+<figure class="align-center" id="id1">
+<span id="at-pred-join"></span><img alt="../_images/at_pred_join.png" class="middle" src="../_images/at_pred_join.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 102 </span><span class="caption-text">Společný atribut <em>HPJ</em> a hydrologické skupiny hlavních půdních jednotek.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id2">
+<span id="join"></span><a class="reference internal image-reference" href="../_images/at_join.png"><img alt="../_images/at_join.png" src="../_images/at_join.png" style="width: 341.90000000000003px; height: 398.45px;" /></a>
+<figcaption>
+<p><span class="caption-number">Obr. 103 </span><span class="caption-text">Připojení tabulky k vektorové vrstvě na zákládě společného atributu.</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Tímto způsobem připojíme tabulky s informacemi o hydrologických
+skupinách (<a class="reference internal" href="#tab-pripojene"><span class="std std-numref">Obr. 104</span></a>).</p>
+<figure class="align-center" id="id3">
+<span id="tab-pripojene"></span><img alt="../_images/tab_pripojene.png" class="middle" src="../_images/tab_pripojene.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 104 </span><span class="caption-text">Zobrazení připojených vrstev ve vlastnostech vrstvy <em>hpj_kpp</em>.</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>V některých případech nemusí připojení tabulek proběhnout
+korektně, např. pokud se liší datový typ sloupečků použitých
+pro připojení. Typicky textové vs. číselné pole, např. ‚09‘
+vs. ‚9‘. V tomto případě je nutné data před přípojením sjednotit.</p>
+</div>
+<p id="novy-atribut">Poté otevřeme atributovou tabulku <span class="map">hpj_kpp</span>, zapneme editační mód
+ikonkou <a class="reference internal" href="../_images/mIconEditable.png"><img alt="mIconEditable" src="../_images/mIconEditable.png" style="width: 1.5em;" /></a> <sup>Přepnout editaci</sup> a pomocí kalkulátoru
+polí <a class="reference internal" href="../_images/mActionCalculateField.png"><img alt="mActionCalculateField" src="../_images/mActionCalculateField.png" style="width: 1.5em;" /></a> <sup>Otevřít kalkulátoru polí</sup> vytvoříme
+nový atribut. Použijeme připojené atributy o hydrologické skupině
+(<span class="dbcolumn">hpj_HydrSk</span> z hlavních půdních jednotek a
+<span class="dbcolumn">kpp_HydrSk</span> z komplexního průzkumu půd). Primárně použijeme
+hydrologickou skupinu pro hlavní půdní jednotky.  Kde informace není
+dosupná - hodnota <span class="dbcolumn">NULL</span>, tam použijeme
+<span class="dbcolumn">kpp_HydrSk</span> (<a class="reference internal" href="#at-hydrsk-kalk"><span class="std std-numref">Obr. 105</span></a>) a výsledek zobrazíme
+(<code class="xref std std-numref docutils literal notranslate"><span class="pre">hydrsk-map</span></code>).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CASE<span class="w"> </span>WHEN<span class="w"> </span><span class="s2">&quot;hpj_HydrSk&quot;</span><span class="w"> </span>IS<span class="w"> </span>NULL<span class="w"> </span>THEN<span class="w"> </span><span class="s2">&quot;kpp_HydrSk&quot;</span><span class="w"> </span>ELSE<span class="w"> </span><span class="s2">&quot;hpj_HydrSk&quot;</span><span class="w"> </span>END
+</pre></div>
+</div>
+<figure class="align-center" id="id4">
+<span id="at-hydrsk-kalk"></span><img alt="../_images/at_hydrsk_kalk.png" class="middle" src="../_images/at_hydrsk_kalk.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 105 </span><span class="caption-text">Vytvoření atributu s informacemi o hydrologické skupině pro
+elementární plochy.</span><a class="headerlink" href="#id4" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id5">
+<span id="hydrsk-ok"></span><a class="reference internal image-reference" href="../_images/hydrsk_ok.png"><img alt="../_images/hydrsk_ok.png" src="../_images/hydrsk_ok.png" style="width: 392.20000000000005px; height: 359.40000000000003px;" /></a>
+<figcaption>
+<p><span class="caption-number">Obr. 106 </span><span class="caption-text">Sjednocené hydrologické skupiny elementárních ploch v zájmovém území.</span><a class="headerlink" href="#id5" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="krok-3">
+<span id="kr3"></span><h3>Krok 3<a class="headerlink" href="#krok-3" title="Permalink to this heading">¶</a></h3>
+<p><em>Průnik vrstvy hydrologických skupin s vrstvou využití území</em></p>
+<p>Využijeme nástroj geoprocessingu <a class="reference internal" href="../_images/mAlgorithmIntersect.png"><img alt="mAlgorithmIntersect" src="../_images/mAlgorithmIntersect.png" style="width: 1.5em;" /></a>
+<sup>Protnutí</sup>. Výslednou vrstvu průniku nazveme
+<span class="map">hpj_kpp_landuse</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>V tomto případě má bohužel QGIS problém uložit výsledné
+prvky do výchozího formátu OGC Geopackage. Funkční náhradou
+je např. ESRI Shapefile. Uložení výsledku do formátu ESRI
+Shapefile je navíc často i rychlejší v porovnání s výchozím
+formátem OGC Geopackage.</p>
+</div>
+</section>
+<section id="krok-4">
+<span id="kr4"></span><h3>Krok 4<a class="headerlink" href="#krok-4" title="Permalink to this heading">¶</a></h3>
+<p><em>Připojení hodnot odtokové křivky</em> <span class="math notranslate nohighlight">\(CN\)</span></p>
+<p>V dalším kroku je potřeba vytvořit atribut, který bude obsahovat údaje
+o využití území a o hydrologické skupině půdy dané elementární plochy
+ve tvaru <em>VyužitíÚzemí_HydrologickáSkupina</em>.</p>
+<p>Pomocí kalkulátoru polí <a class="reference internal" href="../_images/mActionCalculateField.png"><img alt="mActionCalculateField" src="../_images/mActionCalculateField.png" style="width: 1.5em;" /></a> <sup>Otevřít
+kalkulátor polí</sup> vytvoříme nový atribut a nazveme jej
+<span class="dbcolumn">lu_hydrsk</span> (datový typ nastavíme na řetězec). Hodnota
+atributu bude ve tvaru <code class="docutils literal notranslate"><span class="pre">LandUse||'_'||hydrsk</span></code>.</p>
+<p>Ve vlastnostech vrstvy <a class="reference internal" href="../_images/join.png"><img alt="join" src="../_images/join.png" style="width: 1.5em;" /></a> <sup>Připojení</sup> připojíme tabulku
+<code class="file docutils literal notranslate"><span class="pre">lu_hydrsk_cn.csv</span></code>. Tímto krokem získáme pro každou elementární
+plochu odpovídající hodnotu <cite>CN</cite>.</p>
+<figure class="align-center" id="id6">
+<img alt="../_images/join_cn.png" class="small" src="../_images/join_cn.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 107 </span><span class="caption-text">Připojení hodnot CN k elementárním plochám.</span><a class="headerlink" href="#id6" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="krok-5">
+<span id="kr5"></span><h3>Krok 5<a class="headerlink" href="#krok-5" title="Permalink to this heading">¶</a></h3>
+<p><em>Sjednocení průniku vrstvy hydrologických skupin a využití území s vrstvou povodí</em></p>
+<p>Do této fáze je možné používat QGIS relativně bez problémů. Při
+větších objemech dat mohou být ale nativní nástroje QGISu časově
+náročné a nestabilní.</p>
+<p>Hodnoty návrhových srážek s různou dobou opakovaní do vrstvy přidáme
+pomocí operace <a class="reference internal" href="../_images/mAlgorithmUnion.png"><img alt="mAlgorithmUnion" src="../_images/mAlgorithmUnion.png" style="width: 1.5em;" /></a> <sup>Sjednotit</sup>.</p>
+<p>Tato operace bohužel končí topologickou chybou</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TopologyException</span><span class="p">:</span> <span class="n">Input</span> <span class="n">geom</span> <span class="mi">0</span> <span class="ow">is</span> <span class="n">invalid</span><span class="p">:</span> <span class="n">Hole</span> <span class="n">lies</span> <span class="n">outside</span> <span class="n">shell</span> <span class="n">at</span> <span class="ow">or</span> <span class="n">near</span> <span class="n">point</span> <span class="o">...</span>
+</pre></div>
+</div>
+<p>V nastavení <span class="menuselection">Nastavení ‣ Možnosti ‣ Zpracování ‣
+Obecné ‣ Filtrování neplatných prvků</span> nastavíme <cite>Ignorovat prvky s
+neplatnými geometriemi</cite> a výpočet spustíme znovu. Nové nastavení
+výrazně výpočet zpomalí, nicméně ani to nepomůže. Výpočet končí
+chybou.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TopologyException</span><span class="p">:</span> <span class="n">found</span> <span class="n">non</span><span class="o">-</span><span class="n">noded</span> <span class="n">intersection</span> <span class="n">between</span> <span class="n">LINESTRING</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="ow">and</span> <span class="n">LINESTRING</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="n">at</span> <span class="o">...</span>
+</pre></div>
+</div>
+<p>Pro další řešení tedy použijeme výpočetně stabilnější nástroje systému
+GRASS GIS. Více o systému GRASS v rámci školení <a class="reference external" href="http://training.gismentors.eu/grass-gis-zacatecnik">GRASS GIS
+pro začátečníky</a>. Překryvné operace jako
+protnutí či spojení má v systému GRASS na starost nástroj
+<a class="reference external" href="http://grass.osgeo.org/grass80/manuals/v.overlay..html">v.overlay.</a></p>
+<p>Výpočetní nástroje systému GRASS lze spouštět buď přímo z
+<a class="reference internal" href="../geoprocessing/index.html"><span class="doc">Nástroje zpracování</span></a> anebo pomocí <a class="reference internal" href="../grass/index.html"><span class="doc">zásuvného modulu
+GRASS</span></a>. Druhý způsob by vyžadoval vytvořit GRASS
+lokaci, naimportovat do ní vstupní data. Tento postup byl výhodný
+především, pokud bychom chtěli zbytek výpočtu již provést v systému
+GRASS celý. Jelikož chceme provést mimo nativní nástroje QGIS pouze
+jeden výpočet, tak zvolíme možnost spuštění nástroje GRASS přímo z
+nástroje zpracovaní.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Postup postavený na zásuvnému modulu GRASS je k dohledání ve
+<a class="reference external" href="http://training.gismentors.eu/qgis-pokrocily/2.18/hydrologie/scs-cn.html">starších materiálech</a> školení pro verzi
+QGIS 2.18.</p>
+</div>
+<p>Bohužel externí nástroje spuštěné z nástrojů zpracování ignorují
+připojené tabulky ke vstupní vrstvě. Abychom tedy nepřišli o připojené
+hodnoty CN, musíme nejprve vstupní vrstvu zapsat do nového souboru.</p>
+<figure class="align-center" id="id7">
+<img alt="../_images/save_join.png" class="small" src="../_images/save_join.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 108 </span><span class="caption-text">Uložení vrstvy do nového souboru. V případě použití formátu OGC
+Geopackage vynecháme atribut <code class="docutils literal notranslate"><span class="pre">fid</span></code>, který je tímto formátem
+vytvořen automaticky. V opačném případě by export prvků skončil
+chybou.</span><a class="headerlink" href="#id7" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id8">
+<img alt="../_images/processing-grass-v-overlay.png" src="../_images/processing-grass-v-overlay.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 109 </span><span class="caption-text">Spuštění nástroje <a class="reference external" href="http://grass.osgeo.org/grass80/manuals/v.overlay.html">v.overlay</a> z prostředí nástrojů
+zpracovaní. Kromě operátoru <code class="docutils literal notranslate"><span class="pre">or</span></code> pro operaci sjednocení je vhodné
+nastavit rozumnou hodnotu pro přichycení hranic. Předpokládáme
+totiž na vstupu topologicky nekorektní data. V našem případě jsme
+zvolili 1cm, což je hluboko pod přesností vstupních dat.</span><a class="headerlink" href="#id8" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Je důležité si uvědomit, že nástroj <a class="reference external" href="http://grass.osgeo.org/grass80/manuals/v.overlay.html">v.overlay</a> přidává k
+názvům atributu prefix <code class="docutils literal notranslate"><span class="pre">a_</span></code> a <code class="docutils literal notranslate"><span class="pre">b_</span></code>. To podle toho z jakého vstupní
+vrstvy atributy pocházejí.</p>
+<figure class="align-center" id="id9">
+<img alt="../_images/v-overlay-prefixes.png" class="middle" src="../_images/v-overlay-prefixes.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 110 </span><span class="caption-text">Názvy atributů po operaci spojení obsahují prefix.</span><a class="headerlink" href="#id9" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>V případě, že jste soubor <code class="file docutils literal notranslate"><span class="pre">lu_hydrsk_cn.csv</span></code> vložili
+do projektu přímo z panelu prohlížeče, tak nebyly koretně nastaveny
+datové typy sloupečků. Všechny atributy jsou uloženy jako řetězce.</p>
+<p>Vzhledem k tomu, že budeme dále pracovat především s hodnotami
+<cite>CN</cite>, je třeba pro další operace, aby typ tohoto atributu byl
+číselný, na což použijeme funkci <code class="docutils literal notranslate"><span class="pre">to_int()</span></code>. Vytvoříme tedy nový
+atribut <span class="dbcolumn">CN</span> s datovým typem <em>integer</em>.</p>
+<figure class="align-center" id="id10">
+<img alt="../_images/cn_to_int.png" class="middle" src="../_images/cn_to_int.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 111 </span><span class="caption-text">Vytvoření nového celočísleného atributu pro hodnoty CN.</span><a class="headerlink" href="#id10" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="krok-6">
+<span id="kr6"></span><h3>Krok 6<a class="headerlink" href="#krok-6" title="Permalink to this heading">¶</a></h3>
+<p><em>Výpočet výměry elementárních ploch, parametru</em> <span class="math notranslate nohighlight">\(A\)</span> <em>a parametru</em> <span class="math notranslate nohighlight">\(I_a\)</span></p>
+<p>Pro každou elementární plochu vypočítame její výměru, parametr
+<span class="math notranslate nohighlight">\(A\)</span> a <span class="math notranslate nohighlight">\(I_a\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[A = 25.4 \times (\frac{1000}{CN} - 10)\]</div>
+<div class="math notranslate nohighlight">
+\[I_a = 0.2 \times A\]</div>
+<p>Do atributové tabulky <span class="dbtable">hpj_kpp_lu_pov</span> přidáme nové atributy
+<span class="dbcolumn">vymera</span>, <span class="dbcolumn">A</span>, <span class="dbcolumn">I_a</span>, a to s datovým
+typem <em>desetinné číslo</em>. Jejich příslušné hodnoty vypočítáme obdobně
+jako při <a class="reference internal" href="#novy-atribut"><span class="std std-ref">tvorbě atributu</span></a> s hodnotami o využití
+území a hydrologické skupině. Pro určení výměry každé elementární
+plochy využijeme proměnnou <code class="docutils literal notranslate"><span class="pre">$area</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>vymera = $area
+A = 24.5 * (1000 / CN - 10)
+I_a = 0.2 * A
+</pre></div>
+</div>
+<figure class="align-center" id="id11">
+<img alt="../_images/area_attrib.png" class="middle" src="../_images/area_attrib.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 112 </span><span class="caption-text">Přídání nového atributu s výměrou.</span><a class="headerlink" href="#id11" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="krok-7">
+<span id="kr7"></span><h3>Krok 7<a class="headerlink" href="#krok-7" title="Permalink to this heading">¶</a></h3>
+<p><em>Výpočet parametru</em> <span class="math notranslate nohighlight">\(H_o\)</span> <em>a parametru</em> <span class="math notranslate nohighlight">\(O_p\)</span> <em>pro každou elementární plochu</em></p>
+<p>Znázornění vektorové vrstvy povodí s návrhovými srážkami v prostředí
+QGIS je uvedeno na <a class="reference internal" href="#navrhove-zrazky"><span class="std std-numref">Obr. 113</span></a> (maximální hodnota atributů
+<span class="dbcolumn">H_002_120</span> představuje 23 mm). Histogramy je možné
+vykreslit v záložce <a class="reference internal" href="../_images/diagram1.png"><img alt="diagram" src="../_images/diagram1.png" style="width: 1.5em;" /></a> <sup>Diagramy</sup> ve vlastnostech
+konkrétní vrstvy.</p>
+<figure class="align-center" id="id12">
+<span id="navrhove-zrazky"></span><img alt="../_images/navrhove_zrazky.png" class="middle" src="../_images/navrhove_zrazky.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 113 </span><span class="caption-text">Zobrazení povodí IV. řádu s návrhovými srážkami.</span><a class="headerlink" href="#id12" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Vypočítáme výšku přímého odtoku v <em>mm</em> jako parametr <span class="math notranslate nohighlight">\(H_o\)</span> a
+objem jako parametr <span class="math notranslate nohighlight">\(O_{p}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}H_O = \frac{(H_S − 0.2 \times A)^2}{H_S + 0.8 \times A}\\O_P = P_P \times \frac{H_O}{1000}\end{aligned}\end{align} \]</div>
+<p>V dalších krocích budeme uvažovat průměrný úhrn návrhové srážky
+<span class="math notranslate nohighlight">\(H_{s}\)</span> = 32 mm. Při úhrnu s dobou opakovaní 2 roky (atribut
+<span class="dbcolumn">H_002_120</span>) či dobou 5, 10, 20, 50 anebo 100 roků by byl
+postup obdobný.</p>
+<div class="admonition important">
+<p class="admonition-title">Důležité</p>
+<p>Hodnota v čitateli vztahu pro <span class="math notranslate nohighlight">\(H_o\)</span> musí být
+kladná, resp. nelze umocňovat záporné číslo. V případě, že čitatel
+je záporný, výška přímého odtoku je rovná nule. Pomůžeme si novým
+atributem v atributové tabulce, který nazveme <span class="dbcolumn">HOklad</span>.</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HOklad</span> <span class="o">=</span> <span class="mi">32</span> <span class="o">-</span> <span class="p">(</span><span class="mf">0.2</span> <span class="o">*</span> <span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id13">
+<img alt="../_images/HOklad_update.png" class="middle" src="../_images/HOklad_update.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 114 </span><span class="caption-text">Záporné hodnoty <span class="dbcolumn">HOklad</span> nejprve vybereme
+<a class="reference internal" href="../_images/mIconExpressionSelect.png"><img alt="mIconExpressionSelect" src="../_images/mIconExpressionSelect.png" style="width: 1.5em;" /></a> <sup>Vybrat prvky pomocí vzorce</sup> a poté
+jim přiřadíme konstantu <cite>0</cite>.</span><a class="headerlink" href="#id13" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HO</span> <span class="o">=</span> <span class="p">(</span><span class="n">HOklad</span> <span class="o">*</span> <span class="n">HOklad</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">32</span> <span class="o">+</span> <span class="p">(</span><span class="mf">0.8</span> <span class="o">*</span> <span class="n">A</span><span class="p">))</span>
+<span class="n">OP</span> <span class="o">=</span> <span class="n">vymera</span> <span class="o">*</span> <span class="p">(</span><span class="n">HO</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="krok-8">
+<span id="kr8"></span><h3>Krok 8<a class="headerlink" href="#krok-8" title="Permalink to this heading">¶</a></h3>
+<p><em>Vytvoření rastrových vrstev výšky a objemu přímého odtoku</em></p>
+<p>QGIS nabízí dva externí nástroje umožňující převést vektorovou vrstvu
+na rastr. První pochází z knihovny GDAL, druhý ze systému GRASS GIS, a
+to <a class="reference external" href="http://grass.osgeo.org/grass80/manuals/v.to.rast.html">v.to.rast</a>.</p>
+<figure class="align-center" id="id14">
+<img alt="../_images/rasterization_tools.png" class="small" src="../_images/rasterization_tools.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 115 </span><span class="caption-text">Vyhledání nástroje rasterizace.</span><a class="headerlink" href="#id14" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id15">
+<img alt="../_images/v-to-rast-ho.png" src="../_images/v-to-rast-ho.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 116 </span><span class="caption-text">Zadání parametrů nástroje <a class="reference external" href="http://grass.osgeo.org/grass80/manuals/v.to.rast.html">v.to.rast</a>. Kromě vstupní
+vrstvy (Input vector layer) a atributu pro rasterizaci (Name of
+column for ‚attr‘ parameter) nesmíme zapomenout definovat
+požadované prostorové rozlišení výsledného rastru (Velikost buňky
+regionu).</span><a class="headerlink" href="#id15" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Výsledky vizualizované v prostředí QGIS jsou uvedeny na
+<a class="reference internal" href="#ho-op"><span class="std std-numref">Obr. 117</span></a>.</p>
+<figure class="align-center" id="id16">
+<span id="ho-op"></span><img alt="../_images/ho_op.png" class="large" src="../_images/ho_op.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 117 </span><span class="caption-text">Zobrazení výšky a objemu přímého odtoku pro elementární plochy v
+prostředí QGIS.</span><a class="headerlink" href="#id16" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="krok-9">
+<span id="kr9"></span><h3>Krok 9<a class="headerlink" href="#krok-9" title="Permalink to this heading">¶</a></h3>
+<p><em>Výpočet průměrných hodnot výšky a objemu přímého odtoku pro povodí</em></p>
+<p>V dalším kroku vypočítáme průměrné hodnoty přímého odtoku pro každé
+povodí v řešeném území. Použijeme GRASS nástroj
+<a class="reference external" href="http://grass.osgeo.org/grass80/manuals/v.rast.stats.html">v.rast.stats</a>, který počítá základní statistické informace
+rastrové vrstvy na základě vektorové vrstvy a ty ukladá do nových
+atributů v atributové tabulce. Dialogové okno je uvedeno na
+<a class="reference internal" href="#v-rast-stats"><span class="std std-numref">Obr. 118</span></a>.</p>
+<figure class="align-center" id="id17">
+<span id="v-rast-stats"></span><img alt="../_images/v_rast_stats.png" class="middle" src="../_images/v_rast_stats.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 118 </span><span class="caption-text">Dialogové okno modulu v.rast.stats.</span><a class="headerlink" href="#id17" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Vektorovou vrstvu povodí potom můžeme převést do podoby rastrové
+vrstvy, přičem jako klíčový atribut použijeme <span class="dbcolumn">ho_average</span>,
+resp. <span class="dbcolumn">op_average</span>. Výstup zobrazený v prostředí QGIS je na
+<a class="reference internal" href="#ho-op-avg"><span class="std std-numref">Obr. 119</span></a>.</p>
+<figure class="align-center" id="id18">
+<span id="ho-op-avg"></span><img alt="../_images/ho_op_avg.png" class="large" src="../_images/ho_op_avg.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 119 </span><span class="caption-text">Zobrazení průměrné výšky a objemu přímého odtoku pro povodí v
+prostředí QGIS.</span><a class="headerlink" href="#id18" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../georeferencovani/index.html">Georeferencování obrazových dat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geoprocessing/index.html">Nástroje zpracování</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeler/index.html">Grafický modelář</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grass/index.html">Zásuvný modul GRASS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Ukázka analýzy - hydrologie</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Metoda SCS CN</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../3d/index.html">Práce s 3D daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pokrocile_upravy/index.html">Pokročilé úpravy prostředí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/index.html">Různé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../priklady/index.html">Příklady</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="index.html" title="Ukázka analýzy - hydrologie"
+              >předchozí</a> |
+            <a href="../3d/index.html" title="Práce s 3D daty"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

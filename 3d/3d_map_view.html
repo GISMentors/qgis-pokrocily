@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Vizualizace ve 3D &#8212; Školení QGIS pro pokročilé</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="3D geometrie" href="3dgeometry.html" />
+    <link rel="prev" title="Tvorba DMT a teréní analýzy" href="dmt.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení QGIS pro pokročilé</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="dmt.html" title="Tvorba DMT a teréní analýzy"
+             accesskey="P">předchozí</a> |
+          <a href="3dgeometry.html" title="3D geometrie"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="vizualizace-ve-3d">
+<span id="d-map-view"></span><h1>Vizualizace ve 3D<a class="headerlink" href="#vizualizace-ve-3d" title="Permalink to this heading">¶</a></h1>
+<p>Vykreslování ve 3D není součástí běžného mapového okna, ale má samostatné
+okno.</p>
+<p>Vykreslování funguje na principu vykreslování textur na vygenerovaný terén.
+Textury rastrových vrstev svou symbologií odpovídá symbologii pro běžné
+mapové okno. Vykreslování vektorových dat má samostatné nastavení.
+Rozdíly mezi klasickým mapovým oknem jsou způsobeny pouze kvalitou rendrování na terénu, se kterou je možné
+manipulovat a nastavit ji dle potřeb.</p>
+<section id="mapove-okno">
+<h2>Mapové okno<a class="headerlink" href="#mapove-okno" title="Permalink to this heading">¶</a></h2>
+<p>Pro zobrazování dat v režimu 3D je nutné si aktivovat samostatné okno. V menu <span class="menuselection">Zobrazit ‣ New 3D Map View</span>, případně přes zkratku <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>+<kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">M</kbd></kbd> se spustí nové
+okno pro vykreslování 3D objektů.</p>
+<p>Do tohoto okna se po spuštění překreslí všechny vrstvy tak, jak se vykreslují
+do mapového okna. Zapínání a vypínání vrstev je přímo napojené a reaguje dle
+obvyklého nastavení v panelu vrstev. Pro další práci ponacháme vykreslené pouze
+vrstvy v pořadí zdola:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Dem - výškový raster</p></li>
+<li><p>Stínovaný reliéf - částečně průhledný</p></li>
+<li><p>Index drstnosti - částečně průhledný</p></li>
+</ul>
+</div></blockquote>
+<p>Menu pro nastavení 3D mapového okna je pod ikonkou <a class="reference internal" href="../_images/mActionOptions1.png"><img alt="mActionOptions" src="../_images/mActionOptions1.png" style="width: 1em;" /></a>
+<sup>Nastavit</sup>. V tomto menu můžeme
+udělat základní nastavení v části <span class="item">Terén</span>. V rolovacím menu pro položku
+<span class="item">Nadmořská výška</span> vybereme rastrovou vrstvu <span class="item">DEM</span> - výškového modelu terénu.
+Po uložení tohoto základního nastavení  se začne načítat zobrazený terén jako
+3D povrch ve stejném grafickém nastavení jako v mapovém okně. Na vrstvě terénu
+se vykreslí i stínovaný reliéf a drsnost povrchu.</p>
+<figure class="align-center" id="id1">
+<img alt="../_images/3d_settings1.png" class="middle" src="../_images/3d_settings1.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 126 </span><span class="caption-text">Základní nastavení 3D mapového okna a první vizualizace.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Rendrování je závislé na přegenerovávání jednotlivých dlaždic dle pozice „pozorovatele“. V případě přibližování se počítají nové dlaždice, které lépe odpovídají požadované kvalitě.</p>
+</section>
+<section id="ovladani-3d-mapoveho-okna">
+<h2>Ovládání 3D mapového okna<a class="headerlink" href="#ovladani-3d-mapoveho-okna" title="Permalink to this heading">¶</a></h2>
+<p>Při prvním zobrazení dat se vykreslí rozsah vrstvy s terénem do mapového okna centricky a kolmo nad středem.</p>
+<dl class="simple">
+<dt><strong>Pohyb v okně:</strong></dt><dd><ul class="simple">
+<li><p>přibližování a oddalování - pohybem kolečka myši</p></li>
+<li><p>posun obrazu - levé  tlačítko myši a tažení</p></li>
+<li><p>změna vertikálního úhlu - Shift + tažení levého tlačítka</p></li>
+</ul>
+</dd>
+</dl>
+<p>Zjemnění jakéhokoli vyjmenovaného posunu - přidržení tlačítka <span class="item">Ctrl</span></p>
+<p>Místo tažení myší je možné používat šipky na klávesnici</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Tak jako u obyčejného mapového okna, tak i tady je možné vrátit se do
+výchozí polohy, kdy vidíme vrstvu z výchozí pozice - tlačítko “Přiblížit
+na rozměry okna”. Vhodné použít pokud se dostaneme mimo zobrazovaná data
+a neumíme se vhodně zorientovat.</p>
+</div>
+<p><strong>Další nastavení</strong></p>
+<p>Výchozí hodnoty pro vykreslování v 3D mapovém okně je možné měnit a pomocí jejich správné konfigurace zlepšit výstup.</p>
+<figure class="align-center" id="id2">
+<img alt="../_images/3d_compare.png" class="middle" src="../_images/3d_compare.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 127 </span><span class="caption-text">Porovnání vizualizací s růzým nastavením 3D mapového okna.</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Na obrázku jsou vidět dvě různá zobrazení dat v 3D mapovém okně. Rozdíl
+není v datech samotných, ale v nastavení jednotlivých parametrů. Je důležité
+si uvědomit, že možnosti nastavení jsou závislé na konkrétním zařízení na
+kterém zobrazování probíhá a tím se můžou výrazně lišit i dosažitelné výsledky.
+Nastavení kvality výstupu funguje inverzně vůči běžnému určování rozlišení
+rastrových dat. Místo počtu sloupců a řádků se určuje pouze kvalita
+jednotlivých dlaždic.</p>
+<figure class="align-center" id="id3">
+<img alt="../_images/3d_settings2.png" class="small" src="../_images/3d_settings2.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 128 </span><span class="caption-text">Okno konfigurace 3D mapového okna</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<dl class="simple">
+<dt>Možnosti konfigurace mapového okna:</dt><dd><ul class="simple">
+<li><p>Terén - Nadmořská výška - výběr rastrové vrstvy, ze které bude generován terén</p></li>
+<li><p>Terén - Svislé měřítko - pokud reálný poměr vodorovných a svislých délek neumožňuje
+dostatečně dobře analyzovat terén je možné zvýšením čísla zveličit výškové
+poměry (malé nerovnosti vyniknou s vyšším číslem)</p></li>
+<li><p>Terén - Rozlišení dlaždice - počet vzorkovacích plošek na dlaždici. Princip je tedy takový,
+že s vyšším číslem roste kvalita, ale také náročnost zobrazování.</p></li>
+<li><p>Terén - Výška obruby - jednotlivé dlaždice můžou být lenovány na spodní straně
+pruhem textury. Ten může pomoct při ucelení případných trhlín medzi
+dlaždicemi. Tento parametr určuje výšku tohoto pruhu v pixelech.</p></li>
+<li><p>Světla - nastavení světelných zdrojů</p></li>
+<li><p>Stín - nastavení stínů</p></li>
+<li><p>Camera &amp; Skybox - nastavení kamery a okolí (sky box)</p></li>
+<li><p>Pokročilé - Rozlišení dlaždice mapy - velikost texturového obrázku v pixelech pro jednu
+dlaždici. Čím větší číslo použíjeme, tím detailnější textura bude na
+dlaždici vykreslena. Detailnost je závislá na náročnosti vizualizace.</p></li>
+<li><p>Pokročilé - Max. chyba na obrazovce - hraniční hodnota chyby vykreslení dlaždic definující mez,
+kdy chyba vykreslení způsobí vykreslení nové detailnější/méně detailní sady
+dlaždic</p></li>
+<li><p>Pokročilé - Různé zatrhávací položky umožňují pracovat se zobrazováním popisků,
+případně dalších informací o dlaždicích a zobrazovaném celku.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../georeferencovani/index.html">Georeferencování obrazových dat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geoprocessing/index.html">Nástroje zpracování</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeler/index.html">Grafický modelář</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grass/index.html">Zásuvný modul GRASS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hydrologie/index.html">Ukázka analýzy - hydrologie</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Práce s 3D daty</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dmrdmp.html">Zpracování DMR a DMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dmt.html">Tvorba DMT a teréní analýzy</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Vizualizace ve 3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3dgeometry.html">3D geometrie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiles.html">Profil terénu</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pokrocile_upravy/index.html">Pokročilé úpravy prostředí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/index.html">Různé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../priklady/index.html">Příklady</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="dmt.html" title="Tvorba DMT a teréní analýzy"
+              >předchozí</a> |
+            <a href="3dgeometry.html" title="3D geometrie"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

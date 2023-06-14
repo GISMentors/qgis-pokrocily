@@ -1,0 +1,298 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Bilancování využití území &#8212; Školení QGIS pro pokročilé</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Bilancování ochranných pásem silnic" href="bilancovani_silnice.html" />
+    <link rel="prev" title="Příklady" href="index.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení QGIS pro pokročilé</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="index.html" title="Příklady"
+             accesskey="P">předchozí</a> |
+          <a href="bilancovani_silnice.html" title="Bilancování ochranných pásem silnic"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="bilancovani-vyuziti-uzemi">
+<h1>Bilancování využití území<a class="headerlink" href="#bilancovani-vyuziti-uzemi" title="Permalink to this heading">¶</a></h1>
+<p>Jednou z typických GIS úloh je tvorba bilancí vybrané datové sady za území.
+V tomto případě jde o ukázku bilancování dat tzv. současného stavu využití území
+Prahy. Tato data jsou volně dostupná na rozhraní
+<a class="reference external" href="https://www.geoportalpraha.cz/cs/data/otevrena-data/A0198E36-FCAD-42E7-BE4A-3B7755A48DAC">IPR Praha</a>
+spolu s metadaty o tomto datasetu.
+Pro lepší přehled je možné si je prohlédnout v aplikaci
+<a class="reference external" href="https://app.iprpraha.cz/apl/app/atlas-praha-5000/">Atlas 5000</a>, kde jsou
+v sekci <em>Využití území</em>.</p>
+<figure class="align-center" id="id1">
+<img alt="../_images/b_atlas5000.png" class="large" src="../_images/b_atlas5000.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 199 </span><span class="caption-text">Ukázka datové sady <em>Současný stav</em> v aplikaci Atlas 5000.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Tato datová sada souvisle pokrývá celé území Prahy pomocí malých, nepřekrývajících
+se plošek. Každá ploška má jednoznačně definované různé atributy, mezi nimi i
+atribut <span class="item">Kód</span>. Vysvětlní každého kódu je možné najít v metadatech této
+sady.</p>
+<p>V legendě je vidět, že se jednotlivé kódy shlukují do skupin.</p>
+<figure class="align-center" id="id2">
+<img alt="../_images/b_skupiny_legenda.png" class="small" src="../_images/b_skupiny_legenda.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 200 </span><span class="caption-text">Náhled do legendy s ukázkou seskupování kódů.</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<section id="zadani">
+<h2>Zadání<a class="headerlink" href="#zadani" title="Permalink to this heading">¶</a></h2>
+<p>Cílem je získat přehled za různé administrativní jednotky o tom
+jaké je procentuální zastoupení jenotlivých skupin dle kódů využití území.
+Takovýto výsledek lze zobrazovat pomocí kartodiagramu, nebo použít pro
+samostatnou tabulku a grafy.</p>
+</section>
+<section id="priprava-dat">
+<h2>Příprava dat<a class="headerlink" href="#priprava-dat" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>stáhnout data <code class="file docutils literal notranslate"><span class="pre">vyuziti_uzemi</span></code> z rozhraní IPR Praha (nebo jsou předpřipravena v balíku dat)</p></li>
+<li><p>územní členění Prahy (jsou součástí balíku dat, nebo stáhnout z RÚIAN)</p></li>
+<li><p>tabulka kódů a jejich členění (převedeno do tabulky <code class="file docutils literal notranslate"><span class="pre">kody</span></code>, součást balíku dat)</p></li>
+</ol>
+<p>Před samotným provedením analýzy je potřeba udělat kontrolu geometrie pomocí
+nástroje <strong>Zkontrolovat Platnost</strong>.
+Tento nástroj je v menu <span class="menuselection">Zpracování ‣ Vektorová geometrie</span>.
+Datová sada využití území je spravována a vydávána pomocí ESRI technologie,
+která má jiné nastavení pro validitu geometrie.
+Na obrázku je vidět geometrii, která je pro ESRI nástroje vpořádku, ale pro
+QGIS není validní. Jedná se o tzv. <cite>self-intersection</cite> nebo <cite>samoprotnutí prstence</cite>.</p>
+<figure class="align-center" id="id3">
+<img alt="../_images/b_topoerror.png" class="small" src="../_images/b_topoerror.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 201 </span><span class="caption-text">Ukázka problémové geometrie na vstupních datech.</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Tento typ chyb lze opravit automaticky pomocí nástroje <cite>Opravit geometrie</cite>.
+Předpřipravená data prošla kontrolou a opravou geometrie. Rovněž by měli být
+validní i členění území.</p>
+<p>Bilance se přepočítávají na různé prostorové členění. K dispozici jsou různé
+administrativní jednotky - katastrální území (KU), základní sídelní jednotky
+(ZSJ), městské obvody (MO), městské části (MČ) a další.
+V tomto případě budeme používat ZSJ a to pouze pro území Prahy 7.
+Důvodem je rychlost výpočtu a přehlednost v malém zvoleném území.
+Vybrané ZSJ je možné si uložit do samostatné datové vrstvy.
+Prvky územního členění mají určenou výměru. Je vhodné přidat nový atribut,
+do kterého se přepočte výměra. Pokud bychom pracovali s přirpavenou výměrou,
+tak by se mohlo stát, že by součty jednolivých částí přesně neodpovídali.</p>
+</section>
+<section id="propojeni-dat-vyuziti-a-skupin">
+<h2>1. propojení dat využití a skupin<a class="headerlink" href="#propojeni-dat-vyuziti-a-skupin" title="Permalink to this heading">¶</a></h2>
+<p>Jednotlivý plochy  využití mají vždy určen atribut <span class="item">Kód</span>.
+Rozdělení kódů do skupin  obsahuje tabulka <code class="file docutils literal notranslate"><span class="pre">kody</span></code>. Ta je součástí <cite>GPKG</cite>.
+Po načtení se zobrazí jako tabulka
+bez geometrie. Obsahuje čtyři sloupečky - fid, kód, textový popis kódu a skupinu, do
+které je kód zařazen.
+Tyto hodnoty musí být přiřazeny ke geometrické vrstvě využití území.
+Ve vlastnostech vrstvy <cite>vyuziti_uzemi</cite> v sekci <cite>Připojení</cite> se vytvoří nové
+připojení.
+Musí se připojit tabulková data <cite>kody</cite> na základě atributů s kódy u zdrojové
+i cílové datové sady.
+Ukázka připojení je na obrázku.</p>
+<figure class="align-center" id="id4">
+<img alt="../_images/b_jointable.png" class="small" src="../_images/b_jointable.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 202 </span><span class="caption-text">Připojení tabulky kódů na vrstvu využití území.</span><a class="headerlink" href="#id4" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Po připojení jsou nové atributy zařazeny nan konec atributové tabulky.</p>
+<div class="admonition warning">
+<p class="admonition-title">Varování</p>
+<p>Po připojení dat je vhodné zkontrolovat, zda všechny prvky mají
+přiřazen záznam z párované tabulky. Důvodem může být chyba v
+datech anebo změna v metodice, která vede k změnám v kódech.
+Obě situace by se měli hlídat.</p>
+</div>
+<p>Pro jednoduché zobrazení skupin je možné využít nastavení symbologie.
+Ve <span class="menuselection">Vlastnosti ‣ Symbologie</span> se nastaví <cite>Kategorizovaný</cite> typ.</p>
+<figure class="align-center" id="id5">
+<img alt="../_images/b_groupsymbology.png" class="medium" src="../_images/b_groupsymbology.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 203 </span><span class="caption-text">Nastavení symbologie podle skupin kódů.</span><a class="headerlink" href="#id5" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="propojeni-dat-vyuziti-uzemi-a-cleneni">
+<h2>2. propojení dat využití území a členění<a class="headerlink" href="#propojeni-dat-vyuziti-uzemi-a-cleneni" title="Permalink to this heading">¶</a></h2>
+<p>Druhým krokem je určit každé ploše příslušnou jednotku ZSJ pod kterou spadá.
+Pokud jedna plocha spadá do vícero území, tak toto musí být rozděleno hranicí
+a každá část bude mít správné uzemní přiřazení. Plochy, které leží mimo zájmové
+území se nebude používat - vypadnou.
+Tento požedavek splňuje operace <strong>Protnutí</strong> (intersection).</p>
+<p>Vstupní vrstva je <cite>vyuziti_uzemi</cite>, překryvná je <cite>zsj</cite>. Výstup je v tomto
+případě uložen do GPKG.</p>
+<figure class="align-center" id="id6">
+<img alt="../_images/b_intersect.png" class="medium" src="../_images/b_intersect.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 204 </span><span class="caption-text">Nastavení nástroje protnutí.</span><a class="headerlink" href="#id6" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Pro každou ZSJ je teď možné spočíst plochu ze všech dílčích plošek a nasčítat
+celkovou plochu pro všechny skupiny v ní zastoupené.</p>
+</section>
+<section id="sumarizace-podle-skupin-v-zsj-v-procentech">
+<h2>3. sumarizace podle skupin v ZSJ v procentech<a class="headerlink" href="#sumarizace-podle-skupin-v-zsj-v-procentech" title="Permalink to this heading">¶</a></h2>
+<p>Pomocí funkce <strong>Rozpustit</strong> (dissolve) je možné sloučit všechny plochy v rámci
+každé ZSJ spadající do stejné kategorie. Klíčové atributy jsou v tomto případě
+dva - identifikace ZSJ a identifikace skupiny - <cite>kod_zsj</cite>,`kody_skupina`.</p>
+<figure class="align-center" id="id7">
+<img alt="../_images/b_dissolve_groups.png" class="large" src="../_images/b_dissolve_groups.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 205 </span><span class="caption-text">Plochy v zájmovém území před a po sloučení, výběr atributů při použití
+nástroje.</span><a class="headerlink" href="#id7" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Dalším krokem je výpočet procentuálního zastoupení dané skupiny. Přidá se nový
+atribut <cite>podil</cite>, který má datový typ <cite>desetinné číslo</cite> a požadovaný počet
+desetinných míst. Pomocí výrazu <span class="item">$area/“vymera_vypocet“*100</span> je možné
+spočítat procentuální podíl dané skupiny ploch na ploše ZSJ.</p>
+<figure class="align-center" id="id8">
+<img alt="../_images/b_fieldcalc_percent.png" class="medium" src="../_images/b_fieldcalc_percent.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 206 </span><span class="caption-text">Výpočet nového atributu s podílem dané skupiny v procentech.</span><a class="headerlink" href="#id8" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="prehledne-zobrazeni-vysledku">
+<h2>4. přehledné zobrazení výsledků<a class="headerlink" href="#prehledne-zobrazeni-vysledku" title="Permalink to this heading">¶</a></h2>
+<p>Pro pěhledné zobrazení statistiky za každou ZSJ je vhodné tabulku upravit.
+Jedná se o tzv. pivotování. Kdy se vytvoří slopce pro hodnoty z vybraných
+sloupců.
+Na tento úkol se použije zásuvný modul <cite>Group Stats</cite>, který se přidá
+standardním způsobem. Plugin rovnou spustíme.</p>
+<p>Jako první je nutné vybrat vrstvu, se kterou chceme pracovat. V tomto případě
+se jedné o výsledek z minulého kroku  - výsledek po rozpůštění s nově přidaným
+sloupcem. Celý proces nastavení záleží na požadavcích a je možné použít i jiný
+postup.</p>
+<p>Postupně je nutné zadat sloupce, které se zachovají - sekce <cite>Rows</cite>.
+Zde vybereme základní sloupce pro identifikaci <cite>ZSJ</cite> (<cite>nazev, kod_2, vymera</cite>).</p>
+<p>Druhý požadavkem je zadání sloupců, ze kterých hodnot se vygenerují nové
+samostatné sloupce. V tomto případě chceme sloupce za každou <cite>skupinu</cite>.
+Do sekce <cite>Columns</cite> proto vybereme <cite>kody_SKUPINA</cite>.</p>
+<p>Předpis pro výpočet se zadává do sekce <cite>Value</cite>. Pro tento příklad chceme,
+zby se spočetl podíl za každou skupinu. Vložíme tedy hodnoty <cite>podil</cite> a <cite>sum</cite>.
+V tomto případě je <cite>podil</cite> atribut  spočtený v předchozím korku a <cite>sum</cite> je
+řídící funkce použitá pro  přepočet - jednotlivé položky se budou sčítat.</p>
+<p>Po zadání všech potřebných parametrů se aktivuje tlačítko <span class="item">Calculate</span>,
+které pro zadané parametry spočítá požadovaný výsledek.</p>
+<figure class="align-center" id="id9">
+<img alt="../_images/b_group_stats.png" class="large" src="../_images/b_group_stats.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 207 </span><span class="caption-text">Pivotování tabulky pomocí nástroje Group Stats.</span><a class="headerlink" href="#id9" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>V náhledu je vidět zachované sloupce, ty nově vytvořené z hodnot v sloupci
+<cite>kody_SKUPINA</cite> a dopočtené hodnoty.</p>
+<p>Data zle zkopírovat, nebo uložit jako <cite>CSV</cite>. V tabulkovém editoru je pak možné
+dále upravovat dle potřeby.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Pro přehledné zobrazení je možné tabulku zpátky navázat na ZSJ a
+například pomocí kartodiagramu symbolizovat jednotlivé poměry
+zastoupení.</p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../georeferencovani/index.html">Georeferencování obrazových dat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geoprocessing/index.html">Nástroje zpracování</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeler/index.html">Grafický modelář</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grass/index.html">Zásuvný modul GRASS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hydrologie/index.html">Ukázka analýzy - hydrologie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3d/index.html">Práce s 3D daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pokrocile_upravy/index.html">Pokročilé úpravy prostředí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/index.html">Různé</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Příklady</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Bilancování využití území</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bilancovani_silnice.html">Bilancování ochranných pásem silnic</a></li>
+</ul>
+</li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="index.html" title="Příklady"
+              >předchozí</a> |
+            <a href="bilancovani_silnice.html" title="Bilancování ochranných pásem silnic"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

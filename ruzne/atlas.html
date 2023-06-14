@@ -1,0 +1,387 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Tvorba atlasu &#8212; Školení QGIS pro pokročilé</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Vazby mezi vrstvami" href="vazby.html" />
+    <link rel="prev" title="QGIS Server" href="qgisserver.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení QGIS pro pokročilé</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="qgisserver.html" title="QGIS Server"
+             accesskey="P">předchozí</a> |
+          <a href="vazby.html" title="Vazby mezi vrstvami"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="tvorba-atlasu">
+<h1>Tvorba atlasu<a class="headerlink" href="#tvorba-atlasu" title="Permalink to this heading">¶</a></h1>
+<p>Kromě tvorby samostatných výstupů lze pomocí tvůrce mapy vytvořit
+sérii mapových výstupů, neboli <em>atlas</em>. Principem vytvoření takového
+hromadného výstupu je využití tzv. <em>vrstvy pokrytí</em>. Pro každý prvek v
+této vrstvě bude vytvořen vlastní mapový výstup, přičemž výřez
+mapového okna bude přesunut vždy na polohu daného prvku. Zadání vrstvy
+pokrytí můžeme využít různými způsoby. Kromě zaměření mapových listů na
+jedotlivé prvky můžeme např. vytvořit polygonovou vrstvu kde polygony
+budou udávat mapové listy atlasu. Pro tento případ můžeme vrstvu pokrytí
+skrýt.</p>
+<p>V této kapitole se věnujeme pouze principu tvorby atlasu. Podrobnější
+informace o přidávání jednotlivých prvků a jejich nastaveních najdete
+ve školení <a class="reference external" href="http://training.gismentors.eu/qgis-zacatecnik">QGIS pro začátečníky</a> v kapitole
+<a class="reference external" href="http://training.gismentors.eu/qgis-zacatecnik/mapovy_vystup/index.html">Tvorba mapového
+výstupu</a>.</p>
+<section id="aktivace-funkce-atlasu">
+<h2>Aktivace funkce atlasu<a class="headerlink" href="#aktivace-funkce-atlasu" title="Permalink to this heading">¶</a></h2>
+<p>Funkci atlasu lze aktivovat v záložce <span class="guilabel">Atlas</span> zaškrtnutím
+položky <a class="reference internal" href="../_images/checkbox1.png"><img alt="checkbox" src="../_images/checkbox1.png" style="width: 1.5em;" /></a><span class="item">Vytvořit atlas</span>. V této záložce dále najdeme
+základní nastavení vrstvy pokrytí a výstupního souboru.</p>
+<figure class="align-center" id="id1">
+<img alt="../_images/atlas_enable.png" class="small" src="../_images/atlas_enable.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 169 </span><span class="caption-text">Aktivace a základní nastavení funkce atlasu.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<section id="nastaveni">
+<h3>Nastavení<a class="headerlink" href="#nastaveni" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><span class="item">Vrstva pokrytí</span> <a class="reference internal" href="../_images/selectstring1.png"><img alt="selectstring" src="../_images/selectstring1.png" style="width: 2.5em;" /></a> - vybereme vrstvu pokrytí</p></li>
+<li><p><span class="item">Skrytá vrstva pokrytí</span> <a class="reference internal" href="../_images/checkbox1.png"><img alt="checkbox" src="../_images/checkbox1.png" style="width: 1.5em;" /></a> - vrstva pokrytí může být
+součástí mapového výstupu (např. hranice zájmového území, zobrazení
+konkrétních prvků, …) nebo může být skryta (např. hranice mapového
+listu)</p></li>
+<li><p><span class="item">Název strany</span> <a class="reference internal" href="../_images/combobox.png"><img alt="combobox" src="../_images/combobox.png" style="width: 1.5em;" /></a> - lze zadat název pro strany atlasu
+pro lepší orientaci při náhledu. Lze vybrat stávající atribut, nebo
+vytvořit název na základě výrazu (např. id prvku, název, …)</p></li>
+<li><p><a class="reference internal" href="../_images/checkbox1.png"><img alt="checkbox" src="../_images/checkbox1.png" style="width: 1.5em;" /></a> <span class="item">Filtrovat s</span> - umožňuje filtrovat zobrazené prvky
+vrstvy pokrytí na základě zadaného výrazu</p></li>
+<li><p><a class="reference internal" href="../_images/checkbox1.png"><img alt="checkbox" src="../_images/checkbox1.png" style="width: 1.5em;" /></a> <span class="item">Řadit podle</span> - umožňuje seřadit prvky vrstvy
+pokrytí na základě atributu</p></li>
+</ul>
+</section>
+<section id="vystup">
+<h3>Výstup<a class="headerlink" href="#vystup" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><span class="item">Výraz pro název výstupního souboru</span> - formátování názvu
+výstupních souborů</p></li>
+<li><p><a class="reference internal" href="../_images/checkbox1.png"><img alt="checkbox" src="../_images/checkbox1.png" style="width: 1.5em;" /></a> <span class="item">Export do jednoho souboru, pokud to lze</span> -
+např. při importu do jednoho souboru PDF</p></li>
+<li><p><span class="item">Formát exportu obrázku</span> <a class="reference internal" href="../_images/selectstring1.png"><img alt="selectstring" src="../_images/selectstring1.png" style="width: 2.5em;" /></a> - lze vybrat z několika
+formátů</p></li>
+</ul>
+</section>
+</section>
+<section id="priprava-atlasu">
+<h2>Příprava atlasu<a class="headerlink" href="#priprava-atlasu" title="Permalink to this heading">¶</a></h2>
+<p>Po aktivaci funkce a nastavení vrstvy pokrytí, postupujeme obdobně
+jako u vytváření samostatného výstupu. V tomto momentě je také vhodné
+zapnout náhled atlasu, což nám umožní sledovat prováděné změny a
+listovat jednotlivými prvky/stranami atlasu.  Náhled jde spustit buď z
+menu <span class="menuselection">Atlas ‣ Náhled atlasu</span> a nebo pomocí ikony
+<a class="reference internal" href="../_images/mIconAtlas1.png"><img alt="mIconAtlas" src="../_images/mIconAtlas1.png" style="width: 1.5em;" /></a><sup>Náhled atlasu</sup> z panelu <em>Atlas</em>.</p>
+<figure class="align-center" id="id2">
+<img alt="../_images/atlas_menu.png" class="small" src="../_images/atlas_menu.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 170 </span><span class="caption-text">Panel - <em>Atlas</em>.</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<section id="mapove-okno">
+<h3>Mapové okno<a class="headerlink" href="#mapove-okno" title="Permalink to this heading">¶</a></h3>
+<p>V první řadě přidáme na list mapové okno pomocí ikony <a class="reference internal" href="../_images/mActionAddMap1.png"><img alt="add_map" src="../_images/mActionAddMap1.png" style="width: 1.5em;" /></a>
+<sup>Přidat novou mapu</sup> a ve vlastnostech položky přidané mapy
+aktivujeme možnost <a class="reference internal" href="../_images/checkbox1.png"><img alt="checkbox" src="../_images/checkbox1.png" style="width: 1.5em;" /></a><span class="item">Ovládáno Atlas</span>. Zde je také
+možné nastavit generování měřítka.</p>
+<figure class="align-center" id="id3">
+<img alt="../_images/atlas_control.png" class="small" src="../_images/atlas_control.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 171 </span><span class="caption-text">Aktivace ovládání mapové položky atlasem.</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<section id="generovani-meritka">
+<h4>Generování měřítka<a class="headerlink" href="#generovani-meritka" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><a class="reference internal" href="../_images/radiobutton.png"><img alt="radiobutton" src="../_images/radiobutton.png" style="width: 1.5em;" /></a><span class="item">Ohraničení kolem prvku</span> - možnost zadání
+prostoru kolem prvku v procentech</p></li>
+<li><p><a class="reference internal" href="../_images/radiobutton.png"><img alt="radiobutton" src="../_images/radiobutton.png" style="width: 1.5em;" /></a><span class="item">Předdefinované měřítko (optimální)</span> - automatický
+výběr nejvhodnějšího měřítka na základě předdefinovaných měřítek
+projektu
+(viz. <a class="reference external" href="http://training.gismentors.eu/qgis-zacatecnik/intro/popis_rozhrani.html#meritko">Měřítko</a>)</p></li>
+<li><p><a class="reference internal" href="../_images/radiobutton.png"><img alt="radiobutton" src="../_images/radiobutton.png" style="width: 1.5em;" /></a><span class="item">Pevné měřítko</span> - nastavení pevného měřítka pro
+všechny prvky/listy atlasu</p></li>
+</ul>
+<figure class="align-center" id="id4">
+<img alt="../_images/atlas_priklad.png" class="middle" src="../_images/atlas_priklad.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 172 </span><span class="caption-text">Příklad tvorby atlasu krajů.</span><a class="headerlink" href="#id4" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="nahled-atlasu">
+<h3>Náhled atlasu<a class="headerlink" href="#nahled-atlasu" title="Permalink to this heading">¶</a></h3>
+<p>Nyní můžeme pomocí šipek nebo rolovací nabídky v panelu <em>Atlas</em>
+procházet jednotlivé položky atlasu.</p>
+</section>
+</section>
+<section id="symbologie">
+<h2>Symbologie<a class="headerlink" href="#symbologie" title="Permalink to this heading">¶</a></h2>
+<p>Pokud vrstva pokrytí není skrytá, a je základem pro zobrazení dat v
+mapovém okně, je pro dosažení lepšího výsledku zobrazení výsledných
+map vhodné tuto vrstvu patřičně nastylovat. Zde jsou možnosti velice
+široké, my si v následujícím příkladu popíšeme jeden z nejčastějších
+případů a to nastylování, kdy se nám v jednotlivých listech atlasu
+zobrazí pouze daný prvek či jeho hranice.</p>
+<p>Přejdeme se do hlavního okna QGIS a otevřeme vlastnosti symbologie
+vrstvy a z rolovací nabídky vybereme jako styl symbologie <span class="item">Podle
+pravidla</span>. Pomocí tlačítka <a class="reference internal" href="../_images/symbologyAdd1.png"><img alt="add" src="../_images/symbologyAdd1.png" style="width: 1.5em;" /></a><sup>Přidat pravidlo</sup> vytvoříme
+formátování symbolu pro prvky splňující zadanou podmínku.</p>
+<figure class="align-center" id="id5">
+<img alt="../_images/atlas_rule.png" class="middle" src="../_images/atlas_rule.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 173 </span><span class="caption-text">Vytváření symbologie na základě zadaných pravidel.</span><a class="headerlink" href="#id5" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>V první položce <span class="item">Popisek</span> zadáme libovolný popisek pravidla a do
+položky <span class="item">Filtr</span> zadáme výraz podmínky. Pomocí tlačítka
+<span class="item">…</span> můžeme vyvolat <span class="guilabel">Tvůrce řetězce výrazu</span>, kde si
+daný výraz můžeme pohodlně poskládat.  V našem případě chceme
+nastylovat prvek (využijeme id prvku), který se zobrazuje v daném
+listu atlasu (id prvku/listu atlasu). Požadovaný výraz bude tedy
+vypadat takto:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>$id  =  @atlas_featureid
+</pre></div>
+</div>
+<p>Funkčnost výrazu si můžeme překontrolovat pomocí tlačítka
+<span class="item">Test</span>. Po spuštění testu se nám objeví okno s počtem prvků,
+které odpovídají výrazu (v našem případě 1). Nastavíme pro prvek
+požadovaný symbol a potvrdíme tlačítkem <span class="item">OK</span>. Pro účely našeho
+příklad si prozatím vystačíme pouze s tímto jedním pravidlem, potvrďte
+tedy změny provedené v symbologii vrstvy a přesuňte se opět do okna
+tvorby mapových výstupů.</p>
+<figure class="align-center" id="id6">
+<img alt="../_images/atlas_priklad_styl.png" class="middle" src="../_images/atlas_priklad_styl.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 174 </span><span class="caption-text">Příklad tvorby atlasu krajů - nastylovaná vrstva.</span><a class="headerlink" href="#id6" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="dalsi-kompozicni-prvky">
+<h2>Další kompoziční prvky<a class="headerlink" href="#dalsi-kompozicni-prvky" title="Permalink to this heading">¶</a></h2>
+<p>Nyní doplníme ostatní kompoziční prvky do mapového listu.</p>
+<section id="textove-pole">
+<h3>Textové pole<a class="headerlink" href="#textove-pole" title="Permalink to this heading">¶</a></h3>
+<p>Pomocí ikonky <a class="reference internal" href="../_images/mActionLabel1.png"><img alt="add_label" src="../_images/mActionLabel1.png" style="width: 1.5em;" /></a> <sup>Přidat nový popisek do rozložení</sup> přidáme textové
+pole a přejdeme na záložku <span class="item">Vlastnosti položky</span>.</p>
+<p>Nyní můžeme využít vložení výrazu do textového pole, což nám umožní
+vygenerovat např. unikátní názvy pro jednotlivé listy atlasu. Pomocí
+tlačítka <span class="item">Vložit výraz…</span> můžeme otevřít okno pro tvorbu
+výrazu. V našem případě vyhledáme atribut nesoucí názvy krajů
+(„nazev“), vložíme do výrazu a potvrdíme. Výsledný text v popisku bude
+vypadat takto:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">%</span><span class="w"> </span><span class="ss">&quot;nazev&quot;</span><span class="w"> </span><span class="o">%</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Pokud chceme vložit název vytvořený na základě více atributů
+(např. název + NUTS kód), zadání by vypadalo takto:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">%</span><span class="w"> </span><span class="ss">&quot;nazev&quot;</span><span class="w">  </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39; (&#39;</span><span class="w"> </span><span class="o">||</span><span class="ss">&quot;nutslau&quot;</span><span class="w"> </span><span class="o">||</span><span class="s1">&#39;)&#39;</span><span class="o">%</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Všimněte si, že vložený výraz je v okně pro zadání textu
+„obalený“ v hranatých závorkách se znakem procent. Mimo tyto
+závorky lze pokračovat v zadávání běžného textu.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Po zaškrtnutí položky <a class="reference internal" href="../_images/checkbox1.png"><img alt="checkbox" src="../_images/checkbox1.png" style="width: 1.5em;" /></a><span class="item">Vykreslit jako HTML</span>
+můžeme do popisku vložit HTML kód včetně hypertextových
+odkazů a pod.</p>
+</div>
+</section>
+<section id="meritko">
+<h3>Měřítko<a class="headerlink" href="#meritko" title="Permalink to this heading">¶</a></h3>
+<p>Měřítko lze přidat pomocí ikony <a class="reference internal" href="../_images/mActionScaleBar1.png"><img alt="add_scale" src="../_images/mActionScaleBar1.png" style="width: 1.5em;" /></a><sup>Přidá nový Měřítko do
+rozložení</sup>. Pokud chceme při tvorbě atlasu použít grafické měřítko, je
+třeba nastavit vhodný referenční bod, na základě kterého se nám bude
+velikost grafického měřítka roztahovat v jednotlivých listech
+atlasu. Nastavení referenčního bodu najdeme v záložce
+<span class="item">Vlastnosti položky –&gt; Umístění a velikost</span>. Pokud chceme
+měřítko zobrazovat na středu mapového listu je třeba nastavit
+referenční bod, který je uprostřed.</p>
+</section>
+<section id="atributova-tabulka">
+<h3>Atributová tabulka<a class="headerlink" href="#atributova-tabulka" title="Permalink to this heading">¶</a></h3>
+<p>Pomocí tlačítka <a class="reference internal" href="../_images/grass_edit_attributes.png"><img alt="add_attributes" src="../_images/grass_edit_attributes.png" style="width: 1.5em;" /></a><sup>Přidat Nový Attributová tabulka
+do rozložení</sup> můžeme do výstupu přidat atributovou tabulku. V našem
+případě chceme zobrazit pouze atributy prvku na daném mapovém
+listu, Takže v hlavních vlastnostech u položky <span class="guilabel">Zdroj</span>
+vybereme možnost <cite>Prvek aktuálního atlasu</cite>. Poté nastavíme vzhled
+atributové tabulky (zobrazené atributy, formátování atd.). Dále je
+možné využít <cite>Filtrování prvků</cite>, kde kromě základních možností, lze
+filtrovat prvky pomocí vzorce - políčko <a class="reference internal" href="../_images/checkbox1.png"><img alt="checkbox" src="../_images/checkbox1.png" style="width: 1.5em;" /></a><span class="item">Filtrovat s</span>.</p>
+<figure class="align-center" id="id7">
+<img alt="../_images/atlas_table_filter.png" class="small" src="../_images/atlas_table_filter.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 175 </span><span class="caption-text">Nastavení atributové tabulky.</span><a class="headerlink" href="#id7" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Jako alternativní možnost vložení atributu a jeho hodnot je
+možné využít běžné textové pole s využitím formátování HTML.
+Také je možné vkládat výrazy pro výpočet např. <em>$area</em>.</p>
+</div>
+</section>
+<section id="tiraz-a-doplnujici-informace">
+<h3>Tiráž a doplňující informace<a class="headerlink" href="#tiraz-a-doplnujici-informace" title="Permalink to this heading">¶</a></h3>
+<p>Pomocí proměnných lze do textového pole vkládat výrazy,
+které se mohou odkazovat např. na pořadové číslo listu, autora, verzi
+QGIS, název a cestu projektu, rozlišení DPI, šířku a výšku papíru a
+mnoho dalších parametrů).</p>
+<figure class="align-center" id="id8">
+<img alt="../_images/atlas_variables.png" class="middle" src="../_images/atlas_variables.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 176 </span><span class="caption-text">Příklad proměnných.</span><a class="headerlink" href="#id8" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Pro přidání vypsání pořadového čísla listu při tisku vložíme textové
+pole s výrazem:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">%@</span><span class="n">atlas_featurenumber</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39; / &#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">@</span><span class="n">atlas_totalfeatures</span><span class="o">%</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="export">
+<h2>Export<a class="headerlink" href="#export" title="Permalink to this heading">¶</a></h2>
+<figure class="align-center" id="id9">
+<img alt="../_images/atlas_done.png" class="middle" src="../_images/atlas_done.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 177 </span><span class="caption-text">Atlas připravený k exportu.</span><a class="headerlink" href="#id9" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Stejně jako u samostatných mapových listů lze atlas exportovat do
+formátů SVG, PDF nebo jako obrázek (JPG, PNG, …).  Exportovat můžeme
+buď pomocí menu <span class="menuselection">Atlas ‣ Exportovat Atlas jako …</span>
+nebo přímo z panelu <em>Atlas</em>. Pokud exportujeme do jednoho souboru
+(jako např. PDF) při spuštění exportu zadáme standardně název souboru
+a cestu kam chceme soubor uložit. V případě, že ukládáme atlas ve formě
+jednotlivých výstupů (samostatné soubory) vybíráme v okně exportu
+složku, do které se atlas bude generovat. Jak byl v úvodu zmíněno,
+základní nastavení pro export najdeme na kartě <span class="item">Atlas</span> u položky
+<cite>Výstup</cite>.</p>
+<figure class="align-center" id="id10">
+<img alt="../_images/atlas_export.png" class="small" src="../_images/atlas_export.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 178 </span><span class="caption-text">Nabídka pro export atlasu.</span><a class="headerlink" href="#id10" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id11">
+<img alt="../_images/atlas_pdf.png" class="middle" src="../_images/atlas_pdf.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 179 </span><span class="caption-text">Výsledný atlas (jeden soubor PDF) otevřený v prohlížeči PDF souborů.</span><a class="headerlink" href="#id11" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../georeferencovani/index.html">Georeferencování obrazových dat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geoprocessing/index.html">Nástroje zpracování</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeler/index.html">Grafický modelář</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grass/index.html">Zásuvný modul GRASS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hydrologie/index.html">Ukázka analýzy - hydrologie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3d/index.html">Práce s 3D daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pokrocile_upravy/index.html">Pokročilé úpravy prostředí</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Různé</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="geotag_obrazky.html">Obrazová data jako součást vektorů (práce s geotagovanými fotografiemi)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grafy.html">Tvorba kartodiagramů</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qgisserver.html">QGIS Server</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tvorba atlasu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vazby.html">Vazby mezi vrstvami</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-cuzk.html">Práce s daty ČÚZK (RÚIAN, VFK, …)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../priklady/index.html">Příklady</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="qgisserver.html" title="QGIS Server"
+              >předchozí</a> |
+            <a href="vazby.html" title="Vazby mezi vrstvami"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

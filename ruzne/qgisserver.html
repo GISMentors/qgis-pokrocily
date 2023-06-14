@@ -1,0 +1,305 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>QGIS Server &#8212; Školení QGIS pro pokročilé</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Tvorba atlasu" href="atlas.html" />
+    <link rel="prev" title="Tvorba kartodiagramů" href="grafy.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení QGIS pro pokročilé</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="grafy.html" title="Tvorba kartodiagramů"
+             accesskey="P">předchozí</a> |
+          <a href="atlas.html" title="Tvorba atlasu"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="qgis-server">
+<h1>QGIS Server<a class="headerlink" href="#qgis-server" title="Permalink to this heading">¶</a></h1>
+<p><strong>QGIS Server</strong> je <a class="reference external" href="http://cs.wikipedia.org/wiki/FastCGI">FastCGI</a>/CGI (<a class="reference external" href="http://cs.wikipedia.org/wiki/Common Gateway Interface">Common
+Gateway Interface</a>) aplikace implementující OGC webové služby WMS (Web
+Map Service) 1.3, WFS (Web Feature Service) 1.0.0 a WCS (Web Coverage
+Service) 1.1.1.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Více k tématu webových služeb OGC ve školení <a class="reference external" href="http://training.gismentors.eu/open-source-gis/standardy/ogc/index.html">Open
+Source GIS</a>.</p>
+</div>
+<p>QGIS Server je podobně jako samotný QGIS napsán v jazyce C++, pro svůj
+běh vyžaduje webový server (například <a class="reference external" href="http://cs.wikipedia.org/wiki/Apache HTTP Server">Apache</a>). QGIS knihovny jsou potom serverem využívány pro GIS logiku a
+vykreslování mapy. Oba softwary používají totožné vizualizační knihovny, proto
+se výstup zobrazuje stejně při publikaci přes QGIS Server ale i přímo v QGISu.
+Takovýmto způsobem lze tedy jednoduše publikovat např. WMS službu na základě
+existujícího QGIS projektu a příslušných dat.</p>
+<p>Zjednodušeně by šlo tuto technologii popsat jako možnost prezentace či sdílení
+dat, či odvozených datasetů pomocí standardizovaných služeb  jakými jsou
+WMS či WFS, případně další. Způsob publikace je díky jednoduchému nastavení
+rychlý a umožňuje využít již existující projekty.
+Díky možnosti použít značně pokročilé způsoby stylování je možné vypublikovat
+graficky propracované výstupy s vysokou obsahovou kvalitou.</p>
+<p>Infrastruktura do které lze QGIS Server začlenit může být vystavěna různým způsobem.
+V případě jakýchkoli projektů je však vhodné využívat ukládání dat v databázích,
+nikoli pouze využívat souborovou strukturu.</p>
+<p>Technologie je popsaná na <a class="reference external" href="http://docs.qgis.org/2.8/en/docs/user_manual/working_with_ogc/ogc_server_support.html">stránkách QGISu</a>.</p>
+<figure class="align-center" id="id1">
+<img alt="../_images/services_structure.png" class="small" src="../_images/services_structure.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 160 </span><span class="caption-text">Schématický nákres fungování QGIS serveru</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<section id="instalace-a-prvni-pouziti">
+<h2>Instalace a první použití<a class="headerlink" href="#instalace-a-prvni-pouziti" title="Permalink to this heading">¶</a></h2>
+<p>Pro jednoduché testování je možné využít návod na výše uvedených
+stránkách pro základní instalaci a na jednoduchém příkladu vyzkoušet
+nastavení služeb, jako je uvedeno níže.</p>
+<p>Výchozí nastavení QGIS projektu umožňuje jeho přímou publikaci jako
+jednoduché WMS služby, bez jakéhokoli dalšího nastavení.  Přidáme
+novou službu WMS z URL
+<code class="docutils literal notranslate"><span class="pre">http://server:91/cgi-bin/qgis_mapserv.fcgi?service=WMS&amp;REQUEST=GetCapabilities&amp;MAP=user/diagram1.qgs</span></code>,
+kde pomocí parametru MAP definujeme cestu k projektu.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>QGIS verze 3 umožňuje projekt uložit kromě tradičního
+souboru s příponou <code class="docutils literal notranslate"><span class="pre">.qgs</span></code> také nově i v komprimovaném formátu s
+příponou <code class="docutils literal notranslate"><span class="pre">.qgz</span></code>. V tomto případě bude výše uvedená URL končit na
+<code class="docutils literal notranslate"><span class="pre">diagram1.qgz</span></code>.</p>
+</div>
+<figure class="align-center" id="id2">
+<img alt="../_images/qgis_server_wms.png" class="large" src="../_images/qgis_server_wms.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 161 </span><span class="caption-text">Přidání základní WMS služby z lokálního projektu.</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="nastaveni-publikacnich-sluzeb-v-projektu">
+<h2>Nastavení publikačních služeb v projektu<a class="headerlink" href="#nastaveni-publikacnich-sluzeb-v-projektu" title="Permalink to this heading">¶</a></h2>
+<p>Specifikace a detailní nastavení služeb pro každý projekt je možné měnit pomocí
+nastavení samotného QGIS projektu v <span class="menuselection">Projekt ‣ Vlastnosti
+projektu</span> v záložce <cite>OWS Server</cite>.</p>
+<figure class="align-center" id="id3">
+<img alt="../_images/project_settings.png" src="../_images/project_settings.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 162 </span><span class="caption-text">Nastavení webových služeb v QGIS projektu.</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<section id="wms-sluzba">
+<h3>WMS služba<a class="headerlink" href="#wms-sluzba" title="Permalink to this heading">¶</a></h3>
+<p>QGIS Server podporuje následující typy požadavků na WMS službu:</p>
+<ul class="simple">
+<li><p>GetCapabilities</p></li>
+<li><p>GetMap</p></li>
+<li><p>GetFeatureInfo</p></li>
+<li><p>GetLegendGraphics</p></li>
+<li><p>DescribeLayer</p></li>
+<li><p>GetStyles</p></li>
+</ul>
+<p><strong>`GetCapabilities`</strong></p>
+<p>Jedním z požadavků klienta na server je požadavek na vypsání informací
+<cite>GetCapabilities</cite>. Jde o specifikaci služeb ve dvou základních částech - <em>Service</em>
+a <em>Capability</em>.</p>
+<p>Jak již bylo uvedeno, tak pro základní publikaci služby není nutné
+žádné speciální nastavení. V takovém případě ale požadavek
+<cite>GetCapabilities</cite> vrátí odpověď, která je nastavená ve výchozím souboru
+<cite>wms_metadata.xml</cite> v adresáři <em>cgi-bin</em>.</p>
+<p>Sestavený požadavek pro náš příklad může vypadat následovně:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://server:91/cgi-bin/qgis_mapserv.fcgi?service=WMS&amp;REQUEST=GetCapabilities&amp;MAP=user/diagram1.qgs
+</pre></div>
+</div>
+<p>Na následujícím obrázku je ukázka odpovědi na požadavek před úpravou
+projektu, nastavení projektu a následní odpověď na stejný požadavek po
+uložení projektu.  Jak je na obrázku zvýrazněno, je nutné mít
+zaškrtnutou volbu <span class="item">Schopnosti služby</span>.</p>
+<figure class="align-center" id="id4">
+<img alt="../_images/capabilities.png" class="large" src="../_images/capabilities.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 163 </span><span class="caption-text">Výchozí odpověď na požadavek <cite>GetCapabilities</cite>, nastavení informací o
+službě v projektu a nová odpověď dle nastavení.</span><a class="headerlink" href="#id4" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Službu WMS lze definovat i detailněji.
+V záložce <span class="item">Schopnosti WMS</span> jsou k dispozici detailnější nastavení, které
+modifikují  výchozí nastavení.
+Lze zde upravit <strong>Rozsah</strong> poskytovaného obsahu, podporované <strong>souřadnicové
+systémy</strong>, vyloučit jednotlivé <strong>tvůrce mapy</strong>. Nejdůležitější je omezení
+(vyloučení) <strong>vrstev</strong>. Lze tedy
+definovat vrstvy, které služba nebude zahrnovat -  z velkého projektu lze
+nadefinovat službu poskytující jenom určitý obsah.
+Z dalších nastavení je podstatné zejména kvalita obrázků a nastavení maximální
+velikosti pro požadavek <cite>GetMap</cite>.</p>
+<p>Dotazování na prvek můžeme rozšířit i výpisem geometrie dotazovaného prvku
+pomocí volby <span class="item">Add geometry to feature response</span>. Geometrie je
+pak vypsaná jako samostatný atribut ve formě WKT.</p>
+<figure class="align-center" id="id5">
+<img alt="../_images/wms_capabilites.png" src="../_images/wms_capabilites.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 164 </span><span class="caption-text">Příklad detailnějšího nastavení WMS služby.</span><a class="headerlink" href="#id5" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="wfs-sluzba">
+<h3>WFS služba<a class="headerlink" href="#wfs-sluzba" title="Permalink to this heading">¶</a></h3>
+<p>Nastavení služby WFS je v samostatné části.
+Lze zde nastavit WFS službu pro každou vrstvu zvlášť. A dokonce je možné
+nastavit práva ke každé vrstvě pro <em>publikaci, aktualizaci, vkládání a mazání</em>
+samostatně (tedy využívat standard WFS-T – <em>WFS - Transactional</em>).</p>
+<figure class="align-center" id="id6">
+<img alt="../_images/wfs.png" src="../_images/wfs.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 165 </span><span class="caption-text">Nastavení práv pro jednotlivé vrstvy ve službě WFS.</span><a class="headerlink" href="#id6" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>V nastavení projektu je ještě položka <span class="item">Otestovat nastavení</span>, kde
+je možné spustit kontrolu nastavení jednotlivých služeb. Kontrolují se
+například názvy vrstev a jejich kódování.
+Jako výstup testování se vypíše krátká správa o stavu nastavení.</p>
+<figure class="align-center" id="id7">
+<img alt="../_images/test_qgisserver.png" src="../_images/test_qgisserver.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 166 </span><span class="caption-text">Výsledná zpráva testování nastavených webových služeb.</span><a class="headerlink" href="#id7" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Ve stávající verzi podporuje QGISServer OGC WFS ve verzi 1.0.0, což už
+je poněkud překonaná verze.</p>
+</div>
+</section>
+</section>
+<section id="pokrocile-nastaveni">
+<h2>Pokročilé nastavení<a class="headerlink" href="#pokrocile-nastaveni" title="Permalink to this heading">¶</a></h2>
+<p><strong>`GetFeatureInfo` - nastavení vrstvy</strong></p>
+<p>Dalším nastavením je možnost povolit vrstvu k identifikování, což určuje zda je k
+dispozici požadavek <cite>GetFeatureInfo</cite> u služby WMS. Toto nastavení je v
+<span class="menuselection">Projekt ‣ Vlastnosti projektu</span> záložka <span class="item">Identifikovat
+vrstvy</span>. Jak je vidět i na <a class="reference internal" href="#get-feature-info-set"><span class="std std-numref">Obr. 167</span></a> nastavení je formou
+voleb u každá vrstvy samostatně.</p>
+<figure class="align-center" id="id8">
+<span id="get-feature-info-set"></span><img alt="../_images/set_get_feature_info.png" src="../_images/set_get_feature_info.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 167 </span><span class="caption-text">Ukázka nastavení reakce na požadavek <cite>GetFeatureInfo</cite> u jednotlivých vrstev.</span><a class="headerlink" href="#id8" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>`GetFeatureInfo` - nastavení atributů</strong></p>
+<p>Rozlišit možnost přístupu k datům lze i na úrovni atributů. Pokud bychom chtěli
+poskytovat jenom určité atributy u vrstev, tak i toto chování lze jednoduše
+docílit. Ve vlastnostech  každé vrstvy je záložka <span class="item">Pole</span>, kde jsou uvedeny
+všechny atributy dané vrstvy.
+Mimo běžných informací např. o datovém typu každé vlastnosti je u každé kolonka
+s volbou pro <em>WMS</em> a <em>WFS</em> službu. Ve výchozím nastavení jsou pro obě služby
+dostupné všechny atributy. Jednoduchou úpravou docílíme, že atribut pro zvolenou
+službu nebude dostupný.</p>
+<figure class="align-center" id="id9">
+<img alt="../_images/set_attribute_to_service.png" class="large" src="../_images/set_attribute_to_service.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 168 </span><span class="caption-text">Nastavení přístupu pro službu WMS k vybraným atributům a výsledek požadavku
+<cite>GetFeatureInfo</cite> na službu - atributy <cite>krim_2015c</cite> a <cite>krim_2015v</cite> nejsou  v
+odpovědi.</span><a class="headerlink" href="#id9" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../georeferencovani/index.html">Georeferencování obrazových dat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geoprocessing/index.html">Nástroje zpracování</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeler/index.html">Grafický modelář</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grass/index.html">Zásuvný modul GRASS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hydrologie/index.html">Ukázka analýzy - hydrologie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3d/index.html">Práce s 3D daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pokrocile_upravy/index.html">Pokročilé úpravy prostředí</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Různé</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="geotag_obrazky.html">Obrazová data jako součást vektorů (práce s geotagovanými fotografiemi)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grafy.html">Tvorba kartodiagramů</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">QGIS Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="atlas.html">Tvorba atlasu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vazby.html">Vazby mezi vrstvami</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-cuzk.html">Práce s daty ČÚZK (RÚIAN, VFK, …)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../priklady/index.html">Příklady</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="grafy.html" title="Tvorba kartodiagramů"
+              >předchozí</a> |
+            <a href="atlas.html" title="Tvorba atlasu"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

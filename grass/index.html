@@ -1,0 +1,298 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Zásuvný modul GRASS &#8212; Školení QGIS pro pokročilé</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Ukázka analýzy - hydrologie" href="../hydrologie/index.html" />
+    <link rel="prev" title="Tvorba nápovědy a export modelu" href="../modeler/napoveda_export.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení QGIS pro pokročilé</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="../modeler/napoveda_export.html" title="Tvorba nápovědy a export modelu"
+             accesskey="P">předchozí</a> |
+          <a href="../hydrologie/index.html" title="Ukázka analýzy - hydrologie"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="zasuvny-modul-grass">
+<h1>Zásuvný modul GRASS<a class="headerlink" href="#zasuvny-modul-grass" title="Permalink to this heading">¶</a></h1>
+<p><em>Zásuvný modul GRASS</em> umožňuje kromě čtení a zápisu dat ve formátu
+GRASS především využití nástrojů systému GRASS při zpracování a
+analýze geografických dat.</p>
+<div class="admonition important">
+<p class="admonition-title">Důležité</p>
+<p>Výpočetní nástroje systému GRASS GIS lze v prostředí
+QGIS také volat z <a class="reference internal" href="../geoprocessing/index.html"><span class="doc">Nástroje zpracování</span></a>. Hlavní rozdíl je
+především v tom, že <em>Nástroje zpracování</em> vytváří na pozadí
+přechodné GRASS projekty, tzv. lokace (viz školení GRASS GIS pro
+začátečníky - <a class="reference external" href="http://training.gismentors.eu/grass-gis-zacatecnik/intro/struktura-dat.html">koncept lokací a mapsetů</a>), vstupní data do
+nich importuje nebo připojuje. Provede výpočet, výsledná data
+vyexportuje zpravidla do GeoTIFF nebo OGC GeoPackage a přechodnou
+lokaci smaže. GRASS plugin naopak umožňuje spravovat vlastní lokace
+a data v nich udržovat. Z tohoto pohledu v podstatě QGIS slouží
+jako grafický front-end pro výpočetní nástroje systému GRASS GIS.</p>
+<p>Nástroje zpracování tak na uživatele nekladou žádné zásadní
+znalostní požadavky. Zásuvný modul GRASS naopak vyžaduje alespoň
+základní znalosti systému GRASS GIS. Více ve školení
+<a class="reference external" href="http://training.gismentors.eu/grass-gis-zacatecnik">GRASS GIS pro začátečníky</a>.</p>
+</div>
+<p>Zásuvný modul GRASS je výchozí součástí QGISu, je potřeba jej pouze
+aktivovat v <span class="menuselection">Zásuvné moduly ‣ Instalovat a spravovat
+zásuvné moduly</span>.</p>
+<figure class="align-center" id="id1">
+<img alt="../_images/grass-plugin-enable.png" src="../_images/grass-plugin-enable.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 87 </span><span class="caption-text">Aktivace zásuvného modulu GRASS.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition important">
+<p class="admonition-title">Důležité</p>
+<p>Pro možnost aktivace zásuvného modulu GRASS pod MS
+Windows je třeba spustit QGIS pomocí volby <strong>QGIS Desktop with
+GRASS</strong>.</p>
+<figure class="align-center">
+<img alt="../_images/grass-plugin-windows.png" class="small" src="../_images/grass-plugin-windows.png" />
+</figure>
+</div>
+<p>Po aktivaci se objeví panel nástrojů zásuvného modulu. Tento panel lze
+otevřít i z menu <span class="menuselection">Zásuvné moduly ‣ GRASS ‣ Otevřít
+GRASS nástroje</span> nebo pomocí ikonky <a class="reference internal" href="../_images/grass_tools.png"><img alt="mActionGrassTools" src="../_images/grass_tools.png" style="width: 1.5em;" /></a>.</p>
+<figure class="align-center" id="id2">
+<img alt="../_images/grass-plugin-tools.png" src="../_images/grass-plugin-tools.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 88 </span><span class="caption-text">Panel nástrojů zásuvného modulu GRASS.</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Proto, abychom mohli nástroje systému GRASS používat, je potřeba
+definovat tzv. <strong>mapset</strong>, se kterým chceme pracovat. Mapset je
+společně s <em>adresářem</em> a <em>lokací</em> základními stavebními kameny datové
+struktury, kterou GRASS pro svůj běh vyžaduje. Podrobný popis
+naleznete ve školení GRASS GIS pro začátečníky v kapitole
+<a class="reference external" href="http://training.gismentors.eu/grass-gis-zacatecnik/intro/struktura-dat.html">struktura dat - koncept lokací a mapsetů</a> ve školení GRASS GIS
+pro začátečníky.</p>
+<section id="vytvoreni-a-otevreni-mapsetu">
+<h2>Vytvoření a otevření mapsetu<a class="headerlink" href="#vytvoreni-a-otevreni-mapsetu" title="Permalink to this heading">¶</a></h2>
+<p>Nový mapset vytvoříme z menu <span class="menuselection">Zásuvné moduly ‣ GRASS
+‣ Nový mapset</span>.</p>
+<p>Nejprve zadáme tzv. databázový adresář systému GRASS, což je běžný
+adresář na disku, který obsahuje či bude obsahovat data, se kterými
+GRASS bude pracovat.</p>
+<figure class="align-center" id="id3">
+<img alt="../_images/new-mapset-0.png" class="small" src="../_images/new-mapset-0.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 89 </span><span class="caption-text">Zadání databázové adresáře systému GRASS.</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Dále máme možnost otevřít existující lokaci v rámci vybraného
+databázového adresáře či vytvořit lokaci novou.</p>
+<figure class="align-center" id="id4">
+<img alt="../_images/new-mapset-1.png" class="small" src="../_images/new-mapset-1.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 90 </span><span class="caption-text">Výběr již existujicí lokace.</span><a class="headerlink" href="#id4" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id5">
+<img alt="../_images/new-mapset-2.png" class="small" src="../_images/new-mapset-2.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 91 </span><span class="caption-text">Vytvoření lokace nové.</span><a class="headerlink" href="#id5" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>V případě, že vytváříme novou lokaci je po nás vyžadováno zadání
+souřadnicového systému, který bude k lokaci přiřazen. To je podstatná
+vlastnost GRASS lokace. <em>Všechna data v ni spravovaná budou uložena ve
+stejném souřadnicovém systému.</em></p>
+<figure class="align-center" id="id6">
+<img alt="../_images/new-mapset-5.png" class="small" src="../_images/new-mapset-5.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 92 </span><span class="caption-text">Definice souřadnicového systému pro nově vytvořenou lokaci.</span><a class="headerlink" href="#id6" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Dále můžeme definovat výchozí <em>výpočení region</em>, viz školení
+<a class="reference external" href="http://training.gismentors.eu/grass-gis-zacatecnik/intro/region.html">GRASS GIS pro začátečníky</a>. Výpočetní region je
+podstatný především pro rastrové operace, v případě vektorových dat až
+na vyjímky nehraje roli.</p>
+<figure class="align-center" id="id7">
+<img alt="../_images/new-mapset-6.png" src="../_images/new-mapset-6.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 93 </span><span class="caption-text">Určení výchozího výpočetního regionu pro nově vytvářenou lokaci.</span><a class="headerlink" href="#id7" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>V dalším kroku definuje název nového  mapsetu v rámci dané lokace.</p>
+<figure class="align-center" id="id8">
+<img alt="../_images/new-mapset-3.png" class="small" src="../_images/new-mapset-3.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 94 </span><span class="caption-text">Název nového mapsetu.</span><a class="headerlink" href="#id8" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Celý process je dokončen potvrzovacím dialogem.</p>
+<figure class="align-center" id="id9">
+<img alt="../_images/new-mapset-4.png" class="small" src="../_images/new-mapset-4.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 95 </span><span class="caption-text">Dokončení procesu tvorby nového mapsetu.</span><a class="headerlink" href="#id9" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Již existující mapset můžeme otevřít z menu <span class="menuselection">Zásuvné
+moduly ‣ GRASS ‣ Otevřít mapset</span>. Po dokončení práce můžeme mapset
+zavřít z menu <span class="menuselection">Zásuvné moduly ‣ GRASS ‣ Zavřít
+mapset</span>.</p>
+</section>
+<section id="spousteni-vypocetnich-nastroju-systemu-grass">
+<h2>Spouštění výpočetních nástrojů systému GRASS<a class="headerlink" href="#spousteni-vypocetnich-nastroju-systemu-grass" title="Permalink to this heading">¶</a></h2>
+<p>Nástroje systému GRASS je možno spouštět až po otevření
+mapsetu. Následuje příklad vytvoření vektorové vrstvy obalových zón
+kolem požarních stanic v Praze.</p>
+<figure class="align-center" id="id10">
+<img alt="../_images/grass-buffer-0.png" src="../_images/grass-buffer-0.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 96 </span><span class="caption-text">Nalezení nástroje pro tvorbu vektorové obalové zóny <a class="reference external" href="http://grass.osgeo.org/grass80/manuals/v.buffer.html">v.buffer</a>.</span><a class="headerlink" href="#id10" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id11">
+<img alt="../_images/grass-buffer-1.png" src="../_images/grass-buffer-1.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 97 </span><span class="caption-text">Volba parametrů nástroje.</span><a class="headerlink" href="#id11" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Další příklady prostorových analýz naleznete ve školení
+<a class="reference external" href="http://training.gismentors.eu/grass-gis-zacatecnik/vektorova_data/prostorove-funkce.html">GRASS GIS pro začátečníky</a>.</p>
+</div>
+</section>
+<section id="zobrazovani-dat-vytvorenych-v-systemu-grass">
+<h2>Zobrazování dat vytvořených v systému GRASS<a class="headerlink" href="#zobrazovani-dat-vytvorenych-v-systemu-grass" title="Permalink to this heading">¶</a></h2>
+<p>Vytvořená rastrová a vektorová data v systému GRASS můžeme zobrazovat
+v mapovém okně QGISu pomocí datového katalogu - panelu prohlížeče.</p>
+<figure class="align-center" id="id12">
+<img alt="../_images/grass-buffer-2.png" class="small" src="../_images/grass-buffer-2.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 98 </span><span class="caption-text">Problížení GRASS dat v panelu prohlížeče.</span><a class="headerlink" href="#id12" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id13">
+<img alt="../_images/grass-buffer-3.png" class="middle" src="../_images/grass-buffer-3.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 99 </span><span class="caption-text">Příklad vizualizace požárních stanic v Praze a jejich obalových
+zón. Na pozadí je ortofoto Prahy.</span><a class="headerlink" href="#id13" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="grass-shell">
+<h2>GRASS Shell<a class="headerlink" href="#grass-shell" title="Permalink to this heading">¶</a></h2>
+<p>Spouštět příkazy systému GRASS je možno také z příkazové řádky
+pluginu, tzv. <em>GRASS shellu</em>. Tento postup lze doporučit pouze
+pokročilejším uživatelům.</p>
+<figure class="align-center">
+<img alt="../_images/grass-shell-launch.png" src="../_images/grass-shell-launch.png" />
+</figure>
+<p>Následující příklad ukazuje výběr stavebních
+objektů, které leží uvnitř obalových zón požárních stanic v Praze.</p>
+<figure class="align-center" id="id14">
+<img alt="../_images/grass-shell.png" class="middle" src="../_images/grass-shell.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 100 </span><span class="caption-text">Příklad spuštění nástroje <a class="reference external" href="http://grass.osgeo.org/grass80/manuals/v.select.html">v.select</a> z příkazové řádky
+GRASS pluginu.</span><a class="headerlink" href="#id14" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../georeferencovani/index.html">Georeferencování obrazových dat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geoprocessing/index.html">Nástroje zpracování</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeler/index.html">Grafický modelář</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Zásuvný modul GRASS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#vytvoreni-a-otevreni-mapsetu">Vytvoření a otevření mapsetu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#spousteni-vypocetnich-nastroju-systemu-grass">Spouštění výpočetních nástrojů systému GRASS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#zobrazovani-dat-vytvorenych-v-systemu-grass">Zobrazování dat vytvořených v systému GRASS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#grass-shell">GRASS Shell</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../hydrologie/index.html">Ukázka analýzy - hydrologie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3d/index.html">Práce s 3D daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pokrocile_upravy/index.html">Pokročilé úpravy prostředí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/index.html">Různé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../priklady/index.html">Příklady</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="../modeler/napoveda_export.html" title="Tvorba nápovědy a export modelu"
+              >předchozí</a> |
+            <a href="../hydrologie/index.html" title="Ukázka analýzy - hydrologie"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

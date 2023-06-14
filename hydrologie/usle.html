@@ -1,0 +1,424 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Priemerná dlhodobá strata pôdy &#8212; Školení QGIS pro pokročilé</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení QGIS pro pokročilé</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="priemerna-dlhodoba-strata-pody">
+<h1>Priemerná dlhodobá strata pôdy<a class="headerlink" href="#priemerna-dlhodoba-strata-pody" title="Permalink to this heading">¶</a></h1>
+<section id="teoreticke-vychodiska">
+<h2>Teoretické východiská<a class="headerlink" href="#teoreticke-vychodiska" title="Permalink to this heading">¶</a></h2>
+<p>Priemerné ročné straty pôdy spôsobené odtokom z pozemku určitého sklonu a
+určitého spôsobu využívania možno predikovať pomocou matematického modelu
+<a class="reference external" href="http://cs.wikipedia.org/wiki/Univerzální rovnice ztráty půdy">USLE</a>, tzv. univerzálnej rovnice
+straty pôdy:</p>
+<div class="math notranslate nohighlight" id="vzorec-g">
+\[G = R \times K \times L \times S \times C \times P\]</div>
+</section>
+<section id="zakladne-symboly">
+<h2>Základné symboly<a class="headerlink" href="#zakladne-symboly" title="Permalink to this heading">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>G - priemerná dlhodobá strata pôdy (<span class="math notranslate nohighlight">\(t.ha^{-1} . rok^{-1}\)</span>)</p></li>
+<li><p>R - faktor eróznej účinnosti dažďa (<span class="math notranslate nohighlight">\(MJ.ha^{-1} .cm.h^{-1}\)</span>)</p></li>
+<li><p>K - faktor erodovateľnosti pôdy (<span class="math notranslate nohighlight">\(t.h.MJ^{-1} .cm^{-1} .rok^{-1}\)</span>)</p></li>
+<li><p>L - faktor dĺžky svahu (<span class="math notranslate nohighlight">\(-\)</span>)</p></li>
+<li><p>S - faktor sklonu svahu (<span class="math notranslate nohighlight">\(-\)</span>)</p></li>
+<li><p>C - faktor ochranného vplyvu vegetačného krytu (<span class="math notranslate nohighlight">\(-\)</span>)</p></li>
+<li><p>P - faktor účinnosti protieróznych opatrení (<span class="math notranslate nohighlight">\(-\)</span>)</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="vstupne-data">
+<h2>Vstupné dáta<a class="headerlink" href="#vstupne-data" title="Permalink to this heading">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="map">hpj.shp</span> - vektorová vrstva hlavných pôdnych jednotiek z kódov BPEJ</p></li>
+<li><p><span class="map">kpp.shp</span> - vektorová vrstva komplexného prieskumu pôd</p></li>
+<li><p><span class="map">landuse.shp</span> - vektorová vrstva využitia územia</p></li>
+<li><p><span class="map">povodi.shp</span> - vektorová vrstva povodí IV. rádu s návrhovými
+zrážkami <span class="math notranslate nohighlight">\(H_s\)</span> (doba opakovania 2, 5, 10, 20, 50 a 100 rokov)</p></li>
+<li><p><span class="dbtable">hpj_k</span> - číselník s kódom <cite>K</cite> pre hlavné pôdne jednotky, <code class="xref std std-numref docutils literal notranslate"><span class="pre">ciselniky</span></code> vľavo</p></li>
+<li><p><span class="dbtable">kpp_k</span> - číselník s kódom <cite>K</cite> pre pre vrstvu komplexného prieskumu pôd, <code class="xref std std-numref docutils literal notranslate"><span class="pre">ciselniky</span></code> vpravo</p></li>
+<li><p><span class="dbtable">lu_c</span> - číselník s kódom <cite>C</cite> pre vrstvu využitia územia, <code class="xref std std-numref docutils literal notranslate"><span class="pre">ciselniky</span></code> vpravo</p></li>
+<li><p><span class="map">dmt</span> - digitálny model terénu v rozlišení 10 x 10 m, <code class="xref std std-numref docutils literal notranslate"><span class="pre">dmt-maska</span></code> vľavo</p></li>
+<li><p><span class="map">maska.pack</span> - oblasť územia bez líniových a plošných prvkov prerušujúcich odtok, <code class="xref std std-numref docutils literal notranslate"><span class="pre">dmt-maska</span></code> vpravo</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="navrhovany-postup">
+<h2>Navrhovaný postup<a class="headerlink" href="#navrhovany-postup" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference internal" href="#krok1"><span class="std std-ref">1.</span></a>
+zjednotenie hlavných pôdnych jednotiek a komplexného prieskumu pôd</p>
+<p><a class="reference internal" href="#krok2"><span class="std std-ref">2.</span></a>
+pripojenie hodnôt faktora <cite>K</cite> k elementárnym plochám</p>
+<p><a class="reference internal" href="#krok3"><span class="std std-ref">3.</span></a>
+prienik vrstvy s faktorom <cite>K</cite> s vrstvou využitia územia</p>
+<p><a class="reference internal" href="#krok4"><span class="std std-ref">4.</span></a>
+pripojenie hodnôt faktora <cite>C</cite></p>
+<p><a class="reference internal" href="#krok5"><span class="std std-ref">5.</span></a>
+výpočet parametra <cite>KC</cite></p>
+<p><a class="reference internal" href="#krok6"><span class="std std-ref">6.</span></a>
+vytvorenie rastrovej mapy sklonu a mapy akumulácií toku v každej bunke</p>
+<p><a class="reference internal" href="#krok7"><span class="std std-ref">7.</span></a>
+výpočet parametra <cite>LS</cite></p>
+<p><a class="reference internal" href="#krok8"><span class="std std-ref">8.</span></a>
+výpočet <cite>G</cite> a vytvorenie rastra s hodnotami predstavujúcimi priemernú dlhodobú
+stratu pôdy</p>
+<p><a class="reference internal" href="#krok9"><span class="std std-ref">9.</span></a>
+výpočet priemerných hodnôt <cite>G</cite> pre povodie</p>
+<p><a class="reference internal" href="#krok10"><span class="std std-ref">10.</span></a>
+vytvorenie rastrových vrstiev <cite>LS</cite> a <cite>G</cite> s maskou</p>
+<p><a class="reference internal" href="#krok11"><span class="std std-ref">11.</span></a>
+výpočet priemerných hodnôt <cite>G</cite> pre povodie s maskou</p>
+<figure class="align-center" id="id2">
+<span id="schema-usle"></span><img alt="../_images/schema_usle.png" class="large" src="../_images/schema_usle.png" />
+<figcaption>
+<p><span class="caption-text">Grafická schéma postupu</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Znázornenie vstupných vektorových dát spolu s atribútovými tabuľkami je totožné
+so <a class="reference external" href="http://training.gismentors.eu/qgis-pokrocily/hydrologie/scs-sc/vstupne-data">vstupnými vektorovými dátami pri metóde SCS CN</a>. Digitálny model reliéfu a
+oblasť riešeného územia bez líniových a plošných prvkov prerušujúcich odtok
+(maska) sú na <code class="xref std std-numref docutils literal notranslate"><span class="pre">dmt-maska</span></code>. Tabuľky s faktormi <cite>K</cite> a <cite>C</cite> sú na
+<code class="xref std std-numref docutils literal notranslate"><span class="pre">ciselniky</span></code>.</p>
+<figure class="align-center" id="id3">
+<span id="dmt-maska"></span><img alt="../_images/dmt_maska.png" class="middle" src="../_images/dmt_maska.png" />
+<figcaption>
+<p><span class="caption-text">Vrstva digitálneho modelu reliéfu a oblasť riešeného územia bez prvkov
+prerušujúcich odtok.</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id4">
+<span id="ciselniky"></span><img alt="../_images/ciselniky_usle.png" class="middle" src="../_images/ciselniky_usle.png" />
+<figcaption>
+<p><span class="caption-text">Číselníky s kódmi <em>K</em> a <em>C</em>.</span><a class="headerlink" href="#id4" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="postup-spracovania-v-qgis">
+<h2>Postup spracovania v QGIS<a class="headerlink" href="#postup-spracovania-v-qgis" title="Permalink to this heading">¶</a></h2>
+<section id="krok-1">
+<span id="krok1"></span><h3>Krok 1<a class="headerlink" href="#krok-1" title="Permalink to this heading">¶</a></h3>
+<p>Postup ako zjednotiť vrstvu hlavných pôdnych jednotiek a komplexného prieskumu
+pôd je totožný s <a class="reference external" href="http://training.gismentors.eu/qgis-pokrocily/hydrologie/scs-sc/vkr1">prvým krokom</a>
+pri metóde SCS CN.</p>
+</section>
+<section id="krok-2">
+<span id="krok2"></span><h3>Krok 2<a class="headerlink" href="#krok-2" title="Permalink to this heading">¶</a></h3>
+<p id="id1">Pripojenie tabuliek <span class="dbtable">hpj_k</span> a <span class="dbtable">kpp_k</span> je tiež podobné ako
+<a class="reference external" href="http://training.gismentors.eu/qgis-pokrocily/hydrologie/scs-sc/vkr2">druhý krok</a> pri metóde SCS CN
+iba s tým rozdielom, že spoločným atribútom nie je hydrologická skupina
+<span class="dbtable">HPJ</span>, ale faktor <span class="dbtable">K</span>. Dialógové okno s nastaveniami pre
+toto spájanie je na <code class="xref std std-numref docutils literal notranslate"><span class="pre">usle-join</span></code>. Vyplnenie informácií o faktore <cite>K</cite>
+z vrstvy komplexného prieskumu pôd pomocou kalkulačky polí
+a znázornenie výsledku sú na <code class="xref std std-numref docutils literal notranslate"><span class="pre">usle-kalk-k</span></code>.</p>
+<figure class="align-center" id="id5">
+<span id="usle-join"></span><img alt="../_images/usle_join.png" class="small" src="../_images/usle_join.png" />
+<figcaption>
+<p><span class="caption-text">Pripojenie číselníkov s faktorom <em>K</em> v prostredí QGIS.</span><a class="headerlink" href="#id5" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id6">
+<span id="usle-kalk-k"></span><img alt="../_images/usle_kalk_k.png" class="middle" src="../_images/usle_kalk_k.png" />
+<figcaption>
+<p><span class="caption-text">Vytvorenie atribútu s hodnotami faktora <em>K</em> pre elementárne plochy v záujmovom území.</span><a class="headerlink" href="#id6" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="krok-3">
+<span id="krok3"></span><h3>Krok 3<a class="headerlink" href="#krok-3" title="Permalink to this heading">¶</a></h3>
+<p>Aj tento krok sa veľmi podobá na
+<a class="reference external" href="http://training.gismentors.eu/qgis-pokrocily/hydrologie/scs-sc/vkr2">tretiu časť postupu</a> pri metóde
+SCS CN. Na vytvorenie prieniku vrstvy <span class="map">hpj_kpp</span> s vrstvou využitia krajiny
+<span class="map">landuse</span> v riešenej oblasti využijeme modul <a class="reference internal" href="../_images/and.png"><img alt="v.overlay.and" src="../_images/and.png" style="width: 1em;" /></a>
+<sup>v.overlay.and</sup>. Výsledok nazveme <span class="map">hpj_kpp_landuse</span>.</p>
+</section>
+<section id="krok-4">
+<span id="krok4"></span><h3>Krok 4<a class="headerlink" href="#krok-4" title="Permalink to this heading">¶</a></h3>
+<p>Pokračujeme pripojením hodnôt faktora <cite>C</cite> k elementárnym plochám vrstvy
+<span class="map">hpj_kpp_landuse</span>, viď. <code class="xref std std-numref docutils literal notranslate"><span class="pre">usle-db-join-c</span></code> so znázornením dialógového
+okna modulu <a class="reference internal" href="../_images/v.db.join.3.png"><img alt="v.db.join" src="../_images/v.db.join.3.png" style="width: 3em;" /></a> <sup>v.db.join</sup>.</p>
+<figure class="align-center" id="id7">
+<span id="usle-db-join-c"></span><img alt="../_images/usle_db_join_c.png" class="small" src="../_images/usle_db_join_c.png" />
+<figcaption>
+<p><span class="caption-text">Pripojenie hodnôt faktora <cite>C</cite> k elementárnym plochám.</span><a class="headerlink" href="#id7" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="krok-5">
+<span id="krok5"></span><h3>Krok 5<a class="headerlink" href="#krok-5" title="Permalink to this heading">¶</a></h3>
+<p>Pre ďalšie výpočty je potrebné, aby typ atribútov s faktorom <cite>K</cite> a faktorom <cite>C</cite>
+bol číselný. Použijeme modul <a class="reference internal" href="../_images/v.db.addcolumn.1.png"><img alt="v.db.addcolumn" src="../_images/v.db.addcolumn.1.png" style="width: 1.5em;" /></a> <sup>v.db.addcolumn</sup>,
+modul <a class="reference internal" href="../_images/v.db.update_op.2.png"><img alt="v.db.update" src="../_images/v.db.update_op.2.png" style="width: 1.5em;" /></a> <sup>v.db.update_op</sup>, funkciu <code class="docutils literal notranslate"><span class="pre">cast()</span></code> a typ <code class="docutils literal notranslate"><span class="pre">real</span></code>.</p>
+<p>Hodnoty oboch faktorov vynásobíme pre každú plochu a nový atribút nazveme
+<span class="dbcolumn">KC</span>. V záložke <span class="item">Region</span> nastavíme rozlíšenie 1 x 1 m a modulom
+<a class="reference internal" href="../_images/v.to.rast.attr.3.png"><img alt="v.to.rast.attr" src="../_images/v.to.rast.attr.3.png" style="width: 2em;" /></a> <sup>v.to.rast.attr</sup> vektor <span class="map">hpj_kpp_landuse</span> prevediem
+na rastrové dáta <span class="map">kc</span>. Následne použijeme modul <a class="reference internal" href="../_images/r.resamp.stats.2.png"><img alt="r.resamp.stats" src="../_images/r.resamp.stats.2.png" style="width: 1.5em;" /></a>
+<sup>r.resamp.stats</sup> a raster prevzorkujeme pomocou agregácie tak, aby rozlíšenie
+odpovedalo rozlíšeniu 10 x 10 (rozlíšenie <span class="map">dmt</span>). Použijeme redukciu
+rozlíšenia na základe priemeru hodnôt vypočítaného z okolitých buniek
+(<code class="xref std std-numref docutils literal notranslate"><span class="pre">r-resamp-stats</span></code>).
+Výsledok je na <code class="xref std std-numref docutils literal notranslate"><span class="pre">kc</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Týmto postupom nedôjde k strate informácie, ku ktorej by došlo pri
+priamom prevode na raster s rozlíšením 10 x 10 m (hodnota bunky by
+bola zvolená na základe polygónu, ktorý prechádza stredom bunky alebo
+na základe polygónu, ktorý zaberá najväčšiu časť plochy bunky).</p>
+</div>
+<figure class="align-center" id="id8">
+<span id="r-resamp-stats"></span><img alt="../_images/r_resamp_stats.png" class="small" src="../_images/r_resamp_stats.png" />
+<figcaption>
+<p><span class="caption-text">Dialógové okno modulu na prevzorkovanie rastra pomocou agregácie na základe
+priemeru okolitých buniek.</span><a class="headerlink" href="#id8" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id9">
+<span id="kc"></span><img alt="../_images/kc.png" class="small" src="../_images/kc.png" />
+<figcaption>
+<p><span class="caption-text">Faktor KC zahrňujúci vplyv erodovateľnosti pôdy a vplyv ochranného vplyvu
+vegetačného krytu.</span><a class="headerlink" href="#id9" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="krok-6">
+<span id="krok6"></span><h3>Krok 6<a class="headerlink" href="#krok-6" title="Permalink to this heading">¶</a></h3>
+<p>Z digitálneho modelu terénu vytvoríme rastrovú mapu znázorňujúcu
+sklonové pomery v stupňoch a nazveme ju <span class="map">slope</span>.</p>
+<p id="maska">Pred výpočtom nastavíme masku
+(oblasť výpočtu) podľa vrstvy <span class="map">dmt</span> modulom <a class="reference internal" href="../_images/r.mask.rast.2.png"><img alt="r.mask.rast" src="../_images/r.mask.rast.2.png" style="width: 1.5em;" /></a> <sup>r.mask</sup>, viď.
+<span class="menuselection">Rastr ‣ Prostorová analýza ‣ Maska</span>. Všetky rastrové
+operácie budú obmedzené na masku oblasti (v mapsete ako <span class="map">MASK</span>).
+Následne spustíme modul <a class="reference internal" href="../_images/r.slope.1.png"><img alt="r.slope" src="../_images/r.slope.1.png" style="width: 1.5em;" /></a> <sup>r.slope</sup> a vypočítame sklon v riešenom
+území (<code class="xref std std-numref docutils literal notranslate"><span class="pre">slope</span></code> a <code class="xref std std-numref docutils literal notranslate"><span class="pre">slope-accumulation</span></code> vľavo).</p>
+<figure class="align-center" id="id10">
+<span id="slope"></span><img alt="../_images/slope.png" class="middle" src="../_images/slope.png" />
+<figcaption>
+<p><span class="caption-text">Výpočet sklonových pomerov v záujmovom území.</span><a class="headerlink" href="#id10" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Ďalej otvoríme príkazový riadok <a class="reference internal" href="../_images/shell.1.png"><img alt="grass_shell" src="../_images/shell.1.png" style="width: 1.5em;" /></a> <sup>shell</sup>, spustíme modul
+<a class="reference external" href="http://grass.osgeo.org/grass80/manuals/r.terraflow.html">r.terraflow</a>, ktorý z digitálneho modelu terénu produkuje vyhladený DMT
+(<span class="map">dmt_fill</span>), rastrovú mapu smeru
+odtoku do susednej bunky s najväčším sklonom (<span class="map">direction</span>), mapu mikropovodí
+(<span class="map">swatershed</span>), rastrovú mapu znázorňujúcu akumuláciu toku v každej bunke
+(<span class="map">accumulation</span>) a mapu konvergenčného topografického indexu (<span class="map">tci</span>).
+Dialógové okno modulu je na <code class="xref std std-numref docutils literal notranslate"><span class="pre">terraflow</span></code>. Zobrazenie ďalej potrebnej akumulácie
+odtoku v <span class="math notranslate nohighlight">\(m^2\)</span> je na <code class="xref std std-numref docutils literal notranslate"><span class="pre">slope-accumulation</span></code> vpravo.</p>
+<figure class="align-center" id="id11">
+<span id="terraflow"></span><img alt="../_images/terraflow.png" class="small" src="../_images/terraflow.png" />
+<figcaption>
+<p><span class="caption-text">Dialógové okno modulu <em>r.terraflow</em>.</span><a class="headerlink" href="#id11" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id12">
+<span id="slope-accumulation"></span><img alt="../_images/slope_accumulation.png" class="middle" src="../_images/slope_accumulation.png" />
+<figcaption>
+<p><span class="caption-text">Sklonové pomery v stupňoch a akumulácia odtoku v <span class="math notranslate nohighlight">\(m^2\)</span>.</span><a class="headerlink" href="#id12" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="krok-7">
+<span id="krok7"></span><span id="faktor-ls"></span><h3>Krok 7<a class="headerlink" href="#krok-7" title="Permalink to this heading">¶</a></h3>
+<p>Topografický faktor <cite>LS</cite> vypočítame ako</p>
+<div class="math notranslate nohighlight">
+\[LS = (accu \times \frac{10.0}{22.13})^{0.6} \times (\frac{sin(slope \times \frac{pi}{180})}{0.09})^{1.3}\]</div>
+<p>Použijeme grafický kalkulátor rastrových máp <a class="reference internal" href="../_images/r.mapcalc.1.png"><img alt="r.mapcalc" src="../_images/r.mapcalc.1.png" style="width: 1.5em;" /></a> <sup>r.mapcalc</sup>
+(<span class="menuselection">Rastr ‣ Prostorová analýza ‣ Mapová algebra</span>).
+Pri používaní tohto modulu je potrebné, aby vrstvy boli pridané v paneli vrstiev
+v aktuálnom projekte QGIS.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>V paneli prehliadača nájdeme príslušný mapset a pravým kliknutím
+myši na konkrétnu mapu zvolíme <code class="docutils literal notranslate"><span class="pre">Přidat</span> <span class="pre">vrstvu</span></code>.</p>
+</div>
+<p>V dialógovom okne modulu <a class="reference internal" href="../_images/r.mapcalc.1.png"><img alt="r.mapcalc" src="../_images/r.mapcalc.1.png" style="width: 1.5em;" /></a> <sup>r.mapcalc</sup> zostavíme algoritmus.
+Ikonou <a class="reference internal" href="../_images/mc1.png"><img alt="mc1" src="../_images/mc1.png" style="width: 1.5em;" /></a> pridáme rastrovú mapu, ikonou <a class="reference internal" href="../_images/mc2.png"><img alt="mc2" src="../_images/mc2.png" style="width: 1.5em;" /></a> konštantu, ikonou <a class="reference internal" href="../_images/mc3.png"><img alt="mc3" src="../_images/mc3.png" style="width: 1.5em;" /></a>
+vložíme operátor alebo funkciu, ikona <a class="reference internal" href="../_images/mc4.png"><img alt="mc4" src="../_images/mc4.png" style="width: 1.5em;" /></a> spája jednotlivé elementy, pomocou
+<a class="reference internal" href="../_images/mc5.png"><img alt="mc5" src="../_images/mc5.png" style="width: 1.5em;" /></a> elementy vyberáme a ikonou <a class="reference internal" href="../_images/mc6.png"><img alt="mc6" src="../_images/mc6.png" style="width: 1.5em;" /></a> ich možno vymazať.
+Výraz na výpočet <cite>LS</cite> a výsledok sú na <code class="xref std std-numref docutils literal notranslate"><span class="pre">calc-ls</span></code>.</p>
+<figure class="align-center" id="id13">
+<span id="calc-ls"></span><img alt="../_images/calc_ls.png" class="middle" src="../_images/calc_ls.png" />
+<figcaption>
+<p><span class="caption-text">Grafický kalkulátor a topografický faktor LS zahrňujúci vplyv dĺžky a sklonu
+svahu.</span><a class="headerlink" href="#id13" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Výpočet v príkazovom riadku napíšeme ako
+<code class="code docutils literal notranslate"><span class="pre">r.mapcalc</span> <span class="pre">expr=&quot;ls</span> <span class="pre">=</span> <span class="pre">pow(accumulation</span> <span class="pre">*</span> <span class="pre">(10.0</span> <span class="pre">/</span> <span class="pre">22.13),</span> <span class="pre">0.6)</span> <span class="pre">*</span> <span class="pre">pow(sin(slope</span> <span class="pre">*</span> <span class="pre">(3.14159/180))</span> <span class="pre">/</span> <span class="pre">0.09,</span> <span class="pre">1.3)&quot;</span></code></p>
+</div>
+</section>
+<section id="krok-8">
+<span id="krok8"></span><span id="faktor-g"></span><h3>Krok 8<a class="headerlink" href="#krok-8" title="Permalink to this heading">¶</a></h3>
+<p>Na výpočet parametra <cite>G</cite> okrem <cite>KC</cite> a <cite>LS</cite> ešte potrebujeme faktor <cite>R</cite> a <cite>P</cite>,
+ktorých hodnoty nebudeme odvádzať ako tie predchádzajúce. Použijeme priemernú
+hodnotu <code class="docutils literal notranslate"><span class="pre">R</span></code> a <code class="docutils literal notranslate"><span class="pre">P</span></code> faktora pre Českú republiku, t.j <code class="docutils literal notranslate"><span class="pre">R</span> <span class="pre">=</span> <span class="pre">40</span></code> a <code class="docutils literal notranslate"><span class="pre">P</span> <span class="pre">=</span> <span class="pre">1</span></code>.
+Následne modulom <a class="reference internal" href="../_images/r.mapcalc.1.png"><img alt="r.mapcalc" src="../_images/r.mapcalc.1.png" style="width: 1.5em;" /></a> <sup>r.mapcalc</sup> vypočítame stratu pôdy, viď.
+<a class="reference internal" href="#vzorec-g"><span class="std std-ref">vzťah na výpočet G</span></a>. Vrstva s hodnotami predstavujúcimi
+priemernú dlhodobú stratu pôdy v jednotkách <span class="math notranslate nohighlight">\(t.ha^{-1} . rok^{-1}\)</span> je
+na <code class="xref std std-numref docutils literal notranslate"><span class="pre">g-map</span></code>.</p>
+<figure class="align-center" id="id14">
+<span id="g-map"></span><img alt="../_images/g_map.png" class="small" src="../_images/g_map.png" />
+<figcaption>
+<p><span class="caption-text">Priemerná dlhodobá strata pôdy pre riešené územie.</span><a class="headerlink" href="#id14" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="krok-9">
+<span id="krok9"></span><h3>Krok 9<a class="headerlink" href="#krok-9" title="Permalink to this heading">¶</a></h3>
+<p>Na určenie priemernej hodnoty straty pre každé čiastkové
+povodie využijeme modul <a class="reference internal" href="../_images/v.rast.stats.3.png"><img alt="v.rast.stats" src="../_images/v.rast.stats.3.png" style="width: 4.5em;" /></a> <sup>v.rast.stats</sup>. Kľúčovou vrstvou je
+vektorová mapa <span class="map">povodi</span>, kde nastavíme prefix <code class="docutils literal notranslate"><span class="pre">g</span></code> pre
+novovytvorený stĺpec. V mapovom okne QGIS hodnoty vizualizujeme (<code class="xref std std-numref docutils literal notranslate"><span class="pre">g-pov</span></code>).</p>
+<figure class="align-center" id="id15">
+<span id="g-pov"></span><img alt="../_images/g_pov_map.png" class="small" src="../_images/g_pov_map.png" />
+<figcaption>
+<p><span class="caption-text">Povodia s priemernými hodnotami straty pôdy v jednotkách <span class="math notranslate nohighlight">\(t.ha^{-1}.rok^{-1}\)</span>.</span><a class="headerlink" href="#id15" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="krok-10">
+<span id="krok10"></span><h3>Krok 10<a class="headerlink" href="#krok-10" title="Permalink to this heading">¶</a></h3>
+<p>Pre výpočet uvedený vyššie môže vychádzať strata pôdy v niektorých miestach
+enormne vysoká. To je spôsobené tým, že vo výpočtoch nie sú zahrnuté líniové a
+plošné prvky prerušujúce povrchový odtok. Týmito prvkami sú najmä budovy,
+priekopy diaľnic a ciest, železničné trate alebo múry lemujúce pozemky.</p>
+<p>Presnejšie hodnoty možno získať zahrnutím týchto prvkov do výpočtu.
+Použijeme masku líniových a plošných prvkov prerušujúcich odtok
+(vrstva <span class="map">maska</span> na <code class="xref std std-numref docutils literal notranslate"><span class="pre">dmt-maska</span></code> vpravo) a vypočítame nové hodnoty <cite>LS</cite>
+faktora a straty pôdy <cite>G</cite>.</p>
+<p>Modulom <a class="reference internal" href="../_images/r.mask.rast.2.png"><img alt="r.mask.rast" src="../_images/r.mask.rast.2.png" style="width: 1.5em;" /></a> <sup>r.mask.rast</sup> <a class="reference internal" href="#maska"><span class="std std-ref">nastavíme oblasť výpočtu</span></a>
+bez neželaných miest. Nastavenie skontrolujeme napríklad zobrazením digitálneho
+modelu terénu (<code class="xref std std-numref docutils literal notranslate"><span class="pre">dmt-m</span></code>). Dopočítame <a class="reference internal" href="#faktor-ls"><span class="std std-ref">faktor LS</span></a> a
+<a class="reference internal" href="#faktor-g"><span class="std std-ref">faktor G</span></a>.</p>
+<figure class="align-center" id="id16">
+<span id="dmt-m"></span><img alt="../_images/dmt_m.png" class="small" src="../_images/dmt_m.png" />
+<figcaption>
+<p><span class="caption-text">Vrstva digitálneho modelu terénu vstupujúca do výpočtov bez prvkov prerušujúcich odtok.</span><a class="headerlink" href="#id16" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Porovnanie výsledkov <em>USLE</em> bez ohľadu na prvky prerušujúce odtok a s nimi
+je na <code class="xref std std-numref docutils literal notranslate"><span class="pre">g-por</span></code>.</p>
+<figure class="align-center" id="id17">
+<span id="g-por"></span><img alt="../_images/g_por.png" class="middle" src="../_images/g_por.png" />
+<figcaption>
+<p><span class="caption-text">Porovnanie výsledkov USLE bez ohľadu na prvky prerušujúce odtok
+(vľavo) a s prvkami prerušujúcimi odtok (vpravo)</span><a class="headerlink" href="#id17" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="krok-11">
+<span id="krok11"></span><h3>Krok 11<a class="headerlink" href="#krok-11" title="Permalink to this heading">¶</a></h3>
+<p>Priemerné hodnoty <cite>G</cite> určíme pre každé povodie po uvážení prvkov, ktoré
+prerušujú odtok. Pre porovnanie sú na <code class="xref std std-numref docutils literal notranslate"><span class="pre">g-pov-por</span></code> hodnoty
+straty pôdy vykreslené pomocou textového diagramu v jednotkách
+<span class="math notranslate nohighlight">\(t.ha^{-1}.rok^{-1}\)</span> bez a s úvážením prvkov prerušujúcich odtok.</p>
+<figure class="align-center" id="id18">
+<span id="g-pov-por"></span><img alt="../_images/g_pov_por.png" class="small" src="../_images/g_pov_por.png" />
+<figcaption>
+<p><span class="caption-text">Povodia s priemernými hodnotami straty pôdy v jednotkách
+<span class="math notranslate nohighlight">\(t.ha^{-1}.rok^{-1}\)</span> bez a s úvážením prvkov prerušujúcich
+odtok.</span><a class="headerlink" href="#id18" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul>
+<li class="toctree-l1"><a class="reference internal" href="../georeferencovani/index.html">Georeferencování obrazových dat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geoprocessing/index.html">Nástroje zpracování</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeler/index.html">Grafický modelář</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grass/index.html">Zásuvný modul GRASS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Ukázka analýzy - hydrologie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3d/index.html">Práce s 3D daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pokrocile_upravy/index.html">Pokročilé úpravy prostředí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/index.html">Různé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../priklady/index.html">Příklady</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Další příklady &#8212; Školení QGIS pro pokročilé</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení QGIS pro pokročilé</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="dalsi-priklady">
+<h1>Další příklady<a class="headerlink" href="#dalsi-priklady" title="Permalink to this heading">¶</a></h1>
+<section id="model-pro-analyzu-terenu">
+<h2>Model pro analýzu terénu<a class="headerlink" href="#model-pro-analyzu-terenu" title="Permalink to this heading">¶</a></h2>
+<p>Na tomto příkladu si ukážeme jak vytvořit model, který nám z výřezu digitálního
+modelu terénu vytvoří vrstvy sklonu svahů, orientace svahů a index drsnosti
+terénu (TRI).</p>
+<section id="zakladni-model">
+<h3>Základní model<a class="headerlink" href="#zakladni-model" title="Permalink to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Zadáme název modelu a skupiny. Model uložíme.</p></li>
+<li><p>Přidáme vstupní parametry <span class="item">Raster layer</span> a <span class="item">Extent</span> a
+pojmenujeme si je (např. <span class="guilabel">DEM</span> a <span class="guilabel">Rozsah ořezu</span>).</p></li>
+</ol>
+<figure class="align-center" id="id1">
+<img alt="../_images/modeler_terr.png" class="middle" src="../_images/modeler_terr.png" />
+<figcaption>
+<p><span class="caption-text">Přidání vstupních parametrů modelu.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple" start="3">
+<li><p>Přidáme algoritmus <a class="reference internal" href="../_images/raster-clip.png"><img alt="gdalclip" src="../_images/raster-clip.png" style="width: 1.5em;" /></a><span class="guilabel">Oříznout rastr podle rozsahu</span>. Jako
+vstupní vrstvu nastavíme parametr <span class="item">DEM</span>, nastavíme hodnotu pro
+<span class="guilabel">nodata</span> (např. -9999) a jako rozsah ořezu nastavíme vstupní
+parametr <span class="item">Rozsah ořezu</span>.</p></li>
+</ol>
+<figure class="align-center" id="id2">
+<img alt="../_images/modeler_terr2.png" class="middle" src="../_images/modeler_terr2.png" />
+<figcaption>
+<p><span class="caption-text">Navázání vstupních parametrů na algoritmus ořezu.</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple" start="4">
+<li><p>Přidáme algoritmy <a class="reference internal" href="../_images/gdal1.png"><img alt="gdal" src="../_images/gdal1.png" style="width: 1.5em;" /></a><span class="guilabel">Aspekt</span>, <a class="reference internal" href="../_images/gdal1.png"><img alt="gdal" src="../_images/gdal1.png" style="width: 1.5em;" /></a><span class="guilabel">Sklon</span> a
+<a class="reference internal" href="../_images/gdal1.png"><img alt="gdal" src="../_images/gdal1.png" style="width: 1.5em;" /></a><span class="guilabel">TRI - index drsnosti terénu</span>. U všech nastavíme jako
+vstupní vrstvu <span class="guilabel">‚Oříznuto (rozsah)‘ z algoritmu ‚Clip raster by
+extent‘</span> a u všech vyplníme odpovídající výstup.</p></li>
+</ol>
+<figure class="align-center" id="id3">
+<img alt="../_images/modeler_terr3.png" class="large" src="../_images/modeler_terr3.png" />
+<figcaption>
+<p><span class="caption-text">Výsledný model.</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id4">
+<img alt="../_images/modeler_terr_dial.png" src="../_images/modeler_terr_dial.png" />
+<figcaption>
+<p><span class="caption-text">Dialogové okno při spuštění modelu.</span><a class="headerlink" href="#id4" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id5">
+<img alt="../_images/modeler_terr_result.png" src="../_images/modeler_terr_result.png" />
+<figcaption>
+<p><span class="caption-text">Výsledek modelu.</span><a class="headerlink" href="#id5" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="upravy-modelu">
+<h3>Úpravy modelu<a class="headerlink" href="#upravy-modelu" title="Permalink to this heading">¶</a></h3>
+<p>Pomocí editace můžeme model upravovat a dále rozšiřovat.</p>
+<section id="volitelne-nastaveni-vypocteni-sklonu-svahu-ve-stupnich-procentech">
+<h4>Volitelné nastavení vypočtení sklonu svahu ve stupních/procentech<a class="headerlink" href="#volitelne-nastaveni-vypocteni-sklonu-svahu-ve-stupnich-procentech" title="Permalink to this heading">¶</a></h4>
+<p>Díky jednomu z parametrů algoritmu <a class="reference internal" href="../_images/gdal1.png"><img alt="gdal" src="../_images/gdal1.png" style="width: 1.5em;" /></a><span class="guilabel">Sklon</span> můžeme
+vybrat, jestli chceme výsledek v procentech namísto stupňů (boolean -
+Ano/Ne).</p>
+<figure class="align-center" id="id6">
+<img alt="../_images/modeler_terr_slope.png" src="../_images/modeler_terr_slope.png" />
+<figcaption>
+<p><span class="caption-text">Výběr jednotek sklonu svahu.</span><a class="headerlink" href="#id6" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Jak jsme již vysvětlili, model se spouští vždy s hodnotou, která je nastavena
+při jeho tvorbě. Pokud bychom chtěli mít možnost volby při spouštění, musíme
+na tento parametr navázat nový vstupní parametr <span class="item">Boolean</span>. Vložíme tedy
+nový parametr <span class="item">Boolean</span> , pojmenujeme ho <span class="guilabel">Sklon v procentech</span>.
+Nyní budeme mít v dialogovém okně algoritmu <span class="item">Slope</span> u parametru na výběr
+hodnotu <span class="guilabel">Sklon v procentech</span>.</p>
+<figure class="align-center" id="id7">
+<img alt="../_images/modeler_terr_slope2.png" src="../_images/modeler_terr_slope2.png" />
+<figcaption>
+<p><span class="caption-text">Přidání možností výběru výpočtu sklonu v procentech.</span><a class="headerlink" href="#id7" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id8">
+<img alt="../_images/modeler_terr_slope3.png" src="../_images/modeler_terr_slope3.png" />
+<figcaption>
+<p><span class="caption-text">Dialogové okno modelu s možností výpočtu sklonu v procentech.</span><a class="headerlink" href="#id8" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="vytvoreni-jiz-reklasifikovane-orientace-svahu-aspekt">
+<h4>Vytvoření již reklasifikované orientace svahu (Aspekt)<a class="headerlink" href="#vytvoreni-jiz-reklasifikovane-orientace-svahu-aspekt" title="Permalink to this heading">¶</a></h4>
+<p>Pro přidání reklasifikace do modelu využijeme algoritmu
+<a class="reference internal" href="../_images/grasslogo.png"><img alt="grass" src="../_images/grasslogo.png" style="width: 1.5em;" /></a><a class="reference external" href="http://grass.osgeo.org/grass80/manuals/r.reclass.html">r.reclass</a>. V kapitole <a class="reference internal" href="../geoprocessing/externi.html#externi"><span class="std std-ref">Externí geoalgoritmy</span></a> jsme si
+ukázali jak vytvořit soubor reklasifikace. Abychom takový soubor
+dostali do modelu musíme přidat vstupní parametr <span class="item">File</span>
+(pojmenujeme si ho např. <span class="guilabel">Soubor pro reklasifikaci</span>). V
+dialogovém okně aloritmu <a class="reference internal" href="../_images/grasslogo.png"><img alt="grass" src="../_images/grasslogo.png" style="width: 1.5em;" /></a><a class="reference external" href="http://grass.osgeo.org/grass80/manuals/r.reclass.html">r.reclass</a> nastavíme
+jednotlivé parametry (<code class="xref std std-numref docutils literal notranslate"><span class="pre">modelreclass</span></code>). Pokud nechceme používat
+reklasifikační soubor, ale chceme mít možnost zadávat reklasifikační pravidla
+ručně, použijeme vstupní parametr <span class="item">String</span>.</p>
+<figure class="align-center" id="id9">
+<span id="modelreclass"></span><img alt="../_images/modeler_terr_reclass.png" src="../_images/modeler_terr_reclass.png" />
+<figcaption>
+<p><span class="caption-text">Nastavení parametrů <a class="reference internal" href="../_images/grasslogo.png"><img alt="grass" src="../_images/grasslogo.png" style="width: 1.5em;" /></a><a class="reference external" href="http://grass.osgeo.org/grass80/manuals/r.reclass.html">r.reclass</a> v modelu.</span><a class="headerlink" href="#id9" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Výsledný model nám nyní může vygenerovat vedle původního rastru <span class="item">Aspekt</span>
+i reklasifikovanou verzi <span class="item">Reklasifikovaný aspekt</span>.</p>
+<figure class="align-center" id="id10">
+<img alt="../_images/modeler_terr_reclass2.png" class="middle" src="../_images/modeler_terr_reclass2.png" />
+<figcaption>
+<p><span class="caption-text">Model s reklasifikací orientace svahu.</span><a class="headerlink" href="#id10" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id11">
+<img alt="../_images/modeler_terr_advanced.png" class="large" src="../_images/modeler_terr_advanced.png" />
+<figcaption>
+<p><span class="caption-text">Výsledný upravený model.</span><a class="headerlink" href="#id11" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul>
+<li class="toctree-l1"><a class="reference internal" href="../georeferencovani/index.html">Georeferencování obrazových dat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geoprocessing/index.html">Nástroje zpracování</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Grafický modelář</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grass/index.html">Zásuvný modul GRASS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hydrologie/index.html">Ukázka analýzy - hydrologie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3d/index.html">Práce s 3D daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pokrocile_upravy/index.html">Pokročilé úpravy prostředí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/index.html">Různé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../priklady/index.html">Příklady</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>
