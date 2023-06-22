@@ -19,7 +19,7 @@ slouží záložka |diagram|:sup:`Diagramy` ve vlastnostech vektorové vrstvy.
 V první řadě musíme z rolovací nabídky vybrat typ diagramu. Na výběr máme ze 3
 typů:
 
-- |pie-chart| :sup:`Koláčový graf`
+- |pie-chart| :sup:`Výsečový diagram`
 - |text| :sup:`Textový diagram`
 - |histogram| :sup:`Histogram`
 - |pruhovy| :sup:`Skládané pruhy`
@@ -39,7 +39,7 @@ změnit barvu a popisek legendy.
    Výběr atributů zobrazovaných v diagramech.
 
 Kromě volby atributů můžeme v dalších záložkách měnit základní parametry
-vzhledu, velikosti, umístění atd. U možností |pie-chart| :sup:`Koláčový graf`
+vzhledu, velikosti, umístění atd. U možností |pie-chart| :sup:`Výsečový diagram`
 a |text| :sup:`Textový diagram` můžeme rovnou použít přednastavené hodnoty, při
 použití |histogram| :sup:`Histogram` je nutné nastavit alespoň atribut pro
 výpočet velikosti sloupečků. Ve všech třech případech je však pro lepší vzhled
@@ -103,7 +103,7 @@ grafickém (Gimp) nebo vektorovém (Inkscape) editoru.
 
 Příklady tvorby kartodiagramů
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-|pie-chart| :sup:`Koláčový graf`
+|pie-chart| :sup:`Výsečový diagram`
 ********************************
 
 .. figure:: images/diag_pie.png
