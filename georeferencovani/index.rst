@@ -33,7 +33,7 @@ Postup
 --------------------
 
 Nástroj pro georeferencování je součástí základního vybavení a najdeme
-jej v :menuselection:`Rastr --> Georeferencér`
+jej v :menuselection:`Vrstva --> Georeferencér`
 (:numref:`georeferencer-menu`).
 Nástroj obsahuje dvě části. V první se zobrazí zpracovávaný
 rastr a v druhém tabulka tzv. `GCP bodů - identických bodů`.
