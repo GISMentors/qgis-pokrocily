@@ -48,10 +48,10 @@
             
   <section id="metoda-scs-cn">
 <h1>Metoda SCS CN<a class="headerlink" href="#metoda-scs-cn" title="Permalink to this heading">¶</a></h1>
-<p><a class="reference external" href="http://training.gismentors.eu/grass-gis-pokrocily/hydrologie/scs-cn.html#scs-cn-teorie">Teoretický popis metody</a>,
-<a class="reference external" href="http://training.gismentors.eu/grass-gis-pokrocily/hydrologie/scs-cn.html#scs-cn-symboly">základní symboly</a> použité v
-dalším textu, <a class="reference external" href="http://training.gismentors.eu/grass-gis-pokrocily/hydrologie/scs-cn.html#scs-cn-vstupni-data">popis vstupních dat</a> a
-<a class="reference external" href="http://training.gismentors.eu/grass-gis-pokrocily/hydrologie/scs-cn.html#scs-cn-postup">navrhovaný postup</a> je
+<p><a class="reference external" href="https://gismentors.github.io/grass-gis-pokrocily/hydrologie/scs-cn.html#scs-cn-teorie">Teoretický popis metody</a>,
+<a class="reference external" href="https://gismentors.github.io/grass-gis-pokrocily/hydrologie/scs-cn.html#scs-cn-symboly">základní symboly</a> použité v
+dalším textu, <a class="reference external" href="https://gismentors.github.io/grass-gis-pokrocily/hydrologie/scs-cn.html#scs-cn-vstupni-data">popis vstupních dat</a> a
+<a class="reference external" href="https://gismentors.github.io/grass-gis-pokrocily/hydrologie/scs-cn.html#scs-cn-postup">navrhovaný postup</a> je
 součástí školení <em>GRASS GIS pro pokročilé</em>.</p>
 <section id="postup-zpracovani-v-qgis">
 <h2>Postup zpracovaní v QGIS<a class="headerlink" href="#postup-zpracovani-v-qgis" title="Permalink to this heading">¶</a></h2>
@@ -65,7 +65,7 @@ vstupní data - vektorová data ve formátu Esri Shapefile
 <code class="file docutils literal notranslate"><span class="pre">hpj.shp</span></code>, <code class="file docutils literal notranslate"><span class="pre">kpp.shp</span></code>, <code class="file docutils literal notranslate"><span class="pre">landuse.shp</span></code>,
 <code class="file docutils literal notranslate"><span class="pre">povodi.shp</span></code> a soubory s odděleným textem
 <code class="file docutils literal notranslate"><span class="pre">hpj_hydrsk.csv</span></code>, <code class="file docutils literal notranslate"><span class="pre">kpp_hydrsk.csv</span></code>,
-<code class="file docutils literal notranslate"><span class="pre">lu_hydrsk_cn.csv</span></code>, viz školení <a class="reference external" href="http://training.gismentors.eu/qgis-zacatecnik/vektorova_data/import_delim.html">QGIS pro začátečníky</a>.</p>
+<code class="file docutils literal notranslate"><span class="pre">lu_hydrsk_cn.csv</span></code>, viz školení <a class="reference external" href="https://gismentors.github.io/qgis-zacatecnik/vektorova_data/import_delim.html">QGIS pro začátečníky</a>.</p>
 <p>Následně sjednotíme vrstvu hlavních půdních jednotek (<span class="map">hpj</span>) a
 komplexního průzkumu půd (<span class="map">kpp</span>). Využijeme nástroj
 geoprocessingu <a class="reference internal" href="../_images/mAlgorithmUnion.png"><img alt="mAlgorithmUnion" src="../_images/mAlgorithmUnion.png" style="width: 1.5em;" /></a> <sup>Sjednotit</sup>, který najdeme v
@@ -82,7 +82,7 @@ vektorové vrstvy <span class="map">hpj_kpp</span> pomocí společného sloupce
 panelu vrstev u <span class="map">hpj_kpp</span> zvolíme <span class="item">Vlastnosti</span> a v
 dialogovém okně přejdeme do záložky <a class="reference internal" href="../_images/join.png"><img alt="join" src="../_images/join.png" style="width: 1.5em;" /></a> <sup>Připojení</sup>. Kliknutím
 na ikonku <a class="reference internal" href="../_images/mActionSignPlus.png"><img alt="mActionSignPlus" src="../_images/mActionSignPlus.png" style="width: 1.5em;" /></a> spustíme dialogové okno s nastavením pro
-připojení (<a class="reference internal" href="#join"><span class="std std-numref">Obr. 103</span></a>), viz kapitola <a class="reference external" href="http://training.gismentors.eu/qgis-zacatecnik/vektorova_data/join.html">Připojení
+připojení (<a class="reference internal" href="#join"><span class="std std-numref">Obr. 103</span></a>), viz kapitola <a class="reference external" href="https://gismentors.github.io/qgis-zacatecnik/vektorova_data/join.html">Připojení
 tabulkových dat</a> ve školení
 QGIS pro začátečníky.</p>
 <figure class="align-center" id="id1">
@@ -195,10 +195,10 @@ chybou.</p>
 </pre></div>
 </div>
 <p>Pro další řešení tedy použijeme výpočetně stabilnější nástroje systému
-GRASS GIS. Více o systému GRASS v rámci školení <a class="reference external" href="http://training.gismentors.eu/grass-gis-zacatecnik">GRASS GIS
+GRASS GIS. Více o systému GRASS v rámci školení <a class="reference external" href="https://gismentors.github.io/grass-gis-zacatecnik">GRASS GIS
 pro začátečníky</a>. Překryvné operace jako
 protnutí či spojení má v systému GRASS na starost nástroj
-<a class="reference external" href="http://grass.osgeo.org/grass80/manuals/v.overlay..html">v.overlay.</a></p>
+<a class="reference external" href="https://grass.osgeo.org/grass83/manuals/v.overlay..html">v.overlay.</a></p>
 <p>Výpočetní nástroje systému GRASS lze spouštět buď přímo z
 <a class="reference internal" href="../geoprocessing/index.html"><span class="doc">Nástroje zpracování</span></a> anebo pomocí <a class="reference internal" href="../grass/index.html"><span class="doc">zásuvného modulu
 GRASS</span></a>. Druhý způsob by vyžadoval vytvořit GRASS
@@ -210,7 +210,7 @@ nástroje zpracovaní.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Postup postavený na zásuvnému modulu GRASS je k dohledání ve
-<a class="reference external" href="http://training.gismentors.eu/qgis-pokrocily/2.18/hydrologie/scs-cn.html">starších materiálech</a> školení pro verzi
+<a class="reference external" href="https://gismentors.github.io/qgis-pokrocily/2.18/hydrologie/scs-cn.html">starších materiálech</a> školení pro verzi
 QGIS 2.18.</p>
 </div>
 <p>Bohužel externí nástroje spuštěné z nástrojů zpracování ignorují
@@ -228,14 +228,14 @@ chybou.</span><a class="headerlink" href="#id7" title="Permalink k tomuto obráz
 <figure class="align-center" id="id8">
 <img alt="../_images/processing-grass-v-overlay.png" src="../_images/processing-grass-v-overlay.png" />
 <figcaption>
-<p><span class="caption-number">Obr. 109 </span><span class="caption-text">Spuštění nástroje <a class="reference external" href="http://grass.osgeo.org/grass80/manuals/v.overlay.html">v.overlay</a> z prostředí nástrojů
+<p><span class="caption-number">Obr. 109 </span><span class="caption-text">Spuštění nástroje <a class="reference external" href="https://grass.osgeo.org/grass83/manuals/v.overlay.html">v.overlay</a> z prostředí nástrojů
 zpracovaní. Kromě operátoru <code class="docutils literal notranslate"><span class="pre">or</span></code> pro operaci sjednocení je vhodné
 nastavit rozumnou hodnotu pro přichycení hranic. Předpokládáme
 totiž na vstupu topologicky nekorektní data. V našem případě jsme
 zvolili 1cm, což je hluboko pod přesností vstupních dat.</span><a class="headerlink" href="#id8" title="Permalink k tomuto obrázku">¶</a></p>
 </figcaption>
 </figure>
-<p>Je důležité si uvědomit, že nástroj <a class="reference external" href="http://grass.osgeo.org/grass80/manuals/v.overlay.html">v.overlay</a> přidává k
+<p>Je důležité si uvědomit, že nástroj <a class="reference external" href="https://grass.osgeo.org/grass83/manuals/v.overlay.html">v.overlay</a> přidává k
 názvům atributu prefix <code class="docutils literal notranslate"><span class="pre">a_</span></code> a <code class="docutils literal notranslate"><span class="pre">b_</span></code>. To podle toho z jakého vstupní
 vrstvy atributy pocházejí.</p>
 <figure class="align-center" id="id9">
@@ -338,7 +338,7 @@ jim přiřadíme konstantu <cite>0</cite>.</span><a class="headerlink" href="#id
 <p><em>Vytvoření rastrových vrstev výšky a objemu přímého odtoku</em></p>
 <p>QGIS nabízí dva externí nástroje umožňující převést vektorovou vrstvu
 na rastr. První pochází z knihovny GDAL, druhý ze systému GRASS GIS, a
-to <a class="reference external" href="http://grass.osgeo.org/grass80/manuals/v.to.rast.html">v.to.rast</a>.</p>
+to <a class="reference external" href="https://grass.osgeo.org/grass83/manuals/v.to.rast.html">v.to.rast</a>.</p>
 <figure class="align-center" id="id14">
 <img alt="../_images/rasterization_tools.png" class="small" src="../_images/rasterization_tools.png" />
 <figcaption>
@@ -348,7 +348,7 @@ to <a class="reference external" href="http://grass.osgeo.org/grass80/manuals/v.
 <figure class="align-center" id="id15">
 <img alt="../_images/v-to-rast-ho.png" src="../_images/v-to-rast-ho.png" />
 <figcaption>
-<p><span class="caption-number">Obr. 116 </span><span class="caption-text">Zadání parametrů nástroje <a class="reference external" href="http://grass.osgeo.org/grass80/manuals/v.to.rast.html">v.to.rast</a>. Kromě vstupní
+<p><span class="caption-number">Obr. 116 </span><span class="caption-text">Zadání parametrů nástroje <a class="reference external" href="https://grass.osgeo.org/grass83/manuals/v.to.rast.html">v.to.rast</a>. Kromě vstupní
 vrstvy (Input vector layer) a atributu pro rasterizaci (Name of
 column for ‚attr‘ parameter) nesmíme zapomenout definovat
 požadované prostorové rozlišení výsledného rastru (Velikost buňky
@@ -370,7 +370,7 @@ prostředí QGIS.</span><a class="headerlink" href="#id16" title="Permalink k to
 <p><em>Výpočet průměrných hodnot výšky a objemu přímého odtoku pro povodí</em></p>
 <p>V dalším kroku vypočítáme průměrné hodnoty přímého odtoku pro každé
 povodí v řešeném území. Použijeme GRASS nástroj
-<a class="reference external" href="http://grass.osgeo.org/grass80/manuals/v.rast.stats.html">v.rast.stats</a>, který počítá základní statistické informace
+<a class="reference external" href="https://grass.osgeo.org/grass83/manuals/v.rast.stats.html">v.rast.stats</a>, který počítá základní statistické informace
 rastrové vrstvy na základě vektorové vrstvy a ty ukladá do nových
 atributů v atributové tabulce. Dialogové okno je uvedeno na
 <a class="reference internal" href="#v-rast-stats"><span class="std std-numref">Obr. 118</span></a>.</p>
@@ -450,7 +450,7 @@ prostředí QGIS.</span><a class="headerlink" href="#id18" title="Permalink k to
         <div class="right">
           
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2015-2023 GISMentors.
+        &#169; Copyright 2015-2025 GISMentors.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
         </div>

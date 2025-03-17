@@ -46,7 +46,7 @@
 <h2>Teoretické východiská<a class="headerlink" href="#teoreticke-vychodiska" title="Permalink to this heading">¶</a></h2>
 <p>Priemerné ročné straty pôdy spôsobené odtokom z pozemku určitého sklonu a
 určitého spôsobu využívania možno predikovať pomocou matematického modelu
-<a class="reference external" href="http://cs.wikipedia.org/wiki/Univerzální rovnice ztráty půdy">USLE</a>, tzv. univerzálnej rovnice
+<a class="reference external" href="https://cs.wikipedia.org/wiki/Univerzální rovnice ztráty půdy">USLE</a>, tzv. univerzálnej rovnice
 straty pôdy:</p>
 <div class="math notranslate nohighlight" id="vzorec-g">
 \[G = R \times K \times L \times S \times C \times P\]</div>
@@ -114,7 +114,7 @@ výpočet priemerných hodnôt <cite>G</cite> pre povodie s maskou</p>
 </figcaption>
 </figure>
 <p>Znázornenie vstupných vektorových dát spolu s atribútovými tabuľkami je totožné
-so <a class="reference external" href="http://training.gismentors.eu/qgis-pokrocily/hydrologie/scs-sc/vstupne-data">vstupnými vektorovými dátami pri metóde SCS CN</a>. Digitálny model reliéfu a
+so <a class="reference external" href="https://gismentors.github.io/qgis-pokrocily/hydrologie/scs-sc/vstupne-data">vstupnými vektorovými dátami pri metóde SCS CN</a>. Digitálny model reliéfu a
 oblasť riešeného územia bez líniových a plošných prvkov prerušujúcich odtok
 (maska) sú na <code class="xref std std-numref docutils literal notranslate"><span class="pre">dmt-maska</span></code>. Tabuľky s faktormi <cite>K</cite> a <cite>C</cite> sú na
 <code class="xref std std-numref docutils literal notranslate"><span class="pre">ciselniky</span></code>.</p>
@@ -137,13 +137,13 @@ prerušujúcich odtok.</span><a class="headerlink" href="#id3" title="Permalink 
 <section id="krok-1">
 <span id="krok1"></span><h3>Krok 1<a class="headerlink" href="#krok-1" title="Permalink to this heading">¶</a></h3>
 <p>Postup ako zjednotiť vrstvu hlavných pôdnych jednotiek a komplexného prieskumu
-pôd je totožný s <a class="reference external" href="http://training.gismentors.eu/qgis-pokrocily/hydrologie/scs-sc/vkr1">prvým krokom</a>
+pôd je totožný s <a class="reference external" href="https://gismentors.github.io/qgis-pokrocily/hydrologie/scs-sc/vkr1">prvým krokom</a>
 pri metóde SCS CN.</p>
 </section>
 <section id="krok-2">
 <span id="krok2"></span><h3>Krok 2<a class="headerlink" href="#krok-2" title="Permalink to this heading">¶</a></h3>
 <p id="id1">Pripojenie tabuliek <span class="dbtable">hpj_k</span> a <span class="dbtable">kpp_k</span> je tiež podobné ako
-<a class="reference external" href="http://training.gismentors.eu/qgis-pokrocily/hydrologie/scs-sc/vkr2">druhý krok</a> pri metóde SCS CN
+<a class="reference external" href="https://gismentors.github.io/qgis-pokrocily/hydrologie/scs-sc/vkr2">druhý krok</a> pri metóde SCS CN
 iba s tým rozdielom, že spoločným atribútom nie je hydrologická skupina
 <span class="dbtable">HPJ</span>, ale faktor <span class="dbtable">K</span>. Dialógové okno s nastaveniami pre
 toto spájanie je na <code class="xref std std-numref docutils literal notranslate"><span class="pre">usle-join</span></code>. Vyplnenie informácií o faktore <cite>K</cite>
@@ -165,7 +165,7 @@ a znázornenie výsledku sú na <code class="xref std std-numref docutils litera
 <section id="krok-3">
 <span id="krok3"></span><h3>Krok 3<a class="headerlink" href="#krok-3" title="Permalink to this heading">¶</a></h3>
 <p>Aj tento krok sa veľmi podobá na
-<a class="reference external" href="http://training.gismentors.eu/qgis-pokrocily/hydrologie/scs-sc/vkr2">tretiu časť postupu</a> pri metóde
+<a class="reference external" href="https://gismentors.github.io/qgis-pokrocily/hydrologie/scs-sc/vkr2">tretiu časť postupu</a> pri metóde
 SCS CN. Na vytvorenie prieniku vrstvy <span class="map">hpj_kpp</span> s vrstvou využitia krajiny
 <span class="map">landuse</span> v riešenej oblasti využijeme modul <a class="reference internal" href="../_images/and.png"><img alt="v.overlay.and" src="../_images/and.png" style="width: 1em;" /></a>
 <sup>v.overlay.and</sup>. Výsledok nazveme <span class="map">hpj_kpp_landuse</span>.</p>
@@ -235,7 +235,7 @@ Následne spustíme modul <a class="reference internal" href="../_images/r.slope
 </figcaption>
 </figure>
 <p>Ďalej otvoríme príkazový riadok <a class="reference internal" href="../_images/shell.1.png"><img alt="grass_shell" src="../_images/shell.1.png" style="width: 1.5em;" /></a> <sup>shell</sup>, spustíme modul
-<a class="reference external" href="http://grass.osgeo.org/grass80/manuals/r.terraflow.html">r.terraflow</a>, ktorý z digitálneho modelu terénu produkuje vyhladený DMT
+<a class="reference external" href="https://grass.osgeo.org/grass83/manuals/r.terraflow.html">r.terraflow</a>, ktorý z digitálneho modelu terénu produkuje vyhladený DMT
 (<span class="map">dmt_fill</span>), rastrovú mapu smeru
 odtoku do susednej bunky s najväčším sklonom (<span class="map">direction</span>), mapu mikropovodí
 (<span class="map">swatershed</span>), rastrovú mapu znázorňujúcu akumuláciu toku v každej bunke
@@ -412,7 +412,7 @@ odtok.</span><a class="headerlink" href="#id18" title="Permalink k tomuto obráz
         <div class="right">
           
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2015-2023 GISMentors.
+        &#169; Copyright 2015-2025 GISMentors.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
         </div>
