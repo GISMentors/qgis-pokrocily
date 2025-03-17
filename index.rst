@@ -74,7 +74,7 @@ dlouhodobého plánování a hlavně z požadavků uživatelů.
 .. notedata::
 
    *Data ke školení* jsou stažitelná jako `zip archiv
-   <http://training.gismentors.eu/geodata/qgis/data.zip>`__ (614
+   <https://gismentors.cz/geodata/qgis/data.zip>`__ (614
    MB).
 
 .. only:: html
